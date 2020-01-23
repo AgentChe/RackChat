@@ -1,0 +1,6 @@
+framework module DatingKit {
+  umbrella header "DatingKit-umbrella.h"
+
+  export *
+  module * { export * }
+}

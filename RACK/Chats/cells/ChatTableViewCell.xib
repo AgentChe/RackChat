@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="84" id="KGk-i7-Jjw" customClass="DKUserMessageTableViewCell" customModule="DatingKit">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="84"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="84"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NWp-Q6-eYV">
+                        <rect key="frame" x="268" y="6" width="36" height="72"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="36" id="E2R-hZ-JdJ"/>
+                        </constraints>
+                        <state key="normal" image="error_icon"/>
+                    </button>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CMa-St-crD">
+                        <rect key="frame" x="242.5" y="6" width="61.5" height="72"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jy5-fM-Vik">
+                                <rect key="frame" x="12" y="8" width="37.5" height="56"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="Jy5-fM-Vik" firstAttribute="leading" secondItem="CMa-St-crD" secondAttribute="leading" constant="12" id="9kc-rf-9Fu"/>
+                            <constraint firstAttribute="trailing" secondItem="Jy5-fM-Vik" secondAttribute="trailing" constant="12" id="Fcg-c6-6WU"/>
+                            <constraint firstItem="Jy5-fM-Vik" firstAttribute="top" secondItem="CMa-St-crD" secondAttribute="top" constant="8" id="bU6-d8-nj7"/>
+                            <constraint firstAttribute="bottom" secondItem="Jy5-fM-Vik" secondAttribute="bottom" constant="8" id="f13-uo-Rly"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="17"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                    <activityIndicatorView opaque="NO" alpha="0.0" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="Trz-EZ-7S3">
+                        <rect key="frame" x="214.5" y="32" width="20" height="20"/>
+                    </activityIndicatorView>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <constraints>
+                    <constraint firstItem="CMa-St-crD" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="6" id="1LM-br-aDC"/>
+                    <constraint firstAttribute="trailing" secondItem="CMa-St-crD" secondAttribute="trailing" constant="16" id="ADQ-Tp-aGI"/>
+                    <constraint firstItem="CMa-St-crD" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="70" id="BLL-8Y-UBm"/>
+                    <constraint firstAttribute="bottom" secondItem="CMa-St-crD" secondAttribute="bottom" constant="6" id="GYV-x2-CGS"/>
+                    <constraint firstItem="NWp-Q6-eYV" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="6" id="M7O-lT-p2m"/>
+                    <constraint firstAttribute="trailing" secondItem="NWp-Q6-eYV" secondAttribute="trailing" constant="16" id="PKD-Du-Dn2"/>
+                    <constraint firstItem="CMa-St-crD" firstAttribute="leading" secondItem="Trz-EZ-7S3" secondAttribute="trailing" constant="8" id="afm-Fd-Ffu"/>
+                    <constraint firstAttribute="bottom" secondItem="NWp-Q6-eYV" secondAttribute="bottom" constant="6" id="amw-MN-CDl"/>
+                    <constraint firstItem="Trz-EZ-7S3" firstAttribute="centerY" secondItem="CMa-St-crD" secondAttribute="centerY" id="oC3-tl-jVl"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="activityIndicator" destination="Trz-EZ-7S3" id="Eyo-RT-M1z"/>
+                <outlet property="errorButton" destination="NWp-Q6-eYV" id="96j-cg-REF"/>
+                <outlet property="leadingConstarait" destination="ADQ-Tp-aGI" id="opF-Hj-XDm"/>
+                <outlet property="messageLabel" destination="Jy5-fM-Vik" id="R4U-Hy-fFu"/>
+            </connections>
+            <point key="canvasLocation" x="137.59999999999999" y="188.00599700149925"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="error_icon" width="34" height="34"/>
+    </resources>
+</document>

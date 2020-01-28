@@ -22,11 +22,3 @@ target 'RACK' do
   pod 'NotificationBannerSwift'
 
 end
-
-target 'RACKTests' do
-  inherit! :search_paths
-end
-
-target 'RACKUITests' do
-  inherit! :search_paths
-end

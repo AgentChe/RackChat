@@ -63,6 +63,7 @@ class NotificationManager: NSObject {
         UIApplication.shared.registerForRemoteNotifications()
     }
     
+    @discardableResult
     func handleNotify(userInfo: [String: Any]) -> Bool {
         guard let type: String = userInfo["type"] as? String else {
             return false

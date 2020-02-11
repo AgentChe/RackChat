@@ -67,16 +67,18 @@ class RootViewController: UIViewController {
     
     func showTestScreen() {
         let mainStoryboard: UIStoryboard = UIStoryboard(name: "Test", bundle: nil)
-        let viewController = mainStoryboard.instantiateViewController(withIdentifier: "rules")
-        let navVC =  UINavigationController(rootViewController: viewController)
-        addChild(navVC)
-        navVC.view.frame = view.bounds
-        view.addSubview(navVC.view)
-        navVC.didMove(toParent: self)
-        current.willMove(toParent: nil)
-        current.view.removeFromSuperview()
-        current.removeFromParent()
-        current = navVC
+//        let viewController = mainStoryboard.instantiateViewController(withIdentifier: "rules")
+        let viewController = mainStoryboard.instantiateViewController(withIdentifier: "setAgeAndCity")
+        animateFadeTransition(to: viewController)
+//        let navVC =  UINavigationController(rootViewController: viewController)
+//        addChild(navVC)
+//        navVC.view.frame = view.bounds
+//        view.addSubview(navVC.view)
+//        navVC.didMove(toParent: self)
+//        current.willMove(toParent: nil)
+//        current.view.removeFromSuperview()
+//        current.removeFromParent()
+//        current = navVC
     }
     
     func showTestScreen(name: String) {

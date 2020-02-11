@@ -47,31 +47,35 @@ class ScreenManager {
     }
     
     func startManagment() {
-        DatingKit.isLogined { (isLogined) in
-            if isLogined {
-                if let status:String = UserDefaults.standard.object(forKey: ScreenManager.showKey) as? String {
-                    if status == ScreenManagerEntryTypes.showMain {
-                        
-                        AppDelegate.shared.rootViewController.showMainScreen()
-                        return
-                    }
-                    
-                    if status == ScreenManagerEntryTypes.showTest {
-                        if let cureent: String = UserDefaults.standard.object(forKey: ScreenManager.currentScreen) as? String {
-                            AppDelegate.shared.rootViewController.showTestScreen(name: cureent)
-                            return
-                        } else {
-                            AppDelegate.shared.rootViewController.showTestScreen()
-                            return
-                        }
-                    }
-                } else {
-                    AppDelegate.shared.rootViewController.showMainScreen()
-                }
-            } else {
-                AppDelegate.shared.rootViewController.showLoginScreen()
-            }
-        }
+        // FIXME:
+        AppDelegate.shared.rootViewController.showTestScreen()
+
+//        DatingKit.isLogined { (isLogined) in
+//            if isLogined {
+//                if let status:String = UserDefaults.standard.object(forKey: ScreenManager.showKey) as? String {
+//                    if status == ScreenManagerEntryTypes.showMain {
+//
+//                        AppDelegate.shared.rootViewController.showMainScreen()
+//                        return
+//                    }
+//
+//                    if status == ScreenManagerEntryTypes.showTest {
+//                        if let cureent: String = UserDefaults.standard.object(forKey: ScreenManager.currentScreen) as? String {
+//                            AppDelegate.shared.rootViewController.showTestScreen(name: cureent)
+//                            return
+//                        } else {
+//                            AppDelegate.shared.rootViewController.showTestScreen()
+//                            return
+//                        }
+//                    }
+//                } else {
+//                    AppDelegate.shared.rootViewController.showMainScreen()
+//                }
+//            } else {
+//                AppDelegate.shared.rootViewController.showLoginScreen()
+//            }
+//        }
+        
 //        if User.shared.isLogined() {
 //            AppDelegate.shared.rootViewController.showMainScreen()
 //        } else {

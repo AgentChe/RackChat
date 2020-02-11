@@ -15,7 +15,6 @@ class RulesViewController: UIViewController {
     @IBOutlet weak var activityView: UIView!
     @IBOutlet weak var confirmButton: GradientButton!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.setNavigationBarHidden(true, animated: true)

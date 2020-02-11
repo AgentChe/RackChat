@@ -17,39 +17,35 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        
+        // FB
         ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
+        
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = RootViewController()
+        
         PurchaseManager.shared.gettingStart()
+        
         DatingKit.isLogined { (isLoginned) in
-                if isLoginned {
-                     NotificationManager.shared.startManagment()
-                }
+            if isLoginned {
+                NotificationManager.shared.startManagment()
             }
-        Amplitude.instance()?.initializeApiKey("7003a76ce0c1807ae2030b1b35b20baf")
-        //  645e522c3ac1041194071450538c9467  7003a76ce0c1807ae2030b1b35b20baf
+        }
+
+        Amplitude.instance()?.initializeApiKey("7003a76ce0c1807ae2030b1b35b20baf") //  645e522c3ac1041194071450538c9467  7003a76ce0c1807ae2030b1b35b20baf
         window?.makeKeyAndVisible()
 
         if let options = launchOptions, let remoteNotif = options[UIApplication.LaunchOptionsKey.remoteNotification] as? [String: Any] {
             if let aps = remoteNotif["aps"] as? [String: Any] {
-                 ScreenManager.shared.showChat = true
+                ScreenManager.shared.showChat = true
                 NotificationManager.shared.handleNotify(userInfo: aps)
-
-                
             }
         }
-       
-//
+
         return true
     }
     
-    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
-        let handled: Bool = (ApplicationDelegate.shared.application(app, open: url, options: options))
-        return handled
-    }
-
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
@@ -73,9 +69,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
+}
+
+
+extension AppDelegate {
+    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        let handled: Bool = (ApplicationDelegate.shared.application(app, open: url, options: options))
+        return handled
+    }
+
+}
+
+
+extension AppDelegate {
+    
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
         NotificationManager.shared.application(application: application, didReceiveRemoteNotification: userInfo)
-
+        
     }
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
@@ -88,4 +99,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
 }
-

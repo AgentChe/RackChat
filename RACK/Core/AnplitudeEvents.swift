@@ -16,6 +16,7 @@ enum AmplitudeEvensts: Int, CaseIterable {
     //MARK: - screens
     case loginScr
     case emailScr
+    case ageAndCityScr
     case codeScr
     case firstOnboardingScr
     case secondOnboardingScr
@@ -74,6 +75,8 @@ enum AmplitudeEvensts: Int, CaseIterable {
             return "Paygate Scr"
         case .trialScr:
             return "Trial Scr"
+        case .ageAndCityScr:
+            return "" // FIXME:
             
         //MARK: - buttons events names
         case .firstOnboardingTap, .secondOnboardingTap, .triedOnboardingTap:

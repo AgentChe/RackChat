@@ -201,7 +201,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   DatingKit:
-    :commit: ed73f8d5d2e62344946ec9ad07d1490ad000491f
+    :commit: 7ca597bb389d806135ab3a5deb31df14a40c1f54
     :git: "../DatingKit"
   ReverseExtension:
     :commit: f46463468b608c9189846c374863cdeb03f15bb4
@@ -212,7 +212,7 @@ SPEC CHECKSUMS:
   AlamofireImage: be9963c6582d68b39e89191f64c82a7d7bf40fdd
   Amplitude-iOS: 2ad4d7270c99186236c1272a3a9425463b1ae1a7
   Crashlytics: 540b7e5f5da5a042647227a5e3ac51d85eed06df
-  DatingKit: b964f64d06b43f90a6cacbd40d9b899c4cb9673a
+  DatingKit: 460f9da187a1f907508a31aef630683e424d83f3
   Disk: dcee5c2e98fb72f9a924cde8da8435b08244a80e
   Fabric: 706c8b8098fff96c33c0db69cbf81f9c551d0d74
   FBSDKCoreKit: fe738b172590e622c86735b45e20d196848b54df

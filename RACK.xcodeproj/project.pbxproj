@@ -106,6 +106,8 @@
 		13FD701322EBA36900CE225C /* HelloViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13FD701222EBA36900CE225C /* HelloViewController.swift */; };
 		13FF93F0231D63510095D05A /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13FF93EF231D63510095D05A /* NotificationManager.swift */; };
 		440E2CDC8C038365881F6E9C /* Pods_RACK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 314E2BDB4CC11D3E4362E68E /* Pods_RACK.framework */; };
+		4731754723F583F90004705E /* UIDevice+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4731754523F583F90004705E /* UIDevice+Ext.swift */; };
+		4731754823F583F90004705E /* UIFont+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4731754623F583F90004705E /* UIFont+Ext.swift */; };
 		4772C9F123F2E7C100B905CE /* SetAgeAndCityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4772C9F023F2E7C100B905CE /* SetAgeAndCityViewController.swift */; };
 		4772C9F423F2EAD000B905CE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4772C9F323F2EAD000B905CE /* Assets.xcassets */; };
 /* End PBXBuildFile section */
@@ -215,6 +217,8 @@
 		2A6A8C3AEAF95752AD690984 /* libPods-RACKTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RACKTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		314E2BDB4CC11D3E4362E68E /* Pods_RACK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RACK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D1923581EA23AB25983DE0B /* Pods-RACK.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RACK.release.xcconfig"; path = "Target Support Files/Pods-RACK/Pods-RACK.release.xcconfig"; sourceTree = "<group>"; };
+		4731754523F583F90004705E /* UIDevice+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIDevice+Ext.swift"; sourceTree = "<group>"; };
+		4731754623F583F90004705E /* UIFont+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+Ext.swift"; sourceTree = "<group>"; };
 		4772C9F023F2E7C100B905CE /* SetAgeAndCityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetAgeAndCityViewController.swift; sourceTree = "<group>"; };
 		4772C9F323F2EAD000B905CE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4F45303A065C76D40FCA6BD1 /* Pods-RACKTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RACKTests.debug.xcconfig"; path = "Target Support Files/Pods-RACKTests/Pods-RACKTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -380,6 +384,8 @@
 		13D4054F22C6389A004FC70D /* Extentions */ = {
 			isa = PBXGroup;
 			children = (
+				4731754523F583F90004705E /* UIDevice+Ext.swift */,
+				4731754623F583F90004705E /* UIFont+Ext.swift */,
 				13602F6822EB2BCC0099BF1F /* TransitionAnimator.swift */,
 				13602F6922EB2BCE0099BF1F /* TransitionCoordinator.swift */,
 				13D4055022C638B9004FC70D /* AppDelegate+Root.swift */,
@@ -676,6 +682,7 @@
 				134901D92306E0CF00684901 /* GIFCollectionViewCell.swift in Sources */,
 				13E4D36222DA352F00442BF9 /* SearchViewController.swift in Sources */,
 				13E4D35022DA2A2A00442BF9 /* СhatsTableViewCell.swift in Sources */,
+				4731754823F583F90004705E /* UIFont+Ext.swift in Sources */,
 				13CC5593231E427A00A10D45 /* NotificationRequestViewController.swift in Sources */,
 				13A30BE4231E99A400CF6248 /* NotifySetingUiTableViewCell.swift in Sources */,
 				136C997C236D9E8B003F60CC /* TimeOutView.swift in Sources */,
@@ -711,6 +718,7 @@
 				1386775722C78A7600F3AD84 /* GradientButton.swift in Sources */,
 				134901E22306E0CF00684901 /* ChatPartnerTableViewCell.swift in Sources */,
 				13602F6A22EB2BCE0099BF1F /* TransitionAnimator.swift in Sources */,
+				4731754723F583F90004705E /* UIDevice+Ext.swift in Sources */,
 				13602F6B22EB2BCE0099BF1F /* TransitionCoordinator.swift in Sources */,
 				13F9B34823262CEE00072159 /* CenterView.swift in Sources */,
 				13CB670922F5D7FD00B79622 /* SkipButtonView.swift in Sources */,

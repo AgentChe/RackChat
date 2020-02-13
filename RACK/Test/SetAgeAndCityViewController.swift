@@ -14,26 +14,69 @@ import NotificationBannerSwift
 
 class SetAgeAndCityViewController: UIViewController, UIGestureRecognizerDelegate {
     
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-    @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var continueButton: UIButton!
+    @IBOutlet private weak var topOffsetConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var bottomOffsetConstraint: NSLayoutConstraint!
+    
+    @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var subtitleLabel: UILabel!
+    
+    @IBOutlet private weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet private weak var scrollView: UIScrollView!
+    @IBOutlet private weak var continueButton: UIButton!
 
-    @IBOutlet weak var ageTextField: UITextField!
-    @IBOutlet weak var invalidAgeLabel: UILabel!
+    @IBOutlet private weak var dateOfBirthTextField: UITextField!
+    @IBOutlet private weak var dateOfBirthTitleLabel: UILabel!
     
-    @IBOutlet weak var cityTextField: UITextField!
-    @IBOutlet weak var invalidCityLabel: UILabel!
+    @IBOutlet private weak var cityTextField: UITextField!
+    @IBOutlet private weak var cityTitleLabel: UILabel!
+        
+    @IBOutlet private weak var citiesTableView: UITableView!
+    @IBOutlet private weak var citiesTableViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var citiesTableViewBottomConstraint: NSLayoutConstraint!
+
+    private var citiesResults: [CityItem] = []
+    private var selectedCityID: Int? = nil
     
-    private var age: Int?
-    private var city: String?
+    private var dateOfBirth: Int? {
+        guard let dateOfBirthText = dateOfBirthTextField.text, let dateOfBirth = Int(dateOfBirthText) else {
+            return nil
+        }
+        return dateOfBirth
+    }
+
+    var isDateOfBirthSelected: Bool {
+        guard let yearOfBirth =  dateOfBirth else { return false }
+        
+        let calendar = Calendar.current
+        let currentYear = calendar.component(.year, from: Date())
+        
+        return yearOfBirth > 1900 && yearOfBirth <= currentYear
+    }
+    
+    var isCitySelected: Bool {
+        guard let cityText = cityTextField.text else { return false }
+        return cityText.count >= 3
+    }
+
+    private var keyboardHeight: CGFloat = 0.0
+    
+    // MARK: - Initialization
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         ScreenManager.shared.onScreenController = self
+        
+        if UIDevice.current.small {
+            topOffsetConstraint.constant = 20
+            bottomOffsetConstraint.constant = 20
+        }
+        
+        titleLabel.font = titleLabel.font.properForDevice
+        subtitleLabel.font = subtitleLabel.font.properForDevice
 
-        ageTextField.delegate = self
-        ageTextField.setLeftPaddingPoints(12)
+        dateOfBirthTextField.delegate = self
+        dateOfBirthTextField.setLeftPaddingPoints(12)
         
         cityTextField.delegate = self
         cityTextField.setLeftPaddingPoints(12)
@@ -54,163 +97,202 @@ class SetAgeAndCityViewController: UIViewController, UIGestureRecognizerDelegate
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name:UIResponder.keyboardWillShowNotification, object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name:UIResponder.keyboardWillHideNotification, object: nil)
+        
+        dateOfBirthTextField.addTarget(self, action: #selector(ageValueChanged), for: .editingChanged)
+        cityTextField.addTarget(self, action: #selector(cityValueChanged), for: .editingChanged)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        Amplitude.instance()?.log(event: .ageAndCityScr)
+        Amplitude.instance()?.log(event: .birthdayAndCityScr)
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         
-        ageTextField.isHidden = false
+        dateOfBirthTextField.isHidden = false
         cityTextField.isHidden = false
         continueButton.isHidden = false
         activityIndicator.isHidden = true
     }
     
+    // MARK: - UI
+    
     private func continueButton(disable: Bool) {
         continueButton.isEnabled = !disable
         continueButton.alpha = disable ? 0.5 : 1.0
     }
-        
-    @objc func tapToHideKeyboard() {
-        ageTextField.resignFirstResponder()
-        cityTextField.resignFirstResponder()
-        scrollView.setContentOffset(CGPoint.zero, animated: true)
+            
+    private func showCitiesPromts() {
+        citiesTableView.isHidden = false
+        citiesTableViewHeightConstraint.constant = CGFloat(min(citiesResults.count, 3)) * CGFloat(60.0)
+        citiesTableViewBottomConstraint.constant = keyboardHeight
+        citiesTableView.reloadData()
     }
-    
-    func checkContinueButton() {
-        continueButton(disable: invalidAgeLabel.isHidden && invalidCityLabel.isHidden)
+
+    private func hideCitiesPromts() {
+        DatingKit.cities.stopAll()
+
+        citiesResults = []
+        citiesTableView.isHidden = true
+        citiesTableView.reloadData()
     }
-    
-    func checkFieldsAndContinue() {
+
+    private func searchCity(withName name: String) {
+        DatingKit.cities.stopAll()
         
-        guard let ageText = ageTextField.text, let age = Int(ageText) else {
-            showAge(invalid: true)
-            return
+        DatingKit.cities.startSearchCity(city: name) { [weak self] (items, status) in
+            guard status == .succses else {
+                self?.hideCitiesPromts()
+                return
+            }
+            
+            guard let cities = items, cities.count > 0 else {
+                self?.hideCitiesPromts()
+                return
+            }
+            
+            self?.citiesResults = cities
+            self?.showCitiesPromts()
         }
-        
-        guard age >= 18 else {
-            self.performSegue(withIdentifier: "toYong", sender: nil)
-            return 
-        }
 
-        
-//        Amplitude.instance()?.log(event: .emailTap)
-        tapToHideKeyboard()
-        
-//        if self.email!.last == " " {
-//            email?.removeLast()
-//        }
-//        if isValid(email: self.email!) {
-//            continueButton.isHidden = true
-//            activityIndicator.isHidden = false
-//            activityIndicator.startAnimating()
-//
-//            DatingKit.user.create(email: self.email!) { (new, status) in
-//                switch status {
-//                case .succses:
-//                    if new {
-//                        CurrentAppConfig.shared.setVersion()
-//                        CurrentAppConfig.shared.setLocale()
-//                        self.performSegue(withIdentifier: "test", sender: nil)
-//                    } else {
-//                        self.performSegue(withIdentifier: "code", sender: nil)
-//                    }
-//                    break
-//                case .banned:
-//                    self.continueButton.isHidden = false
-//                    self.activityIndicator.isHidden = true
-//                    self.activityIndicator.stopAnimating()
-//                    self.performSegue(withIdentifier: "banned", sender: nil)
-//                    break
-//                case .noInternetConnection:
-//                    let banner = NotificationBanner(customView: NoConnectionBannerView.instanceFromNib())
-//                    self.continueButton.isHidden = false
-//                    self.activityIndicator.isHidden = true
-//                    self.activityIndicator.stopAnimating()
-//                    banner.show(on: self.navigationController)
-//                    break
-//                default:
-//                    self.continueButton.isHidden = false
-//                    self.activityIndicator.isHidden = true
-//                    self.activityIndicator.stopAnimating()
-//                    let alertController = UIAlertController(title: "ERROR", message: "Can't Create account", preferredStyle: .alert)
-//                    let action = UIAlertAction(title: "Cancel", style: .cancel) { (action:UIAlertAction) in }
-//                    alertController.addAction(action)
-//                    self.present(alertController, animated: true, completion: nil)
-//                    break
-//                }
-//            }
-//
-//        } else {
-//            Amplitude.instance()?.log(event: .emailError)
-//            showEmail(invalid: true)
-//        }
     }
-
-    func showAge(invalid: Bool) {
-        ageTextField.layer.borderWidth = invalid ? 1.0 : 0.0
-        invalidAgeLabel.isHidden = !invalid
-        checkContinueButton()
-    }
-
-    func showCity(invalid: Bool) {
-        cityTextField.layer.borderWidth = invalid ? 1.0 : 0.0
-        invalidCityLabel.isHidden = !invalid
-        checkContinueButton()
+            
+    private func updateContinueButtonAvailability() {
+        continueButton(disable: !(isDateOfBirthSelected && isCitySelected))
     }
     
     @IBAction func tapOnContinue(_ sender: UIButton) {
-        checkFieldsAndContinue()
+        if let _ = selectedCityID {
+            updateUsersInfo()
+        } else {
+            guard let cityName = cityTextField.text, cityName.count >= 3 else { return }
+            
+            startLoading()
+            DatingKit.cities.addCity(city: cityName) { [weak self] (cityID, status) in
+                guard let self = self else { return }
+                self.stopLoading()
+
+                self.selectedCityID = cityID
+                
+                switch status {
+                case .succses:
+                    self.updateUsersInfo()
+                    
+                case .noInternetConnection:
+                    self.showConnectionError()
+                    
+                default:
+                    self.showErrorMessage()
+                }
+            }
+            
+        }
+    }
+
+    private func updateUsersInfo() {
+        guard let yearOfBirth = dateOfBirth, let cityID = selectedCityID else { return }
+        
+        startLoading()
+        DatingKit.user.set(birthYear: yearOfBirth, cityID: cityID) { [weak self] (status) in
+            guard let self = self else { return }
+            
+            switch status {
+            case .succses:
+                self.performSegue(withIdentifier: "setGender", sender: nil)
+                
+            case .banned:
+                self.stopLoading()
+                self.performSegue(withIdentifier: "toYong", sender: nil)
+                
+            case .noInternetConnection:
+                self.stopLoading()
+                self.showConnectionError()
+                
+            default:
+                self.stopLoading()
+                self.showErrorMessage()
+            }
+        }
+    }
+        
+    @objc func tapToHideKeyboard() {
+        dateOfBirthTextField.resignFirstResponder()
+        cityTextField.resignFirstResponder()
+        scrollView.setContentOffset(CGPoint.zero, animated: true)
+        hideCitiesPromts()
+    }
+
+    // MARK: - Helpers
+    
+    private func startLoading() {
+        continueButton.isHidden = true
+        activityIndicator.isHidden = false
+        activityIndicator.startAnimating()
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == "code" {
-//            if let codeVC: CodeViewController = segue.destination as? CodeViewController {
-//                codeVC.email = self.email!
-//            }
-//        }
+    private func stopLoading() {
+        self.continueButton.isHidden = false
+        self.activityIndicator.isHidden = true
+        self.activityIndicator.stopAnimating()
+    }
+
+    private func showErrorMessage() {
+        let alertController = UIAlertController(title: "ERROR", message: "Can't Create account", preferredStyle: .alert)
+        let action = UIAlertAction(title: "Cancel", style: .cancel) { (action:UIAlertAction) in }
+        alertController.addAction(action)
+        self.present(alertController, animated: true, completion: nil)
+    }
+
+    private func showConnectionError() {
+        let banner = NotificationBanner(customView: NoConnectionBannerView.instanceFromNib())
+        banner.show(on: self.navigationController)
+    }
+
+    private func showDateOfBirth(invalid: Bool) {
+        dateOfBirthTextField.layer.borderWidth = invalid ? 1.0 : 0.0
+    }
+
+    private func showCity(invalid: Bool) {
+        cityTextField.layer.borderWidth = invalid ? 1.0 : 0.0
     }
     
 }
 
 extension SetAgeAndCityViewController: UITextFieldDelegate {
     
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+    @objc func ageValueChanged() {
+    }
+
+    @objc func cityValueChanged() {
+        selectedCityID = nil
         
-        var email = textField.text! + string
-        if string == "" {
-            email.removeLast()
+        let text = cityTextField.text ?? ""
+        if text.count > 0 {
+            searchCity(withName: text)
+        } else {
+            hideCitiesPromts()
         }
-        
-        if email != "" {
-            continueButton(disable: false)
-        }  else {
-            continueButton(disable: true)
-        }
-        
-//        if isValid(email: email) {
-//            showEmail(invalid: false)
-//        }
-//        self.email = email
-        return true
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-//        checkEmailAndContinue()
         return true
     }
     
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        if textField == ageTextField {
-//            self.age = textField.text
-        } else if textField == cityTextField {
-//            self.city = textField.text
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if textField == cityTextField, selectedCityID == nil, let text = textField.text, text.count > 0 {
+            searchCity(withName: text)
         }
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if textField == dateOfBirthTextField {
+            showDateOfBirth(invalid: !isDateOfBirthSelected)
+        } else if textField == cityTextField {
+            showCity(invalid: !isCitySelected)
+        }
+        updateContinueButtonAvailability()
     }
     
     private func textFieldShouldReturn(textField: UITextField) -> Bool {
@@ -225,12 +307,18 @@ extension SetAgeAndCityViewController {
     
     @objc func keyboardWillShow(notification:NSNotification){
         
-        var userInfo = notification.userInfo!
-        var keyboardFrame:CGRect = (userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
+        let userInfo = notification.userInfo!
+        var keyboardFrame:CGRect = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
         keyboardFrame = self.view.convert(keyboardFrame, from: nil)
+        keyboardHeight = keyboardFrame.size.height - self.view.safeAreaInsets.bottom
         
-        var contentInset:UIEdgeInsets = self.scrollView.contentInset
-        contentInset.bottom = keyboardFrame.size.height + 100.0
+        var contentInset: UIEdgeInsets = self.scrollView.contentInset
+        contentInset.bottom = keyboardHeight + 100.0
+        
+        if cityTextField.isFirstResponder {
+            contentInset.bottom += 100
+        }
+        
         scrollView.contentInset = contentInset
     }
     
@@ -239,4 +327,52 @@ extension SetAgeAndCityViewController {
         scrollView.setContentOffset(CGPoint.zero, animated: true)
     }
 
+}
+
+
+extension SetAgeAndCityViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return citiesResults.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let city = citiesResults[indexPath.row]
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CityPromtCell") as! CityPromtCell
+        cell.configure(with: city.name)
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 60.0
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+
+        let selectedCity = citiesResults[indexPath.row]
+        cityTextField.text = selectedCity.name
+
+        selectedCityID = selectedCity.cityID
+        
+        cityTextField.resignFirstResponder()
+        hideCitiesPromts()
+    }
+    
+}
+
+
+class CityPromtCell: UITableViewCell {
+    
+    @IBOutlet private weak var nameLabel: UILabel!
+    
+    func configure(with name: String) {
+        nameLabel.text = name
+    }
+    
 }

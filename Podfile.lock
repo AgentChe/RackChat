@@ -201,7 +201,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   DatingKit:
-    :commit: 7ca597bb389d806135ab3a5deb31df14a40c1f54
+    :commit: 2d76f261109785de0f9aadfceca93f0b86de1474
     :git: "../DatingKit"
   ReverseExtension:
     :commit: f46463468b608c9189846c374863cdeb03f15bb4

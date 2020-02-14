@@ -65,6 +65,9 @@ class SetAgeAndCityViewController: UIViewController, UIGestureRecognizerDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        UserDefaults.standard.set(ScreenManager.ScreenManagerEntryTypes.showTest, forKey: ScreenManager.showKey)
+        UserDefaults.standard.set(ScreenManager.ScreenManagerTestEntryScreen.birthdayAndCity, forKey: ScreenManager.currentScreen)
+
         ScreenManager.shared.onScreenController = self
         
         if UIDevice.current.small {
@@ -100,6 +103,11 @@ class SetAgeAndCityViewController: UIViewController, UIGestureRecognizerDelegate
         
         dateOfBirthTextField.addTarget(self, action: #selector(ageValueChanged), for: .editingChanged)
         cityTextField.addTarget(self, action: #selector(cityValueChanged), for: .editingChanged)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -190,7 +198,7 @@ class SetAgeAndCityViewController: UIViewController, UIGestureRecognizerDelegate
             
         }
     }
-
+    
     private func updateUsersInfo() {
         guard let yearOfBirth = dateOfBirth, let cityID = selectedCityID else { return }
         
@@ -201,7 +209,7 @@ class SetAgeAndCityViewController: UIViewController, UIGestureRecognizerDelegate
             switch status {
             case .succses:
                 self.performSegue(withIdentifier: "setGender", sender: nil)
-                
+
             case .banned:
                 self.stopLoading()
                 self.performSegue(withIdentifier: "toYong", sender: nil)
@@ -216,7 +224,7 @@ class SetAgeAndCityViewController: UIViewController, UIGestureRecognizerDelegate
             }
         }
     }
-        
+            
     @objc func tapToHideKeyboard() {
         dateOfBirthTextField.resignFirstResponder()
         cityTextField.resignFirstResponder()
@@ -323,7 +331,6 @@ extension SetAgeAndCityViewController {
     }
     
     @objc func keyboardWillHide(notification:NSNotification) {
-        navigationController?.isNavigationBarHidden = false
         scrollView.setContentOffset(CGPoint.zero, animated: true)
     }
 
@@ -344,7 +351,7 @@ extension SetAgeAndCityViewController: UITableViewDelegate, UITableViewDataSourc
         let city = citiesResults[indexPath.row]
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "CityPromtCell") as! CityPromtCell
-        cell.configure(with: city.name)
+        cell.configure(with: city.name, highlightedText: cityTextField.text ?? "")
         return cell
     }
     
@@ -370,9 +377,17 @@ extension SetAgeAndCityViewController: UITableViewDelegate, UITableViewDataSourc
 class CityPromtCell: UITableViewCell {
     
     @IBOutlet private weak var nameLabel: UILabel!
-    
-    func configure(with name: String) {
-        nameLabel.text = name
+        
+    func configure(with name: String, highlightedText: String) {
+        let attrString = NSMutableAttributedString(string: name)
+        attrString.addAttributes([NSAttributedString.Key.foregroundColor: UIColor(white: 1.0, alpha: 0.5)],
+                                 range: NSMakeRange(0, name.count))
+
+        let selectionRange = NSString(string: name.lowercased()).range(of: highlightedText.lowercased())
+        attrString.addAttributes([NSAttributedString.Key.foregroundColor: UIColor.white],
+                                 range: selectionRange)
+        
+        nameLabel.attributedText = attrString
     }
     
 }

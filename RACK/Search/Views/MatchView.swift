@@ -22,8 +22,10 @@ class MatchView: UIView {
     @IBOutlet weak var buttonsHeight: NSLayoutConstraint!
     @IBOutlet weak var partnerImgHeight: NSLayoutConstraint!
     @IBOutlet weak var partnerImgWidth: NSLayoutConstraint!
+
+    @IBOutlet weak var photosView: UIView!
+    @IBOutlet weak var photosCountLabel: UILabel!
     
-  
     @IBOutlet weak var waitingView: UIView!
     @IBOutlet weak var buttonsView: UIStackView!
     @IBOutlet weak var secondNameLabel: UILabel!
@@ -49,12 +51,17 @@ class MatchView: UIView {
         let fullName: String = match.matchedUserName.uppercased()
         let split = fullName.split(separator: " ")
         let last = String(split.suffix(1).joined(separator: [" "]))
-        self.secondNameLabel.text = " " + last + "?" + " "
+        self.secondNameLabel.text = " " + last + " · " + "\(match.matchedUserAge)" + "?" + " "
         self.firstNameLabel.text = " " + fullName.components(separatedBy: " ").dropLast().joined(separator: " ") + " "
         self.contentView.alpha = 0.0
         self.userImageView.image = user.gender == .man ? #imageLiteral(resourceName: "manPlace") : #imageLiteral(resourceName: "womanPlace")
         self.partnerImageView.image = match.matchedUserGender == .man ? #imageLiteral(resourceName: "manPlace") : #imageLiteral(resourceName: "womanPlace")
         
+        if match.matchedUserPhotosCount == 1 {
+            self.photosCountLabel.text = "\(match.matchedUserPhotosCount) PHOTO"
+        } else {
+            self.photosCountLabel.text = "\(match.matchedUserPhotosCount) PHOTOS"
+        }
         
         if let avatar: UIImage = user.matchingAvatar {
             self.userImageView.image = avatar
@@ -81,6 +88,8 @@ class MatchView: UIView {
              self.showUI()
         }
        
+        self.photosView.layer.cornerRadius = 14.0
+        self.photosView.layer.masksToBounds = true
     }
     
     private func showUI() {
@@ -100,6 +109,7 @@ class MatchView: UIView {
         UIView.animate(withDuration: 0.4, animations: {
             self.userImageView.alpha = 0.0
             self.nameBundle.alpha = 0.0
+            self.photosView.alpha = 0.0
             self.contentView.layoutIfNeeded()
         }) { (fin) in
             self.partnerImgWidth.constant = 445

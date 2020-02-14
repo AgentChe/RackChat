@@ -18,8 +18,9 @@ class RulesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.setNavigationBarHidden(true, animated: true)
-        UserDefaults.standard.set(ScreenManager.ScreenManagerEntryTypes.showTest, forKey: ScreenManager.showKey)
-        UserDefaults.standard.set(ScreenManager.ScreenManagerTestEntryScreen.rules, forKey: ScreenManager.currentScreen)
+        
+//        UserDefaults.standard.set(ScreenManager.ScreenManagerEntryTypes.showTest, forKey: ScreenManager.showKey)
+//        UserDefaults.standard.set(ScreenManager.ScreenManagerTestEntryScreen.rules, forKey: ScreenManager.currentScreen)
     }
     
     

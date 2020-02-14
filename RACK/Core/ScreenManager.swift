@@ -21,7 +21,7 @@ class ScreenManager {
     }
     
     public struct ScreenManagerTestEntryScreen {
-        static let rules: String = "rules"
+        static let birthdayAndCity: String = "birthdayAndCity"
         static let gender: String = "gender"
         static let firstTest: String = "firstTest"
         static let secondTest: String = "secondTest"
@@ -47,8 +47,6 @@ class ScreenManager {
     }
     
     func startManagment() {
-        // FIXME:
-//        AppDelegate.shared.rootViewController.showTestScreen()
 
         DatingKit.isLogined { (isLogined) in
             if isLogined {

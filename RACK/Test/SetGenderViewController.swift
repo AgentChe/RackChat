@@ -38,22 +38,23 @@ class SetGenderViewController: UIViewController {
     @IBAction func tapOnMan(_ sender: UIButton) {
         manView.alpha = 1.0
         womenButton.isEnabled = true
+        
         DatingKit.user.set(gender: .man) { (status) in
             switch status {
             case .succses:
                 CurrentAppConfig.shared.setGender(gender: .man)
-                self.performSegue(withIdentifier: "first", sender: nil)
-                break
+                self.randomizeUser()
+
             case . noInternetConnection:
                 let banner = NotificationBanner(customView: NoConnectionBannerView.instanceFromNib())
                 banner.show(on: self.navigationController)
-                break
+
             default:
                 let alertController = UIAlertController(title: "ERROR", message: "Something went wrong!", preferredStyle: .alert)
                 let action = UIAlertAction(title: "Cancel", style: .cancel) { (action:UIAlertAction) in }
                 alertController.addAction(action)
                 self.present(alertController, animated: true, completion: nil)
-                break
+
             }
         }
 //        User.shared.set(gender: .man) { [weak self] in
@@ -69,27 +70,25 @@ class SetGenderViewController: UIViewController {
     @IBAction func tapOnWoman(_ sender: UIButton) {
         womanView.alpha = 1.0
         manButton.isEnabled = true
+        
         DatingKit.user.set(gender: .woman) { (status) in
             switch status {
             case .succses:
                 CurrentAppConfig.shared.setGender(gender: .woman)
-                self.performSegue(withIdentifier: "first", sender: nil)
-                break
+                self.randomizeUser()
+
             case . noInternetConnection:
                 let banner = NotificationBanner(customView: NoConnectionBannerView.instanceFromNib())
                 banner.show(on: self.navigationController)
-                break
+
             default:
                 let alertController = UIAlertController(title: "ERROR", message: "Something went wrong!", preferredStyle: .alert)
                 let action = UIAlertAction(title: "Cancel", style: .cancel) { (action:UIAlertAction) in }
                 alertController.addAction(action)
                 self.present(alertController, animated: true, completion: nil)
-                break
+
             }
         }
-//        User.shared.set(gender: .woman) { [weak self] in
-//
-//        }
     }
     
     @IBAction func endTapOnWoman(_ sender: Any) {
@@ -97,6 +96,15 @@ class SetGenderViewController: UIViewController {
         manButton.isEnabled = true
     }
     
+    
+    private func randomizeUser() {
+        DatingKit.user.show { (_, _) in
+            DatingKit.user.randomize { (_, _) in
+                self.performSegue(withIdentifier: "first", sender: nil)
+            }
+        }
+    }
+
     
 //    override func viewDidDisappear(_ animated: Bool) {
 //        super.viewDidDisappear(animated)

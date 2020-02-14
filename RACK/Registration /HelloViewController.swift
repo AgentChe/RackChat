@@ -24,7 +24,7 @@ class HelloViewController: UIViewController {
             case .succses:
                 Amplitude.instance()?.setUserId("\(user?.id)")
                 self.userImageView.downloaded(from: user!.avatarURL) {
-                    let name = "Hi, " + user!.name
+                    let name = self.helloMessage(for: user!)
                     self.userNameLabel.text = name.uppercased()
                 }
                 break
@@ -38,7 +38,10 @@ class HelloViewController: UIViewController {
         }
     }
     
-    
+    private func helloMessage(for user: UserShow) -> String {
+        return ("HI, \(user.name.uppercased()), \(user.age) from \(user.city)")
+    }
+
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         navigationController?.setNavigationBarHidden(true, animated: true)

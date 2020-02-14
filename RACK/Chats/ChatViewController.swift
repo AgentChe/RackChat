@@ -28,6 +28,7 @@ class ChatViewController: UIViewController, ChatViewProtocol {
     
     var configurator: ChatConfiguratorProtocol = DKChatConfigurator()
     
+    var menuImageView: UIImageView!
     
     @IBOutlet weak var input: DKChatBottomView!
     @IBOutlet weak var menuCell: DKMenuCell!
@@ -42,7 +43,7 @@ class ChatViewController: UIViewController, ChatViewProtocol {
     
     @IBOutlet var navView: UIView!
     @IBOutlet var partnerNameLabel: UILabel!
-    @IBOutlet var partnerAvatarImageView: UIImageView!
+    @IBOutlet var partnerPhotosImageViews: [UIImageView]!
     
     private var barItem: UIBarButtonItem?
     private var image: UIImage!
@@ -75,7 +76,7 @@ class ChatViewController: UIViewController, ChatViewProtocol {
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
-     
+             
         navigationItem.titleView = navView
         navigationItem.largeTitleDisplayMode = .never
         noMessageView.alpha = 0.0
@@ -102,14 +103,41 @@ class ChatViewController: UIViewController, ChatViewProtocol {
         
         navigationItem.largeTitleDisplayMode = .never
         
-        barItem = UIBarButtonItem(image: #imageLiteral(resourceName: "button"), style: .plain, target: self, action: #selector(showUnmachAndReport))
+        menuImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 48, height: 48))
+        let widthConstraint = NSLayoutConstraint(item: menuImageView!,
+                                                 attribute: NSLayoutConstraint.Attribute.width,
+                                                 relatedBy: NSLayoutConstraint.Relation.equal,
+                                                 toItem: nil,
+                                                 attribute: NSLayoutConstraint.Attribute.notAnAttribute,
+                                                 multiplier: 1,
+                                                 constant: 48)
+        let heightConstraint = NSLayoutConstraint(item: menuImageView!,
+                                                 attribute: NSLayoutConstraint.Attribute.height,
+                                                 relatedBy: NSLayoutConstraint.Relation.equal,
+                                                 toItem: nil,
+                                                 attribute: NSLayoutConstraint.Attribute.notAnAttribute,
+                                                 multiplier: 1,
+                                                 constant: 48)
+        menuImageView.addConstraints([widthConstraint, heightConstraint])
+        load(imageUrl: currentChat.partnerAvatarString, into: menuImageView)
 
+        let tg = UITapGestureRecognizer(target: self, action: #selector(showUnmachAndReport))
+        menuImageView.addGestureRecognizer(tg)
+
+        barItem = UIBarButtonItem(customView: menuImageView)
         DispatchQueue.main.async { [weak self] in
             self!.navigationItem.setRightBarButton(self!.barItem, animated: true)
         }
-     
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        noMessagesTitleLabel.text = "You matched with " + currentChat.partnerName
+        
+        loadPartnerPhotos()
+    }
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
@@ -120,29 +148,41 @@ class ChatViewController: UIViewController, ChatViewProtocol {
         guard presenter != nil else { return }
         guard currentChat != nil else { return }
         presenter?.configure(chat: currentChat)
-        
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
            
-        noMessagesTitleLabel.text = "You matched with " + currentChat.partnerName
-        partnerAvatarImageView.alpha = 0.0
-        let url: NSString = currentChat.partnerAvatarString as NSString
-        let urlString: NSString = url.addingPercentEscapes(using: String.Encoding.utf8.rawValue)! as NSString
-        userImageView.downloaded(from: currentChat.partnerAvatarString) {
-               
-           }
-        partnerAvatarImageView.af_setImage(withURL: URL(string: urlString as String)!)
-           
-        UIView.animate(withDuration: 0.4) {
-            self.partnerAvatarImageView.alpha = 1.0
-        }
-    }
-       
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         presenter?.disconnect()
         ScreenManager.shared.chatItemOnScreen = nil
+    }
+    
+    private func loadPartnerPhotos() {
+        let photos = currentChat.partnerPhotos
+        for i in 0..<photos.count {
+            guard partnerPhotosImageViews.count > i else { return }
+            let photoUrl = photos[i]
+            let iv = partnerPhotosImageViews[i]
+            iv.applyMask(UIView.MaskType(rawValue: i)!)
+            load(imageUrl: photoUrl, into: iv)
+        }
+    }
+    
+    private func load(imageUrl: String, into imageView: UIImageView) {
+
+        imageView.alpha = 0.0
+        imageView.isHidden = true
+
+        guard let urlString = imageUrl.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else {
+            return
+        }
+
+        imageView.isHidden = false
+        imageView.downloaded(from: urlString) { }
+                
+        UIView.animate(withDuration: 0.4) {
+            imageView.alpha = 1.0
+        }
+
     }
     
     
@@ -307,7 +347,7 @@ class ChatViewController: UIViewController, ChatViewProtocol {
         
         if segue.identifier == "unmatch" {
             if let unmatchVC: UnmatchViewController = segue.destination as! UnmatchViewController {
-                unmatchVC.config(avatar: partnerAvatarImageView.image!, and: currentChat.partnerName, chatItem: currentChat)
+                unmatchVC.config(avatar: menuImageView!.image!, and: currentChat.partnerName, chatItem: currentChat)
                 unmatchVC.delegate = self
             }
         }

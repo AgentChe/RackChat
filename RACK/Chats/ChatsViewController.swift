@@ -140,7 +140,7 @@ class ChatsViewController: UIViewController {
                 self.noInternet(show: false)
             }
         }
-
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {

@@ -40,7 +40,7 @@ class RandomizeViewController: UIViewController {
             case .succses:
                 Amplitude.instance()?.setUserId("\(user?.id)")
                 self.avatarImageView.downloaded(from: user!.avatarURL) {
-                    self.helloLabel.text = ("Hi" + ", " + user!.name).uppercased()
+                    self.helloLabel.text = self.helloMessage(for: user!)
                 }
                 break
             case .noInternetConnection:
@@ -58,6 +58,10 @@ class RandomizeViewController: UIViewController {
         }
     }
     
+    private func helloMessage(for user: UserShow) -> String {
+        return ("HI, \(user.name.uppercased()), \(user.age) from \(user.city)")
+    }
+    
     func config(user: UserShow) {
         
         avatarImageView.downloaded(from: user.avatarURL) {
@@ -67,7 +71,7 @@ class RandomizeViewController: UIViewController {
                 self!.view.layoutIfNeeded()
                 self?.helloLabel.alpha = 1.0
                 self?.subtitleLabel.alpha = 1.0
-                self!.helloLabel.text = ("Hi" + ", " + user.name).uppercased()
+                self!.helloLabel.text = self?.helloMessage(for: user)
             })
         }
     }

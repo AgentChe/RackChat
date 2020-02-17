@@ -5,7 +5,7 @@ PODS:
   - Amplitude-iOS (4.0.4)
   - Crashlytics (3.14.0):
     - Fabric (~> 1.10.2)
-  - DatingKit (2.3.0):
+  - DatingKit (2.3.1):
     - Alamofire
     - AlamofireImage
     - Disk
@@ -201,7 +201,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   DatingKit:
-    :commit: 2d76f261109785de0f9aadfceca93f0b86de1474
+    :commit: 171752dec807f689a68963f4147abfe0a7b9a6f1
     :git: "../DatingKit"
   ReverseExtension:
     :commit: f46463468b608c9189846c374863cdeb03f15bb4
@@ -212,7 +212,7 @@ SPEC CHECKSUMS:
   AlamofireImage: be9963c6582d68b39e89191f64c82a7d7bf40fdd
   Amplitude-iOS: 2ad4d7270c99186236c1272a3a9425463b1ae1a7
   Crashlytics: 540b7e5f5da5a042647227a5e3ac51d85eed06df
-  DatingKit: 460f9da187a1f907508a31aef630683e424d83f3
+  DatingKit: 715abb58a202cb7c146ee26853c61a08cbc4e0c5
   Disk: dcee5c2e98fb72f9a924cde8da8435b08244a80e
   Fabric: 706c8b8098fff96c33c0db69cbf81f9c551d0d74
   FBSDKCoreKit: fe738b172590e622c86735b45e20d196848b54df

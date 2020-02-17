@@ -2,7 +2,7 @@ PODS:
   - Alamofire (4.9.1)
   - AlamofireImage (3.6.0):
     - Alamofire (~> 4.9)
-  - Amplitude-iOS (4.0.4)
+  - Amplitude-iOS (4.10.0)
   - Crashlytics (3.14.0):
     - Fabric (~> 1.10.2)
   - DatingKit (2.3.1):
@@ -25,16 +25,16 @@ PODS:
     - FBSDKLoginKit/Login (= 6.0.0)
   - FBSDKLoginKit/Login (6.0.0):
     - FBSDKCoreKit (~> 6.0.0)
-  - Firebase/Analytics (6.16.0):
+  - Firebase/Analytics (6.17.0):
     - Firebase/Core
-  - Firebase/Core (6.16.0):
+  - Firebase/Core (6.17.0):
     - Firebase/CoreOnly
     - FirebaseAnalytics (= 6.2.2)
-  - Firebase/CoreOnly (6.16.0):
-    - FirebaseCore (= 6.6.1)
-  - Firebase/Messaging (6.16.0):
+  - Firebase/CoreOnly (6.17.0):
+    - FirebaseCore (= 6.6.2)
+  - Firebase/Messaging (6.17.0):
     - Firebase/CoreOnly
-    - FirebaseMessaging (~> 4.2.0)
+    - FirebaseMessaging (~> 4.2.1)
   - FirebaseAnalytics (6.2.2):
     - FirebaseCore (~> 6.6)
     - FirebaseInstanceID (~> 4.3)
@@ -45,7 +45,7 @@ PODS:
     - "GoogleUtilities/NSData+zlib (~> 6.0)"
     - nanopb (= 0.3.9011)
   - FirebaseAnalyticsInterop (1.5.0)
-  - FirebaseCore (6.6.1):
+  - FirebaseCore (6.6.2):
     - FirebaseCoreDiagnostics (~> 1.2)
     - FirebaseCoreDiagnosticsInterop (~> 1.2)
     - GoogleUtilities/Environment (~> 6.5)
@@ -61,12 +61,12 @@ PODS:
     - FirebaseCore (~> 6.6)
     - GoogleUtilities/UserDefaults (~> 6.5)
     - PromisesObjC (~> 1.2)
-  - FirebaseInstanceID (4.3.0):
+  - FirebaseInstanceID (4.3.1):
     - FirebaseCore (~> 6.6)
     - FirebaseInstallations (~> 1.0)
     - GoogleUtilities/Environment (~> 6.5)
     - GoogleUtilities/UserDefaults (~> 6.5)
-  - FirebaseMessaging (4.2.0):
+  - FirebaseMessaging (4.2.1):
     - FirebaseAnalyticsInterop (~> 1.5)
     - FirebaseCore (~> 6.6)
     - FirebaseInstanceID (~> 4.3)
@@ -81,9 +81,9 @@ PODS:
     - GoogleUtilities/Network (~> 6.0)
     - "GoogleUtilities/NSData+zlib (~> 6.0)"
     - nanopb (= 0.3.9011)
-  - GoogleDataTransport (3.3.1)
-  - GoogleDataTransportCCTSupport (1.3.1):
-    - GoogleDataTransport (~> 3.3)
+  - GoogleDataTransport (4.0.0)
+  - GoogleDataTransportCCTSupport (1.4.0):
+    - GoogleDataTransport (~> 4.0)
     - nanopb (~> 0.3.901)
   - GoogleUtilities/AppDelegateSwizzler (6.5.1):
     - GoogleUtilities/Environment
@@ -131,6 +131,12 @@ PODS:
   - RealmSwift (3.19.1):
     - Realm (= 3.19.1)
   - ReverseExtension (0.5.0)
+  - RxCocoa (5.0.1):
+    - RxRelay (~> 5)
+    - RxSwift (~> 5)
+  - RxRelay (5.0.1):
+    - RxSwift (~> 5)
+  - RxSwift (5.0.1)
   - SDWebImage (5.2.5):
     - SDWebImage/Core (= 5.2.5)
   - SDWebImage/Core (5.2.5)
@@ -140,8 +146,9 @@ PODS:
     - SDWebImage (~> 5.2.3)
 
 DEPENDENCIES:
+  - Alamofire
   - AlamofireImage (~> 3.5)
-  - Amplitude-iOS (~> 4.0.4)
+  - Amplitude-iOS
   - Crashlytics (~> 3.14.0)
   - DatingKit (from `https://bitbucket.org/sergeyzhilkin/dating-kit.git`, branch `develop`)
   - Fabric (~> 1.10.2)
@@ -149,7 +156,10 @@ DEPENDENCIES:
   - Firebase/Messaging
   - lottie-ios
   - NotificationBannerSwift
+  - RealmSwift
   - ReverseExtension (from `https://github.com/alexdelarge05/ReverseExtension.git`, commit `f46463468b608c9189846c374863cdeb03f15bb4`)
+  - RxCocoa
+  - RxSwift
   - SwiftyStoreKit
   - TKImageShowing
 
@@ -186,6 +196,9 @@ SPEC REPOS:
     - ReachabilitySwift
     - Realm
     - RealmSwift
+    - RxCocoa
+    - RxRelay
+    - RxSwift
     - SDWebImage
     - SnapKit
     - SwiftyStoreKit
@@ -210,25 +223,25 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
   AlamofireImage: be9963c6582d68b39e89191f64c82a7d7bf40fdd
-  Amplitude-iOS: 2ad4d7270c99186236c1272a3a9425463b1ae1a7
+  Amplitude-iOS: 7d8cdc3408ba35c2e68368fc7c692cd104606b94
   Crashlytics: 540b7e5f5da5a042647227a5e3ac51d85eed06df
   DatingKit: 715abb58a202cb7c146ee26853c61a08cbc4e0c5
   Disk: dcee5c2e98fb72f9a924cde8da8435b08244a80e
   Fabric: 706c8b8098fff96c33c0db69cbf81f9c551d0d74
   FBSDKCoreKit: fe738b172590e622c86735b45e20d196848b54df
   FBSDKLoginKit: fa57df1b967fe0e147b25bede6ea4e9cdf4d64be
-  Firebase: 497158b816d0a86fc31babbd05546fcd7e6083ff
+  Firebase: 2672e5636b42f977177716317e68346ae5e9de25
   FirebaseAnalytics: cf95d3aab897612783020fbd98401d5366f135ee
   FirebaseAnalyticsInterop: 3f86269c38ae41f47afeb43ebf32a001f58fcdae
-  FirebaseCore: 85064903ed6c28e47fec9c7bd149d94ba1b6b6e7
+  FirebaseCore: a1dd9dd6355a8356dd30a8f076839e242285a81c
   FirebaseCoreDiagnostics: 5e78803ab276bc5b50340e3c539c06c3de35c649
   FirebaseCoreDiagnosticsInterop: 296e2c5f5314500a850ad0b83e9e7c10b011a850
   FirebaseInstallations: 575cd32f2aec0feeb0e44f5d0110a09e5e60b47b
-  FirebaseInstanceID: 6668efc1655a4052c083f287a7141f1ead12f9c2
-  FirebaseMessaging: 448cf4c727f3c95f4f90816907d67306ba785cfe
+  FirebaseInstanceID: 031d7d0c8e7b5c030bbeb4d2a690550375e83fec
+  FirebaseMessaging: 9e23f9d603b1fb71ccbeb48d79bf0d4ba0272c84
   GoogleAppMeasurement: d0560d915abf15e692e8538ba1d58442217b6aff
-  GoogleDataTransport: 0048df6388dab1c254799f2a30365b1dffe20422
-  GoogleDataTransportCCTSupport: f880d70972efa2ed1be4e9173a0f4c5f3dc2d176
+  GoogleDataTransport: 47fe3b8e1673e5187dfd615656a3c5034f150d69
+  GoogleDataTransportCCTSupport: 36f69887fd212db6d7ef4dd45ba44523717a434e
   GoogleUtilities: 06eb53bb579efe7099152735900dd04bf09e7275
   lottie-ios: 85ce835dd8c53e02509f20729fc7d6a4e6645a0a
   MarqueeLabel: f762aa681ae201f66c1d511858b171f75d83013a
@@ -241,11 +254,14 @@ SPEC CHECKSUMS:
   Realm: fb377747e694c7deb62d402400454134fe321bee
   RealmSwift: 1302b0ab60f3105a2b214a735eeb0938607cf16b
   ReverseExtension: e658309467ab80870648e32069d14b2ff4a09863
+  RxCocoa: e741b9749968e8a143e2b787f1dfbff2b63d0a5c
+  RxRelay: 89d54507f4fd4d969e6ec1d4bd7f3673640b4640
+  RxSwift: e2dc62b366a3adf6a0be44ba9f405efd4c94e0c4
   SDWebImage: 4eabf2fa6695c95c47724214417a9c036c965e4a
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
   SwiftyStoreKit: 033d06b6f87955405d3f844a18a7687c2438592a
   TKImageShowing: 771d31183fd6533509421d2d137d4a59e771fc9e
 
-PODFILE CHECKSUM: 14df74b962c691bef28c4b0fa418fe378306028a
+PODFILE CHECKSUM: 575f6e971ce10901fdd122ca3d1f53ba9b80d043
 
 COCOAPODS: 1.8.4

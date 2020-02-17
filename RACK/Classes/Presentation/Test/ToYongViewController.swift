@@ -15,7 +15,7 @@ class ToYongViewController: UIViewController {
 
         var navigationArray = navigationController!.viewControllers // To get all UIViewController stack as Array
         navigationArray.remove(at: navigationArray.count - 2)
-        var current: UIViewController = navigationArray.last!
+        let current: UIViewController = navigationArray.last!
         navigationArray.removeAll()
         navigationArray.append(current)// To remove previous UIViewController
         self.navigationController?.viewControllers = navigationArray

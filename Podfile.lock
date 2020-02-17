@@ -143,7 +143,7 @@ DEPENDENCIES:
   - AlamofireImage (~> 3.5)
   - Amplitude-iOS (~> 4.0.4)
   - Crashlytics (~> 3.14.0)
-  - DatingKit (from `../DatingKit`, branch `develop`)
+  - DatingKit (from `https://bitbucket.org/sergeyzhilkin/dating-kit.git`, branch `develop`)
   - Fabric (~> 1.10.2)
   - Firebase/Analytics
   - Firebase/Messaging
@@ -194,7 +194,7 @@ SPEC REPOS:
 EXTERNAL SOURCES:
   DatingKit:
     :branch: develop
-    :git: "../DatingKit"
+    :git: https://bitbucket.org/sergeyzhilkin/dating-kit.git
   ReverseExtension:
     :commit: f46463468b608c9189846c374863cdeb03f15bb4
     :git: https://github.com/alexdelarge05/ReverseExtension.git
@@ -202,7 +202,7 @@ EXTERNAL SOURCES:
 CHECKOUT OPTIONS:
   DatingKit:
     :commit: 171752dec807f689a68963f4147abfe0a7b9a6f1
-    :git: "../DatingKit"
+    :git: https://bitbucket.org/sergeyzhilkin/dating-kit.git
   ReverseExtension:
     :commit: f46463468b608c9189846c374863cdeb03f15bb4
     :git: https://github.com/alexdelarge05/ReverseExtension.git
@@ -246,6 +246,6 @@ SPEC CHECKSUMS:
   SwiftyStoreKit: 033d06b6f87955405d3f844a18a7687c2438592a
   TKImageShowing: 771d31183fd6533509421d2d137d4a59e771fc9e
 
-PODFILE CHECKSUM: 1054693740a1db5023978de49acc2f6ac07943dd
+PODFILE CHECKSUM: 14df74b962c691bef28c4b0fa418fe378306028a
 
 COCOAPODS: 1.8.4

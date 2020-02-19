@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import DatingKit
 
 class RootViewController: UIViewController {
 
@@ -26,16 +25,11 @@ class RootViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         addChild(current)
         current.view.frame = view.bounds
         view.addSubview(current.view)
         current.didMove(toParent: self)
-        PaymentFlow.shared.delegate = self
-        PaymentFlow.shared.start()
-    }
-    
-    @objc private func login() {
-        switchToLogin()
     }
     
     func showLoginScreen() {
@@ -67,18 +61,8 @@ class RootViewController: UIViewController {
     
     func showTestScreen() {
         let mainStoryboard: UIStoryboard = UIStoryboard(name: "Test", bundle: nil)
-//        let viewController = mainStoryboard.instantiateViewController(withIdentifier: "rules")
         let viewController = mainStoryboard.instantiateViewController(withIdentifier: "setAgeAndCity")
         animateFadeTransition(to: viewController)
-//        let navVC =  UINavigationController(rootViewController: viewController)
-//        addChild(navVC)
-//        navVC.view.frame = view.bounds
-//        view.addSubview(navVC.view)
-//        navVC.didMove(toParent: self)
-//        current.willMove(toParent: nil)
-//        current.view.removeFromSuperview()
-//        current.removeFromParent()
-//        current = navVC
     }
     
     func showTestScreen(name: String) {
@@ -93,6 +77,18 @@ class RootViewController: UIViewController {
         current.view.removeFromSuperview()
         current.removeFromParent()
         current = navVC
+    }
+    
+    func switchToMainScreen() {
+        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let mainScreen = mainStoryboard.instantiateViewController(withIdentifier: "main")
+        animateFadeTransition(to: mainScreen)
+    }
+    
+    func switchToLogin() {
+        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Registration", bundle: nil)
+        let viewController = mainStoryboard.instantiateViewController(withIdentifier: "registr")
+        animateFadeTransition(to: viewController)
     }
     
     private func animateDismissTransition(to new: UIViewController, completion: (() -> Void)? = nil) {
@@ -120,50 +116,4 @@ class RootViewController: UIViewController {
             completion?()  //1
         }
     }
-    
-    func switchToMainScreen() {
-        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let mainScreen = mainStoryboard.instantiateViewController(withIdentifier: "main")
-        animateFadeTransition(to: mainScreen)
-    }
-    
-    func switchToLogin() {
-        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Registration", bundle: nil)
-        let viewController = mainStoryboard.instantiateViewController(withIdentifier: "registr")
-        animateFadeTransition(to: viewController)
-    }
-    
-    func showSplash() {
-        let splashStoryboard: UIStoryboard = UIStoryboard(name: "Splash", bundle: nil)
-        let splashScreen = splashStoryboard.instantiateViewController(withIdentifier: "splash")
-        animateFadeTransition(to: splashScreen)
-        
-//        PaymentFlow.shared.start()
-    }
-    
 }
-
-extension RootViewController: PaymentFlowDelegate {
-    
-    func paymentInfoWasLoad(config bundle: ConfigBundle) {
-//         User.shared.start()
-    }
-    
-    func paymentSuccses() {
-        
-    }
-    
-    func error() {
-//         User.shared.start()
-    }
-    
-    func purchase() {
-        
-    }
-    
-    
-}
-
-//exception RootViewController: PaymentFlowDelegate  {
-
-//}

@@ -11,13 +11,8 @@ import DatingKit
 import NotificationBannerSwift
 
 class SplashViewController: UIViewController {
-
-    // MARK: - Outlets
-
     @IBOutlet weak var activityView: UIView!
     @IBOutlet weak var activity: UIActivityIndicatorView!
-
-    // MARK: - VC initialization
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -87,10 +82,6 @@ class SplashViewController: UIViewController {
 }
 
 extension SplashViewController {
-
-    static let appearanceAnimationDurationStep1 = 1.5
-    static let appearanceAnimationDurationStep2 = 0.5
-
     private func startAppearanceAnimation(completion: @escaping ()->() ) {
         startAppearanceAnimationStep1 { [weak self] in
             self?.startAppearanceAnimationStep2 {
@@ -100,23 +91,18 @@ extension SplashViewController {
     }
     
     private func startAppearanceAnimationStep1(completion: @escaping ()->() ) {
-        let duration = SplashViewController.appearanceAnimationDurationStep1
-        
-        UIView.animate(withDuration: duration, animations: {
+        UIView.animate(withDuration: 1.5, animations: {
             self.activityView.isHidden = false
-        }) { (sucses) in
+        }) { _ in
             completion()
         }
     }
     
     private func startAppearanceAnimationStep2(completion: @escaping ()->() ) {
-        let duration = SplashViewController.appearanceAnimationDurationStep2
-        
-        UIView.animate(withDuration: duration, animations: {
+        UIView.animate(withDuration: 0.5, animations: {
             self.activity.alpha = 1.0
-        }) { (succses) in
+        }) { _ in
             completion()
         }
     }
-
 }

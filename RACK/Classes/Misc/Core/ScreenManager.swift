@@ -47,7 +47,6 @@ class ScreenManager {
     }
     
     func startManagment() {
-
         DatingKit.isLogined { (isLogined) in
             if isLogined {
                 if let status:String = UserDefaults.standard.object(forKey: ScreenManager.showKey) as? String {
@@ -73,65 +72,13 @@ class ScreenManager {
                 AppDelegate.shared.rootViewController.showLoginScreen()
             }
         }
-        
-//        if User.shared.isLogined() {
-//            AppDelegate.shared.rootViewController.showMainScreen()
-//        } else {
-//            AppDelegate.shared.rootViewController.showLoginScreen()
-//        }
     }
     
     func showMian() {
         AppDelegate.shared.rootViewController.switchToMainScreen()
     }
-//
+
     func showRegistration() {
         AppDelegate.shared.rootViewController.switchToLogin()
     }
-//
-//    func showProfile() {
-//        generalController?.performSegue(withIdentifier: "profile", sender: nil)
-//    }
-    
-    func showSplash() {
-        AppDelegate.shared.rootViewController.showSplash()
-    }
-    
-//    func startOnboarding() {
-//        generalController?.performSegue(withIdentifier: "Onboarding", sender: nil)
-//    }
-//    
-//    func setGeneralController(_ viewController: UIViewController) {
-//        generalController = viewController
-//    }
-//    
-//    func showChat() {
-//        
-//        self.generalController?.performSegue(withIdentifier: "chat", sender: nil)
-//        
-//    }
-//    
-//    func showPaygate() {
-//        generalController?.performSegue(withIdentifier: "paygate", sender: nil)
-//    }
-//    
-//    func showError(text: String) {
-//        let alert = UIAlertController(title: "Error", message: text, preferredStyle: .alert)
-//        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
-//            switch action.style{
-//            case .default:
-//                print("default")
-//                
-//            case .cancel:
-//                print("cancel")
-//                
-//            case .destructive:
-//                print("destructive")
-//                
-//                
-//            }}))
-//        onScreenController!.present(alert, animated: true, completion: nil)
-//    }
-    
-    
 }

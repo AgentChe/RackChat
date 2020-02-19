@@ -22,82 +22,26 @@ class NotificationRequestViewController: UIViewController {
         NotificationManager.shared.startManagment()
         NotificationManager.shared.delegate = self
         NotificationManager.shared.requestAccses()
-        
-        //        PaymentFlow.shared.delegate = self
-        
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-    }
-    
-    // MARK: - Navigation
-    
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "pay" {
-//            let paygate: PaygateViewController = segue.destination as! PaygateViewController
-//            let config: ConfigBundle = sender as! ConfigBundle
-//            //            PurchaseManager.shared.loadProducts()
-//            paygate.delegate = self
-//            paygate.config(bundle: config)
         }
     }
     
 }
 
-//extension NotificationRequestViewController: PaygateViewDelegate {
-//
-//    func purchaseWasEndet() {
-//        self.performSegue(withIdentifier: "start_new", sender: nil)
-//    }
-//
-//}
-
 extension NotificationRequestViewController: NotificationDelegate {
     
     func notificationRequestWasEnd(succses: Bool) {
-        //        dismiss(animated: true, completion: nil)
-        
         UIView.animate(withDuration: 0.4, animations: {
             self.firstLabelView.alpha = 0.0
             self.lastLabelView.alpha = 0.0
         }) { (succses) in
             UserDefaults.standard.set(ScreenManager.ScreenManagerEntryTypes.showMain, forKey: ScreenManager.showKey)
             ScreenManager.shared.showMian()
-            
-//            if PurchaseManager.shared.showUponLogin {
-//                PurchaseManager.shared.getConfigBundle { (config) in
-//                    self.performSegue(withIdentifier: "pay", sender: config)
-//                    return
-//                }
-//            }
-            //            PaymentFlow.shared.start()
-//            self.performSegue(withIdentifier: "start_new", sender: nil)
-            //            ScreenManager.shared.showMian()
         }
         
     }
     
 }
-
-
-//extension NotifyViewController: PaymentFlowDelegate {
-//
-//    func purchase() {
-//
-//    }
-//
-//    func paymentInfoWasLoad(config bundle: ConfigBundle) {
-//        //        ScreenManager.shared.showMian()
-//    }
-//
-//    func paymentSuccses() {
-//
-//    }
-//
-//    func error() {
-//
-//    }
-//
-//}

@@ -389,7 +389,6 @@
 			isa = PBXGroup;
 			children = (
 				13D8BEDA2349362C009FD24A /* Controllers */,
-				13D8BED923493621009FD24A /* Storyboards */,
 				13CB670622F5D68600B79622 /* GardientLabel.swift */,
 				13A30BE2231E99A400CF6248 /* NotifySetingUiTableViewCell.swift */,
 				13D8BED52349316B009FD24A /* NoConnectionBannerView.swift */,
@@ -444,16 +443,6 @@
 			path = RACK;
 			sourceTree = "<group>";
 		};
-		13D8BED923493621009FD24A /* Storyboards */ = {
-			isa = PBXGroup;
-			children = (
-				13D82A7A22C202D5004DC959 /* LaunchScreen.storyboard */,
-				13D4054922C610BD004FC70D /* Splash.storyboard */,
-				13D82A7522C202D4004DC959 /* Main.storyboard */,
-			);
-			path = Storyboards;
-			sourceTree = "<group>";
-		};
 		13D8BEDA2349362C009FD24A /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -500,6 +489,7 @@
 				13D82A7122C202D4004DC959 /* AppDelegate.swift */,
 				13D82A7D22C202D5004DC959 /* Info.plist */,
 				134A29672355D1A8004D2888 /* GoogleService-Info.plist */,
+				9608964423FAF59A009343AF /* Storyboards */,
 				4772C9F523F2EAE800B905CE /* Animations */,
 				1393CD9322C752CD00422529 /* Fonts */,
 				4772C9F323F2EAD000B905CE /* Assets.xcassets */,
@@ -524,6 +514,16 @@
 				606CE4EC12B3C6A861691343 /* libPods-RACKUITests.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9608964423FAF59A009343AF /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				13D4054922C610BD004FC70D /* Splash.storyboard */,
+				13D82A7522C202D4004DC959 /* Main.storyboard */,
+				13D82A7A22C202D5004DC959 /* LaunchScreen.storyboard */,
+			);
+			path = Storyboards;
 			sourceTree = "<group>";
 		};
 		965452C923FAB805007697C4 /* Transport */ = {
@@ -1006,10 +1006,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = RACK/RACK.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 37;
-				DEVELOPMENT_TEAM = UDD4QZUY96;
+				DEVELOPMENT_TEAM = X79NA9GZ8C;
 				INFOPLIST_FILE = "$(SRCROOT)/RACK/Resources/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1017,9 +1017,9 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.5;
-				PRODUCT_BUNDLE_IDENTIFIER = rack.today.akonst17;
+				PRODUCT_BUNDLE_IDENTIFIER = rack.today;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = "Rack Development";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1031,10 +1031,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = RACK/RACK.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 37;
-				DEVELOPMENT_TEAM = UDD4QZUY96;
+				DEVELOPMENT_TEAM = X79NA9GZ8C;
 				INFOPLIST_FILE = "$(SRCROOT)/RACK/Resources/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1042,9 +1042,9 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.5;
-				PRODUCT_BUNDLE_IDENTIFIER = rack.today.akonst17;
+				PRODUCT_BUNDLE_IDENTIFIER = rack.today;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = "Rack Development";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

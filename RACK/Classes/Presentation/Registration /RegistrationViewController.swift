@@ -118,19 +118,7 @@ class RegistrationViewController: UIViewController {
                     }
                 }
             }
-        } else {
-            
-//            User.shared.loginFB(token: (AccessToken.current?.tokenString)!, completion: { (succses, new) in
-//                if succses {
-//                    if new {
-//                        weakSelf?.performSegue(withIdentifier: "onboarding", sender: nil)
-//                    } else {
-//                        ScreenManager.shared.showSplash()
-//                    }
-//                    //                    weakSelf?.dismiss(animated: true, completion: nil)
-//                }
-//            })
-        }
+        } 
     }
     
     @IBAction func tapOnTerms(_ sender: Any) {

@@ -11,14 +11,10 @@ import DatingKit
 import NotificationBannerSwift
 import Amplitude_iOS
 
-
-class ChatsViewController: UIViewController {
-
+final class ChatsViewController: UIViewController {
     @IBOutlet weak var emptyMessage: UIView!
     @IBOutlet weak var newSearchView: UIView!
     @IBOutlet weak var swipeView: UIView!
-    @IBOutlet var headerView: UIView!
-    @IBOutlet weak var userImageView: UIImageView!
     @IBOutlet weak var backroundView: UIView!
     @IBOutlet weak var noInternetConnectionConstrait: NSLayoutConstraint!
     @IBOutlet weak var backgroundViewHeight: NSLayoutConstraint!
@@ -26,57 +22,20 @@ class ChatsViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var noInternetConnectionLabel: UILabel!
     
-    
-    private var isEditingCell: Bool = false
-    private var showPaygate:Bool = false
+    private let viewModel = ChatsViewModel()
 
     private var chats: [ChatItem] = []
     
-    func noInternet(show: Bool) {
-            if show {
-                     noInternetConnectionConstrait.constant = 67.0
-                     UIView.animate(withDuration: 0.4) {
-                         self.view.layoutIfNeeded()
-                         self.noInternetConnectionLabel.alpha = 1.0
-                     }
-                 } else {
-                     noInternetConnectionConstrait.constant = 0.0
-                     UIView.animate(withDuration: 0.4, animations: {
-                         self.view.layoutIfNeeded()
-                     }) { (fin) in
-                          self.noInternetConnectionLabel.alpha = 0.0
-                     }
-                 }
-     
-        
-    }
-    
-    @objc func handleMatch() {
-        self.performSegue(withIdentifier: "search", sender: MatchScreenState.foundet)
-    }
-    
-    @objc func handlePush() {
-        
-        guard let chat: ChatItem = ScreenManager.shared.pushChat else { return }
-        
-        if let currentChat: ChatItem = ScreenManager.shared.chatItemOnScreen {
-            if currentChat.chatID == chat.chatID {
-                return
-            }
-        }
-        
-        self.performSegue(withIdentifier: "chat", sender: chat)
-        
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         UserDefaults.standard.set(ScreenManager.ScreenManagerEntryTypes.showMain, forKey: ScreenManager.showKey)
-        self.newSearchView.isHidden = true
+        
+        newSearchView.isHidden = true
         tableView.register(UINib(nibName: "СhatsTableViewCell", bundle: .main), forCellReuseIdentifier: "ChatsCell")
-        self.backgroundViewHeight.constant = 0
-        self.buttonHeight.constant = 0
-        self.backroundView.layer.cornerRadius = 0
+        backgroundViewHeight.constant = 0
+        buttonHeight.constant = 0
+        backroundView.layer.cornerRadius = 0
         
         if #available(iOS 13.0, *) {
             overrideUserInterfaceStyle = .light
@@ -87,8 +46,8 @@ class ChatsViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(handlePush),
                                                name: NotificationManager.kMessageNotify,
                                                object: nil)
+        
         if ScreenManager.shared.showChat == false {
-            
             if  ScreenManager.shared.match != nil {
                 self.performSegue(withIdentifier: "search", sender: MatchScreenState.foundet)
             } else {
@@ -135,26 +94,10 @@ class ChatsViewController: UIViewController {
             
             if status == .noInternetConnection {
                 self.noInternet(show: true)
-                
             } else {
                 self.noInternet(show: false)
             }
         }
-        
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        DatingKit.chat.disconnect()
-    }
-    
-    @objc func showPaygateView() {
-        showPaygate = true
-    }
-
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
     }
     
     func apper() {
@@ -197,49 +140,37 @@ class ChatsViewController: UIViewController {
                }
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-
-        self.apper()
-    }
-    
-    
     override func viewDidAppear(_ animated: Bool) {
-        
         super.viewDidAppear(animated)
         
-        showPaygate = false
         Amplitude.instance()?.log(event: .chatListScr)
-        self.backgroundViewHeight.constant = -20.0
-        self.buttonHeight.constant = 80.0
-        UIView.animate(withDuration: 0.4) {
-            self.view.layoutIfNeeded()
-            self.backroundView.layer.cornerRadius = 20
+        
+        backgroundViewHeight.constant = -20.0
+        buttonHeight.constant = 80.0
+        
+        UIView.animate(withDuration: 0.4) { [weak self] in
+            self?.view.layoutIfNeeded()
+            self?.backroundView.layer.cornerRadius = 20
         }
     }
     
     @IBAction func tapOnNewSearch(_ sender: UIButton) {
-        
         Amplitude.instance()?.log(event: .chatListNewSearchTap)
-//        DatingKit.chat.disconnect()
+        
         performSegue(withIdentifier: "search", sender: MatchScreenState.searchng)
-        self.backgroundViewHeight.constant = 0
-        self.buttonHeight.constant = 0
-        UIView.animate(withDuration: 0.4, animations: {
-            self.view.layoutIfNeeded()
-            self.backroundView.layer.cornerRadius = 0
-        }) { (succse) in
-            
-        }
+        
+        backgroundViewHeight.constant = 0
+        buttonHeight.constant = 0
+        
+        UIView.animate(withDuration: 0.4, animations: { [weak self] in
+            self?.view.layoutIfNeeded()
+            self?.backroundView.layer.cornerRadius = 0
+        })
     }
     
     @IBAction func tapOnSearch(_ sender: Any) {
-//        DatingKit.chat.disconnect()
         performSegue(withIdentifier: "search", sender: MatchScreenState.searchng)
     }
-    
-    
-    // MARK: - Navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "chat" {
@@ -249,9 +180,9 @@ class ChatsViewController: UIViewController {
             let chatVC: ChatViewController = segue.destination as! ChatViewController
             chatVC.config(with: chat)
         }
+        
         if segue.identifier == "search" {
             let searchView: MatchViewController = segue.destination as! MatchViewController
-            DatingKit.chat.disconnect()
             searchView.delegate = self
             if let startFromNewSearchButton: MatchScreenState = sender as? MatchScreenState {
                 if startFromNewSearchButton == .foundet {
@@ -264,45 +195,54 @@ class ChatsViewController: UIViewController {
                 } else {
                     searchView.config(state: startFromNewSearchButton)
                 }
-                
             }
-            
         }
-        
-        if segue.identifier == "paygate" {
-            let paygate: PaymentViewController = segue.destination as! PaymentViewController
-            paygate.delegate = self
-        }
-    }
-
-}
-
-extension ChatsViewController: PaymentViewControllerDelegate {
-    func wasPurchased() {
-        showPaygate = false
     }
     
-    func wasClosed() {
+    private func noInternet(show: Bool) {
+        if show {
+            noInternetConnectionConstrait.constant = 67.0
+            UIView.animate(withDuration: 0.4) { [weak self] in
+                self?.view.layoutIfNeeded()
+                self?.noInternetConnectionLabel.alpha = 1.0
+            }
+        } else {
+            noInternetConnectionConstrait.constant = 0.0
+            UIView.animate(withDuration: 0.4, animations: { [weak self] in
+                self?.view.layoutIfNeeded()
+            }) { [weak self] _ in
+                self?.noInternetConnectionLabel.alpha = 0.0
+            }
+        }
+    }
+    
+    @objc private func handleMatch() {
+        performSegue(withIdentifier: "search", sender: MatchScreenState.foundet)
+    }
+    
+    @objc private func handlePush() {
+        guard let chat = ScreenManager.shared.pushChat else {
+            return
+        }
         
+        if let currentChat: ChatItem = ScreenManager.shared.chatItemOnScreen {
+            if currentChat.chatID == chat.chatID {
+                return
+            }
+        }
+        
+        performSegue(withIdentifier: "chat", sender: chat)
     }
 }
 
 extension ChatsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        if showPaygate {
-            self.performSegue(withIdentifier: "paygate", sender: nil)
-        } else {
-            DispatchQueue.main.async {
-                self.performSegue(withIdentifier: "chat", sender: self.chats[indexPath.row])
-            }
-        }
+        performSegue(withIdentifier: "chat", sender: self.chats[indexPath.row])
     }
-    
 }
 
 extension ChatsViewController: UITableViewDataSource {
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return chats.count
     }
@@ -330,7 +270,4 @@ extension ChatsViewController: SearchViewDelegate {
     func tapOnYes() {
         
     }
-    
-   
-    
 }

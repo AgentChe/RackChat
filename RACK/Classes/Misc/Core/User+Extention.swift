@@ -9,39 +9,6 @@
 import Foundation
 import DatingKit
 
-
-enum GenderType: Int {
-    case man = 1
-    case woman = 2
-}
-
-//enum LookingFor: Int {
-//    case man = 1
-//    case woman = 2
-//    case any = 3
-//}
-
-//enum Aim: Int {
-//    case chats = 1
-//    case virt = 2
-//    case meetUps = 3
-//}
-//
-//enum ChatType: Int {
-//    case text = 1
-//    case image = 2
-//}
-
-
-//{
-//    "_code": 200,
-//    "_msg": "OK",
-//    "_need_payment": false,
-//    "_data": {
-//        "banned": true
-//    }
-//}
-
 struct BannedResponse: Decodable {
     
     var httpCode: Int
@@ -284,104 +251,8 @@ class SetGender: APIRequest {
         }
     }
     
-    init(gender: GenderType) {
+    init(gender: AKGender) {
         parameters = ["gender" : gender.rawValue]
     }
     
 }
-
-//extension User {
-//
-//    static let genderKey: String = "current_gender"
-//    static let lookingForKey: String = "looking_for"
-//
-//    func checkUser(_ completion: @escaping(_ banned: Bool) -> Void) {
-//        if self.tokenForVerify() != "" {
-//            let request: AskForBanned = AskForBanned(token: self.tokenForVerify())
-//            RequestManager.shared.requset(request) { (response) in
-//                if response != nil {
-//                    if let banned: BannedResponse = response as! BannedResponse {
-//                        if banned.httpCode == 200 {
-//                            completion(banned.isBanned)
-//                        } else {
-//                            completion(false)
-//                        }
-//                    } else {
-//                        completion(false)
-//                    }
-//                } else {
-//                    completion(false)
-//                }
-//            }
-//
-//        } else {
-//            completion(false)
-//        }
-//
-//    }
-//
-//    func confirmAge(_ confirm: Bool) {
-//        if confirm {
-//            let request: Consent = Consent()
-//            RequestManager.shared.requset(request) { (result) in
-//
-//            }
-//        } else {
-//            let request: Decline = Decline()
-//            RequestManager.shared.requset(request) { (result) in
-//
-//            }
-//        }
-//    }
-//
-//    func set(gender: GenderType, completion: @escaping() -> Void) {
-//        if  gender == .man {
-//            if CurrentAppConfig.shared.showIfMaleRegistration {
-//                CurrentAppConfig.shared.showUponRegistration = true
-//            } else {
-//                CurrentAppConfig.shared.showUponRegistration = false
-//            }
-//        }
-//        if  gender == .woman {
-//            if CurrentAppConfig.shared.showIfFemaleRegistration {
-//                CurrentAppConfig.shared.showUponRegistration = true
-//            } else {
-//                 CurrentAppConfig.shared.showUponRegistration = false
-//            }
-//        }
-//
-//
-//        let request: SetGender = SetGender(gender: gender)
-//
-//        UserDefaults.standard.set(gender.rawValue, forKey: User.genderKey)
-//        RequestManager.shared.requset(request) { (result) in
-//            let techResult: Technical = result as! Technical
-//            if techResult.httpCode == 200 {
-//                self.loadUser()
-//            }
-//           completion()
-//        }
-//    }
-//
-//    func set(lookingFor: LookingFor, completion: @escaping() -> Void) {
-//        let request: SetLookingFor = SetLookingFor(lookingFor: lookingFor)
-//        UserDefaults.standard.set(lookingFor.rawValue, forKey: User.lookingForKey)
-//        RequestManager.shared.requset(request) { (result) in
-//            completion()
-//        }
-//    }
-//
-//    func set(aim: Aim, completion: @escaping() -> Void) {
-//        let request: SetAim = SetAim(aim: aim)
-//        RequestManager.shared.requset(request) { (result) in
-//            completion()
-//        }
-//    }
-//
-//    func set(chatType: ChatType, completion: @escaping() -> Void) {
-//        let request: SetChatType = SetChatType(chatType: chatType)
-//        RequestManager.shared.requset(request) { (result) in
-//            completion()
-//        }
-//    }
-//}

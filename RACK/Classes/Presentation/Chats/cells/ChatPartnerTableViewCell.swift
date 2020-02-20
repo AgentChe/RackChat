@@ -10,18 +10,11 @@ import UIKit
 import DatingKit
 
 class ChatPartnerTableViewCell: UITableViewCell {
-
     @IBOutlet var messageLabel: UILabel!
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-    
     
     private func configMyMessage(with text: String) {
         messageLabel.text =  text
     }
-    
     
     func configWithState(message: Message) {
         switch message.type {
@@ -33,11 +26,4 @@ class ChatPartnerTableViewCell: UITableViewCell {
             break
         }
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-    
 }

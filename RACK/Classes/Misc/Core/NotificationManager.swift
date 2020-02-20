@@ -363,19 +363,6 @@ extension NotificationManager: MessagingDelegate {
 }
 
 extension DKMatch {
-    
-    /*
-     
-     public var matchID: Int
-     public var action: Actions
-     public var matchedUserId: Int
-     public var matchedUserName: String
-     public var matchedAvatarString: String
-     public var matchedUserGender: Gender
-     public var matchedUserAvatarTransparent: String
-     public var gradient: Gradient
-     */
-    
     convenience init(matchID: Int,
                      name: String,
                      avatar: String,

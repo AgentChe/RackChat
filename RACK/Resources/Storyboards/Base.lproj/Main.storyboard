@@ -1177,12 +1177,6 @@
                                     <constraint firstAttribute="bottom" secondItem="JqC-p6-Fbm" secondAttribute="bottom" id="zBD-Gu-PxY"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Internet Connection" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ygN-Gj-SnY">
-                                <rect key="frame" x="15" y="15" width="384" height="23.5"/>
-                                <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans" pointSize="17"/>
-                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TUU-B6-xKE">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="661.5"/>
                                 <subviews>
@@ -1261,12 +1255,9 @@
                             <constraint firstItem="TUU-B6-xKE" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="GFZ-aX-MGd"/>
                             <constraint firstItem="ktA-v5-Hj0" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Kcv-wv-jmZ"/>
                             <constraint firstItem="ktA-v5-Hj0" firstAttribute="top" secondItem="TUU-B6-xKE" secondAttribute="bottom" constant="-20" id="Og4-V7-mCJ"/>
-                            <constraint firstItem="ygN-Gj-SnY" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="15" id="RV1-bA-aCU"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ygN-Gj-SnY" secondAttribute="trailing" constant="15" id="TeK-w7-9re"/>
                             <constraint firstItem="ktA-v5-Hj0" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="ZS7-lN-FHc"/>
                             <constraint firstAttribute="bottom" secondItem="7de-IF-rfC" secondAttribute="bottom" id="ay5-ZJ-3cD"/>
                             <constraint firstItem="Wm1-Dk-pIE" firstAttribute="top" secondItem="ktA-v5-Hj0" secondAttribute="bottom" id="g0G-Wj-2fr"/>
-                            <constraint firstItem="ygN-Gj-SnY" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="15" id="gnQ-YB-lhh"/>
                             <constraint firstItem="ktA-v5-Hj0" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="l4T-1y-1pd"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="7de-IF-rfC" secondAttribute="trailing" id="m38-uV-gy6"/>
                             <constraint firstItem="7de-IF-rfC" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="qEx-CI-ur5"/>
@@ -1289,8 +1280,6 @@
                         <outlet property="buttonHeight" destination="VSg-ld-oXb" id="CzC-TA-Ggl"/>
                         <outlet property="emptyMessage" destination="7de-IF-rfC" id="DMb-tc-ruI"/>
                         <outlet property="newSearchView" destination="ktA-v5-Hj0" id="BEw-Yz-akX"/>
-                        <outlet property="noInternetConnectionConstrait" destination="GFZ-aX-MGd" id="ilz-oc-5si"/>
-                        <outlet property="noInternetConnectionLabel" destination="ygN-Gj-SnY" id="hqD-mG-708"/>
                         <outlet property="swipeView" destination="Wm1-Dk-pIE" id="NZU-wM-Q1H"/>
                         <outlet property="tableView" destination="OLO-K4-8zd" id="OVo-2W-Lzh"/>
                         <segue destination="Qia-6r-ybb" kind="show" identifier="chat" id="Jgy-0e-2GP"/>

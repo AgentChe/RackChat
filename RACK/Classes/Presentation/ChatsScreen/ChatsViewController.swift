@@ -10,21 +10,22 @@ import UIKit
 import DatingKit
 import NotificationBannerSwift
 import Amplitude_iOS
+import RxSwift
 
 final class ChatsViewController: UIViewController {
     @IBOutlet weak var emptyMessage: UIView!
     @IBOutlet weak var newSearchView: UIView!
     @IBOutlet weak var swipeView: UIView!
     @IBOutlet weak var backroundView: UIView!
-    @IBOutlet weak var noInternetConnectionConstrait: NSLayoutConstraint!
     @IBOutlet weak var backgroundViewHeight: NSLayoutConstraint!
     @IBOutlet weak var buttonHeight: NSLayoutConstraint!
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var noInternetConnectionLabel: UILabel!
     
     private let viewModel = ChatsViewModel()
 
-    private var chats: [ChatItem] = []
+    private var chats: [AKChat] = []
+    
+    private let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,95 +50,36 @@ final class ChatsViewController: UIViewController {
         
         if ScreenManager.shared.showChat == false {
             if  ScreenManager.shared.match != nil {
-                self.performSegue(withIdentifier: "search", sender: MatchScreenState.foundet)
+                performSegue(withIdentifier: "search", sender: MatchScreenState.foundet)
             } else {
                 if ScreenManager.shared.autoChat == true {
-                    self.performSegue(withIdentifier: "search", sender: MatchScreenState.searchng)
+                    performSegue(withIdentifier: "search", sender: MatchScreenState.searchng)
                 } else {
-                    self.performSegue(withIdentifier: "search", sender: MatchScreenState.serchingManuality)
+                    performSegue(withIdentifier: "search", sender: MatchScreenState.serchingManuality)
                 }
             }
             
         } else {
             if let chat: ChatItem = ScreenManager.shared.pushChat {
-                self.performSegue(withIdentifier: "chat", sender: chat)
+                performSegue(withIdentifier: "chat", sender: chat)
             }
         }
         
-        DatingKit.chat.getChatList { (result, status) in
-            
-            self.chats = result.itemsList
-            if result.itemsList.count == 0 {
-                self.tableView.isHidden = true
-                self.backroundView.isHidden = true
-                self.swipeView.isHidden = true
-                self.newSearchView.isHidden = true
-                if self.emptyMessage.isHidden {
-                    self.emptyMessage.alpha = 0.0
-                    UIView.animate(withDuration: 0.3, animations: {
-                        self.emptyMessage.alpha = 1.0
-                    }, completion: { (fin) in
-                        self.emptyMessage.isHidden = false
-                    })
-                }
-            } else {
-                self.tableView.isHidden = false
-                self.backroundView.isHidden = false
-                self.swipeView.isHidden = false
-                self.newSearchView.isHidden = false
-                self.chats = result.itemsList
-                self.tableView.reloadData()
-                UIView.animate(withDuration: 0.3, animations: {
-                    self.tableView.alpha = 1.0
-                })
-            }
-            
-            if status == .noInternetConnection {
-                self.noInternet(show: true)
-            } else {
-                self.noInternet(show: false)
-            }
-        }
-    }
-    
-    func apper() {
-        DatingKit.chat.connect { (result, status) in
-            self.chats = result.itemsList
-            self.tableView.reloadData()
-            self.tableView.isHidden = false
-                   if result.itemsList.count == 0 {
-                    self.tableView.alpha = 0.0
-                       self.tableView.isHidden = true
-                       self.backroundView.isHidden = true
-                       self.swipeView.isHidden = true
-                       self.newSearchView.isHidden = true
-                       if self.emptyMessage.isHidden {
-                           self.emptyMessage.alpha = 0.0
-                           UIView.animate(withDuration: 0.3, animations: {
-                               self.emptyMessage.alpha = 1.0
-                           }, completion: { (fin) in
-                               self.emptyMessage.isHidden = false
-                           })
-                       }
-                   } else {
-                        self.tableView.isHidden = false
-                        self.backroundView.isHidden = false
-                        self.swipeView.isHidden = false
-                        self.newSearchView.isHidden = false
-                        self.chats = result.itemsList
-                        self.tableView.reloadData()
-                        UIView.animate(withDuration: 0.3, animations: {
-                           self.tableView.alpha = 1.0
-                        })
-                   }
-                            
-                  if status == .noInternetConnection {
-                       self.noInternet(show: true)
-                       
-                   } else {
-                       self.noInternet(show: false)
-                   }
-               }
+        viewModel.chats
+            .drive(onNext: { [weak self] chats in
+                self?.chats = chats
+                
+                let isEmpty = chats.isEmpty
+                
+                self?.tableView.isHidden = isEmpty
+                self?.emptyMessage.isHidden = !isEmpty
+                self?.backroundView.isHidden = isEmpty
+                self?.tableView.isHidden = isEmpty
+                self?.newSearchView.isHidden = isEmpty
+                
+                self?.tableView.reloadData()
+            })
+            .disposed(by: disposeBag)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -199,23 +141,6 @@ final class ChatsViewController: UIViewController {
         }
     }
     
-    private func noInternet(show: Bool) {
-        if show {
-            noInternetConnectionConstrait.constant = 67.0
-            UIView.animate(withDuration: 0.4) { [weak self] in
-                self?.view.layoutIfNeeded()
-                self?.noInternetConnectionLabel.alpha = 1.0
-            }
-        } else {
-            noInternetConnectionConstrait.constant = 0.0
-            UIView.animate(withDuration: 0.4, animations: { [weak self] in
-                self?.view.layoutIfNeeded()
-            }) { [weak self] _ in
-                self?.noInternetConnectionLabel.alpha = 0.0
-            }
-        }
-    }
-    
     @objc private func handleMatch() {
         performSegue(withIdentifier: "search", sender: MatchScreenState.foundet)
     }
@@ -249,7 +174,7 @@ extension ChatsViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: ChatsTableViewCell = tableView.dequeueReusableCell(withIdentifier: "ChatsCell", for: indexPath) as! ChatsTableViewCell
-        cell.config(item: chats[indexPath.row])
+        cell.bind(chat: chats[indexPath.row])
         return cell
     }
 
@@ -257,7 +182,6 @@ extension ChatsViewController: UITableViewDataSource {
 
 extension ChatsViewController: SearchViewDelegate {
     func wasDismis(searchView: MatchViewController) {
-         apper()
                self.backgroundViewHeight.constant = -20.0
                self.buttonHeight.constant = 80.0
                UIView.animate(withDuration: 0.4) {
@@ -265,7 +189,6 @@ extension ChatsViewController: SearchViewDelegate {
                    self.backroundView.layer.cornerRadius = 20
                }
     }
-    
     
     func tapOnYes() {
         

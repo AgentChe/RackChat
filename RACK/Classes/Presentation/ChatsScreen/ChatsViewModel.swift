@@ -10,5 +10,11 @@ import RxSwift
 import RxCocoa
 
 final class ChatsViewModel {
+    lazy var chats = createChats()
     
+    private func createChats() -> Driver<[AKChat]> {
+        return ChatsService
+            .getChats()
+            .asDriver(onErrorJustReturn: [])
+    }
 }

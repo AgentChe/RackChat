@@ -19,14 +19,14 @@ extension UIDevice {
         case iPhoneX = "iPhone X"
         case unknown = "iPadOrUnknown"
     }
-    
+
     var small: Bool {
         return deviceType == .iPhone4_4S || deviceType == .iPhones_5_5s_5c_SE
     }
-    
+
     var deviceType: DeviceType {
         switch UIScreen.main.nativeBounds.height {
-        
+
         case 960:
             return .iPhone4_4S
 

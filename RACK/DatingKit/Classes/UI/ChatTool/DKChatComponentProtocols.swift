@@ -31,24 +31,16 @@ public struct DKChatConstants {
 }
 
 public protocol ChatPresenterProtocol: class {
-
     var view: ChatViewProtocol? { get set }
     var user: UserShow! { get }
     var tableDataSource: UITableViewDataSource { get }
     var messagesCount: Int { get }
     
     func configure(chat: ChatItem)
-    func convert(_ image: UIImage, toBase64:@escaping(_ image: String?) -> Void)
     func disconnect()
     func send(message: Message)
     func pagintaion(for indexPath: IndexPath)
-    func send(imageMessage: Message)
-    func resendMessage(at indexPath: IndexPath)
     func deleteUnsendet(message: Message)
-    func showMenu()
-    func unmatch()
-    func report()
-    
 }
 
 public protocol MenuViewProtocol: class {

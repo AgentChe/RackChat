@@ -25,11 +25,6 @@ class DKTrakerTask: TrakerTask {
         status = .none
         id = UUID()
         self.performer = performer
-        debugPrint("==============================")
-        debugPrint("TASK: \(id) ")
-        debugPrint("route:", task.route)
-        debugPrint("was created")
-        debugPrint("==============================")
     }
     
 }
@@ -49,11 +44,6 @@ class DKTraker: Traker {
     func removeAutorepeadedTask(trakerTask: TrakerTask) {
         if let index = repeadedTask.index(where: {$0.id == trakerTask.id}) {
             repeadedTask.remove(at: index)
-            debugPrint("==============================")
-            debugPrint("TASK: \(trakerTask.id) ")
-            debugPrint("route:", trakerTask.userTask.route)
-            debugPrint(" was removed from autorepead tasks")
-            debugPrint("==============================")
             
         }
     }
@@ -63,15 +53,7 @@ class DKTraker: Traker {
             return task.id == trakerTask.id
         }) == false {
             repeadedTask.append(trakerTask)
-                  
-                  debugPrint("==============================")
-                  debugPrint("TASK: \(trakerTask.id) ")
-                  debugPrint("route:", trakerTask.userTask.route)
-                  debugPrint(" was added to autorepead tasks")
-                  debugPrint("==============================")
         }
-        
-      
     }
     
     func reopenTasks() {
@@ -104,11 +86,6 @@ class DKTraker: Traker {
         case .failedFromInternetConnection:
             remove(task: trakerTask)
             failedTasks.append(trakerTask)
-            debugPrint("==============================")
-            debugPrint("TASK: \(trakerTask.id) ")
-            debugPrint("route:", trakerTask.userTask.route)
-            debugPrint("was added in falailed tasks")
-            debugPrint("==============================")
         default :
             break
         }
@@ -124,22 +101,12 @@ class DKTraker: Traker {
     private func update(task: TrakerTask) {
         if let index = treatmentTasks.index(where: {$0.id == task.id}) {
             treatmentTasks[index].status = task.status
-            debugPrint("==============================")
-            debugPrint("TASK: \(task.id) ")
-            debugPrint("route:", task.userTask.route)
-            debugPrint("was updated")
-            debugPrint("==============================")
         }
     }
     
     private func remove(task: TrakerTask) {
         if let index = treatmentTasks.index(where: {$0.id == task.id}) {
             treatmentTasks.remove(at: index)
-            debugPrint("==============================")
-            debugPrint("TASK: \(task.id) ")
-            debugPrint("route:", task.userTask.route)
-            debugPrint(" was removed")
-            debugPrint("==============================")
 
         }
     }

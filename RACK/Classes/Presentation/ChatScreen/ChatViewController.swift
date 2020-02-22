@@ -27,17 +27,13 @@ class ChatViewController: UIViewController, ChatViewProtocol {
     @IBOutlet weak var noMessageView: UIStackView!
     @IBOutlet weak var userImageView: UIImageView!
     @IBOutlet weak var noMessagesTitleLabel: UILabel!
-    @IBOutlet weak var inputContainerView: UIView!
     @IBOutlet weak var table: UITableView!
     @IBOutlet var navView: UIView!
-    @IBOutlet var partnerNameLabel: UILabel!
     @IBOutlet var partnerPhotosImageViews: [UIImageView]!
     
     private var barItem: UIBarButtonItem?
-    private var image: UIImage!
     private var currentChat: ChatItem!
     private let imagePicker = UIImagePickerController()
-    private var userData: UserShow?
     private lazy var presenter = DKChatPresenter(view: self)
     
     @objc func handleMatch() {
@@ -199,16 +195,11 @@ class ChatViewController: UIViewController, ChatViewProtocol {
             self?.presenter.deleteUnsendet(message: message)
         }))
             
-        
         actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         if let popoverController = actionSheet.popoverPresentationController {
             popoverController.sourceView = self.view
         }
         present(actionSheet, animated: true, completion: nil)
-    }
-    
-    @objc func hideKeyboad() {
-        view.endEditing(true)
     }
     
     @objc func close() {

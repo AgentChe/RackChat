@@ -18,7 +18,7 @@ public class DKChatPresenter: NSObject, ChatPresenterProtocol {
         return messages.count
     }
     
-    public var view: ChatViewProtocol?
+    public weak var view: ChatViewProtocol?
     
     public var user: UserShow!
     
@@ -30,6 +30,7 @@ public class DKChatPresenter: NSObject, ChatPresenterProtocol {
     
     init(view: ChatViewProtocol) {
         super.init()
+        
         self.view = view
     }
     
@@ -53,21 +54,8 @@ public class DKChatPresenter: NSObject, ChatPresenterProtocol {
                 
                 self.getUnsendet()
                 self.connect()
-                
             }
         }
-    }
-    
-    // MARK: - interface
-    public func convert(_ image: UIImage, toBase64: @escaping(String?) -> Void) {
-           DispatchQueue.global().async {
-               if let str: String = image.toBase64() {
-                   toBase64(str)
-               } else {
-                   toBase64(nil)
-               }
-               
-           }
     }
     
     public func send(message: Message) {
@@ -119,15 +107,11 @@ public class DKChatPresenter: NSObject, ChatPresenterProtocol {
                     break
                 default:
                     break
-                    
+
                 }
             }
 
         }
-    }
-    
-    public func send(imageMessage: Message) {
-        
     }
     
     public func deleteUnsendet(message: Message) {
@@ -138,24 +122,8 @@ public class DKChatPresenter: NSObject, ChatPresenterProtocol {
         }
     }
     
-    public func showMenu() {
-        
-    }
-    
-    public func unmatch() {
-        
-    }
-    
-    public func report() {
-        
-    }
-    
     public func disconnect() {
         DatingKit.chat.disconnectFromCurrentChat()
-    }
-    
-    public func resendMessage(at indexPath: IndexPath) {
-      
     }
     
     func hideMenu() {
@@ -197,7 +165,6 @@ public class DKChatPresenter: NSObject, ChatPresenterProtocol {
                 self.view?.reload()
                 break
         }
-        
     }
     
     private func getUnsendet() {

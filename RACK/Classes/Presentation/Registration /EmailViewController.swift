@@ -7,7 +7,6 @@
 //
 import UIKit
 import Foundation
-import DatingKit
 import Amplitude_iOS
 import NotificationBannerSwift
 

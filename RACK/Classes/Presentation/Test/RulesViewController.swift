@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import DatingKit
 import NotificationBannerSwift
 
 class RulesViewController: UIViewController {
@@ -18,9 +17,6 @@ class RulesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.setNavigationBarHidden(true, animated: true)
-        
-//        UserDefaults.standard.set(ScreenManager.ScreenManagerEntryTypes.showTest, forKey: ScreenManager.showKey)
-//        UserDefaults.standard.set(ScreenManager.ScreenManagerTestEntryScreen.rules, forKey: ScreenManager.currentScreen)
     }
     
     
@@ -42,7 +38,6 @@ class RulesViewController: UIViewController {
                 }) { (fin) in
                     self.activityView.isHidden = true
                     self.performSegue(withIdentifier: "setGender", sender: nil)
-//                    self.performSegue(withIdentifier: "toYong", sender: nil)
                 }
                 
                 

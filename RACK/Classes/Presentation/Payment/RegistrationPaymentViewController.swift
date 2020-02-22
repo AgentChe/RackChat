@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import DatingKit
 import Amplitude_iOS
 
 class RegistrationPaymentViewController: UIViewController {

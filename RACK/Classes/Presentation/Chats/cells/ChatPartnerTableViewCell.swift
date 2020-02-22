@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import DatingKit
 
 class ChatPartnerTableViewCell: UITableViewCell {
     @IBOutlet var messageLabel: UILabel!

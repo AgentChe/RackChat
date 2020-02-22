@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import DatingKit
 
 protocol MyImageTableViewCellDelegate: class {
     func tapOnError(message: Message, cell: MyImageTableViewCell)

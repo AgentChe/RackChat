@@ -8,7 +8,6 @@
 
 import Foundation
 
-import DatingKit
 import StoreKit
 import SwiftyStoreKit
 

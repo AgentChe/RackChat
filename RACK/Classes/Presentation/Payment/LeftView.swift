@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import DatingKit
 
 class LeftView: UIView {
     @IBOutlet weak var priceLongLabel: UILabel?

@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import DatingKit
 import UIKit
 
 class VersionRequest: APIRequest {

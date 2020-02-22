@@ -10,7 +10,7 @@ import RxSwift
 
 final class ChatsService {
     static func getChats() -> Single<[AKChat]> {
-        let request = GetChatsRequest(userToken: "bXs6WirVBuOeWSk5HxZt7F6pwHkRRApKRi4JaeVd9e73jyR08TszpvlaXWFmdlCukrSxueFCeJ1pKxNdEuhKiDt4ZKt0WCneVw2reGw5ZufNlhJKByubI51qC3rgoot2")
+        let request = GetChatsRequest(userToken: SessionService.userToken)
         
         return RestAPITransport()
             .callServerApi(requestBody: request)

@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import DatingKit
 
 protocol ChatTableViewDelegate: class {
     func tapOnResent(message: Message, cell: ChatTableViewCell)

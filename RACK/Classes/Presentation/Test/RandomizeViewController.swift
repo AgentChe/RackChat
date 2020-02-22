@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import DatingKit
 import AlamofireImage
 import Amplitude_iOS
 import NotificationBannerSwift

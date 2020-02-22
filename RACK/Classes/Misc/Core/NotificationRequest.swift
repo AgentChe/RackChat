@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import DatingKit
 
 class NotificationSetKey: APIRequestV1 {
     func parse(data: Data) -> Response! {

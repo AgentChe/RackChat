@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import DatingKit
 
 class CenterView: UIView {
     @IBOutlet weak var headerLabel: UILabel?

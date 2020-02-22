@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import DatingKit
 import NotificationBannerSwift
 import AlamofireImage
 

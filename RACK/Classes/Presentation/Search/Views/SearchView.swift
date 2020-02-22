@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import DatingKit
 
 enum SearchViewStates {
     case auto

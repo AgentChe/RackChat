@@ -8,7 +8,6 @@
 
 import UIKit
 import UserNotifications
-import DatingKit
 
 class NotificationRequestViewController: UIViewController {
     

@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 
 
-extension Reactive where Base: UITableView {
+extension Reactive where Base: UIScrollView {
     
     var scrollToTop: Binder<Void> {
         Binder(base) { base, _ in
@@ -20,7 +20,7 @@ extension Reactive where Base: UITableView {
     }
 }
 
-private extension UITableView {
+extension UIScrollView {
     
     func scrollToTop() {
         let offset = CGPoint(x: 0, y: -adjustedContentInset.top)

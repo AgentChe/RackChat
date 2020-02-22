@@ -5,14 +5,6 @@ PODS:
   - Amplitude-iOS (4.10.0)
   - Crashlytics (3.14.0):
     - Fabric (~> 1.10.2)
-  - DatingKit (2.3.1):
-    - Alamofire
-    - AlamofireImage
-    - Disk
-    - FBSDKLoginKit
-    - PromiseKit
-    - ReachabilitySwift
-    - RealmSwift (~> 3.19.0)
   - Disk (0.6.4)
   - Fabric (1.10.2)
   - FBSDKCoreKit (6.0.0):
@@ -150,12 +142,16 @@ DEPENDENCIES:
   - AlamofireImage (~> 3.5)
   - Amplitude-iOS
   - Crashlytics (~> 3.14.0)
-  - DatingKit (from `https://bitbucket.org/sergeyzhilkin/dating-kit.git`, branch `develop`)
+  - Disk
   - Fabric (~> 1.10.2)
+  - FBSDKCoreKit
+  - FBSDKLoginKit
   - Firebase/Analytics
   - Firebase/Messaging
   - lottie-ios
   - NotificationBannerSwift
+  - PromiseKit
+  - ReachabilitySwift
   - RealmSwift
   - ReverseExtension (from `https://github.com/alexdelarge05/ReverseExtension.git`, commit `f46463468b608c9189846c374863cdeb03f15bb4`)
   - RxCocoa
@@ -205,17 +201,11 @@ SPEC REPOS:
     - TKImageShowing
 
 EXTERNAL SOURCES:
-  DatingKit:
-    :branch: develop
-    :git: https://bitbucket.org/sergeyzhilkin/dating-kit.git
   ReverseExtension:
     :commit: f46463468b608c9189846c374863cdeb03f15bb4
     :git: https://github.com/alexdelarge05/ReverseExtension.git
 
 CHECKOUT OPTIONS:
-  DatingKit:
-    :commit: 171752dec807f689a68963f4147abfe0a7b9a6f1
-    :git: https://bitbucket.org/sergeyzhilkin/dating-kit.git
   ReverseExtension:
     :commit: f46463468b608c9189846c374863cdeb03f15bb4
     :git: https://github.com/alexdelarge05/ReverseExtension.git
@@ -225,7 +215,6 @@ SPEC CHECKSUMS:
   AlamofireImage: be9963c6582d68b39e89191f64c82a7d7bf40fdd
   Amplitude-iOS: 7d8cdc3408ba35c2e68368fc7c692cd104606b94
   Crashlytics: 540b7e5f5da5a042647227a5e3ac51d85eed06df
-  DatingKit: 715abb58a202cb7c146ee26853c61a08cbc4e0c5
   Disk: dcee5c2e98fb72f9a924cde8da8435b08244a80e
   Fabric: 706c8b8098fff96c33c0db69cbf81f9c551d0d74
   FBSDKCoreKit: fe738b172590e622c86735b45e20d196848b54df
@@ -262,6 +251,6 @@ SPEC CHECKSUMS:
   SwiftyStoreKit: 033d06b6f87955405d3f844a18a7687c2438592a
   TKImageShowing: 771d31183fd6533509421d2d137d4a59e771fc9e
 
-PODFILE CHECKSUM: 575f6e971ce10901fdd122ca3d1f53ba9b80d043
+PODFILE CHECKSUM: 83101496791fceb538f0542721cd2b010e2ef452
 
 COCOAPODS: 1.8.4

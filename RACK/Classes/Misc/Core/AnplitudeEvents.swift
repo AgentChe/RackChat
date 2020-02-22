@@ -8,7 +8,6 @@
 
 import Foundation
 import Amplitude_iOS
-import DatingKit
 
 
 enum AmplitudeEvensts: Int, CaseIterable {

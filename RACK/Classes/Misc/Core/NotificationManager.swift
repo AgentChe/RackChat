@@ -10,7 +10,6 @@ import Foundation
 import UserNotifications
 import Firebase
 import FirebaseMessaging
-import DatingKit
 
 protocol NotificationDelegate: class {
     func notificationRequestWasEnd(succses: Bool)

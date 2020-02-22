@@ -7,10 +7,8 @@
 //
 
 import UIKit
-import DatingKit
 
 class ButtonView: GardientView {
-    
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var subtitleLabel: UILabel!
     
@@ -18,18 +16,4 @@ class ButtonView: GardientView {
         titleLabel.text = bundle.title
         subtitleLabel.text = bundle.subTitle
     }
-    
-    
-
-    //    @IBAction func startTapOnBuy(_ sender: UIButton) {
-//
-//    }
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
-    }
-    */
-
 }

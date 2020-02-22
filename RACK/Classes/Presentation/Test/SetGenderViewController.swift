@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import DatingKit
 import NotificationBannerSwift
 
 class SetGenderViewController: UIViewController {

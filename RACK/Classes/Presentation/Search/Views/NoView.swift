@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import DatingKit
 
 class NoView: UIView {
 
@@ -24,15 +23,4 @@ class NoView: UIView {
         let message: String = "Sorry " + genderStr + "said no"
         messageLabel.text = message.uppercased()
     }
-    
-    
-    
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
-    }
-    */
-
 }

@@ -43,8 +43,3 @@ struct GetUserTogles: Decodable {
     }
     
 }
-
-
-extension Int {
-    var boolValue: Bool { return self != 0 }
-}

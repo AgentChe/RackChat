@@ -10,16 +10,13 @@
 import UIKit
 import ReverseExtension
 import Amplitude_iOS
-import DatingKit
 import NotificationBannerSwift
 
 class ChatViewController: UIViewController, ChatViewProtocol {
     var menuView: MenuViewProtocol = DKMenuCell()
     var noView: ChatNoViewProtocol = NoViewDep()
-    var presenter: ChatPresenterProtocol?
     var tableView: UITableView = UITableView()
     var textInputView: DKChatBottomView = DKChatBottomView()
-    var configurator: ChatConfiguratorProtocol = DKChatConfigurator()
     var menuImageView: UIImageView!
     
     @IBOutlet weak var input: DKChatBottomView!
@@ -32,7 +29,6 @@ class ChatViewController: UIViewController, ChatViewProtocol {
     @IBOutlet weak var noMessagesTitleLabel: UILabel!
     @IBOutlet weak var inputContainerView: UIView!
     @IBOutlet weak var table: UITableView!
-    
     @IBOutlet var navView: UIView!
     @IBOutlet var partnerNameLabel: UILabel!
     @IBOutlet var partnerPhotosImageViews: [UIImageView]!
@@ -42,6 +38,7 @@ class ChatViewController: UIViewController, ChatViewProtocol {
     private var currentChat: ChatItem!
     private let imagePicker = UIImagePickerController()
     private var userData: UserShow?
+    private lazy var presenter = DKChatPresenter(view: self)
     
     @objc func handleMatch() {
         performSegue(withIdentifier: "search", sender: MatchScreenState.foundet)
@@ -59,11 +56,8 @@ class ChatViewController: UIViewController, ChatViewProtocol {
         }
         
         NotificationCenter.default.addObserver(self, selector: #selector(handleMatch), name: NotificationManager.kMatchNotify, object: nil)
-        
         NotificationCenter.default.addObserver(self, selector: #selector(self.close), name: ReportViewController.reportNotify, object: nil)
-               
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
-        
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
              
         navigationItem.titleView = navView
@@ -73,18 +67,15 @@ class ChatViewController: UIViewController, ChatViewProtocol {
         tableView = table
         textInputView = input
         menuView = menuCell
-        tableView.re.delegate = self
         
         tableView.register(UINib(nibName: "ChatTableViewCell", bundle: .main), with: .userTextMessage)
         tableView.register(UINib(nibName: "ChatPartnerTableViewCell", bundle: .main), with: .partnerTextMessage)
         tableView.register(UINib(nibName: "MyImageTableViewCell", bundle: .main), with: .userImageMessage)
         tableView.register(UINib(nibName: "PattnerImageTableViewCell", bundle: .main), with: .partnerImageMessage)
         
-        configurator.configurate(view: self)
-        guard presenter != nil else { return }
         textInputView.sendButton.addTarget(self, action: #selector(tapOnSend), for: .touchUpInside)
-        guard presenter != nil else { return }
-        tableView.re.dataSource = presenter?.tableDataSource
+        
+        tableView.re.dataSource = presenter.tableDataSource
         tableView.re.delegate = self
         
         navigationItem.largeTitleDisplayMode = .never
@@ -131,14 +122,17 @@ class ChatViewController: UIViewController, ChatViewProtocol {
                                                           "user_email" : DatingKit.user.userData!.email,
                                                           "companion_id" : currentChat.chatID])
         ScreenManager.shared.chatItemOnScreen = currentChat
-        guard presenter != nil else { return }
+        
         guard currentChat != nil else { return }
-        presenter?.configure(chat: currentChat)
+        
+        presenter.configure(chat: currentChat)
     }
            
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        presenter?.disconnect()
+        
+        presenter.disconnect()
+        
         ScreenManager.shared.chatItemOnScreen = nil
     }
     
@@ -198,11 +192,11 @@ class ChatViewController: UIViewController, ChatViewProtocol {
     func showError(with message: Message) {
         let actionSheet: UIAlertController = UIAlertController(title: nil, message: "Your message was not sent. Tap “Try Again” to send this message.", preferredStyle: .actionSheet)
         actionSheet.addAction(UIAlertAction(title: "Try again", style: .destructive, handler: { [weak self] (action) in
-            self?.presenter?.send(message: message)
+            self?.presenter.send(message: message)
         }))
         
         actionSheet.addAction(UIAlertAction(title: "Delete Message", style: .destructive, handler: { [weak self] (action) in
-            self?.presenter?.deleteUnsendet(message: message)
+            self?.presenter.deleteUnsendet(message: message)
         }))
             
         
@@ -263,14 +257,13 @@ class ChatViewController: UIViewController, ChatViewProtocol {
     }
     
     @objc func tapOnSend() {
-        guard presenter != nil else {return}
-        guard let user: UserShow = presenter?.user else {return}
+        guard let user: UserShow = presenter.user else {return}
         guard currentChat != nil else {return}
         if input.text.trimmingCharacters(in: .whitespaces).isEmpty {
             return
         }
             
-        presenter?.send(message: Message(text: input.text, sender: user.id, matchID: currentChat.chatID))
+        presenter.send(message: Message(text: input.text, sender: user.id, matchID: currentChat.chatID))
         input.text = ""
     }
     
@@ -284,11 +277,9 @@ class ChatViewController: UIViewController, ChatViewProtocol {
         }
     }
     
-    
     @objc func keyboardWillShow(_ sender: Notification) {
         if let userInfo = (sender as NSNotification).userInfo {
             if var keyboardHeight = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.size.height {
-                debugPrint(UIDevice.modelName.contains("X"))
                 if UIDevice.modelName.contains("X") {
                     keyboardHeight = keyboardHeight - 35
                 }
@@ -308,10 +299,9 @@ class ChatViewController: UIViewController, ChatViewProtocol {
         }
         
         if segue.identifier == "unmatch" {
-            if let unmatchVC: UnmatchViewController = segue.destination as! UnmatchViewController {
-                unmatchVC.config(avatar: menuImageView!.image!, and: currentChat.partnerName, chatItem: currentChat)
-                unmatchVC.delegate = self
-            }
+            let unmatchVC: UnmatchViewController = segue.destination as! UnmatchViewController
+            unmatchVC.config(avatar: menuImageView!.image!, and: currentChat.partnerName, chatItem: currentChat)
+            unmatchVC.delegate = self
         }
         
         if segue.identifier == "search" {
@@ -327,9 +317,7 @@ class ChatViewController: UIViewController, ChatViewProtocol {
                 } else {
                     searchView.config(state: startFromNewSearchButton)
                 }
-                
             }
-            
         }
     }
 }
@@ -350,24 +338,21 @@ extension ChatViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        guard presenter != nil else { return }
-        presenter?.pagintaion(for: indexPath)
+        presenter.pagintaion(for: indexPath)
     }
 }
 
 extension ChatViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let pickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-                   
-            guard presenter != nil else { return }
-            guard let user: UserShow = presenter?.user else {
+            guard let user: UserShow = presenter.user else {
                 return
             }
             
             var newMessage: Message = Message(image: pickedImage, forSender: user.id, matchID: currentChat.chatID)
             newMessage.base64Image = pickedImage.ConvertImageToBase64String()
             newMessage.sendetImage = pickedImage
-            presenter?.send(message: newMessage)
+            presenter.send(message: newMessage)
         }
         
         dismiss(animated: true, completion: nil)
@@ -383,4 +368,3 @@ class NoViewDep: UIView, ChatNoViewProtocol {
     var title: String = ""
     var subTitle: String = ""
 }
-

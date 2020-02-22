@@ -10,7 +10,6 @@ import UIKit
 import FBSDKCoreKit
 import Firebase
 import Amplitude_iOS
-import DatingKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

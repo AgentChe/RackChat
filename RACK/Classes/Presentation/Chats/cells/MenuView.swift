@@ -9,7 +9,6 @@
 import UIKit
 
 class MenuView: UIView {
-    
     @IBOutlet weak var collectionView: UICollectionView!
 
     override func awakeFromNib() {
@@ -18,10 +17,7 @@ class MenuView: UIView {
         collectionView.dataSource = self
         collectionView.register(UINib(nibName: "GIFCollectionViewCell", bundle: .main), forCellWithReuseIdentifier: "GIFCollectionViewCell")
     }
-    
-
 }
-
 
 extension MenuView: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -32,6 +28,4 @@ extension MenuView: UICollectionViewDelegate, UICollectionViewDataSource {
         let cell: GIFCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "GIFCollectionViewCell", for: indexPath) as! GIFCollectionViewCell
         return cell
     }
-    
-    
 }

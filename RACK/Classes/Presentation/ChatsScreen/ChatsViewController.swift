@@ -190,7 +190,5 @@ extension ChatsViewController: SearchViewDelegate {
                }
     }
     
-    func tapOnYes() {
-        
-    }
+    func tapOnYes() {}
 }

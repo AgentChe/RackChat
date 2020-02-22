@@ -13,21 +13,13 @@ import Amplitude_iOS
 import DatingKit
 import NotificationBannerSwift
 
-
 class ChatViewController: UIViewController, ChatViewProtocol {
-    
     var menuView: MenuViewProtocol = DKMenuCell()
-    
     var noView: ChatNoViewProtocol = NoViewDep()
-    
     var presenter: ChatPresenterProtocol?
-    
     var tableView: UITableView = UITableView()
-    
     var textInputView: DKChatBottomView = DKChatBottomView()
-    
     var configurator: ChatConfiguratorProtocol = DKChatConfigurator()
-    
     var menuImageView: UIImageView!
     
     @IBOutlet weak var input: DKChatBottomView!
@@ -55,10 +47,7 @@ class ChatViewController: UIViewController, ChatViewProtocol {
         performSegue(withIdentifier: "search", sender: MatchScreenState.foundet)
     }
     
-    // MARK: - life cycle
-    
     func config(with chatItem: ChatItem) {
-           
         currentChat = chatItem
     }
     
@@ -91,9 +80,6 @@ class ChatViewController: UIViewController, ChatViewProtocol {
         tableView.register(UINib(nibName: "MyImageTableViewCell", bundle: .main), with: .userImageMessage)
         tableView.register(UINib(nibName: "PattnerImageTableViewCell", bundle: .main), with: .partnerImageMessage)
         
-//        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(hideKeyboad))
-
-//        view.addGestureRecognizer(tap)
         configurator.configurate(view: self)
         guard presenter != nil else { return }
         textInputView.sendButton.addTarget(self, action: #selector(tapOnSend), for: .touchUpInside)
@@ -168,7 +154,6 @@ class ChatViewController: UIViewController, ChatViewProtocol {
     }
     
     private func load(imageUrl: String, into imageView: UIImageView) {
-
         imageView.alpha = 0.0
         imageView.isHidden = true
 
@@ -182,24 +167,15 @@ class ChatViewController: UIViewController, ChatViewProtocol {
         UIView.animate(withDuration: 0.4) {
             imageView.alpha = 1.0
         }
-
     }
-    
-    
-    // MARK: - interface
     
     func reload() {
         tableView.reloadData()
     }
     
-    func openPaygate() {
-          
-        performSegue(withIdentifier: "paygate", sender: nil)
-    }
+    func openPaygate() { }
     
-    func setScreen() {
-        
-    }
+    func setScreen() {}
     
     func showNoView(_ show: Bool) {
         UIView.animate(withDuration: 0.2) {
@@ -213,9 +189,7 @@ class ChatViewController: UIViewController, ChatViewProtocol {
         self.tableView.endUpdates()
     }
     
-    func deleteMessage(at indexPath: IndexPath) {
-        
-    }
+    func deleteMessage(at indexPath: IndexPath) {}
     
     func showNoInternetConnection(_ show: Bool) {
         showNoInternet(show: show)
@@ -238,9 +212,6 @@ class ChatViewController: UIViewController, ChatViewProtocol {
         }
         present(actionSheet, animated: true, completion: nil)
     }
-    
-    //MARK: - actions
-    
     
     @objc func hideKeyboad() {
         view.endEditing(true)
@@ -284,12 +255,10 @@ class ChatViewController: UIViewController, ChatViewProtocol {
         present(actionSheet, animated: true, completion: nil)
     }
     
-    
     @IBAction func showMenuView(_ sender: DKChatMenuView) {
         imagePicker.allowsEditing = false
         imagePicker.sourceType = .photoLibrary
         imagePicker.delegate = self
-//        view.endEditing(true)
         present(imagePicker, animated: true, completion: nil)
     }
     
@@ -304,13 +273,6 @@ class ChatViewController: UIViewController, ChatViewProtocol {
         presenter?.send(message: Message(text: input.text, sender: user.id, matchID: currentChat.chatID))
         input.text = ""
     }
-    
-    
-    
-    @IBAction func tapOnPhoto(_ sender: Any) {
-       
-    }
-
     
     @objc func keyboardWillHide(_ sender: Notification) {
         if let userInfo = (sender as NSNotification).userInfo {
@@ -330,6 +292,7 @@ class ChatViewController: UIViewController, ChatViewProtocol {
                 if UIDevice.modelName.contains("X") {
                     keyboardHeight = keyboardHeight - 35
                 }
+                
                 self.inputContainerViewBottom.constant = keyboardHeight
                 UIView.animate(withDuration: 0.25, animations: { () -> Void in
                     self.view.layoutIfNeeded()
@@ -337,7 +300,6 @@ class ChatViewController: UIViewController, ChatViewProtocol {
             }
         }
     }
-    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "report" {
@@ -350,11 +312,6 @@ class ChatViewController: UIViewController, ChatViewProtocol {
                 unmatchVC.config(avatar: menuImageView!.image!, and: currentChat.partnerName, chatItem: currentChat)
                 unmatchVC.delegate = self
             }
-        }
-        if segue.identifier == "paygate" {
-            let paygate: PaymentViewController = segue.destination as! PaymentViewController
-            paygate.delegate = self
-    
         }
         
         if segue.identifier == "search" {
@@ -375,31 +332,15 @@ class ChatViewController: UIViewController, ChatViewProtocol {
             
         }
     }
-    
 }
 
 extension ChatViewController: UnmatchViewControllerDelegate {
     func wasRepoerted() {
         self.navigationController?.popViewController(animated: true)
     }
-    
-    
 }
-
-extension ChatViewController: PaymentViewControllerDelegate {
-    
-    func wasPurchased() {
-        
-    }
-    
-    func wasClosed() {
-    }
-    
-}
-
 
 extension ChatViewController: UITableViewDelegate {
-    
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
         if tableView.isEditing {
             return .delete
@@ -408,18 +349,14 @@ extension ChatViewController: UITableViewDelegate {
         return .none
     }
     
-   
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         guard presenter != nil else { return }
         presenter?.pagintaion(for: indexPath)
     }
-    
 }
 
 extension ChatViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-
         if let pickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
                    
             guard presenter != nil else { return }
@@ -431,13 +368,9 @@ extension ChatViewController: UIImagePickerControllerDelegate, UINavigationContr
             newMessage.base64Image = pickedImage.ConvertImageToBase64String()
             newMessage.sendetImage = pickedImage
             presenter?.send(message: newMessage)
-          
         }
-        dismiss(animated: true, completion: nil)
-    }
-    
-    private func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         
+        dismiss(animated: true, completion: nil)
     }
     
     private func imagePickerControllerDidCancel(picker: UIImagePickerController) {
@@ -446,26 +379,8 @@ extension ChatViewController: UIImagePickerControllerDelegate, UINavigationContr
 }
 
 class NoViewDep: UIView, ChatNoViewProtocol {
-  
     var icon: UIImage = UIImage()
-    
     var title: String = ""
-    
     var subTitle: String = ""
-    
-    
 }
 
-extension UIImage {
-    enum JPEGQuality: CGFloat {
-        case lowest  = 0
-        case low     = 0.25
-        case medium  = 0.5
-        case high    = 0.75
-        case highest = 1
-    }
-
-    func jpeg(_ jpegQuality: JPEGQuality) -> Data? {
-        return jpegData(compressionQuality: jpegQuality.rawValue)
-    }
-}

@@ -444,10 +444,6 @@
                         <outlet property="noMessageView" destination="2Ke-Vk-BoO" id="Miq-pL-Gx4"/>
                         <outlet property="noMessagesTitleLabel" destination="nGb-4u-bBz" id="xjc-bD-Rwj"/>
                         <outlet property="table" destination="jVy-ra-Ryp" id="Kzf-6n-Smx"/>
-                        <outlet property="userImageView" destination="YfA-nF-ykz" id="yyF-Wx-7c3"/>
-                        <outletCollection property="partnerPhotosImageViews" destination="voX-pw-HiW" collectionClass="NSMutableArray" id="E4Y-e5-NYd"/>
-                        <outletCollection property="partnerPhotosImageViews" destination="d00-6F-u7w" collectionClass="NSMutableArray" id="BRP-vL-hf4"/>
-                        <outletCollection property="partnerPhotosImageViews" destination="rY1-mb-cE2" collectionClass="NSMutableArray" id="f3X-mm-l55"/>
                         <segue destination="7S4-j3-P20" kind="presentation" identifier="map" modalPresentationStyle="overCurrentContext" id="mPa-iI-wsf"/>
                         <segue destination="plb-IW-feY" kind="presentation" identifier="report" modalPresentationStyle="overCurrentContext" modalTransitionStyle="crossDissolve" id="eWE-g4-CCY"/>
                         <segue destination="VwB-gt-7Og" kind="presentation" identifier="unmatch" modalPresentationStyle="overCurrentContext" modalTransitionStyle="crossDissolve" id="zVa-Dl-2ZK"/>
@@ -458,56 +454,8 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hnZ-HK-hNu" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A5c-Gw-7KO">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
-                    <subviews>
-                        <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="jUE-jm-Gvc">
-                            <rect key="frame" x="187.66666666666666" y="23" width="0.0" height="48"/>
-                            <subviews>
-                                <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Ava" translatesAutoresizingMaskIntoConstraints="NO" id="voX-pw-HiW">
-                                    <rect key="frame" x="0.0" y="0.0" width="48" height="48"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="48" id="Xyo-vq-Ao2"/>
-                                        <constraint firstAttribute="width" constant="48" id="r4T-9y-MW6"/>
-                                    </constraints>
-                                    <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                            <real key="value" value="0.0"/>
-                                        </userDefinedRuntimeAttribute>
-                                    </userDefinedRuntimeAttributes>
-                                </imageView>
-                                <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Ava" translatesAutoresizingMaskIntoConstraints="NO" id="d00-6F-u7w">
-                                    <rect key="frame" x="0.0" y="0.0" width="48" height="48"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="48" id="Myw-iC-4ao"/>
-                                        <constraint firstAttribute="width" constant="48" id="u2r-HZ-q7P"/>
-                                    </constraints>
-                                    <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                            <real key="value" value="0.0"/>
-                                        </userDefinedRuntimeAttribute>
-                                    </userDefinedRuntimeAttributes>
-                                </imageView>
-                                <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Ava" translatesAutoresizingMaskIntoConstraints="NO" id="rY1-mb-cE2">
-                                    <rect key="frame" x="0.0" y="0.0" width="48" height="48"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="48" id="oWX-Kc-NRP"/>
-                                        <constraint firstAttribute="width" constant="48" id="to2-e8-NZa"/>
-                                    </constraints>
-                                    <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                            <real key="value" value="0.0"/>
-                                        </userDefinedRuntimeAttribute>
-                                    </userDefinedRuntimeAttributes>
-                                </imageView>
-                            </subviews>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="48" id="EUG-J8-Bgq"/>
-                            </constraints>
-                        </stackView>
-                    </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstItem="jUE-jm-Gvc" firstAttribute="centerX" secondItem="zFr-5O-QHC" secondAttribute="centerX" id="6aZ-2x-gzy"/>
-                        <constraint firstItem="jUE-jm-Gvc" firstAttribute="centerY" secondItem="zFr-5O-QHC" secondAttribute="centerY" id="9l9-QU-pRT"/>
                         <constraint firstAttribute="height" constant="50" id="9mY-1u-YgH"/>
                     </constraints>
                     <viewLayoutGuide key="safeArea" id="zFr-5O-QHC"/>
@@ -1079,7 +1027,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Ava" width="60" height="60"/>
         <image name="close_menu_btn" width="36" height="36"/>
         <image name="down_arrow" width="36" height="11"/>
         <image name="gardient" width="375" height="147"/>

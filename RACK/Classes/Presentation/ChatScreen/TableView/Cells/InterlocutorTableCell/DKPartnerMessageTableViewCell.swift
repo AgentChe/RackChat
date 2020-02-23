@@ -8,11 +8,14 @@
 
 import UIKit
 
-open class DKPartnerMessageTableViewCell: UITableViewCell {
-    
+final class DKPartnerMessageTableViewCell: UITableViewCell {
     @IBOutlet public weak var messageLabel: UILabel!
     
-    public func config(message: Message) {
+    func bind(message: AKMessage) {
+        messageLabel.text = message.body
+    }
+    
+    func config(message: Message) {
         messageLabel.text = message.body
     }
 }

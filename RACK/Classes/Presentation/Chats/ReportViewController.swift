@@ -44,9 +44,6 @@ class ReportViewController: UIViewController {
             
             self.subtitleLabel.text = "It's anonymous, we won't tell " + str
         }
-        
-        
-        
     }
     
     @IBAction func tapOnOther(_ sender: UIButton) {

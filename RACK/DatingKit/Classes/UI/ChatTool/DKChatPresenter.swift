@@ -36,8 +36,8 @@ public class DKChatPresenter: NSObject, ChatPresenterProtocol {
     
     public func configure(chat: ChatItem) {
         currentChat = chat
-        view?.textInputView.optionalButton.addTarget(self, action: #selector(tapOnMenu), for: .touchUpInside)
         
+        view?.textInputView.optionalButton.addTarget(self, action: #selector(tapOnMenu), for: .touchUpInside)
         view?.textInputView.delegate = self
         
         DatingKit.user.show { (userShow, status) in
@@ -50,7 +50,6 @@ public class DKChatPresenter: NSObject, ChatPresenterProtocol {
             if status == .succses {
                 guard (userShow != nil) else { return }
                 self.user = userShow
-                self.view!.setScreen()
                 
                 self.getUnsendet()
                 self.connect()
@@ -143,27 +142,17 @@ public class DKChatPresenter: NSObject, ChatPresenterProtocol {
                 let deleteIndex: Int = self.sendingMessages.firstIndex(where: {$0.cacheID == message.caheID})!
                 self.sendingMessages.remove(at: deleteIndex)
                 self.view?.reload()
-                break
-            case.needPayment:
-                let index: Int = self.sendingMessages.firstIndex(where: {$0.cacheID == messageUI.cacheID})!
-                self.sendingMessages[index].sendingState = .error
-                self.sendingMessages[index].message.caheID = message.caheID
-                self.view?.reload()
-                self.view?.openPaygate()
-                break
             case .noInternetConnection:
                 let index: Int = self.sendingMessages.firstIndex(where: {$0.cacheID == messageUI.cacheID})!
                 self.sendingMessages[index].sendingState = .error
                 self.sendingMessages[index].message.caheID = message.caheID
                 self.view?.reload()
                 self.view?.showNoInternetConnection(true)
-                break
             default:
                 let index: Int = self.sendingMessages.firstIndex(where: {$0.cacheID == messageUI.cacheID})!
                 self.sendingMessages[index].sendingState = .error
                 self.sendingMessages[index].message.caheID = message.caheID
                 self.view?.reload()
-                break
         }
     }
     

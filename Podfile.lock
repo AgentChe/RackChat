@@ -95,6 +95,9 @@ PODS:
     - GoogleUtilities/Logger
   - GoogleUtilities/UserDefaults (6.5.1):
     - GoogleUtilities/Logger
+  - Kingfisher (5.13.0):
+    - Kingfisher/Core (= 5.13.0)
+  - Kingfisher/Core (5.13.0)
   - lottie-ios (3.1.6)
   - MarqueeLabel (4.0.2)
   - nanopb (0.3.9011):
@@ -148,6 +151,7 @@ DEPENDENCIES:
   - FBSDKLoginKit
   - Firebase/Analytics
   - Firebase/Messaging
+  - Kingfisher
   - lottie-ios
   - NotificationBannerSwift
   - PromiseKit
@@ -182,6 +186,7 @@ SPEC REPOS:
     - GoogleDataTransport
     - GoogleDataTransportCCTSupport
     - GoogleUtilities
+    - Kingfisher
     - lottie-ios
     - MarqueeLabel
     - nanopb
@@ -232,6 +237,7 @@ SPEC CHECKSUMS:
   GoogleDataTransport: 47fe3b8e1673e5187dfd615656a3c5034f150d69
   GoogleDataTransportCCTSupport: 36f69887fd212db6d7ef4dd45ba44523717a434e
   GoogleUtilities: 06eb53bb579efe7099152735900dd04bf09e7275
+  Kingfisher: 0d334cada987fcddbe9b5cec516406e1ee9d4748
   lottie-ios: 85ce835dd8c53e02509f20729fc7d6a4e6645a0a
   MarqueeLabel: f762aa681ae201f66c1d511858b171f75d83013a
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
@@ -251,6 +257,6 @@ SPEC CHECKSUMS:
   SwiftyStoreKit: 033d06b6f87955405d3f844a18a7687c2438592a
   TKImageShowing: 771d31183fd6533509421d2d137d4a59e771fc9e
 
-PODFILE CHECKSUM: 83101496791fceb538f0542721cd2b010e2ef452
+PODFILE CHECKSUM: 9c694356daaf61b79477897f47b7e435f4b5f725
 
 COCOAPODS: 1.8.4

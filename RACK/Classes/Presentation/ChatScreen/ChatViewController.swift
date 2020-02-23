@@ -6,7 +6,6 @@
 //  Copyright © 2019 fawn.team. All rights reserved.
 //
 
-
 import UIKit
 import ReverseExtension
 import Amplitude_iOS
@@ -25,11 +24,9 @@ class ChatViewController: UIViewController, ChatViewProtocol {
     @IBOutlet weak var noInternetView: UIView!
     @IBOutlet weak var noInternetHeight: NSLayoutConstraint!
     @IBOutlet weak var noMessageView: UIStackView!
-    @IBOutlet weak var userImageView: UIImageView!
     @IBOutlet weak var noMessagesTitleLabel: UILabel!
     @IBOutlet weak var table: UITableView!
     @IBOutlet var navView: UIView!
-    @IBOutlet var partnerPhotosImageViews: [UIImageView]!
     
     private var barItem: UIBarButtonItem?
     private var currentChat: ChatItem!
@@ -63,11 +60,6 @@ class ChatViewController: UIViewController, ChatViewProtocol {
         tableView = table
         textInputView = input
         menuView = menuCell
-        
-        tableView.register(UINib(nibName: "ChatTableViewCell", bundle: .main), with: .userTextMessage)
-        tableView.register(UINib(nibName: "ChatPartnerTableViewCell", bundle: .main), with: .partnerTextMessage)
-        tableView.register(UINib(nibName: "MyImageTableViewCell", bundle: .main), with: .userImageMessage)
-        tableView.register(UINib(nibName: "PattnerImageTableViewCell", bundle: .main), with: .partnerImageMessage)
         
         textInputView.sendButton.addTarget(self, action: #selector(tapOnSend), for: .touchUpInside)
         
@@ -107,8 +99,6 @@ class ChatViewController: UIViewController, ChatViewProtocol {
         super.viewWillAppear(animated)
         
         noMessagesTitleLabel.text = "You matched with " + currentChat.partnerName
-        
-        loadPartnerPhotos()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -132,17 +122,6 @@ class ChatViewController: UIViewController, ChatViewProtocol {
         ScreenManager.shared.chatItemOnScreen = nil
     }
     
-    private func loadPartnerPhotos() {
-        let photos = currentChat.partnerPhotos
-        for i in 0..<photos.count {
-            guard partnerPhotosImageViews.count > i else { return }
-            let photoUrl = photos[i]
-            let iv = partnerPhotosImageViews[i]
-            iv.applyMask(UIView.MaskType(rawValue: i)!)
-            load(imageUrl: photoUrl, into: iv)
-        }
-    }
-    
     private func load(imageUrl: String, into imageView: UIImageView) {
         imageView.alpha = 0.0
         imageView.isHidden = true
@@ -162,10 +141,6 @@ class ChatViewController: UIViewController, ChatViewProtocol {
     func reload() {
         tableView.reloadData()
     }
-    
-    func openPaygate() { }
-    
-    func setScreen() {}
     
     func showNoView(_ show: Bool) {
         UIView.animate(withDuration: 0.2) {

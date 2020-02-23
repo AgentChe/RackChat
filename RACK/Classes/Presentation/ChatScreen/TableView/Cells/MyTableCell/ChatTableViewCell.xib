@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -17,13 +17,6 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="84"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NWp-Q6-eYV">
-                        <rect key="frame" x="268" y="6" width="36" height="72"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="36" id="E2R-hZ-JdJ"/>
-                        </constraints>
-                        <state key="normal" image="error_icon"/>
-                    </button>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CMa-St-crD">
                         <rect key="frame" x="242.5" y="6" width="61.5" height="72"/>
                         <subviews>
@@ -52,9 +45,6 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </view>
-                    <activityIndicatorView opaque="NO" alpha="0.0" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="Trz-EZ-7S3">
-                        <rect key="frame" x="214.5" y="32" width="20" height="20"/>
-                    </activityIndicatorView>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
@@ -62,25 +52,14 @@
                     <constraint firstAttribute="trailing" secondItem="CMa-St-crD" secondAttribute="trailing" constant="16" id="ADQ-Tp-aGI"/>
                     <constraint firstItem="CMa-St-crD" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="70" id="BLL-8Y-UBm"/>
                     <constraint firstAttribute="bottom" secondItem="CMa-St-crD" secondAttribute="bottom" constant="6" id="GYV-x2-CGS"/>
-                    <constraint firstItem="NWp-Q6-eYV" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="6" id="M7O-lT-p2m"/>
-                    <constraint firstAttribute="trailing" secondItem="NWp-Q6-eYV" secondAttribute="trailing" constant="16" id="PKD-Du-Dn2"/>
-                    <constraint firstItem="CMa-St-crD" firstAttribute="leading" secondItem="Trz-EZ-7S3" secondAttribute="trailing" constant="8" id="afm-Fd-Ffu"/>
-                    <constraint firstAttribute="bottom" secondItem="NWp-Q6-eYV" secondAttribute="bottom" constant="6" id="amw-MN-CDl"/>
-                    <constraint firstItem="Trz-EZ-7S3" firstAttribute="centerY" secondItem="CMa-St-crD" secondAttribute="centerY" id="oC3-tl-jVl"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="activityIndicator" destination="Trz-EZ-7S3" id="Eyo-RT-M1z"/>
-                <outlet property="errorButton" destination="NWp-Q6-eYV" id="96j-cg-REF"/>
-                <outlet property="leadingConstarait" destination="ADQ-Tp-aGI" id="opF-Hj-XDm"/>
                 <outlet property="messageLabel" destination="Jy5-fM-Vik" id="R4U-Hy-fFu"/>
             </connections>
             <point key="canvasLocation" x="137.59999999999999" y="188.00599700149925"/>
         </tableViewCell>
     </objects>
-    <resources>
-        <image name="error_icon" width="34" height="34"/>
-    </resources>
 </document>

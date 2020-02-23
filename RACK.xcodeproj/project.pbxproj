@@ -20,17 +20,13 @@
 		1342C2F523240D0C0006EC8C /* Payment.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1342C2F423240D0C0006EC8C /* Payment.storyboard */; };
 		134901C22306DE0F00684901 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134901C12306DE0F00684901 /* ChatViewController.swift */; };
 		134901D42306E0CF00684901 /* ChatTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 134901C52306E0CB00684901 /* ChatTableViewCell.xib */; };
-		134901D52306E0CF00684901 /* PattnerImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134901C62306E0CB00684901 /* PattnerImageTableViewCell.swift */; };
 		134901D62306E0CF00684901 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134901C72306E0CB00684901 /* MenuView.swift */; };
 		134901D72306E0CF00684901 /* ChatPartnerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 134901C82306E0CB00684901 /* ChatPartnerTableViewCell.xib */; };
 		134901D92306E0CF00684901 /* GIFCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134901CA2306E0CC00684901 /* GIFCollectionViewCell.swift */; };
 		134901DA2306E0CF00684901 /* MyImageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 134901CB2306E0CD00684901 /* MyImageTableViewCell.xib */; };
 		134901DB2306E0CF00684901 /* PattnerImageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 134901CC2306E0CD00684901 /* PattnerImageTableViewCell.xib */; };
 		134901DF2306E0CF00684901 /* Chat.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 134901D02306E0CE00684901 /* Chat.storyboard */; };
-		134901E02306E0CF00684901 /* MyImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134901D12306E0CE00684901 /* MyImageTableViewCell.swift */; };
 		134901E12306E0CF00684901 /* GIFCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 134901D22306E0CF00684901 /* GIFCollectionViewCell.xib */; };
-		134901E22306E0CF00684901 /* ChatPartnerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134901D32306E0CF00684901 /* ChatPartnerTableViewCell.swift */; };
-		134901E52306E43E00684901 /* ChatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134901E42306E43E00684901 /* ChatTableViewCell.swift */; };
 		134A29682355D1A8004D2888 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 134A29672355D1A8004D2888 /* GoogleService-Info.plist */; };
 		135C631222CB528F00EFC391 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135C631122CB528E00EFC391 /* ProfileViewController.swift */; };
 		13602F6A22EB2BCE0099BF1F /* TransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13602F6822EB2BCC0099BF1F /* TransitionAnimator.swift */; };
@@ -232,17 +228,13 @@
 		1342C2F423240D0C0006EC8C /* Payment.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Payment.storyboard; sourceTree = "<group>"; };
 		134901C12306DE0F00684901 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		134901C52306E0CB00684901 /* ChatTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatTableViewCell.xib; sourceTree = "<group>"; };
-		134901C62306E0CB00684901 /* PattnerImageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PattnerImageTableViewCell.swift; sourceTree = "<group>"; };
 		134901C72306E0CB00684901 /* MenuView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		134901C82306E0CB00684901 /* ChatPartnerTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatPartnerTableViewCell.xib; sourceTree = "<group>"; };
 		134901CA2306E0CC00684901 /* GIFCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GIFCollectionViewCell.swift; sourceTree = "<group>"; };
 		134901CB2306E0CD00684901 /* MyImageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyImageTableViewCell.xib; sourceTree = "<group>"; };
 		134901CC2306E0CD00684901 /* PattnerImageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PattnerImageTableViewCell.xib; sourceTree = "<group>"; };
 		134901D02306E0CE00684901 /* Chat.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Chat.storyboard; sourceTree = "<group>"; };
-		134901D12306E0CE00684901 /* MyImageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyImageTableViewCell.swift; sourceTree = "<group>"; };
 		134901D22306E0CF00684901 /* GIFCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GIFCollectionViewCell.xib; sourceTree = "<group>"; };
-		134901D32306E0CF00684901 /* ChatPartnerTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatPartnerTableViewCell.swift; sourceTree = "<group>"; };
-		134901E42306E43E00684901 /* ChatTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatTableViewCell.swift; sourceTree = "<group>"; };
 		134A29672355D1A8004D2888 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "RACK/Resources/GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		135C631122CB528E00EFC391 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		13602F6822EB2BCC0099BF1F /* TransitionAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionAnimator.swift; sourceTree = "<group>"; };
@@ -489,17 +481,9 @@
 		134901E32306E14300684901 /* cells */ = {
 			isa = PBXGroup;
 			children = (
-				134901CB2306E0CD00684901 /* MyImageTableViewCell.xib */,
-				134901CC2306E0CD00684901 /* PattnerImageTableViewCell.xib */,
 				134901D22306E0CF00684901 /* GIFCollectionViewCell.xib */,
-				134901C82306E0CB00684901 /* ChatPartnerTableViewCell.xib */,
-				134901C52306E0CB00684901 /* ChatTableViewCell.xib */,
 				134901C72306E0CB00684901 /* MenuView.swift */,
-				134901D12306E0CE00684901 /* MyImageTableViewCell.swift */,
-				134901C62306E0CB00684901 /* PattnerImageTableViewCell.swift */,
 				134901CA2306E0CC00684901 /* GIFCollectionViewCell.swift */,
-				134901D32306E0CF00684901 /* ChatPartnerTableViewCell.swift */,
-				134901E42306E43E00684901 /* ChatTableViewCell.swift */,
 			);
 			path = cells;
 			sourceTree = "<group>";
@@ -888,6 +872,10 @@
 		969DA3092400534800DC42D1 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				969DA46724029F2600DC42D1 /* InterlocutorImageTableCell */,
+				969DA46624029EFA00DC42D1 /* InterlocutorTableCell */,
+				969DA46524029EE600DC42D1 /* MyTableCell */,
+				969DA46424029EB500DC42D1 /* MyImageTableCell */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -931,15 +919,11 @@
 			children = (
 				969DA3BA2401445E00DC42D1 /* DKTextInputView.swift */,
 				969DA3BC2401445E00DC42D1 /* DKChatBottomView.swift */,
-				969DA3BE2401445E00DC42D1 /* DKUserImageTableViewCell.swift */,
-				969DA3BD2401445E00DC42D1 /* DKUserMessageTableViewCell.swift */,
 				969DA3BF2401445E00DC42D1 /* DKChatComponentProtocols.swift */,
-				969DA3C02401445E00DC42D1 /* DKPartnerMessageTableViewCell.swift */,
 				969DA3C12401445E00DC42D1 /* DKChatPresenter.swift */,
 				969DA3C22401445E00DC42D1 /* DKMenuCell.swift */,
 				969DA3C32401445E00DC42D1 /* DKChatMenuComponent.swift */,
 				969DA3C42401445E00DC42D1 /* DKChatMenuView.swift */,
-				969DA3C52401445E00DC42D1 /* DKPartnerIMewssageImageTableViewCell.swift */,
 				969DA3C62401445E00DC42D1 /* DKChatUIModels.swift */,
 				969DA3C72401445E00DC42D1 /* DKChatInputView.swift */,
 			);
@@ -1091,6 +1075,42 @@
 				969DA4102401445E00DC42D1 /* UICollectionVeiw+Scroll.swift */,
 			);
 			path = Extention;
+			sourceTree = "<group>";
+		};
+		969DA46424029EB500DC42D1 /* MyImageTableCell */ = {
+			isa = PBXGroup;
+			children = (
+				134901CB2306E0CD00684901 /* MyImageTableViewCell.xib */,
+				969DA3BE2401445E00DC42D1 /* DKUserImageTableViewCell.swift */,
+			);
+			path = MyImageTableCell;
+			sourceTree = "<group>";
+		};
+		969DA46524029EE600DC42D1 /* MyTableCell */ = {
+			isa = PBXGroup;
+			children = (
+				134901C52306E0CB00684901 /* ChatTableViewCell.xib */,
+				969DA3BD2401445E00DC42D1 /* DKUserMessageTableViewCell.swift */,
+			);
+			path = MyTableCell;
+			sourceTree = "<group>";
+		};
+		969DA46624029EFA00DC42D1 /* InterlocutorTableCell */ = {
+			isa = PBXGroup;
+			children = (
+				134901C82306E0CB00684901 /* ChatPartnerTableViewCell.xib */,
+				969DA3C02401445E00DC42D1 /* DKPartnerMessageTableViewCell.swift */,
+			);
+			path = InterlocutorTableCell;
+			sourceTree = "<group>";
+		};
+		969DA46724029F2600DC42D1 /* InterlocutorImageTableCell */ = {
+			isa = PBXGroup;
+			children = (
+				134901CC2306E0CD00684901 /* PattnerImageTableViewCell.xib */,
+				969DA3C52401445E00DC42D1 /* DKPartnerIMewssageImageTableViewCell.swift */,
+			);
+			path = InterlocutorImageTableCell;
 			sourceTree = "<group>";
 		};
 		96A4D5C023FDF06B00E24E13 /* ChatsScreen */ = {
@@ -1275,7 +1295,6 @@
 				969DA42A2401445E00DC42D1 /* PaymentFlow.swift in Sources */,
 				969DA2F023FF488400DC42D1 /* NSObjectExtension.swift in Sources */,
 				134901D62306E0CF00684901 /* MenuView.swift in Sources */,
-				134901E02306E0CF00684901 /* MyImageTableViewCell.swift in Sources */,
 				13D4055122C638B9004FC70D /* AppDelegate+Root.swift in Sources */,
 				969DA2FC23FF488400DC42D1 /* StringExtension.swift in Sources */,
 				969DA4192401445E00DC42D1 /* DKPartnerMessageTableViewCell.swift in Sources */,
@@ -1299,7 +1318,6 @@
 				965452CC23FAB85E007697C4 /* RestAPITransport.swift in Sources */,
 				969DA4482401445E00DC42D1 /* SearchResponse.swift in Sources */,
 				969DA43F2401445E00DC42D1 /* ChatTask.swift in Sources */,
-				134901E52306E43E00684901 /* ChatTableViewCell.swift in Sources */,
 				969DA2F323FF488400DC42D1 /* UILabelExtension.swift in Sources */,
 				13CB670722F5D68600B79622 /* GardientLabel.swift in Sources */,
 				969DA4352401445E00DC42D1 /* DKTraker.swift in Sources */,
@@ -1401,14 +1419,12 @@
 				969DA4582401445E00DC42D1 /* ScreenManager+UIVIewController.swift in Sources */,
 				969DA4512401445E00DC42D1 /* MarketingTask.swift in Sources */,
 				969DA4532401445E00DC42D1 /* UIDevise+models.swift in Sources */,
-				134901D52306E0CF00684901 /* PattnerImageTableViewCell.swift in Sources */,
 				969DA4152401445E00DC42D1 /* DKChatBottomView.swift in Sources */,
 				969DA4332401445E00DC42D1 /* DatingKit.swift in Sources */,
 				13F9B34623262CB900072159 /* RightView.swift in Sources */,
 				13D4054D22C63860004FC70D /* RootViewController.swift in Sources */,
 				13CB670D22F5E12300B79622 /* UIImageView+Download.swift in Sources */,
 				1386775722C78A7600F3AD84 /* GradientButton.swift in Sources */,
-				134901E22306E0CF00684901 /* ChatPartnerTableViewCell.swift in Sources */,
 				13602F6A22EB2BCE0099BF1F /* TransitionAnimator.swift in Sources */,
 				4731754723F583F90004705E /* UIDevice+Ext.swift in Sources */,
 				13602F6B22EB2BCE0099BF1F /* TransitionCoordinator.swift in Sources */,

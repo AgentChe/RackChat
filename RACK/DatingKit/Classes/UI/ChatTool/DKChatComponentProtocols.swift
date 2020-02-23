@@ -55,21 +55,17 @@ public protocol ChatNoViewProtocol: class {
 }
 
 public protocol ChatViewProtocol: class {
-    
     var menuView: MenuViewProtocol { get set }
     var noView: ChatNoViewProtocol { get set }
     var tableView: UITableView { get set }
     var textInputView: DKChatBottomView { get set }
     
     func reload()
-    func openPaygate()
-    func setScreen()
     func showNoView(_ show: Bool)
     func addMessage(at indexPath: IndexPath)
     func deleteMessage(at indexPath: IndexPath)
     func showNoInternetConnection(_ show: Bool)
     func showError(with message: Message)
-    
 }
 
 public extension UITableView {

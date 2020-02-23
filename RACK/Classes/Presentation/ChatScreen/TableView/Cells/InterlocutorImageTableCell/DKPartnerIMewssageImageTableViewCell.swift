@@ -7,13 +7,21 @@
 //
 
 import UIKit
-import AlamofireImage
+import Kingfisher
 
-public class DKPartnerIMewssageImageTableViewCell: UITableViewCell {
-    
+final class DKPartnerIMewssageImageTableViewCell: UITableViewCell {
     @IBOutlet public var messageImageView: UIImageView!
+    
+    func bind(message: AKMessage) {
+        messageImageView.kf.cancelDownloadTask()
+        messageImageView.image = nil
+        
+        if let path = message.body.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed), let url = URL(string: path) {
+            messageImageView.kf.setImage(with: url)
+        }
+    }
 
-    public func config(message: Message) {
+    func config(message: Message) {
         if let image: UIImage = message.sendetImage {
             messageImageView.image = image
         } else {
@@ -25,6 +33,4 @@ public class DKPartnerIMewssageImageTableViewCell: UITableViewCell {
         }
         
     }
- 
-    
 }

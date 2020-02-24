@@ -136,6 +136,7 @@ PODS:
     - SDWebImage/Core (= 5.2.5)
   - SDWebImage/Core (5.2.5)
   - SnapKit (5.0.1)
+  - Starscream (4.0.0)
   - SwiftyStoreKit (0.15.0)
   - TKImageShowing (1.1.0):
     - SDWebImage (~> 5.2.3)
@@ -160,6 +161,7 @@ DEPENDENCIES:
   - ReverseExtension (from `https://github.com/alexdelarge05/ReverseExtension.git`, commit `f46463468b608c9189846c374863cdeb03f15bb4`)
   - RxCocoa
   - RxSwift
+  - Starscream
   - SwiftyStoreKit
   - TKImageShowing
 
@@ -202,6 +204,7 @@ SPEC REPOS:
     - RxSwift
     - SDWebImage
     - SnapKit
+    - Starscream
     - SwiftyStoreKit
     - TKImageShowing
 
@@ -254,9 +257,10 @@ SPEC CHECKSUMS:
   RxSwift: e2dc62b366a3adf6a0be44ba9f405efd4c94e0c4
   SDWebImage: 4eabf2fa6695c95c47724214417a9c036c965e4a
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
+  Starscream: 04b26f02727e10a002e6b5d21b188ba0d049910b
   SwiftyStoreKit: 033d06b6f87955405d3f844a18a7687c2438592a
   TKImageShowing: 771d31183fd6533509421d2d137d4a59e771fc9e
 
-PODFILE CHECKSUM: 9c694356daaf61b79477897f47b7e435f4b5f725
+PODFILE CHECKSUM: 30edc171ec605d954d9f11844c6156615c18aaa0
 
 COCOAPODS: 1.8.4

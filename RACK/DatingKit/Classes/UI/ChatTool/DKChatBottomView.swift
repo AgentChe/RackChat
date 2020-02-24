@@ -11,7 +11,6 @@ public protocol DKChatBottomViewDelegate: class {
     func chatBottomView(_ chatBottomView: DKChatBottomView, optional isHidden: Bool)
 }
 
-@IBDesignable
  public class DKChatBottomView: UIView {
     
     public var keyboardType: UIKeyboardType = .default {

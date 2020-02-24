@@ -10,5 +10,17 @@ import RxSwift
 import RxCocoa
 
 final class ChatViewModel {
+    private var chatService: ChatService?
     
+    func connect(to chat: AKChat) {
+        if chatService == nil {
+            chatService = ChatService(chat: chat)
+        }
+        
+        chatService?.connect()
+    }
+    
+    func disconnect() {
+        chatService?.disconnect()
+    }
 }

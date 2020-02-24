@@ -1,5 +1,5 @@
 //
-//  DKPartnerMessageTableViewCell.swift
+//  DKUserMessageTableViewCell.swift
 //  DatingKit_Example
 //
 //  Created by Алексей Петров on 23.11.2019.
@@ -8,14 +8,10 @@
 
 import UIKit
 
-final class DKPartnerMessageTableViewCell: UITableViewCell {
+final class MyTextTableCell: UITableViewCell, ChatTableCell {
     @IBOutlet public weak var messageLabel: UILabel!
     
     func bind(message: AKMessage) {
-        messageLabel.text = message.body
-    }
-    
-    func config(message: Message) {
         messageLabel.text = message.body
     }
 }

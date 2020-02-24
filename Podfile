@@ -28,5 +28,6 @@ target 'RACK' do
   pod 'FBSDKLoginKit'
   pod 'PromiseKit'
   pod 'ReverseExtension', :git => 'https://github.com/alexdelarge05/ReverseExtension.git', :commit =>  'f46463468b608c9189846c374863cdeb03f15bb4'
+  pod 'Starscream'
 
 end

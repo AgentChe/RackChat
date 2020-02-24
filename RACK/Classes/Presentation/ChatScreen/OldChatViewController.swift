@@ -70,11 +70,6 @@
 //        menuView = menuCell
 //        tableView.re.delegate = self
 //
-//        tableView.register(UINib(nibName: "ChatTableViewCell", bundle: .main), with: .userTextMessage)
-//        tableView.register(UINib(nibName: "ChatPartnerTableViewCell", bundle: .main), with: .partnerTextMessage)
-//        tableView.register(UINib(nibName: "MyImageTableViewCell", bundle: .main), with: .userImageMessage)
-//        tableView.register(UINib(nibName: "PattnerImageTableViewCell", bundle: .main), with: .partnerImageMessage)
-//
 ////        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(hideKeyboad))
 //
 ////        view.addGestureRecognizer(tap)
@@ -118,8 +113,6 @@
 //        super.viewWillAppear(animated)
 //
 //        noMessagesTitleLabel.text = "You matched with " + currentChat.partnerName
-//
-//        loadPartnerPhotos()
 //    }
 //
 //    override func viewDidAppear(_ animated: Bool) {
@@ -138,17 +131,6 @@
 //        super.viewWillDisappear(animated)
 //        presenter?.disconnect()
 //        ScreenManager.shared.chatItemOnScreen = nil
-//    }
-//
-//    private func loadPartnerPhotos() {
-//        let photos = currentChat.partnerPhotos
-//        for i in 0..<photos.count {
-//            guard partnerPhotosImageViews.count > i else { return }
-//            let photoUrl = photos[i]
-//            let iv = partnerPhotosImageViews[i]
-//            iv.applyMask(UIView.MaskType(rawValue: i)!)
-//            load(imageUrl: photoUrl, into: iv)
-//        }
 //    }
 //
 //    private func load(imageUrl: String, into imageView: UIImageView) {
@@ -232,23 +214,6 @@
 //
 //    @objc func close() {
 //        self.navigationController?.popViewController(animated: true)
-//    }
-//
-//    func showNoInternet(show: Bool) {
-//        if show {
-//            noInternetView.isHidden = false
-//            noInternetHeight.constant = 57.0
-//            UIView.animate(withDuration: 0.4) {
-//                self.view.layoutIfNeeded()
-//            }
-//        } else {
-//            noInternetHeight.constant = 0.0
-//            UIView.animate(withDuration: 0.4, animations: {
-//                 self.view.layoutIfNeeded()
-//            }) { (fin) in
-//                self.noInternetView.isHidden = true
-//            }
-//        }
 //    }
 //
 //    @objc func showUnmachAndReport() {

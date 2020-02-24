@@ -10,7 +10,7 @@ import UIKit
 
 extension UIDevice {
     private static let maxHeightSmallDevice: CGFloat = 1334
-     private static let maxHeightVerySmallDevice: CGFloat = 1136
+    private static let maxHeightVerySmallDevice: CGFloat = 1136
     
     var isSmallScreen: Bool {
         return UIScreen.main.nativeBounds.height <= UIDevice.maxHeightSmallDevice

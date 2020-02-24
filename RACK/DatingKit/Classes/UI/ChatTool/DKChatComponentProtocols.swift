@@ -64,7 +64,6 @@ public protocol ChatViewProtocol: class {
     func showNoView(_ show: Bool)
     func addMessage(at indexPath: IndexPath)
     func deleteMessage(at indexPath: IndexPath)
-    func showNoInternetConnection(_ show: Bool)
     func showError(with message: Message)
 }
 

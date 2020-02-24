@@ -43,7 +43,6 @@ public class DKChatPresenter: NSObject, ChatPresenterProtocol {
         DatingKit.user.show { (userShow, status) in
             guard self.view != nil else { return }
             if status == .noInternetConnection {
-                self.view!.showNoInternetConnection(true)
                 return
             }
             
@@ -92,7 +91,6 @@ public class DKChatPresenter: NSObject, ChatPresenterProtocol {
             DatingKit.chat.getMessages(chatID: chat.chatID, messageID: messages[0].messageID) { (messages, status) in
                 switch status {
                 case .succses:
-                    self.view?.showNoInternetConnection(false)
                     var oldMessages: Array = messages
                     if oldMessages.count > 0 {
                         oldMessages.reverse()
@@ -100,9 +98,6 @@ public class DKChatPresenter: NSObject, ChatPresenterProtocol {
                         self.messages = oldMessages
                         self.view?.reload()
                     }
-                    break
-                case .noInternetConnection:
-                    self.view?.showNoInternetConnection(true)
                     break
                 default:
                     break
@@ -147,7 +142,6 @@ public class DKChatPresenter: NSObject, ChatPresenterProtocol {
                 self.sendingMessages[index].sendingState = .error
                 self.sendingMessages[index].message.caheID = message.caheID
                 self.view?.reload()
-                self.view?.showNoInternetConnection(true)
             default:
                 let index: Int = self.sendingMessages.firstIndex(where: {$0.cacheID == messageUI.cacheID})!
                 self.sendingMessages[index].sendingState = .error
@@ -184,7 +178,6 @@ public class DKChatPresenter: NSObject, ChatPresenterProtocol {
             guard self.view != nil else { return }
             switch status {
             case .succses:
-                self.view?.showNoInternetConnection(false)
                 if messages.count == 0 && self.messages.count == 0  {
                     self.view?.showNoView(true)
                 } else {
@@ -210,7 +203,6 @@ public class DKChatPresenter: NSObject, ChatPresenterProtocol {
 
                 break
             case .noInternetConnection:
-                self.view?.showNoInternetConnection(true)
                 if self.messages.count == 0 {
                     self.messages = messages
                     

@@ -7,39 +7,20 @@
 //
 
 import UIKit
-import ReverseExtension
-import Amplitude_iOS
-import NotificationBannerSwift
 
-class ChatViewController: UIViewController, ChatViewProtocol {
-    var menuView: MenuViewProtocol = DKMenuCell()
-    var noView: ChatNoViewProtocol = NoViewDep()
-    var tableView: UITableView = UITableView()
-    var textInputView: DKChatBottomView = DKChatBottomView()
-    var menuImageView: UIImageView!
+final class ChatViewController: UIViewController {
+    @IBOutlet private weak var input: DKChatBottomView!
+    @IBOutlet private weak var menuCell: DKMenuCell!
+    @IBOutlet private weak var inputContainerViewBottom: NSLayoutConstraint!
+    @IBOutlet private weak var noMessageView: UIStackView!
+    @IBOutlet private weak var noMessagesTitleLabel: UILabel!
+    @IBOutlet private weak var table: UITableView!
+    @IBOutlet private weak var navView: UIView!
     
-    @IBOutlet weak var input: DKChatBottomView!
-    @IBOutlet weak var menuCell: DKMenuCell!
-    @IBOutlet weak var inputContainerViewBottom: NSLayoutConstraint!
-    @IBOutlet weak var noInternetView: UIView!
-    @IBOutlet weak var noInternetHeight: NSLayoutConstraint!
-    @IBOutlet weak var noMessageView: UIStackView!
-    @IBOutlet weak var noMessagesTitleLabel: UILabel!
-    @IBOutlet weak var table: UITableView!
-    @IBOutlet var navView: UIView!
-    
+    private var menuImageView: UIImageView!
     private var barItem: UIBarButtonItem?
-    private var currentChat: ChatItem!
-    private let imagePicker = UIImagePickerController()
-    private lazy var presenter = DKChatPresenter(view: self)
     
-    @objc func handleMatch() {
-        performSegue(withIdentifier: "search", sender: MatchScreenState.foundet)
-    }
-    
-    func config(with chatItem: ChatItem) {
-        currentChat = chatItem
-    }
+    private var chat: AKChat!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,289 +29,37 @@ class ChatViewController: UIViewController, ChatViewProtocol {
             overrideUserInterfaceStyle = .light
         }
         
-        NotificationCenter.default.addObserver(self, selector: #selector(handleMatch), name: NotificationManager.kMatchNotify, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.close), name: ReportViewController.reportNotify, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
-             
         navigationItem.titleView = navView
-        navigationItem.largeTitleDisplayMode = .never
-        noMessageView.alpha = 0.0
-        
-        tableView = table
-        textInputView = input
-        menuView = menuCell
-        
-        textInputView.sendButton.addTarget(self, action: #selector(tapOnSend), for: .touchUpInside)
-        
-        tableView.re.dataSource = presenter.tableDataSource
-        tableView.re.delegate = self
-        
         navigationItem.largeTitleDisplayMode = .never
         
         menuImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 48, height: 48))
-        let widthConstraint = NSLayoutConstraint(item: menuImageView!,
-                                                 attribute: NSLayoutConstraint.Attribute.width,
-                                                 relatedBy: NSLayoutConstraint.Relation.equal,
-                                                 toItem: nil,
-                                                 attribute: NSLayoutConstraint.Attribute.notAnAttribute,
-                                                 multiplier: 1,
-                                                 constant: 48)
-        let heightConstraint = NSLayoutConstraint(item: menuImageView!,
-                                                 attribute: NSLayoutConstraint.Attribute.height,
-                                                 relatedBy: NSLayoutConstraint.Relation.equal,
-                                                 toItem: nil,
-                                                 attribute: NSLayoutConstraint.Attribute.notAnAttribute,
-                                                 multiplier: 1,
-                                                 constant: 48)
-        menuImageView.addConstraints([widthConstraint, heightConstraint])
-        load(imageUrl: currentChat.partnerAvatarString, into: menuImageView)
-
-        let tg = UITapGestureRecognizer(target: self, action: #selector(showUnmachAndReport))
-        menuImageView.addGestureRecognizer(tg)
-
+                let widthConstraint = NSLayoutConstraint(item: menuImageView!,
+                                                         attribute: NSLayoutConstraint.Attribute.width,
+                                                         relatedBy: NSLayoutConstraint.Relation.equal,
+                                                         toItem: nil,
+                                                         attribute: NSLayoutConstraint.Attribute.notAnAttribute,
+                                                         multiplier: 1,
+                                                         constant: 48)
+                let heightConstraint = NSLayoutConstraint(item: menuImageView!,
+                                                         attribute: NSLayoutConstraint.Attribute.height,
+                                                         relatedBy: NSLayoutConstraint.Relation.equal,
+                                                         toItem: nil,
+                                                         attribute: NSLayoutConstraint.Attribute.notAnAttribute,
+                                                         multiplier: 1,
+                                                         constant: 48)
+                menuImageView.addConstraints([widthConstraint, heightConstraint])
+        
+        
+        if let interlocutorAvatarPath = chat.interlocutorAvatarPath,
+            let interlocutorAvatarUrl = URL.combain(domain: GlobalDefinitions.ChatService.restDomain, path: interlocutorAvatarPath){
+            menuImageView.kf.setImage(with: interlocutorAvatarUrl)
+        }
+        
         barItem = UIBarButtonItem(customView: menuImageView)
-        DispatchQueue.main.async { [weak self] in
-            self!.navigationItem.setRightBarButton(self!.barItem, animated: true)
-        }
+        navigationItem.setRightBarButton(barItem, animated: true)
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        noMessagesTitleLabel.text = "You matched with " + currentChat.partnerName
+    func bind(chat: AKChat) {
+        self.chat = chat
     }
-
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        Amplitude.instance()?.log(event: .chatScr, with: ["user_id" : String(DatingKit.user.userData!.id),
-                                                          "user_email" : DatingKit.user.userData!.email,
-                                                          "companion_id" : currentChat.chatID])
-        ScreenManager.shared.chatItemOnScreen = currentChat
-        
-        guard currentChat != nil else { return }
-        
-        presenter.configure(chat: currentChat)
-    }
-           
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        presenter.disconnect()
-        
-        ScreenManager.shared.chatItemOnScreen = nil
-    }
-    
-    private func load(imageUrl: String, into imageView: UIImageView) {
-        imageView.alpha = 0.0
-        imageView.isHidden = true
-
-        guard let urlString = imageUrl.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else {
-            return
-        }
-
-        imageView.isHidden = false
-        imageView.downloaded(from: urlString) { }
-                
-        UIView.animate(withDuration: 0.4) {
-            imageView.alpha = 1.0
-        }
-    }
-    
-    func reload() {
-        tableView.reloadData()
-    }
-    
-    func showNoView(_ show: Bool) {
-        UIView.animate(withDuration: 0.2) {
-            self.noMessageView.alpha = show ? 1.0 : 0.0
-        }
-    }
-    
-    func addMessage(at indexPath: IndexPath) {
-        self.tableView.beginUpdates()
-        self.tableView.re.insertRows(at: [indexPath], with: .top)
-        self.tableView.endUpdates()
-    }
-    
-    func deleteMessage(at indexPath: IndexPath) {}
-    
-    func showNoInternetConnection(_ show: Bool) {
-        showNoInternet(show: show)
-    }
-    
-    func showError(with message: Message) {
-        let actionSheet: UIAlertController = UIAlertController(title: nil, message: "Your message was not sent. Tap “Try Again” to send this message.", preferredStyle: .actionSheet)
-        actionSheet.addAction(UIAlertAction(title: "Try again", style: .destructive, handler: { [weak self] (action) in
-            self?.presenter.send(message: message)
-        }))
-        
-        actionSheet.addAction(UIAlertAction(title: "Delete Message", style: .destructive, handler: { [weak self] (action) in
-            self?.presenter.deleteUnsendet(message: message)
-        }))
-            
-        actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        if let popoverController = actionSheet.popoverPresentationController {
-            popoverController.sourceView = self.view
-        }
-        present(actionSheet, animated: true, completion: nil)
-    }
-    
-    @objc func close() {
-        self.navigationController?.popViewController(animated: true)
-    }
-    
-    func showNoInternet(show: Bool) {
-        if show {
-            noInternetView.isHidden = false
-            noInternetHeight.constant = 57.0
-            UIView.animate(withDuration: 0.4) {
-                self.view.layoutIfNeeded()
-            }
-        } else {
-            noInternetHeight.constant = 0.0
-            UIView.animate(withDuration: 0.4, animations: {
-                 self.view.layoutIfNeeded()
-            }) { (fin) in
-                self.noInternetView.isHidden = true
-            }
-        }
-    }
-    
-    @objc func showUnmachAndReport() {
-        view.endEditing(true)
-        let actionSheet: UIAlertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        actionSheet.addAction(UIAlertAction(title: "Unmatch", style: .default, handler: { (action) in
-            self.performSegue(withIdentifier: "unmatch", sender: nil)
-        }))
-        actionSheet.addAction(UIAlertAction(title: "Report", style: .default, handler: { (action) in
-            self.performSegue(withIdentifier: "report", sender: nil)
-        }))
-        actionSheet.addAction(UIAlertAction(title: "Done", style: .cancel, handler: nil))
-        actionSheet.view.tintColor = #colorLiteral(red: 1, green: 0.3303741813, blue: 0.3996370435, alpha: 1)
-        if let popoverController = actionSheet.popoverPresentationController {
-            popoverController.barButtonItem = barItem
-        }
-        present(actionSheet, animated: true, completion: nil)
-    }
-    
-    @IBAction func showMenuView(_ sender: DKChatMenuView) {
-        imagePicker.allowsEditing = false
-        imagePicker.sourceType = .photoLibrary
-        imagePicker.delegate = self
-        present(imagePicker, animated: true, completion: nil)
-    }
-    
-    @objc func tapOnSend() {
-        guard let user: UserShow = presenter.user else {return}
-        guard currentChat != nil else {return}
-        if input.text.trimmingCharacters(in: .whitespaces).isEmpty {
-            return
-        }
-            
-        presenter.send(message: Message(text: input.text, sender: user.id, matchID: currentChat.chatID))
-        input.text = ""
-    }
-    
-    @objc func keyboardWillHide(_ sender: Notification) {
-        if let userInfo = (sender as NSNotification).userInfo {
-            if let _ = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.size.height {
-                //key point 0,
-                self.inputContainerViewBottom.constant =  0
-                UIView.animate(withDuration: 0.25, animations: { () -> Void in self.view.layoutIfNeeded() })
-            }
-        }
-    }
-    
-    @objc func keyboardWillShow(_ sender: Notification) {
-        if let userInfo = (sender as NSNotification).userInfo {
-            if var keyboardHeight = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.size.height {
-                if UIDevice.modelName.contains("X") {
-                    keyboardHeight = keyboardHeight - 35
-                }
-                
-                self.inputContainerViewBottom.constant = keyboardHeight
-                UIView.animate(withDuration: 0.25, animations: { () -> Void in
-                    self.view.layoutIfNeeded()
-                })
-            }
-        }
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "report" {
-            let reportController: ReportViewController = segue.destination as! ReportViewController
-            reportController.config(chat: currentChat)
-        }
-        
-        if segue.identifier == "unmatch" {
-            let unmatchVC: UnmatchViewController = segue.destination as! UnmatchViewController
-            unmatchVC.config(avatar: menuImageView!.image!, and: currentChat.partnerName, chatItem: currentChat)
-            unmatchVC.delegate = self
-        }
-        
-        if segue.identifier == "search" {
-            let searchView: MatchViewController = segue.destination as! MatchViewController
-            if let startFromNewSearchButton: MatchScreenState = sender as? MatchScreenState {
-                if startFromNewSearchButton == .foundet {
-                    if let match: DKMatch = ScreenManager.shared.match {
-                        searchView.config(state: startFromNewSearchButton, match: match)
-                    } else {
-                        searchView.config(state: .searchng)
-                    }
-                    
-                } else {
-                    searchView.config(state: startFromNewSearchButton)
-                }
-            }
-        }
-    }
-}
-
-extension ChatViewController: UnmatchViewControllerDelegate {
-    func wasRepoerted() {
-        self.navigationController?.popViewController(animated: true)
-    }
-}
-
-extension ChatViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
-        if tableView.isEditing {
-            return .delete
-        }
-        
-        return .none
-    }
-    
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        presenter.pagintaion(for: indexPath)
-    }
-}
-
-extension ChatViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        if let pickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-            guard let user: UserShow = presenter.user else {
-                return
-            }
-            
-            var newMessage: Message = Message(image: pickedImage, forSender: user.id, matchID: currentChat.chatID)
-            newMessage.base64Image = pickedImage.ConvertImageToBase64String()
-            newMessage.sendetImage = pickedImage
-            presenter.send(message: newMessage)
-        }
-        
-        dismiss(animated: true, completion: nil)
-    }
-    
-    private func imagePickerControllerDidCancel(picker: UIImagePickerController) {
-        dismiss(animated: true, completion: nil)
-    }
-}
-
-class NoViewDep: UIView, ChatNoViewProtocol {
-    var icon: UIImage = UIImage()
-    var title: String = ""
-    var subTitle: String = ""
 }

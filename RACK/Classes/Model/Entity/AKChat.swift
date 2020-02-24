@@ -11,7 +11,7 @@ import Foundation.NSURL
 struct AKChat {
     let id: String
     let interlocutorName: String
-    let interlocutorAvatarUrl: URL?
+    let interlocutorAvatarPath: String?
     let unreadMessageCount: Int
     let lastMessage: AKMessage?
 }
@@ -37,9 +37,7 @@ extension AKChat: Model {
         let interlocutor = try container.nestedContainer(keyedBy: InterlocutorKeys.self, forKey: .interlocutor)
         
         interlocutorName = try interlocutor.decode(String.self, forKey: .interlocutorName)
-        
-        let interlocutorAvatarPath = (try? interlocutor.decode(String?.self, forKey: .interlocutorAvatarUrl)?.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)) ?? ""
-        interlocutorAvatarUrl = URL(string: interlocutorAvatarPath)
+        interlocutorAvatarPath = try? interlocutor.decode(String.self, forKey: .interlocutorAvatarUrl)
         
         unreadMessageCount = (try? interlocutor.decode(Int.self, forKey: .unreadMessageCount)) ?? 0
         lastMessage = try? interlocutor.decode(AKMessage.self, forKey: .lastMessage)

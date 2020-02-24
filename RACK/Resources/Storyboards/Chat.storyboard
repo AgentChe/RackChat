@@ -262,10 +262,6 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </tableViewCell>
                                 </prototypes>
-                                <connections>
-                                    <outlet property="dataSource" destination="7Te-ZR-3gF" id="AyU-dG-OK0"/>
-                                    <outlet property="delegate" destination="7Te-ZR-3gF" id="iGU-5U-e0C"/>
-                                </connections>
                             </tableView>
                             <view contentMode="scaleToFill" placeholderIntrinsicWidth="414" placeholderIntrinsicHeight="53" translatesAutoresizingMaskIntoConstraints="NO" id="SKH-A4-so4" customClass="DKChatBottomView" customModule="DatingKit">
                                 <rect key="frame" x="0.0" y="803" width="414" height="59"/>
@@ -350,12 +346,6 @@
                                     <constraint firstAttribute="height" constant="60" id="OVL-Xz-3T6"/>
                                     <constraint firstAttribute="width" constant="270" id="kXe-Sq-Os9"/>
                                 </constraints>
-                                <connections>
-                                    <outlet property="bottomConstrait" destination="Hdp-r0-o94" id="d6D-c1-9hR"/>
-                                    <outlet property="height" destination="u4w-CJ-Qon" id="7ZM-su-CCf"/>
-                                    <outlet property="menu" destination="5UF-r7-Ulv" id="mT8-cN-QUl"/>
-                                    <outlet property="widght" destination="pJy-dP-J39" id="myP-J9-iLv"/>
-                                </connections>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zXv-iI-6KQ">
                                 <rect key="frame" x="0.0" y="862" width="414" height="34"/>
@@ -379,42 +369,9 @@
                                     <constraint firstItem="pSN-Ts-4sX" firstAttribute="top" secondItem="zXv-iI-6KQ" secondAttribute="top" id="qqM-fR-uWI"/>
                                 </constraints>
                             </view>
-                            <view hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RPL-z9-bYq">
-                                <rect key="frame" x="0.0" y="44" width="414" height="0.0"/>
-                                <subviews>
-                                    <visualEffectView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ool-ps-spi">
-                                        <rect key="frame" x="20" y="0.0" width="374" height="0.0"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="0hx-Ja-N3F">
-                                            <rect key="frame" x="0.0" y="0.0" width="374" height="0.0"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                        </view>
-                                        <blurEffect style="regular"/>
-                                    </visualEffectView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No internet connection" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G1c-IE-1HZ">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="0.0"/>
-                                        <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans" pointSize="17"/>
-                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="0.70194212147887325" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="Ool-ps-spi" secondAttribute="bottom" id="9TN-c1-1MJ"/>
-                                    <constraint firstAttribute="trailing" secondItem="G1c-IE-1HZ" secondAttribute="trailing" id="CXc-1Z-ROT"/>
-                                    <constraint firstItem="G1c-IE-1HZ" firstAttribute="top" secondItem="RPL-z9-bYq" secondAttribute="top" id="Hfh-ww-7Kr"/>
-                                    <constraint firstItem="Ool-ps-spi" firstAttribute="leading" secondItem="RPL-z9-bYq" secondAttribute="leading" id="I4o-sG-54E"/>
-                                    <constraint firstAttribute="height" id="OBb-gw-hZC"/>
-                                    <constraint firstAttribute="trailing" secondItem="Ool-ps-spi" secondAttribute="trailing" id="jUe-f3-ELT"/>
-                                    <constraint firstAttribute="bottom" secondItem="G1c-IE-1HZ" secondAttribute="bottom" id="kTa-Dn-55S"/>
-                                    <constraint firstItem="G1c-IE-1HZ" firstAttribute="leading" secondItem="RPL-z9-bYq" secondAttribute="leading" id="qcu-fu-PeY"/>
-                                    <constraint firstItem="Ool-ps-spi" firstAttribute="top" secondItem="RPL-z9-bYq" secondAttribute="top" id="sRN-v9-sB7"/>
-                                </constraints>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="RPL-z9-bYq" firstAttribute="top" secondItem="APS-0n-DTr" secondAttribute="top" id="1Pw-ff-fFk"/>
-                            <constraint firstItem="RPL-z9-bYq" firstAttribute="leading" secondItem="Khh-hM-ptT" secondAttribute="leading" id="3G7-95-78O"/>
                             <constraint firstItem="SKH-A4-so4" firstAttribute="trailing" secondItem="APS-0n-DTr" secondAttribute="trailing" id="5e6-kD-7V6"/>
                             <constraint firstItem="zXv-iI-6KQ" firstAttribute="leading" secondItem="Khh-hM-ptT" secondAttribute="leading" id="KMw-n2-Eyt"/>
                             <constraint firstItem="2Ke-Vk-BoO" firstAttribute="centerX" secondItem="jVy-ra-Ryp" secondAttribute="centerX" id="OXX-Ip-AVJ"/>
@@ -425,7 +382,6 @@
                             <constraint firstItem="jVy-ra-Ryp" firstAttribute="top" secondItem="APS-0n-DTr" secondAttribute="top" id="h8y-MQ-Yi1"/>
                             <constraint firstItem="0sw-u4-3ig" firstAttribute="leading" secondItem="APS-0n-DTr" secondAttribute="leading" id="kIW-2b-V1D"/>
                             <constraint firstItem="SKH-A4-so4" firstAttribute="top" secondItem="jVy-ra-Ryp" secondAttribute="bottom" id="pKW-px-GhA"/>
-                            <constraint firstAttribute="trailing" secondItem="RPL-z9-bYq" secondAttribute="trailing" id="pTM-tT-25Q"/>
                             <constraint firstItem="jVy-ra-Ryp" firstAttribute="trailing" secondItem="APS-0n-DTr" secondAttribute="trailing" id="ple-MY-cF1"/>
                             <constraint firstAttribute="bottom" secondItem="zXv-iI-6KQ" secondAttribute="bottom" id="rAA-i4-rqx"/>
                             <constraint firstAttribute="trailing" secondItem="zXv-iI-6KQ" secondAttribute="trailing" id="suz-e6-6qM"/>
@@ -439,8 +395,6 @@
                         <outlet property="inputContainerViewBottom" destination="y5G-Pa-4k9" id="Ixl-J8-FMm"/>
                         <outlet property="menuCell" destination="0sw-u4-3ig" id="t49-Pl-jW9"/>
                         <outlet property="navView" destination="A5c-Gw-7KO" id="oOu-Rg-dy6"/>
-                        <outlet property="noInternetHeight" destination="OBb-gw-hZC" id="jbl-0H-zTZ"/>
-                        <outlet property="noInternetView" destination="RPL-z9-bYq" id="l3B-rj-qP2"/>
                         <outlet property="noMessageView" destination="2Ke-Vk-BoO" id="Miq-pL-Gx4"/>
                         <outlet property="noMessagesTitleLabel" destination="nGb-4u-bBz" id="xjc-bD-Rwj"/>
                         <outlet property="table" destination="jVy-ra-Ryp" id="Kzf-6n-Smx"/>
@@ -461,7 +415,7 @@
                     <viewLayoutGuide key="safeArea" id="zFr-5O-QHC"/>
                 </view>
             </objects>
-            <point key="canvasLocation" x="75.362318840579718" y="156.69642857142856"/>
+            <point key="canvasLocation" x="-420" y="267"/>
         </scene>
         <!--Map View Controller-->
         <scene sceneID="DWw-dF-QTZ">

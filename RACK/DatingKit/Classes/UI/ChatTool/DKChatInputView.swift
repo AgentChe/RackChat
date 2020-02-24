@@ -10,11 +10,7 @@ import UIKit
 class DKChatInputView: UIView {
     
     class func instanceFromNib() -> DKChatInputView {
-        guard let bundleURL = Bundle(for: self.classForCoder()).url(forResource: "DatingKit", withExtension: "bundle") else { return DKChatInputView() }
-            
-        let bundle = Bundle(url: bundleURL)
-                                 
-        return UINib(nibName: String(describing: self), bundle: bundle).instantiate(withOwner: nil, options: nil)[0] as! DKChatInputView
+        return UINib(nibName: String(describing: self), bundle: Bundle.main).instantiate(withOwner: nil, options: nil)[0] as! DKChatInputView
     }
     
     var isClose: Bool = false

@@ -20,6 +20,7 @@ struct AKMessage {
     let type: AKMessageType
     let body: String
     let createdAt: Date
+    let isOwner: Bool
 }
 
 extension AKMessage: Model {
@@ -30,6 +31,7 @@ extension AKMessage: Model {
         case type
         case body = "value"
         case createdAt = "created_at"
+        case isOwner = "is_owner"
     }
 
     init(from decoder: Decoder) throws {
@@ -48,6 +50,8 @@ extension AKMessage: Model {
         body = try container.decode(String.self, forKey: .body)
         
         createdAt = Date()
+        
+        isOwner = try container.decode(Bool.self, forKey: .isOwner)
     }
     
     func encode(to encoder: Encoder) throws {}

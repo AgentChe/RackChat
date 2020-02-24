@@ -26,7 +26,8 @@ class ChatsTableViewCell: UITableViewCell {
     }
     
     func bind(chat: AKChat) {
-        if let interlocutorAvatarUrl = chat.interlocutorAvatarUrl {
+        if let interlocutorAvatarPath = chat.interlocutorAvatarPath,
+            let interlocutorAvatarUrl = URL.combain(domain: GlobalDefinitions.ChatService.restDomain, path: interlocutorAvatarPath) {
             userPicImageView.af_setImage(withURL: interlocutorAvatarUrl)
         }
         

@@ -212,6 +212,7 @@
 		96A4D5CA23FDFCD700E24E13 /* AKChatMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A4D5C923FDFCD600E24E13 /* AKChatMessage.swift */; };
 		96A5528223FF34C4001E88DC /* AKGender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A5528123FF34C4001E88DC /* AKGender.swift */; };
 		96A5528523FF392B001E88DC /* ChatTransformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A5528423FF392B001E88DC /* ChatTransformation.swift */; };
+		96BF8CA02402DFB70026F3CE /* OldChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BF8C9F2402DFB70026F3CE /* OldChatViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -429,6 +430,7 @@
 		96A4D5C923FDFCD600E24E13 /* AKChatMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AKChatMessage.swift; sourceTree = "<group>"; };
 		96A5528123FF34C4001E88DC /* AKGender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AKGender.swift; sourceTree = "<group>"; };
 		96A5528423FF392B001E88DC /* ChatTransformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTransformation.swift; sourceTree = "<group>"; };
+		96BF8C9F2402DFB70026F3CE /* OldChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OldChatViewController.swift; sourceTree = "<group>"; };
 		D110636A31AD316D9B7C0FA7 /* Pods-RACKTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RACKTests.release.xcconfig"; path = "Target Support Files/Pods-RACKTests/Pods-RACKTests.release.xcconfig"; sourceTree = "<group>"; };
 		E09C60CC57FB99F0E0303FF3 /* Pods-RACK.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RACK.debug.xcconfig"; path = "Target Support Files/Pods-RACK/Pods-RACK.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -857,6 +859,7 @@
 				969DA3082400534100DC42D1 /* TableView */,
 				134901C12306DE0F00684901 /* ChatViewController.swift */,
 				969DA30A240056F700DC42D1 /* ChatViewModel.swift */,
+				96BF8C9F2402DFB70026F3CE /* OldChatViewController.swift */,
 			);
 			path = ChatScreen;
 			sourceTree = "<group>";
@@ -1364,6 +1367,7 @@
 				13BA7A8B2326C62B00EB5A0E /* ButtonView.swift in Sources */,
 				969DA45C2401445E00DC42D1 /* UICollectionVeiw+Scroll.swift in Sources */,
 				1393CD9922C75A6D00422529 /* RegistrationViewController.swift in Sources */,
+				96BF8CA02402DFB70026F3CE /* OldChatViewController.swift in Sources */,
 				969DA41A2401445E00DC42D1 /* DKChatPresenter.swift in Sources */,
 				969DA4442401445E00DC42D1 /* User.swift in Sources */,
 				969DA4462401445E00DC42D1 /* UserResponce.swift in Sources */,

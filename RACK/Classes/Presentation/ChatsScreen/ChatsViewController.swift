@@ -115,11 +115,10 @@ final class ChatsViewController: UIViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "chat" {
-            guard let chat: ChatItem = sender as? ChatItem else {
-                return
+            if let chat = sender as? AKChat {
+                let chatVC = segue.destination as! ChatViewController
+                chatVC.bind(chat: chat)
             }
-            let chatVC: ChatViewController = segue.destination as! ChatViewController
-            chatVC.config(with: chat)
         }
         
         if segue.identifier == "search" {

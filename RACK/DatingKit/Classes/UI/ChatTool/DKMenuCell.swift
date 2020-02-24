@@ -10,16 +10,18 @@ import UIKit
 
 public class DKMenuCell: UIView {
 
-    @IBOutlet public weak var bottomConstrait: NSLayoutConstraint?
-    @IBOutlet public weak var height: NSLayoutConstraint?
-    @IBOutlet public weak var widght: NSLayoutConstraint?
-    @IBOutlet public weak var menu:DKChatMenuView?
+//    @IBOutlet public weak var bottomConstrait: NSLayoutConstraint?
+//    @IBOutlet public weak var height: NSLayoutConstraint?
+//    @IBOutlet public weak var widght: NSLayoutConstraint?
+//    @IBOutlet public weak var menu:DKChatMenuView?
+    
+    
     
     public func showMenu(_ show: Bool) {
         
-        bottomConstrait?.constant = show ? 8.0 : -34.0
-        height?.constant = show ? 58.0 : 0.0
-        widght?.constant = show ? 260.0 : 0.0
+//        bottomConstrait?.constant = show ? 8.0 : -34.0
+//        height?.constant = show ? 58.0 : 0.0
+//        widght?.constant = show ? 260.0 : 0.0
         
         if show == true {
             self.isHidden = false
@@ -27,7 +29,7 @@ public class DKMenuCell: UIView {
         
         UIView.animate(withDuration: 0.4, animations: {
             self.layoutIfNeeded()
-            self.menu?.alpha = show ? 1.0 : 0.0
+//            self.menu?.alpha = show ? 1.0 : 0.0
         }) { (_) in
             if show == false {
                 self.isHidden = true
@@ -43,7 +45,7 @@ public class DKMenuCell: UIView {
 extension DKMenuCell: MenuViewProtocol {
     
     public func show(_ show: Bool) {
-        showMenu(show)
+//        showMenu(show)
     }
 
 }

@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import AlamofireImage
+import Kingfisher
 
 class ChatsTableViewCell: UITableViewCell {
     @IBOutlet weak var unreadCountLabel: UILabel!
@@ -19,16 +19,15 @@ class ChatsTableViewCell: UITableViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         
-        userPicImageView.af_cancelImageRequest()
+        userPicImageView.kf.cancelDownloadTask()
         userPicImageView.image = nil
         
         lastMessageLabel.text = ""
     }
     
     func bind(chat: AKChat) {
-        if let interlocutorAvatarPath = chat.interlocutorAvatarPath,
-            let interlocutorAvatarUrl = URL.combain(domain: GlobalDefinitions.ChatService.restDomain, path: interlocutorAvatarPath) {
-            userPicImageView.af_setImage(withURL: interlocutorAvatarUrl)
+        if let interlocutorAvatarUrl = chat.interlocutorAvatarUrl {
+            userPicImageView.kf.setImage(with: interlocutorAvatarUrl)
         }
         
         nameLabel.text = chat.interlocutorName

@@ -10,12 +10,11 @@ import RxSwift
 import RxCocoa
 
 struct Page<T> {
-    let offset: Int
-    let limit: Int
+    let page: Int
     let data: [T]
 
-    var nextOffset: Int? {
-        return data.isEmpty ? nil : offset + limit
+    var nextPage: Int? {
+        return data.isEmpty ? nil : page + 1
     }
 }
 
@@ -44,11 +43,11 @@ final class PaginatedDataLoader<E> {
         
         let lastPage = PublishSubject<Page<E>>()
         
-        let firstPage = firstTrigger.flatMapLatest { load(0) }
+        let firstPage = firstTrigger.flatMapLatest { load(1) }
         
         let nextPage = firstTrigger.flatMapLatest {
             nextTrigger.withLatestFrom(lastPage)
-                .flatMapFirst { $0.nextOffset.map { load($0) } ?? .empty() }
+                .flatMapFirst { $0.nextPage.map { load($0) } ?? .empty() }
         }
         
         Observable.merge(firstPage, nextPage)
@@ -58,7 +57,6 @@ final class PaginatedDataLoader<E> {
         elements = firstTrigger
             .flatMapLatest {
                 lastPage.map { $0.data }
-                    .scan([]) { $0 + $1 }
             }
             .asDriver(onErrorDriveWith: .never())
     }

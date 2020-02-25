@@ -22,11 +22,10 @@ final class ChatViewController: UIViewController {
     @IBOutlet private weak var menuCell: DKMenuCell!
     @IBOutlet private weak var inputContainerViewBottom: NSLayoutConstraint!
     
-    private var chat: AKChat!
-    
     private let disposeBag = DisposeBag()
     
-    private let viewModel = ChatViewModel()
+    private var chat: AKChat!
+    private var viewModel: ChatViewModel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,12 +37,16 @@ final class ChatViewController: UIViewController {
         navigationItem.largeTitleDisplayMode = .never
         
         addSubviews()
+        
+        tableView.rx.reachedBottom
+            .bind(to: viewModel.nextPage)
+            .disposed(by: disposeBag)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        viewModel.connect(to: chat)
+        viewModel.connect()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -54,6 +57,8 @@ final class ChatViewController: UIViewController {
     
     func bind(chat: AKChat) {
         self.chat = chat
+        
+        viewModel = ChatViewModel(chat: chat)
     }
     
     private func addSubviews() {
@@ -73,8 +78,7 @@ final class ChatViewController: UIViewController {
         menuImageView.widthAnchor.constraint(equalToConstant: 48).isActive = true
         menuImageView.heightAnchor.constraint(equalToConstant: 48).isActive = true
         
-        if let interlocutorAvatarPath = chat.interlocutorAvatarPath,
-            let interlocutorAvatarUrl = URL.combain(domain: GlobalDefinitions.ChatService.restDomain, path: interlocutorAvatarPath){
+        if let interlocutorAvatarUrl = chat.interlocutorAvatarUrl {
             menuImageView.kf.setImage(with: interlocutorAvatarUrl)
         }
         

@@ -119,7 +119,6 @@
 		969DA2F123FF488400DC42D1 /* ArrayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969DA2E223FF488400DC42D1 /* ArrayExtension.swift */; };
 		969DA2F423FF488400DC42D1 /* UITableViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969DA2E523FF488400DC42D1 /* UITableViewExtension.swift */; };
 		969DA2F523FF488400DC42D1 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969DA2E623FF488400DC42D1 /* UIViewExtension.swift */; };
-		969DA2F623FF488400DC42D1 /* UrlExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969DA2E723FF488400DC42D1 /* UrlExtension.swift */; };
 		969DA2F823FF488400DC42D1 /* ReactiveExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969DA2E923FF488400DC42D1 /* ReactiveExtension.swift */; };
 		969DA2FA23FF488400DC42D1 /* UIDeviceExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969DA2EB23FF488400DC42D1 /* UIDeviceExtension.swift */; };
 		969DA2FC23FF488400DC42D1 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969DA2ED23FF488400DC42D1 /* StringExtension.swift */; };
@@ -214,6 +213,7 @@
 		96F00582240441DE0058F7C9 /* MyImageTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969DA3BE2401445E00DC42D1 /* MyImageTableCell.swift */; };
 		96F00583240441FC0058F7C9 /* MyImageTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 134901CB2306E0CD00684901 /* MyImageTableCell.xib */; };
 		96F00587240472B20058F7C9 /* DictionaryExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F00586240472B20058F7C9 /* DictionaryExtension.swift */; };
+		96F005892405249D0058F7C9 /* FileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F005882405249D0058F7C9 /* FileService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -339,7 +339,6 @@
 		969DA2E223FF488400DC42D1 /* ArrayExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrayExtension.swift; sourceTree = "<group>"; };
 		969DA2E523FF488400DC42D1 /* UITableViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableViewExtension.swift; sourceTree = "<group>"; };
 		969DA2E623FF488400DC42D1 /* UIViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
-		969DA2E723FF488400DC42D1 /* UrlExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UrlExtension.swift; sourceTree = "<group>"; };
 		969DA2E923FF488400DC42D1 /* ReactiveExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReactiveExtension.swift; sourceTree = "<group>"; };
 		969DA2EB23FF488400DC42D1 /* UIDeviceExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIDeviceExtension.swift; sourceTree = "<group>"; };
 		969DA2ED23FF488400DC42D1 /* StringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
@@ -433,6 +432,7 @@
 		96BF8CA92403E76F0026F3CE /* ChatTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTableView.swift; sourceTree = "<group>"; };
 		96BF8CAB240426470026F3CE /* ChatTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTableCell.swift; sourceTree = "<group>"; };
 		96F00586240472B20058F7C9 /* DictionaryExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryExtension.swift; sourceTree = "<group>"; };
+		96F005882405249D0058F7C9 /* FileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileService.swift; sourceTree = "<group>"; };
 		D110636A31AD316D9B7C0FA7 /* Pods-RACKTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RACKTests.release.xcconfig"; path = "Target Support Files/Pods-RACKTests/Pods-RACKTests.release.xcconfig"; sourceTree = "<group>"; };
 		E09C60CC57FB99F0E0303FF3 /* Pods-RACK.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RACK.debug.xcconfig"; path = "Target Support Files/Pods-RACK/Pods-RACK.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -800,6 +800,7 @@
 				969DA4622401CCD200DC42D1 /* SessionService.swift */,
 				96BF8CA12403DE660026F3CE /* ChatService.swift */,
 				96BF8CA52403E18B0026F3CE /* PaginatedDataLoader.swift */,
+				96F005882405249D0058F7C9 /* FileService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -833,7 +834,6 @@
 				969DA2E223FF488400DC42D1 /* ArrayExtension.swift */,
 				969DA2E523FF488400DC42D1 /* UITableViewExtension.swift */,
 				969DA2E623FF488400DC42D1 /* UIViewExtension.swift */,
-				969DA2E723FF488400DC42D1 /* UrlExtension.swift */,
 				969DA2E923FF488400DC42D1 /* ReactiveExtension.swift */,
 				969DA2EB23FF488400DC42D1 /* UIDeviceExtension.swift */,
 				969DA2ED23FF488400DC42D1 /* StringExtension.swift */,
@@ -1405,6 +1405,7 @@
 				1319227D236A05EE00C057B8 /* MatchViewController.swift in Sources */,
 				969DA45F2401C80600DC42D1 /* UnmatchRequest.swift in Sources */,
 				13CB670B22F5DB8000B79622 /* SureButtonView.swift in Sources */,
+				96F005892405249D0058F7C9 /* FileService.swift in Sources */,
 				13CC5591231E3C8200A10D45 /* NotificationRequest.swift in Sources */,
 				13BA7A8D2326E31000EB5A0E /* ConfigRequest.swift in Sources */,
 				969DA42F2401445E00DC42D1 /* DatingSearch.swift in Sources */,
@@ -1463,7 +1464,6 @@
 				135C631222CB528F00EFC391 /* ProfileViewController.swift in Sources */,
 				96BF8CA82403E3980026F3CE /* MessageTransformation.swift in Sources */,
 				969DA41C2401445E00DC42D1 /* DKChatMenuComponent.swift in Sources */,
-				969DA2F623FF488400DC42D1 /* UrlExtension.swift in Sources */,
 				1386775D22C7C7FD00F3AD84 /* CodeViewController.swift in Sources */,
 				969DA41B2401445E00DC42D1 /* DKMenuCell.swift in Sources */,
 				130C0DC5232662790000B5AD /* ReasonView.swift in Sources */,

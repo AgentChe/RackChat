@@ -15,7 +15,7 @@ final class ChatViewModel {
     private(set) lazy var paginatedLoader = createLoader()
     
     private let chat: AKChat
-    private let chatService: ChatService
+    let chatService: ChatService
     
     init(chat: AKChat) {
         self.chat = chat

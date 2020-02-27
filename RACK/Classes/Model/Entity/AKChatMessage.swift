@@ -49,7 +49,11 @@ extension AKMessage: Model {
         
         body = try container.decode(String.self, forKey: .body)
         
-        createdAt = Date()
+        let dateValue = try container.decode(String.self, forKey: .createdAt)
+        guard let createdAt = Date.dateTimeFormatter.date(from: dateValue) else {
+            throw NSError()
+        }
+        self.createdAt = createdAt
         
         isOwner = try container.decode(Bool.self, forKey: .isOwner)
     }

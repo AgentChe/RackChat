@@ -38,8 +38,14 @@ final class ChatViewController: UIViewController {
         
         addSubviews()
         
-        tableView.rx.reachedBottom
+        tableView.rx.reachedTop
             .bind(to: viewModel.nextPage)
+            .disposed(by: disposeBag)
+        
+        viewModel.newMessages
+            .drive(onNext: { [weak self] newMessages in
+                self?.tableView.add(messages: newMessages)
+            })
             .disposed(by: disposeBag)
     }
     
@@ -84,5 +90,11 @@ final class ChatViewController: UIViewController {
         
         let barItem = UIBarButtonItem(customView: menuImageView)
         navigationItem.setRightBarButton(barItem, animated: true)
+        
+        let t = UITapGestureRecognizer()
+        menuImageView.addGestureRecognizer(t)
+        t.rx.event.subscribe(onNext: { [weak self] _ in
+            self?.viewModel.chatService.send(action: .sendText(text: "12312312"))
+        })
     }
 }

@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-final class ChatTableView: UITableView, UITableViewDataSource {
+final class ChatTableView: UITableView, UITableViewDataSource, UITableViewDelegate {
     private var items: [AKMessage] = []
     
     init() {
@@ -22,6 +22,7 @@ final class ChatTableView: UITableView, UITableViewDataSource {
         register(UINib(nibName: "MyImageTableCell", bundle: .main), forCellReuseIdentifier: "MyImageTableCell")
         
         dataSource = self
+        delegate = self
     }
     
     required init?(coder: NSCoder) {
@@ -52,6 +53,8 @@ final class ChatTableView: UITableView, UITableViewDataSource {
     
     func add(messages: [AKMessage]) {
         items.append(contentsOf: messages)
+        
+        items.sort(by: { $0.createdAt.compare($1.createdAt) == .orderedAscending})
         
         reloadData()
     }

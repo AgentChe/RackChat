@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RxSwift
 
 extension UIView {
     @IBInspectable var cornerRadius: CGFloat {
@@ -34,5 +35,26 @@ extension UIView {
         get {
             return UIColor()
         }
+    }
+}
+
+extension Reactive where Base: UIView {
+    var keyboardHeight: Observable<CGFloat> {
+        return Observable
+            .from([
+                NotificationCenter.default.rx
+                    .notification(UIApplication.keyboardWillShowNotification)
+                    .map { notification -> CGFloat in
+                        return (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.height ?? 0
+                    },
+                
+                NotificationCenter.default.rx
+                    .notification(UIApplication.keyboardWillHideNotification)
+                    .map { notification -> CGFloat in
+                        return 0
+                    }
+            ])
+            .merge()
+            .distinctUntilChanged()
     }
 }

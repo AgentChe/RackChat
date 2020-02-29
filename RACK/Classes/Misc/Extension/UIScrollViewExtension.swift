@@ -18,10 +18,7 @@ extension Reactive where Base: UIScrollView {
                     return Observable.empty()
                 }
                 
-                let visibleHeight = scrollView.frame.height - scrollView.contentInset.top - scrollView.contentInset.bottom
-                let y = scrollView.contentOffset.y + scrollView.contentInset.top + scrollView.contentInset.bottom
-                let threshold = max(0, scrollView.contentSize.height - visibleHeight)
-                return y > threshold ? .just(Void()) : Observable.empty()
+                return scrollView.isScrolledAtBottom ? .just(Void()) : Observable.empty()
             }
         
         return ControlEvent(events: observable)
@@ -34,8 +31,7 @@ extension Reactive where Base: UIScrollView {
                     return Observable.empty()
                 }
                 
-                let y = contentOffset.y + scrollView.contentInset.top + scrollView.contentInset.bottom
-                return y <= 0 ? .just(Void()) : Observable.empty()
+                return scrollView.isScrolledAtTop ? .just(Void()) : Observable.empty()
             }
 
         return ControlEvent(events: observable)
@@ -43,15 +39,19 @@ extension Reactive where Base: UIScrollView {
 }
 
 extension UIScrollView {
-    func scrollToTop(animated: Bool = true) {
-        let offset = CGPoint(x: 0, y: -adjustedContentInset.top)
-        if !isDragging && contentOffset != offset {
-            setContentOffset(offset, animated: animated)
-        }
+    var isScrolledAtBottom: Bool {
+        let visibleHeight = bounds.height - contentInset.top - contentInset.bottom
+        let y = contentOffset.y + contentInset.top + contentInset.bottom
+        let threshold = max(0, contentSize.height - visibleHeight)
+        return y == threshold
     }
     
-    func scrollToBottom(animated: Bool = true) {
-        let offset = CGPoint(x: 0, y: -adjustedContentInset.bottom)
+    var isScrolledAtTop: Bool {
+        return (contentOffset.y + contentInset.top + contentInset.bottom) <= 0
+    }
+    
+    func scrollToTop(animated: Bool = true) {
+        let offset = CGPoint(x: 0, y: -adjustedContentInset.top)
         if !isDragging && contentOffset != offset {
             setContentOffset(offset, animated: animated)
         }

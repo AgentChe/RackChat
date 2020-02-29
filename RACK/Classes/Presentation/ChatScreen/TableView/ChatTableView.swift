@@ -52,10 +52,17 @@ final class ChatTableView: UITableView, UITableViewDataSource, UITableViewDelega
     }
     
     func add(messages: [AKMessage]) {
+        let isScrolledAtBottom = items.isEmpty || self.isScrolledAtBottom
+        
         items.append(contentsOf: messages)
         
         items.sort(by: { $0.createdAt.compare($1.createdAt) == .orderedAscending})
         
         reloadData()
+        
+        if isScrolledAtBottom {
+            let indexPath = IndexPath(row: items.count - 1, section: 0)
+            scrollToRow(at: indexPath, at: .bottom, animated: true)
+        }
     }
 }

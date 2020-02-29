@@ -57,10 +57,6 @@
 //
 //        NotificationCenter.default.addObserver(self, selector: #selector(self.close), name: ReportViewController.reportNotify, object: nil)
 //
-//        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
-//
-//        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
-//
 //        navigationItem.titleView = navView
 //        navigationItem.largeTitleDisplayMode = .never
 //        noMessageView.alpha = 0.0
@@ -133,38 +129,10 @@
 //        ScreenManager.shared.chatItemOnScreen = nil
 //    }
 //
-//    private func load(imageUrl: String, into imageView: UIImageView) {
-//
-//        imageView.alpha = 0.0
-//        imageView.isHidden = true
-//
-//        guard let urlString = imageUrl.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else {
-//            return
-//        }
-//
-//        imageView.isHidden = false
-//        imageView.downloaded(from: urlString) { }
-//
-//        UIView.animate(withDuration: 0.4) {
-//            imageView.alpha = 1.0
-//        }
-//
-//    }
-//
-//
 //    // MARK: - interface
 //
 //    func reload() {
 //        tableView.reloadData()
-//    }
-//
-//    func openPaygate() {
-//
-//        performSegue(withIdentifier: "paygate", sender: nil)
-//    }
-//
-//    func setScreen() {
-//
 //    }
 //
 //    func showNoView(_ show: Bool) {
@@ -177,10 +145,6 @@
 //        self.tableView.beginUpdates()
 //        self.tableView.re.insertRows(at: [indexPath], with: .top)
 //        self.tableView.endUpdates()
-//    }
-//
-//    func deleteMessage(at indexPath: IndexPath) {
-//
 //    }
 //
 //    func showNoInternetConnection(_ show: Bool) {
@@ -260,34 +224,6 @@
 //
 //    }
 //
-//
-//    @objc func keyboardWillHide(_ sender: Notification) {
-//        if let userInfo = (sender as NSNotification).userInfo {
-//            if let _ = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.size.height {
-//                //key point 0,
-//                self.inputContainerViewBottom.constant =  0
-//                UIView.animate(withDuration: 0.25, animations: { () -> Void in self.view.layoutIfNeeded() })
-//            }
-//        }
-//    }
-//
-//
-//    @objc func keyboardWillShow(_ sender: Notification) {
-//        if let userInfo = (sender as NSNotification).userInfo {
-//            if var keyboardHeight = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.size.height {
-//                debugPrint(UIDevice.modelName.contains("X"))
-//                if UIDevice.modelName.contains("X") {
-//                    keyboardHeight = keyboardHeight - 35
-//                }
-//                self.inputContainerViewBottom.constant = keyboardHeight
-//                UIView.animate(withDuration: 0.25, animations: { () -> Void in
-//                    self.view.layoutIfNeeded()
-//                })
-//            }
-//        }
-//    }
-//
-//
 //    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 //        if segue.identifier == "report" {
 //            let reportController: ReportViewController = segue.destination as! ReportViewController
@@ -334,18 +270,6 @@
 //
 //
 //}
-//
-//extension ChatViewController: PaymentViewControllerDelegate {
-//
-//    func wasPurchased() {
-//
-//    }
-//
-//    func wasClosed() {
-//    }
-//
-//}
-//
 //
 //extension ChatViewController: UITableViewDelegate {
 //
@@ -405,16 +329,3 @@
 //
 //}
 //
-//extension UIImage {
-//    enum JPEGQuality: CGFloat {
-//        case lowest  = 0
-//        case low     = 0.25
-//        case medium  = 0.5
-//        case high    = 0.75
-//        case highest = 1
-//    }
-//
-//    func jpeg(_ jpegQuality: JPEGQuality) -> Data? {
-//        return jpegData(compressionQuality: jpegQuality.rawValue)
-//    }
-//}

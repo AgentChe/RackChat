@@ -18,6 +18,14 @@ final class ChatViewController: UIViewController {
         return view
     }()
     
+    private lazy var preloader: UIActivityIndicatorView = {
+        let view = UIActivityIndicatorView()
+        view.hidesWhenStopped = true
+        view.style = .gray
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
     @IBOutlet private weak var input: DKChatBottomView!
     @IBOutlet private weak var menuCell: DKMenuCell!
     @IBOutlet private weak var inputContainerViewBottom: NSLayoutConstraint!
@@ -38,6 +46,25 @@ final class ChatViewController: UIViewController {
         
         addSubviews()
         
+        viewModel.sender()
+            .subscribe()
+            .disposed(by: disposeBag)
+        
+        view.rx.keyboardHeight
+            .subscribe(onNext: { [weak self] keyboardHeight in
+                var inset = keyboardHeight
+                
+                if inset > 0, UIDevice.current.hasBottomNotch {
+                    inset -= 35
+                }
+                self?.inputContainerViewBottom.constant = inset
+                
+                UIView.animate(withDuration: 0.25, animations: { [weak self] in
+                    self?.view.layoutIfNeeded()
+                })
+            })
+            .disposed(by: disposeBag)
+        
         tableView.rx.reachedTop
             .bind(to: viewModel.nextPage)
             .disposed(by: disposeBag)
@@ -45,6 +72,32 @@ final class ChatViewController: UIViewController {
         viewModel.newMessages
             .drive(onNext: { [weak self] newMessages in
                 self?.tableView.add(messages: newMessages)
+            })
+            .disposed(by: disposeBag)
+        
+        input.sendButton.rx.tap
+            .subscribe(onNext: { [weak self] in
+                guard let text = self?.input.text.trimmingCharacters(in: .whitespaces), !text.isEmpty else {
+                    return
+                }
+                
+                self?.viewModel.sendText.accept(text)
+                
+                self?.input.text = ""
+            })
+            .disposed(by: disposeBag)
+        
+        viewModel.paginatedLoader
+            .loading
+            .drive(preloader.rx.isAnimating)
+            .disposed(by: disposeBag)
+            
+        let hideKeyboardGesture = UITapGestureRecognizer()
+        view.addGestureRecognizer(hideKeyboardGesture)
+        
+        hideKeyboardGesture.rx.event
+            .subscribe(onNext: { [weak self] _ in
+                self?.view.endEditing(true)
             })
             .disposed(by: disposeBag)
     }
@@ -69,11 +122,15 @@ final class ChatViewController: UIViewController {
     
     private func addSubviews() {
         view.insertSubview(tableView, at: 0)
+        view.addSubview(preloader)
         
         tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         tableView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         tableView.bottomAnchor.constraint(equalTo: input.topAnchor).isActive = true
+        
+        preloader.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        preloader.topAnchor.constraint(equalTo: tableView.topAnchor, constant: 22).isActive = true
         
         addInterlocutorImage()
     }
@@ -90,11 +147,5 @@ final class ChatViewController: UIViewController {
         
         let barItem = UIBarButtonItem(customView: menuImageView)
         navigationItem.setRightBarButton(barItem, animated: true)
-        
-        let t = UITapGestureRecognizer()
-        menuImageView.addGestureRecognizer(t)
-        t.rx.event.subscribe(onNext: { [weak self] _ in
-            self?.viewModel.chatService.send(action: .sendText(text: "12312312"))
-        })
     }
 }

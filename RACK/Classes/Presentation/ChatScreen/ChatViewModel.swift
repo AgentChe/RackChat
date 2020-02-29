@@ -11,11 +11,13 @@ import RxCocoa
 
 final class ChatViewModel {
     let nextPage = PublishRelay<Void>()
+    let sendText = PublishRelay<String>()
+    let sendImage = PublishRelay<UIImage>()
     
     private(set) lazy var paginatedLoader = createLoader()
     
     private let chat: AKChat
-    let chatService: ChatService
+    private let chatService: ChatService
     
     init(chat: AKChat) {
         self.chat = chat
@@ -28,6 +30,35 @@ final class ChatViewModel {
     
     func disconnect() {
         chatService.disconnect()
+    }
+    
+    func sender() -> Observable<Never> {
+        let text = sendText
+            .concatMap { text in
+                Completable.create { [weak self] event in
+                    self?.chatService.send(action: .sendText(text: text))
+                    
+                    event(.completed)
+                    
+                    return Disposables.create()
+                }
+            }
+        
+        let image = sendImage
+            .concatMap { FileService.send(image: $0) }
+            .flatMap { [weak self] imagePath in
+                Completable.create { [weak self] event in
+                    if let path = imagePath {
+                        self?.chatService.send(action: .sendImage(imagePath: path))
+                    }
+                    
+                    event(.completed)
+                    
+                    return Disposables.create()
+                }
+            }
+        
+        return Observable<Never>.merge(text, image)
     }
     
     var newMessages: Driver<[AKMessage]> {

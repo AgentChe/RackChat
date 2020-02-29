@@ -18,14 +18,6 @@ final class ChatViewController: UIViewController {
         return view
     }()
     
-    private lazy var preloader: UIActivityIndicatorView = {
-        let view = UIActivityIndicatorView()
-        view.hidesWhenStopped = true
-        view.style = .gray
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-    
     @IBOutlet private weak var input: DKChatBottomView!
     @IBOutlet private weak var menuCell: DKMenuCell!
     @IBOutlet private weak var inputContainerViewBottom: NSLayoutConstraint!
@@ -86,11 +78,6 @@ final class ChatViewController: UIViewController {
                 self?.input.text = ""
             })
             .disposed(by: disposeBag)
-        
-        viewModel.paginatedLoader
-            .loading
-            .drive(preloader.rx.isAnimating)
-            .disposed(by: disposeBag)
             
         let hideKeyboardGesture = UITapGestureRecognizer()
         view.addGestureRecognizer(hideKeyboardGesture)
@@ -122,15 +109,11 @@ final class ChatViewController: UIViewController {
     
     private func addSubviews() {
         view.insertSubview(tableView, at: 0)
-        view.addSubview(preloader)
         
         tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         tableView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         tableView.bottomAnchor.constraint(equalTo: input.topAnchor).isActive = true
-        
-        preloader.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        preloader.topAnchor.constraint(equalTo: tableView.topAnchor, constant: 22).isActive = true
         
         addInterlocutorImage()
     }

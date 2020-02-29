@@ -14,7 +14,7 @@ final class ChatViewModel {
     let sendText = PublishRelay<String>()
     let sendImage = PublishRelay<UIImage>()
     
-    private(set) lazy var paginatedLoader = createLoader()
+    private lazy var paginatedLoader = createLoader()
     
     private let chat: AKChat
     private let chatService: ChatService

@@ -13,6 +13,7 @@ final class ChatService {
     enum Action {
         case sendText(text: String)
         case sendImage(imagePath: String)
+        case markRead(messageId: String)
     }
     
     enum Event {
@@ -45,6 +46,8 @@ final class ChatService {
             send(text: text)
         case .sendImage(let imagePath):
             send(imagePath: imagePath)
+        case .markRead(let messageId):
+            markRead(messageId: messageId)
         }
     }
     
@@ -89,6 +92,19 @@ extension ChatService {
         ].jsonString() else {
             return
         }
+        
+        socket.write(string: json)
+    }
+    
+    fileprivate func markRead(messageId: String) {
+        guard let json = [
+            "action": "read",
+            "value": messageId
+        ].jsonString() else {
+            return
+        }
+        
+        print("___ mark read: \(messageId)")
         
         socket.write(string: json)
     }

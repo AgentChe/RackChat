@@ -141,37 +141,6 @@
 //        }
 //    }
 //
-//    func addMessage(at indexPath: IndexPath) {
-//        self.tableView.beginUpdates()
-//        self.tableView.re.insertRows(at: [indexPath], with: .top)
-//        self.tableView.endUpdates()
-//    }
-//
-//    func showNoInternetConnection(_ show: Bool) {
-//        showNoInternet(show: show)
-//    }
-//
-//    func showError(with message: Message) {
-//        let actionSheet: UIAlertController = UIAlertController(title: nil, message: "Your message was not sent. Tap “Try Again” to send this message.", preferredStyle: .actionSheet)
-//        actionSheet.addAction(UIAlertAction(title: "Try again", style: .destructive, handler: { [weak self] (action) in
-//            self?.presenter?.send(message: message)
-//        }))
-//
-//        actionSheet.addAction(UIAlertAction(title: "Delete Message", style: .destructive, handler: { [weak self] (action) in
-//            self?.presenter?.deleteUnsendet(message: message)
-//        }))
-//
-//
-//        actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-//        if let popoverController = actionSheet.popoverPresentationController {
-//            popoverController.sourceView = self.view
-//        }
-//        present(actionSheet, animated: true, completion: nil)
-//    }
-//
-//    //MARK: - actions
-//
-//
 //    @objc func hideKeyboad() {
 //        view.endEditing(true)
 //    }
@@ -205,20 +174,6 @@
 ////        view.endEditing(true)
 //        present(imagePicker, animated: true, completion: nil)
 //    }
-//
-//    @objc func tapOnSend() {
-//        guard presenter != nil else {return}
-//        guard let user: UserShow = presenter?.user else {return}
-//        guard currentChat != nil else {return}
-//        if input.text.trimmingCharacters(in: .whitespaces).isEmpty {
-//            return
-//        }
-//
-//        presenter?.send(message: Message(text: input.text, sender: user.id, matchID: currentChat.chatID))
-//        input.text = ""
-//    }
-//
-//
 //
 //    @IBAction func tapOnPhoto(_ sender: Any) {
 //
@@ -268,24 +223,6 @@
 //        self.navigationController?.popViewController(animated: true)
 //    }
 //
-//
-//}
-//
-//extension ChatViewController: UITableViewDelegate {
-//
-//    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
-//        if tableView.isEditing {
-//            return .delete
-//        }
-//
-//        return .none
-//    }
-//
-//
-//    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-//        guard presenter != nil else { return }
-//        presenter?.pagintaion(for: indexPath)
-//    }
 //
 //}
 //

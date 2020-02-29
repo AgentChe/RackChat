@@ -61,6 +61,10 @@ final class ChatViewController: UIViewController {
             .bind(to: viewModel.nextPage)
             .disposed(by: disposeBag)
         
+        tableView.viewedMessaged
+            .bind(to: viewModel.viewedMessage)
+            .disposed(by: disposeBag)
+        
         viewModel.newMessages
             .drive(onNext: { [weak self] newMessages in
                 self?.tableView.add(messages: newMessages)

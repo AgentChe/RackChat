@@ -11,6 +11,7 @@ import RxCocoa
 
 final class ChatViewModel {
     let nextPage = PublishRelay<Void>()
+    let viewedMessage = PublishRelay<AKMessage>()
     let sendText = PublishRelay<String>()
     let sendImage = PublishRelay<UIImage>()
     
@@ -46,7 +47,7 @@ final class ChatViewModel {
         
         let image = sendImage
             .concatMap { FileService.send(image: $0) }
-            .flatMap { [weak self] imagePath in
+            .flatMap { imagePath in
                 Completable.create { [weak self] event in
                     if let path = imagePath {
                         self?.chatService.send(action: .sendImage(imagePath: path))
@@ -58,7 +59,19 @@ final class ChatViewModel {
                 }
             }
         
-        return Observable<Never>.merge(text, image)
+        let viewed = viewedMessage
+            .debounce(RxTimeInterval.milliseconds(500), scheduler: SerialDispatchQueueScheduler.init(qos: .default))
+            .flatMap { viewedMessage in
+                Completable.create { [weak self] event in
+                    self?.chatService.send(action: .markRead(messageId: viewedMessage.id))
+                
+                    event(.completed)
+                
+                    return Disposables.create()
+                }
+            }
+        
+        return Observable<Never>.merge(text, image, viewed)
     }
     
     var newMessages: Driver<[AKMessage]> {

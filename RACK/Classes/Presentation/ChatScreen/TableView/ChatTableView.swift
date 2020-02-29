@@ -11,6 +11,8 @@ import RxSwift
 import RxCocoa
 
 final class ChatTableView: UITableView, UITableViewDataSource, UITableViewDelegate {
+    let viewedMessaged = PublishRelay<AKMessage>()
+    
     private var items: [AKMessage] = []
     
     init() {
@@ -49,6 +51,11 @@ final class ChatTableView: UITableView, UITableViewDataSource, UITableViewDelega
         (cell as? ChatTableCell)?.bind(message: item)
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let message = items[indexPath.row]
+        viewedMessaged.accept(message)
     }
     
     func add(messages: [AKMessage]) {

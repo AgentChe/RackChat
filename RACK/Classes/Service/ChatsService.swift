@@ -7,8 +7,48 @@
 //
 
 import RxSwift
+import Starscream
 
 final class ChatsService {
+    enum Event {
+        case changedChat(AKChat)
+    }
+    
+    private lazy var socket: WebSocket = {
+        let url = URL(string: GlobalDefinitions.ChatService.wsDomain + "/ws/rooms?token=\(SessionService.userToken)&app_key=\(GlobalDefinitions.ChatService.appKey)")!
+        let request = URLRequest(url: url)
+        return WebSocket(request: request)
+    }()
+    
+    func connect() {
+        socket.connect()
+    }
+    
+    func disconnect() {
+        socket.disconnect()
+    }
+    
+    var event: Observable<Event> {
+        return Observable<Event>.create { [socket] observer in
+            socket.onEvent = { event in
+                switch event {
+                case .text(let string):
+                    guard let response = ChatTransformation.from(chatsWebSocket: string) else {
+                        return
+                    }
+                    
+                    observer.onNext(response)
+                default:
+                    break
+                }
+            }
+            
+            return Disposables.create()
+        }
+    }
+}
+
+extension ChatsService {
     static func getChats() -> Single<[AKChat]> {
         let request = GetChatsRequest(userToken: SessionService.userToken)
         

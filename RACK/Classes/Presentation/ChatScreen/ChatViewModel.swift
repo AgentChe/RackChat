@@ -75,7 +75,7 @@ final class ChatViewModel {
     }
     
     var newMessages: Driver<[AKMessage]> {
-        return Driver
+        Driver
             .merge(paginatedLoader.elements,
                    receiveNewMessages().map { [$0] }.asDriver(onErrorJustReturn: []))
     }
@@ -95,13 +95,9 @@ final class ChatViewModel {
         return chatService
             .event
             .flatMap { event -> Observable<AKMessage> in
-                return Observable.create { observer in
-                    switch event {
-                    case .newMessage(let message):
-                        observer.onNext(message)
-                    }
-                    
-                    return Disposables.create()
+                switch event {
+                case .newMessage(let message):
+                    return .just(message)
                 }
             }
     }

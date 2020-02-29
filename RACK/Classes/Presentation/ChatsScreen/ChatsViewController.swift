@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import NotificationBannerSwift
 import Amplitude_iOS
 import RxSwift
 
@@ -18,11 +17,9 @@ final class ChatsViewController: UIViewController {
     @IBOutlet weak var backroundView: UIView!
     @IBOutlet weak var backgroundViewHeight: NSLayoutConstraint!
     @IBOutlet weak var buttonHeight: NSLayoutConstraint!
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var tableView: ChatsTableView!
     
     private let viewModel = ChatsViewModel()
-
-    private var chats: [AKChat] = []
     
     private let disposeBag = DisposeBag()
     
@@ -32,7 +29,6 @@ final class ChatsViewController: UIViewController {
         UserDefaults.standard.set(ScreenManager.ScreenManagerEntryTypes.showMain, forKey: ScreenManager.showKey)
         
         newSearchView.isHidden = true
-        tableView.register(UINib(nibName: "СhatsTableViewCell", bundle: .main), forCellReuseIdentifier: "ChatsCell")
         backgroundViewHeight.constant = 0
         buttonHeight.constant = 0
         backroundView.layer.cornerRadius = 0
@@ -41,44 +37,36 @@ final class ChatsViewController: UIViewController {
             overrideUserInterfaceStyle = .light
         }
         
-        NotificationCenter.default.addObserver(self, selector: #selector(handleMatch), name: NotificationManager.kMatchNotify, object: nil)
+        tableView.didSelectChat
+            .subscribe(onNext: { [weak self] chat in
+                self?.performSegue(withIdentifier: "chat", sender: chat)
+            })
+            .disposed(by: disposeBag)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(handlePush),
-                                               name: NotificationManager.kMessageNotify,
-                                               object: nil)
-        
-        if ScreenManager.shared.showChat == false {
-            if  ScreenManager.shared.match != nil {
-                performSegue(withIdentifier: "search", sender: MatchScreenState.foundet)
-            } else {
-                if ScreenManager.shared.autoChat == true {
-                    performSegue(withIdentifier: "search", sender: MatchScreenState.searchng)
-                } else {
-                    performSegue(withIdentifier: "search", sender: MatchScreenState.serchingManuality)
-                }
-            }
-            
-        } else {
-            if let chat: ChatItem = ScreenManager.shared.pushChat {
-                performSegue(withIdentifier: "chat", sender: chat)
-            }
-        }
-        
-        viewModel.chats
+        viewModel.newChats
             .drive(onNext: { [weak self] chats in
-                self?.chats = chats
-                
                 let isEmpty = chats.isEmpty
                 
                 self?.tableView.isHidden = isEmpty
                 self?.emptyMessage.isHidden = !isEmpty
                 self?.backroundView.isHidden = isEmpty
-                self?.tableView.isHidden = isEmpty
                 self?.newSearchView.isHidden = isEmpty
                 
-                self?.tableView.reloadData()
+                self?.tableView.add(chats: chats)
             })
             .disposed(by: disposeBag)
+        
+        viewModel.changedChat()
+            .drive(onNext: { [weak self] chat in
+                self?.tableView.replace(chat: chat)
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        viewModel.connect()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -138,44 +126,6 @@ final class ChatsViewController: UIViewController {
             }
         }
     }
-    
-    @objc private func handleMatch() {
-        performSegue(withIdentifier: "search", sender: MatchScreenState.foundet)
-    }
-    
-    @objc private func handlePush() {
-        guard let chat = ScreenManager.shared.pushChat else {
-            return
-        }
-        
-        if let currentChat: ChatItem = ScreenManager.shared.chatItemOnScreen {
-            if currentChat.chatID == chat.chatID {
-                return
-            }
-        }
-        
-        performSegue(withIdentifier: "chat", sender: chat)
-    }
-}
-
-extension ChatsViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        performSegue(withIdentifier: "chat", sender: self.chats[indexPath.row])
-    }
-}
-
-extension ChatsViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return chats.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: ChatsTableViewCell = tableView.dequeueReusableCell(withIdentifier: "ChatsCell", for: indexPath) as! ChatsTableViewCell
-        cell.bind(chat: chats[indexPath.row])
-        return cell
-    }
-
 }
 
 extension ChatsViewController: SearchViewDelegate {

@@ -10,11 +10,27 @@ import RxSwift
 import RxCocoa
 
 final class ChatsViewModel {
-    lazy var chats = createChats()
+    private let chatsService = ChatsService()
     
-    private func createChats() -> Driver<[AKChat]> {
+    func connect() {
+        chatsService.connect()
+    }
+    
+    var newChats: Driver<[AKChat]> {
         return ChatsService
             .getChats()
             .asDriver(onErrorJustReturn: [])
+    }
+    
+    func changedChat() -> Driver<AKChat> {
+        return chatsService
+            .event
+            .flatMap { event -> Observable<AKChat> in
+                switch event {
+                case .changedChat(let chat):
+                    return .just(chat)
+                }
+            }
+            .asDriver(onErrorDriveWith: .never())
     }
 }

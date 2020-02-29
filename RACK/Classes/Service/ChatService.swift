@@ -56,7 +56,7 @@ final class ChatService {
             socket.onEvent = { event in
                 switch event {
                 case .text(let string):
-                    guard let response = ChatTransformation.from(webSocket: string) else {
+                    guard let response = ChatTransformation.from(chatWebSocket: string) else {
                         return
                     }
                     
@@ -103,8 +103,6 @@ extension ChatService {
         ].jsonString() else {
             return
         }
-        
-        print("___ mark read: \(messageId)")
         
         socket.write(string: json)
     }

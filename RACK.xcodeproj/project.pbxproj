@@ -114,6 +114,7 @@
 		9654533123FABA66007697C4 /* PurchaseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965452FB23FABA66007697C4 /* PurchaseError.swift */; };
 		9654533223FABA66007697C4 /* PaymentError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965452FC23FABA66007697C4 /* PaymentError.swift */; };
 		9654533323FABA66007697C4 /* DataBaseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965452FD23FABA66007697C4 /* DataBaseError.swift */; };
+		968FE7BB240ACB4B00C3D5C2 /* ChatsTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 968FE7BA240ACB4B00C3D5C2 /* ChatsTableView.swift */; };
 		969DA2DC23FF482000DC42D1 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 969DA2DE23FF482000DC42D1 /* Localizable.strings */; };
 		969DA2F023FF488400DC42D1 /* NSObjectExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969DA2E123FF488400DC42D1 /* NSObjectExtension.swift */; };
 		969DA2F123FF488400DC42D1 /* ArrayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969DA2E223FF488400DC42D1 /* ArrayExtension.swift */; };
@@ -334,6 +335,7 @@
 		965452FB23FABA66007697C4 /* PurchaseError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PurchaseError.swift; sourceTree = "<group>"; };
 		965452FC23FABA66007697C4 /* PaymentError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentError.swift; sourceTree = "<group>"; };
 		965452FD23FABA66007697C4 /* DataBaseError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataBaseError.swift; sourceTree = "<group>"; };
+		968FE7BA240ACB4B00C3D5C2 /* ChatsTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsTableView.swift; sourceTree = "<group>"; };
 		969DA2DD23FF482000DC42D1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		969DA2E123FF488400DC42D1 /* NSObjectExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSObjectExtension.swift; sourceTree = "<group>"; };
 		969DA2E223FF488400DC42D1 /* ArrayExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrayExtension.swift; sourceTree = "<group>"; };
@@ -819,6 +821,15 @@
 			path = Classes;
 			sourceTree = "<group>";
 		};
+		968FE7B9240ACB3100C3D5C2 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				13E4D35622DA2AC200442BF9 /* СhatsTableViewCell.xib */,
+				13E4D34E22DA2A2900442BF9 /* СhatsTableViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		969DA2D923FF47B700DC42D1 /* Strings */ = {
 			isa = PBXGroup;
 			children = (
@@ -1140,8 +1151,8 @@
 		96A5528623FF412D001E88DC /* TableView */ = {
 			isa = PBXGroup;
 			children = (
-				13E4D35622DA2AC200442BF9 /* СhatsTableViewCell.xib */,
-				13E4D34E22DA2A2900442BF9 /* СhatsTableViewCell.swift */,
+				968FE7B9240ACB3100C3D5C2 /* Cells */,
+				968FE7BA240ACB4B00C3D5C2 /* ChatsTableView.swift */,
 			);
 			path = TableView;
 			sourceTree = "<group>";
@@ -1311,6 +1322,7 @@
 				969DA42B2401445E00DC42D1 /* ReportManager.swift in Sources */,
 				96F00587240472B20058F7C9 /* DictionaryExtension.swift in Sources */,
 				969DA2F523FF488400DC42D1 /* UIViewExtension.swift in Sources */,
+				968FE7BB240ACB4B00C3D5C2 /* ChatsTableView.swift in Sources */,
 				13E4D35E22DA33EA00442BF9 /* RandomizeViewController.swift in Sources */,
 				969DA4522401445E00DC42D1 /* Marketing.swift in Sources */,
 				969DA45B2401445E00DC42D1 /* UITextField+Padding.swift in Sources */,

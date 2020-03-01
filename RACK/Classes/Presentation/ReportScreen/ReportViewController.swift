@@ -69,18 +69,6 @@ class ReportViewController: UIViewController {
         headerLabel.text = String(format: "report_header".localized, chat.interlocutorName)
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-
-//        DatingKit.user.show { (user, status) in
-//            guard user != nil else {return}
-//
-//            let str: String = user?.lookingFor == .guys ? "him." : "her."
-//
-//            self.subtitleLabel.text = "It's anonymous, we won't tell " + str
-//        }
-    }
-    
     private func bind() {
         viewModel.loading
             .drive(onNext: { [weak self] loading in

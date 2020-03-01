@@ -879,5 +879,3 @@ class TokenRealm: Object {
     }
     
 }
-
-

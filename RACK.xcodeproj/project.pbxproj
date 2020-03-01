@@ -150,7 +150,6 @@
 		969DA4282401445E00DC42D1 /* ErrorTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969DA3D02401445E00DC42D1 /* ErrorTool.swift */; };
 		969DA4292401445E00DC42D1 /* RequestTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969DA3D12401445E00DC42D1 /* RequestTool.swift */; };
 		969DA42A2401445E00DC42D1 /* PaymentFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969DA3D32401445E00DC42D1 /* PaymentFlow.swift */; };
-		969DA42B2401445E00DC42D1 /* ReportManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969DA3D42401445E00DC42D1 /* ReportManager.swift */; };
 		969DA42C2401445E00DC42D1 /* PaymentManagment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969DA3D52401445E00DC42D1 /* PaymentManagment.swift */; };
 		969DA42D2401445E00DC42D1 /* SearchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969DA3D62401445E00DC42D1 /* SearchManager.swift */; };
 		969DA42E2401445E00DC42D1 /* DKManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969DA3D82401445E00DC42D1 /* DKManager.swift */; };
@@ -187,12 +186,9 @@
 		969DA4532401445E00DC42D1 /* UIDevise+models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969DA4072401445E00DC42D1 /* UIDevise+models.swift */; };
 		969DA4542401445E00DC42D1 /* SKProduct+Locale.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969DA4082401445E00DC42D1 /* SKProduct+Locale.swift */; };
 		969DA4552401445E00DC42D1 /* UIPageViewController+Scroling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969DA4092401445E00DC42D1 /* UIPageViewController+Scroling.swift */; };
-		969DA4562401445E00DC42D1 /* Storyboard+Names.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969DA40A2401445E00DC42D1 /* Storyboard+Names.swift */; };
 		969DA4572401445E00DC42D1 /* UIView+Designble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969DA40B2401445E00DC42D1 /* UIView+Designble.swift */; };
-		969DA4592401445E00DC42D1 /* Double+DoubleToString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969DA40D2401445E00DC42D1 /* Double+DoubleToString.swift */; };
 		969DA45A2401445E00DC42D1 /* Array+Neighbors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969DA40E2401445E00DC42D1 /* Array+Neighbors.swift */; };
 		969DA45B2401445E00DC42D1 /* UITextField+Padding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969DA40F2401445E00DC42D1 /* UITextField+Padding.swift */; };
-		969DA45C2401445E00DC42D1 /* UICollectionVeiw+Scroll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969DA4102401445E00DC42D1 /* UICollectionVeiw+Scroll.swift */; };
 		969DA45F2401C80600DC42D1 /* UnmatchRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969DA45E2401C80600DC42D1 /* UnmatchRequest.swift */; };
 		969DA4612401C8E000DC42D1 /* MatchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969DA4602401C8E000DC42D1 /* MatchService.swift */; };
 		969DA4632401CCD200DC42D1 /* SessionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969DA4622401CCD200DC42D1 /* SessionService.swift */; };
@@ -203,7 +199,6 @@
 		96A4D5CA23FDFCD700E24E13 /* AKChatMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A4D5C923FDFCD600E24E13 /* AKChatMessage.swift */; };
 		96A5528223FF34C4001E88DC /* AKGender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A5528123FF34C4001E88DC /* AKGender.swift */; };
 		96A5528523FF392B001E88DC /* ChatTransformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A5528423FF392B001E88DC /* ChatTransformation.swift */; };
-		96BF8CA02402DFB70026F3CE /* OldChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BF8C9F2402DFB70026F3CE /* OldChatViewController.swift */; };
 		96BF8CA22403DE660026F3CE /* ChatService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BF8CA12403DE660026F3CE /* ChatService.swift */; };
 		96BF8CA42403DE9C0026F3CE /* GetMessagesRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BF8CA32403DE9C0026F3CE /* GetMessagesRequest.swift */; };
 		96BF8CA62403E18B0026F3CE /* PaginatedDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BF8CA52403E18B0026F3CE /* PaginatedDataLoader.swift */; };
@@ -371,7 +366,6 @@
 		969DA3D02401445E00DC42D1 /* ErrorTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorTool.swift; sourceTree = "<group>"; };
 		969DA3D12401445E00DC42D1 /* RequestTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestTool.swift; sourceTree = "<group>"; };
 		969DA3D32401445E00DC42D1 /* PaymentFlow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentFlow.swift; sourceTree = "<group>"; };
-		969DA3D42401445E00DC42D1 /* ReportManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportManager.swift; sourceTree = "<group>"; };
 		969DA3D52401445E00DC42D1 /* PaymentManagment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentManagment.swift; sourceTree = "<group>"; };
 		969DA3D62401445E00DC42D1 /* SearchManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchManager.swift; sourceTree = "<group>"; };
 		969DA3D82401445E00DC42D1 /* DKManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DKManager.swift; sourceTree = "<group>"; };
@@ -408,12 +402,9 @@
 		969DA4072401445E00DC42D1 /* UIDevise+models.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIDevise+models.swift"; sourceTree = "<group>"; };
 		969DA4082401445E00DC42D1 /* SKProduct+Locale.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SKProduct+Locale.swift"; sourceTree = "<group>"; };
 		969DA4092401445E00DC42D1 /* UIPageViewController+Scroling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIPageViewController+Scroling.swift"; sourceTree = "<group>"; };
-		969DA40A2401445E00DC42D1 /* Storyboard+Names.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Storyboard+Names.swift"; sourceTree = "<group>"; };
 		969DA40B2401445E00DC42D1 /* UIView+Designble.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Designble.swift"; sourceTree = "<group>"; };
-		969DA40D2401445E00DC42D1 /* Double+DoubleToString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Double+DoubleToString.swift"; sourceTree = "<group>"; };
 		969DA40E2401445E00DC42D1 /* Array+Neighbors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Neighbors.swift"; sourceTree = "<group>"; };
 		969DA40F2401445E00DC42D1 /* UITextField+Padding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextField+Padding.swift"; sourceTree = "<group>"; };
-		969DA4102401445E00DC42D1 /* UICollectionVeiw+Scroll.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UICollectionVeiw+Scroll.swift"; sourceTree = "<group>"; };
 		969DA45E2401C80600DC42D1 /* UnmatchRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnmatchRequest.swift; sourceTree = "<group>"; };
 		969DA4602401C8E000DC42D1 /* MatchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchService.swift; sourceTree = "<group>"; };
 		969DA4622401CCD200DC42D1 /* SessionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionService.swift; sourceTree = "<group>"; };
@@ -424,7 +415,6 @@
 		96A4D5C923FDFCD600E24E13 /* AKChatMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AKChatMessage.swift; sourceTree = "<group>"; };
 		96A5528123FF34C4001E88DC /* AKGender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AKGender.swift; sourceTree = "<group>"; };
 		96A5528423FF392B001E88DC /* ChatTransformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTransformation.swift; sourceTree = "<group>"; };
-		96BF8C9F2402DFB70026F3CE /* OldChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OldChatViewController.swift; sourceTree = "<group>"; };
 		96BF8CA12403DE660026F3CE /* ChatService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatService.swift; sourceTree = "<group>"; };
 		96BF8CA32403DE9C0026F3CE /* GetMessagesRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetMessagesRequest.swift; sourceTree = "<group>"; };
 		96BF8CA52403E18B0026F3CE /* PaginatedDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaginatedDataLoader.swift; sourceTree = "<group>"; };
@@ -868,7 +858,6 @@
 				969DA3082400534100DC42D1 /* TableView */,
 				134901C12306DE0F00684901 /* ChatViewController.swift */,
 				969DA30A240056F700DC42D1 /* ChatViewModel.swift */,
-				96BF8C9F2402DFB70026F3CE /* OldChatViewController.swift */,
 			);
 			path = ChatScreen;
 			sourceTree = "<group>";
@@ -960,7 +949,6 @@
 			isa = PBXGroup;
 			children = (
 				969DA3D32401445E00DC42D1 /* PaymentFlow.swift */,
-				969DA3D42401445E00DC42D1 /* ReportManager.swift */,
 				969DA3D52401445E00DC42D1 /* PaymentManagment.swift */,
 				969DA3D62401445E00DC42D1 /* SearchManager.swift */,
 			);
@@ -1080,12 +1068,9 @@
 				969DA4072401445E00DC42D1 /* UIDevise+models.swift */,
 				969DA4082401445E00DC42D1 /* SKProduct+Locale.swift */,
 				969DA4092401445E00DC42D1 /* UIPageViewController+Scroling.swift */,
-				969DA40A2401445E00DC42D1 /* Storyboard+Names.swift */,
 				969DA40B2401445E00DC42D1 /* UIView+Designble.swift */,
-				969DA40D2401445E00DC42D1 /* Double+DoubleToString.swift */,
 				969DA40E2401445E00DC42D1 /* Array+Neighbors.swift */,
 				969DA40F2401445E00DC42D1 /* UITextField+Padding.swift */,
-				969DA4102401445E00DC42D1 /* UICollectionVeiw+Scroll.swift */,
 			);
 			path = Extention;
 			sourceTree = "<group>";
@@ -1315,7 +1300,6 @@
 				969DA4192401445E00DC42D1 /* InterlocutorTextTableCell.swift in Sources */,
 				137D2A0322CB3CC000B5E0CB /* MainViewController.swift in Sources */,
 				138C79C72306E8EE0002450C /* ChatsViewController.swift in Sources */,
-				969DA42B2401445E00DC42D1 /* ReportManager.swift in Sources */,
 				96F00587240472B20058F7C9 /* DictionaryExtension.swift in Sources */,
 				969DA2F523FF488400DC42D1 /* UIViewExtension.swift in Sources */,
 				968FE7BB240ACB4B00C3D5C2 /* ChatsTableView.swift in Sources */,
@@ -1327,7 +1311,6 @@
 				969DA2F823FF488400DC42D1 /* ReactiveExtension.swift in Sources */,
 				96A5528523FF392B001E88DC /* ChatTransformation.swift in Sources */,
 				13861BAE231C30A00011F8D1 /* UIColor+HexString.swift in Sources */,
-				969DA4562401445E00DC42D1 /* Storyboard+Names.swift in Sources */,
 				96A4D5C423FDF49B00E24E13 /* GetChatsRequest.swift in Sources */,
 				969DA4402401445E00DC42D1 /* CurrentChat.swift in Sources */,
 				969DA44E2401445E00DC42D1 /* CitiesWorker.swift in Sources */,
@@ -1373,13 +1356,10 @@
 				4731754823F583F90004705E /* UIFont+Ext.swift in Sources */,
 				13CC5593231E427A00A10D45 /* NotificationRequestViewController.swift in Sources */,
 				969DA4472401445E00DC42D1 /* SearchWorker.swift in Sources */,
-				969DA4592401445E00DC42D1 /* Double+DoubleToString.swift in Sources */,
 				13A30BE4231E99A400CF6248 /* NotifySetingUiTableViewCell.swift in Sources */,
 				136C997C236D9E8B003F60CC /* TimeOutView.swift in Sources */,
 				13BA7A8B2326C62B00EB5A0E /* ButtonView.swift in Sources */,
-				969DA45C2401445E00DC42D1 /* UICollectionVeiw+Scroll.swift in Sources */,
 				1393CD9922C75A6D00422529 /* RegistrationViewController.swift in Sources */,
-				96BF8CA02402DFB70026F3CE /* OldChatViewController.swift in Sources */,
 				969DA41A2401445E00DC42D1 /* DKChatPresenter.swift in Sources */,
 				969DA4442401445E00DC42D1 /* User.swift in Sources */,
 				969DA4462401445E00DC42D1 /* UserResponce.swift in Sources */,

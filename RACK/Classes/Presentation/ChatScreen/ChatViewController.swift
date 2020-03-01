@@ -68,7 +68,7 @@ final class ChatViewController: UIViewController {
             })
             .disposed(by: disposeBag)
         
-        tableView.rx.reachedTop
+        tableView.reachedTop
             .bind(to: viewModel.nextPage)
             .disposed(by: disposeBag)
         

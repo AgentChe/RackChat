@@ -12,6 +12,7 @@ import RxCocoa
 
 final class ChatTableView: UITableView, UITableViewDataSource, UITableViewDelegate {
     let viewedMessaged = PublishRelay<AKMessage>()
+    let reachedTop = PublishRelay<Void>()
     
     private var items: [AKMessage] = []
     
@@ -56,20 +57,17 @@ final class ChatTableView: UITableView, UITableViewDataSource, UITableViewDelega
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let message = items[indexPath.row]
         viewedMessaged.accept(message)
+        
+        if indexPath.row == 0 {
+            reachedTop.accept(Void())
+        }
     }
     
     func add(messages: [AKMessage]) {
-        let isScrolledAtBottom = items.isEmpty || self.isScrolledAtBottom
-        
         items.append(contentsOf: messages)
         
         items.sort(by: { $0.createdAt.compare($1.createdAt) == .orderedAscending})
         
         reloadData()
-        
-        if isScrolledAtBottom {
-            let indexPath = IndexPath(row: items.count - 1, section: 0)
-            scrollToRow(at: indexPath, at: .bottom, animated: true)
-        }
     }
 }

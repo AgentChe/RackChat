@@ -118,7 +118,6 @@
 		969DA2DC23FF482000DC42D1 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 969DA2DE23FF482000DC42D1 /* Localizable.strings */; };
 		969DA2F023FF488400DC42D1 /* NSObjectExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969DA2E123FF488400DC42D1 /* NSObjectExtension.swift */; };
 		969DA2F123FF488400DC42D1 /* ArrayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969DA2E223FF488400DC42D1 /* ArrayExtension.swift */; };
-		969DA2F423FF488400DC42D1 /* UIScrollViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969DA2E523FF488400DC42D1 /* UIScrollViewExtension.swift */; };
 		969DA2F523FF488400DC42D1 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969DA2E623FF488400DC42D1 /* UIViewExtension.swift */; };
 		969DA2F823FF488400DC42D1 /* ReactiveExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969DA2E923FF488400DC42D1 /* ReactiveExtension.swift */; };
 		969DA2FA23FF488400DC42D1 /* UIDeviceExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969DA2EB23FF488400DC42D1 /* UIDeviceExtension.swift */; };
@@ -333,7 +332,6 @@
 		969DA2DD23FF482000DC42D1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		969DA2E123FF488400DC42D1 /* NSObjectExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSObjectExtension.swift; sourceTree = "<group>"; };
 		969DA2E223FF488400DC42D1 /* ArrayExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrayExtension.swift; sourceTree = "<group>"; };
-		969DA2E523FF488400DC42D1 /* UIScrollViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIScrollViewExtension.swift; sourceTree = "<group>"; };
 		969DA2E623FF488400DC42D1 /* UIViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		969DA2E923FF488400DC42D1 /* ReactiveExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReactiveExtension.swift; sourceTree = "<group>"; };
 		969DA2EB23FF488400DC42D1 /* UIDeviceExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIDeviceExtension.swift; sourceTree = "<group>"; };
@@ -831,7 +829,6 @@
 			children = (
 				969DA2E123FF488400DC42D1 /* NSObjectExtension.swift */,
 				969DA2E223FF488400DC42D1 /* ArrayExtension.swift */,
-				969DA2E523FF488400DC42D1 /* UIScrollViewExtension.swift */,
 				969DA2E623FF488400DC42D1 /* UIViewExtension.swift */,
 				969DA2E923FF488400DC42D1 /* ReactiveExtension.swift */,
 				969DA2EB23FF488400DC42D1 /* UIDeviceExtension.swift */,
@@ -1403,7 +1400,6 @@
 				969DA30223FF48A500DC42D1 /* TextAttributes.swift in Sources */,
 				13EBA55022E9EAF1008C176C /* SecondTestViewController.swift in Sources */,
 				969DA4632401CCD200DC42D1 /* SessionService.swift in Sources */,
-				969DA2F423FF488400DC42D1 /* UIScrollViewExtension.swift in Sources */,
 				13D82A7222C202D4004DC959 /* AppDelegate.swift in Sources */,
 				969DA4342401445E00DC42D1 /* DatingChat.swift in Sources */,
 				9654533323FABA66007697C4 /* DataBaseError.swift in Sources */,

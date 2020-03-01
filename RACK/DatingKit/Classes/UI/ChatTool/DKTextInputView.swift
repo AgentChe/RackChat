@@ -140,7 +140,7 @@ class DKTextInputView: UIView {
         scrolView.contentSize = textView.frame.size
         
         if currentLinesCount <= linesLimit {
-            textView.scrollToTop()
+//            textView.scrollToTop()
         }
     }
     

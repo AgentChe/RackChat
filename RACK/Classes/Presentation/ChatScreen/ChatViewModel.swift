@@ -83,7 +83,16 @@ final class ChatViewModel {
     private func createLoader() -> PaginatedDataLoader<AKMessage> {
         let chatId = chat.id
         
-        return PaginatedDataLoader(firstTrigger: .just(Void()), nextTrigger: nextPage.asObservable()) { page in
+        let firstTrigger = Observable<Void>
+            .deferred {
+                .just(Void())
+            }
+        
+        let nextTrigger = nextPage
+            .throttle(RxTimeInterval.seconds(1), scheduler: MainScheduler.asyncInstance)
+        
+        return PaginatedDataLoader(firstTrigger: firstTrigger,
+                                   nextTrigger: nextTrigger) { page in
             ChatService
                 .getMessages(chatId: chatId, page: page)
                 .map { Page(page: page, data: $0) }

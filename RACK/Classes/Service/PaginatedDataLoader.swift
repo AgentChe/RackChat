@@ -32,8 +32,8 @@ final class PaginatedDataLoader<E> {
         let errorRelay = PublishRelay<Error>()
         error = errorRelay.asDriver(onErrorDriveWith: .never())
         
-        func load(_ nextOffset: Int) -> Observable<Page<E>> {
-            return observableFactory(nextOffset)
+        func load(_ page: Int) -> Observable<Page<E>> {
+            return observableFactory(page)
                 .trackActivity(activityIndicator)
                 .catchError { error in
                     errorRelay.accept(error)

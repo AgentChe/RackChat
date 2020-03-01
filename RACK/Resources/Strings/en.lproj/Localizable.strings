@@ -7,3 +7,8 @@
 */
 
 "photo" = "Photo";
+"unmatch" = "Unmatch";
+"report" = "Report";
+"done" = "Done";
+"unmatch_message" = "Your chat history will disappear as if nothing happened.";
+"report_header" = "What Went Wrong with %@?";

@@ -18,14 +18,25 @@ final class ChatViewController: UIViewController {
         return view
     }()
     
-    @IBOutlet private weak var input: DKChatBottomView!
-    @IBOutlet private weak var menuCell: DKMenuCell!
-    @IBOutlet private weak var inputContainerViewBottom: NSLayoutConstraint!
+//    @IBOutlet private weak var input: DKChatBottomView!
+//    @IBOutlet private weak var menuCell: DKMenuCell!
+//    @IBOutlet private weak var inputContainerViewBottom: NSLayoutConstraint!
     
     private let disposeBag = DisposeBag()
     
     private var chat: AKChat!
     private var viewModel: ChatViewModel!
+    
+    init(chat: AKChat) {
+        self.chat = chat
+        self.viewModel = ChatViewModel(chat: chat)
+        
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,7 +60,7 @@ final class ChatViewController: UIViewController {
                 if inset > 0, UIDevice.current.hasBottomNotch {
                     inset -= 35
                 }
-                self?.inputContainerViewBottom.constant = inset
+//                self?.inputContainerViewBottom.constant = inset
                 
                 UIView.animate(withDuration: 0.25, animations: { [weak self] in
                     self?.view.layoutIfNeeded()
@@ -71,17 +82,17 @@ final class ChatViewController: UIViewController {
             })
             .disposed(by: disposeBag)
         
-        input.sendButton.rx.tap
-            .subscribe(onNext: { [weak self] in
-                guard let text = self?.input.text.trimmingCharacters(in: .whitespaces), !text.isEmpty else {
-                    return
-                }
-                
-                self?.viewModel.sendText.accept(text)
-                
-                self?.input.text = ""
-            })
-            .disposed(by: disposeBag)
+//        input.sendButton.rx.tap
+//            .subscribe(onNext: { [weak self] in
+//                guard let text = self?.input.text.trimmingCharacters(in: .whitespaces), !text.isEmpty else {
+//                    return
+//                }
+//
+//                self?.viewModel.sendText.accept(text)
+//
+//                self?.input.text = ""
+//            })
+//            .disposed(by: disposeBag)
             
         let hideKeyboardGesture = UITapGestureRecognizer()
         view.addGestureRecognizer(hideKeyboardGesture)
@@ -105,19 +116,13 @@ final class ChatViewController: UIViewController {
         viewModel.disconnect()
     }
     
-    func bind(chat: AKChat) {
-        self.chat = chat
-        
-        viewModel = ChatViewModel(chat: chat)
-    }
-    
     private func addSubviews() {
         view.insertSubview(tableView, at: 0)
         
         tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         tableView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        tableView.bottomAnchor.constraint(equalTo: input.topAnchor).isActive = true
+        tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         
         addInterlocutorImage()
     }
@@ -134,5 +139,33 @@ final class ChatViewController: UIViewController {
         
         let barItem = UIBarButtonItem(customView: menuImageView)
         navigationItem.setRightBarButton(barItem, animated: true)
+        
+        let tapGesture = UITapGestureRecognizer()
+        menuImageView.addGestureRecognizer(tapGesture)
+        
+        tapGesture.rx.event
+            .subscribe(onNext: { [unowned self] _ in
+                let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+                
+                let unmatchAction = UIAlertAction(title: "unmatch".localized, style: .default) { _ in
+                    let vc = UnmatchViewController(nibName: "UnmatchViewController", bundle: .main)
+                    self.present(vc, animated: true)
+                }
+                
+                let reportAction = UIAlertAction(title: "report".localized, style: .default) { _ in
+                    let vc = ReportViewController(chat: self.chat)
+                    self.present(vc, animated: true)
+                }
+                
+                let doneAction = UIAlertAction(title: "done".localized, style: .cancel)
+                
+                actionSheet.addAction(unmatchAction)
+                actionSheet.addAction(reportAction)
+                actionSheet.addAction(doneAction)
+                
+                self.present(actionSheet, animated: true)
+                
+            })
+            .disposed(by: disposeBag)
     }
 }

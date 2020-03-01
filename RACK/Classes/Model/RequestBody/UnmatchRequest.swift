@@ -18,7 +18,7 @@ struct UnmatchRequest: APIRequestBody {
     }
     
     var url: String {
-        return GlobalDefinitions.ChatService.restDomain + "/api/unmatch"
+        return GlobalDefinitions.ChatService.restDomain + "/api/v1/rooms/unmatch"
     }
     
     var method: HTTPMethod {
@@ -29,7 +29,7 @@ struct UnmatchRequest: APIRequestBody {
         return [
             "app_key": GlobalDefinitions.ChatService.appKey,
             "token": userToken,
-            "chatId": chatId
+            "room": chatId
         ]
     }
 }

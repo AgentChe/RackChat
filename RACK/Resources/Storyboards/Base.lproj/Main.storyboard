@@ -1278,7 +1278,6 @@
                         <outlet property="newSearchView" destination="ktA-v5-Hj0" id="BEw-Yz-akX"/>
                         <outlet property="swipeView" destination="Wm1-Dk-pIE" id="NZU-wM-Q1H"/>
                         <outlet property="tableView" destination="OLO-K4-8zd" id="OVo-2W-Lzh"/>
-                        <segue destination="Qia-6r-ybb" kind="show" identifier="chat" id="Jgy-0e-2GP"/>
                         <segue destination="KYN-wJ-3pZ" kind="presentation" identifier="paygate" modalPresentationStyle="overCurrentContext" modalTransitionStyle="crossDissolve" id="1DR-ZG-w8V"/>
                         <segue destination="Hu7-gY-2hR" kind="presentation" identifier="search" modalPresentationStyle="overCurrentContext" modalTransitionStyle="coverVertical" id="dR3-Eg-vK7"/>
                     </connections>
@@ -1323,14 +1322,6 @@
                 </view>
             </objects>
             <point key="canvasLocation" x="1048" y="125"/>
-        </scene>
-        <!--Chat-->
-        <scene sceneID="NdR-nE-mOn">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Chat" id="Qia-6r-ybb" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="4aq-Nt-GC4" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1049" y="506"/>
         </scene>
         <!--Push notifications-->
         <scene sceneID="qsi-PO-8nu">

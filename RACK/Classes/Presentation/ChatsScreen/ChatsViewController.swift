@@ -39,7 +39,8 @@ final class ChatsViewController: UIViewController {
         
         tableView.didSelectChat
             .subscribe(onNext: { [weak self] chat in
-                self?.performSegue(withIdentifier: "chat", sender: chat)
+                let vc = ChatViewController(chat: chat)
+                self?.navigationController?.pushViewController(vc, animated: true)
             })
             .disposed(by: disposeBag)
         
@@ -102,13 +103,6 @@ final class ChatsViewController: UIViewController {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "chat" {
-            if let chat = sender as? AKChat {
-                let chatVC = segue.destination as! ChatViewController
-                chatVC.bind(chat: chat)
-            }
-        }
-        
         if segue.identifier == "search" {
             let searchView: MatchViewController = segue.destination as! MatchViewController
             searchView.delegate = self

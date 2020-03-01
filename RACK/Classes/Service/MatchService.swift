@@ -16,4 +16,12 @@ final class MatchService {
             .callServerApi(requestBody: request)
             .map { _ in Void() }
     }
+    
+    static func createReport(chatId: String, report: ReportViewController.Report) -> Single<Void> {
+        let request = CreateReportRequest(userToken: SessionService.userToken, chatId: chatId, report: report)
+        
+        return RestAPITransport()
+            .callServerApi(requestBody: request)
+            .map { _ in Void() }
+    }
 }

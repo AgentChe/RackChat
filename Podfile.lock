@@ -125,7 +125,6 @@ PODS:
   - Realm/Headers (3.19.1)
   - RealmSwift (3.19.1):
     - Realm (= 3.19.1)
-  - ReverseExtension (0.5.0)
   - RxCocoa (5.0.1):
     - RxRelay (~> 5)
     - RxSwift (~> 5)
@@ -158,7 +157,6 @@ DEPENDENCIES:
   - PromiseKit
   - ReachabilitySwift
   - RealmSwift
-  - ReverseExtension (from `https://github.com/alexdelarge05/ReverseExtension.git`, commit `f46463468b608c9189846c374863cdeb03f15bb4`)
   - RxCocoa
   - RxSwift
   - Starscream
@@ -208,16 +206,6 @@ SPEC REPOS:
     - SwiftyStoreKit
     - TKImageShowing
 
-EXTERNAL SOURCES:
-  ReverseExtension:
-    :commit: f46463468b608c9189846c374863cdeb03f15bb4
-    :git: https://github.com/alexdelarge05/ReverseExtension.git
-
-CHECKOUT OPTIONS:
-  ReverseExtension:
-    :commit: f46463468b608c9189846c374863cdeb03f15bb4
-    :git: https://github.com/alexdelarge05/ReverseExtension.git
-
 SPEC CHECKSUMS:
   Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
   AlamofireImage: be9963c6582d68b39e89191f64c82a7d7bf40fdd
@@ -251,7 +239,6 @@ SPEC CHECKSUMS:
   ReachabilitySwift: 985039c6f7b23a1da463388634119492ff86c825
   Realm: fb377747e694c7deb62d402400454134fe321bee
   RealmSwift: 1302b0ab60f3105a2b214a735eeb0938607cf16b
-  ReverseExtension: e658309467ab80870648e32069d14b2ff4a09863
   RxCocoa: e741b9749968e8a143e2b787f1dfbff2b63d0a5c
   RxRelay: 89d54507f4fd4d969e6ec1d4bd7f3673640b4640
   RxSwift: e2dc62b366a3adf6a0be44ba9f405efd4c94e0c4
@@ -261,6 +248,6 @@ SPEC CHECKSUMS:
   SwiftyStoreKit: 033d06b6f87955405d3f844a18a7687c2438592a
   TKImageShowing: 771d31183fd6533509421d2d137d4a59e771fc9e
 
-PODFILE CHECKSUM: 30edc171ec605d954d9f11844c6156615c18aaa0
+PODFILE CHECKSUM: 24dab7ea0036860e1f4da96f9196bd7dd150f81e
 
 COCOAPODS: 1.8.4

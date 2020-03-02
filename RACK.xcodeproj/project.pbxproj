@@ -98,7 +98,6 @@
 		13FF93F0231D63510095D05A /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13FF93EF231D63510095D05A /* NotificationManager.swift */; };
 		440E2CDC8C038365881F6E9C /* Pods_RACK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 314E2BDB4CC11D3E4362E68E /* Pods_RACK.framework */; };
 		4731754723F583F90004705E /* UIDevice+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4731754523F583F90004705E /* UIDevice+Ext.swift */; };
-		4731754823F583F90004705E /* UIFont+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4731754623F583F90004705E /* UIFont+Ext.swift */; };
 		4772C9F123F2E7C100B905CE /* SetAgeAndCityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4772C9F023F2E7C100B905CE /* SetAgeAndCityViewController.swift */; };
 		4772C9F423F2EAD000B905CE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4772C9F323F2EAD000B905CE /* Assets.xcassets */; };
 		965452CC23FAB85E007697C4 /* RestAPITransport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965452CA23FAB85E007697C4 /* RestAPITransport.swift */; };
@@ -112,6 +111,11 @@
 		9654533323FABA66007697C4 /* DataBaseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965452FD23FABA66007697C4 /* DataBaseError.swift */; };
 		96669A5E240BC8C50023A8B9 /* CreateReportRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96669A5D240BC8C50023A8B9 /* CreateReportRequest.swift */; };
 		96669A60240BCDE30023A8B9 /* ReportViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96669A5F240BCDE30023A8B9 /* ReportViewModel.swift */; };
+		96669A65240C23AE0023A8B9 /* ChatInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96669A64240C23AE0023A8B9 /* ChatInputView.swift */; };
+		96669A68240C23F90023A8B9 /* ChatAttachButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96669A67240C23F90023A8B9 /* ChatAttachButton.swift */; };
+		96669A6A240C37470023A8B9 /* ChatInpuTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96669A69240C37470023A8B9 /* ChatInpuTextView.swift */; };
+		96669A6E240D186C0023A8B9 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96669A6D240D186C0023A8B9 /* Fonts.swift */; };
+		96669A6F240D1CBF0023A8B9 /* SF-Pro-Text-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 96669A6C240D163C0023A8B9 /* SF-Pro-Text-Regular.otf */; };
 		968FE7BB240ACB4B00C3D5C2 /* ChatsTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 968FE7BA240ACB4B00C3D5C2 /* ChatsTableView.swift */; };
 		968FE7BE240B0DCE00C3D5C2 /* ReportViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 968FE7BD240B0DCE00C3D5C2 /* ReportViewController.xib */; };
 		968FE7C1240B0F8300C3D5C2 /* UnmatchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 968FE7C0240B0F8300C3D5C2 /* UnmatchViewController.xib */; };
@@ -308,7 +312,6 @@
 		314E2BDB4CC11D3E4362E68E /* Pods_RACK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RACK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D1923581EA23AB25983DE0B /* Pods-RACK.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RACK.release.xcconfig"; path = "Target Support Files/Pods-RACK/Pods-RACK.release.xcconfig"; sourceTree = "<group>"; };
 		4731754523F583F90004705E /* UIDevice+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIDevice+Ext.swift"; sourceTree = "<group>"; };
-		4731754623F583F90004705E /* UIFont+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+Ext.swift"; sourceTree = "<group>"; };
 		4772C9F023F2E7C100B905CE /* SetAgeAndCityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetAgeAndCityViewController.swift; sourceTree = "<group>"; };
 		4772C9F323F2EAD000B905CE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4F45303A065C76D40FCA6BD1 /* Pods-RACKTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RACKTests.debug.xcconfig"; path = "Target Support Files/Pods-RACKTests/Pods-RACKTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -326,6 +329,11 @@
 		965452FD23FABA66007697C4 /* DataBaseError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataBaseError.swift; sourceTree = "<group>"; };
 		96669A5D240BC8C50023A8B9 /* CreateReportRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateReportRequest.swift; sourceTree = "<group>"; };
 		96669A5F240BCDE30023A8B9 /* ReportViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportViewModel.swift; sourceTree = "<group>"; };
+		96669A64240C23AE0023A8B9 /* ChatInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatInputView.swift; sourceTree = "<group>"; };
+		96669A67240C23F90023A8B9 /* ChatAttachButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatAttachButton.swift; sourceTree = "<group>"; };
+		96669A69240C37470023A8B9 /* ChatInpuTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatInpuTextView.swift; sourceTree = "<group>"; };
+		96669A6C240D163C0023A8B9 /* SF-Pro-Text-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Regular.otf"; sourceTree = "<group>"; };
+		96669A6D240D186C0023A8B9 /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		968FE7BA240ACB4B00C3D5C2 /* ChatsTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsTableView.swift; sourceTree = "<group>"; };
 		968FE7BD240B0DCE00C3D5C2 /* ReportViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReportViewController.xib; sourceTree = "<group>"; };
 		968FE7C0240B0F8300C3D5C2 /* UnmatchViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UnmatchViewController.xib; sourceTree = "<group>"; };
@@ -490,6 +498,7 @@
 		1393CD9322C752CD00422529 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				96669A6B240D162F0023A8B9 /* SFProText */,
 				131DB44E23047B5D00CE56A9 /* OpenSans-Bold.ttf */,
 				1386775822C790F400F3AD84 /* Montserrat-SemiBold.ttf */,
 				1393CD9A22C787CF00422529 /* OpenSans-Semibold.ttf */,
@@ -551,7 +560,6 @@
 				969DA2DF23FF488400DC42D1 /* Extension */,
 				13D4054722C61024004FC70D /* Core */,
 				4731754523F583F90004705E /* UIDevice+Ext.swift */,
-				4731754623F583F90004705E /* UIFont+Ext.swift */,
 				13602F6822EB2BCC0099BF1F /* TransitionAnimator.swift */,
 				13602F6922EB2BCE0099BF1F /* TransitionCoordinator.swift */,
 				13D4055022C638B9004FC70D /* AppDelegate+Root.swift */,
@@ -788,6 +796,32 @@
 			path = Classes;
 			sourceTree = "<group>";
 		};
+		96669A63240C239E0023A8B9 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				96669A66240C23DD0023A8B9 /* ChatinputView */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		96669A66240C23DD0023A8B9 /* ChatinputView */ = {
+			isa = PBXGroup;
+			children = (
+				96669A64240C23AE0023A8B9 /* ChatInputView.swift */,
+				96669A67240C23F90023A8B9 /* ChatAttachButton.swift */,
+				96669A69240C37470023A8B9 /* ChatInpuTextView.swift */,
+			);
+			path = ChatinputView;
+			sourceTree = "<group>";
+		};
+		96669A6B240D162F0023A8B9 /* SFProText */ = {
+			isa = PBXGroup;
+			children = (
+				96669A6C240D163C0023A8B9 /* SF-Pro-Text-Regular.otf */,
+			);
+			path = SFProText;
+			sourceTree = "<group>";
+		};
 		968FE7B9240ACB3100C3D5C2 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
@@ -845,6 +879,7 @@
 				969DA30523FF48B100DC42D1 /* SizeUtils.swift */,
 				969DA30323FF48AC00DC42D1 /* UIDeviceUtils.swift */,
 				969DA30123FF48A500DC42D1 /* TextAttributes.swift */,
+				96669A6D240D186C0023A8B9 /* Fonts.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -852,6 +887,7 @@
 		969DA3072400533200DC42D1 /* ChatScreen */ = {
 			isa = PBXGroup;
 			children = (
+				96669A63240C239E0023A8B9 /* Views */,
 				969DA3082400534100DC42D1 /* TableView */,
 				134901C12306DE0F00684901 /* ChatViewController.swift */,
 				969DA30A240056F700DC42D1 /* ChatViewModel.swift */,
@@ -1204,6 +1240,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				96669A6F240D1CBF0023A8B9 /* SF-Pro-Text-Regular.otf in Resources */,
 				96F00583240441FC0058F7C9 /* MyImageTableCell.xib in Resources */,
 				13E4D35A22DA2AD800442BF9 /* СhatsTableViewCell.xib in Resources */,
 				134901D72306E0CF00684901 /* InterlocutorTextTableCell.xib in Resources */,
@@ -1345,12 +1382,12 @@
 				969DA4492401445E00DC42D1 /* SearchTask.swift in Sources */,
 				13E4D36222DA352F00442BF9 /* SearchViewController.swift in Sources */,
 				96BF8CAC240426470026F3CE /* ChatTableCell.swift in Sources */,
+				96669A65240C23AE0023A8B9 /* ChatInputView.swift in Sources */,
 				13E4D35022DA2A2A00442BF9 /* СhatsTableViewCell.swift in Sources */,
 				969DA44C2401445E00DC42D1 /* SystemResponce.swift in Sources */,
 				969DA4412401445E00DC42D1 /* Models.swift in Sources */,
 				96BF8CA62403E18B0026F3CE /* PaginatedDataLoader.swift in Sources */,
 				969DA4252401445E00DC42D1 /* RechbilityManager.swift in Sources */,
-				4731754823F583F90004705E /* UIFont+Ext.swift in Sources */,
 				13CC5593231E427A00A10D45 /* NotificationRequestViewController.swift in Sources */,
 				969DA4472401445E00DC42D1 /* SearchWorker.swift in Sources */,
 				13A30BE4231E99A400CF6248 /* NotifySetingUiTableViewCell.swift in Sources */,
@@ -1367,6 +1404,7 @@
 				1319227F236A1D8B00C057B8 /* UIView+CornerRadius.swift in Sources */,
 				969DA44F2401445E00DC42D1 /* CitiesResponce.swift in Sources */,
 				969DA2FF23FF488900DC42D1 /* RxActivityIndicator.swift in Sources */,
+				96669A68240C23F90023A8B9 /* ChatAttachButton.swift in Sources */,
 				13F9B34423262C5600072159 /* LeftView.swift in Sources */,
 				13FD701322EBA36900CE225C /* HelloViewController.swift in Sources */,
 				969DA4272401445E00DC42D1 /* Settings.swift in Sources */,
@@ -1409,9 +1447,11 @@
 				13BA7A912326EF7A00EB5A0E /* RegistrationPaymentViewController.swift in Sources */,
 				1393CD9222C74FEB00422529 /* RegistrationNavigationController.swift in Sources */,
 				969DA4512401445E00DC42D1 /* MarketingTask.swift in Sources */,
+				96669A6A240C37470023A8B9 /* ChatInpuTextView.swift in Sources */,
 				969DA4532401445E00DC42D1 /* UIDevise+models.swift in Sources */,
 				969DA4152401445E00DC42D1 /* DKChatBottomView.swift in Sources */,
 				969DA4332401445E00DC42D1 /* DatingKit.swift in Sources */,
+				96669A6E240D186C0023A8B9 /* Fonts.swift in Sources */,
 				13F9B34623262CB900072159 /* RightView.swift in Sources */,
 				13D4054D22C63860004FC70D /* RootViewController.swift in Sources */,
 				13CB670D22F5E12300B79622 /* UIImageView+Download.swift in Sources */,

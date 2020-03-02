@@ -18,9 +18,13 @@ final class ChatViewController: UIViewController {
         return view
     }()
     
-//    @IBOutlet private weak var input: DKChatBottomView!
-//    @IBOutlet private weak var menuCell: DKMenuCell!
-//    @IBOutlet private weak var inputContainerViewBottom: NSLayoutConstraint!
+    private lazy var chatInputView: ChatInputView = {
+        let view = ChatInputView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    private var chatInputViewBottomConstraint: NSLayoutConstraint!
     
     private let disposeBag = DisposeBag()
     
@@ -45,7 +49,7 @@ final class ChatViewController: UIViewController {
             overrideUserInterfaceStyle = .light
         }
         
-        navigationItem.largeTitleDisplayMode = .never
+        view.backgroundColor = .white
         
         addSubviews()
         
@@ -60,7 +64,7 @@ final class ChatViewController: UIViewController {
                 if inset > 0, UIDevice.current.hasBottomNotch {
                     inset -= 35
                 }
-//                self?.inputContainerViewBottom.constant = inset
+                self?.chatInputViewBottomConstraint.constant = inset
                 
                 UIView.animate(withDuration: 0.25, animations: { [weak self] in
                     self?.view.layoutIfNeeded()
@@ -81,18 +85,6 @@ final class ChatViewController: UIViewController {
                 self?.tableView.add(messages: newMessages)
             })
             .disposed(by: disposeBag)
-        
-//        input.sendButton.rx.tap
-//            .subscribe(onNext: { [weak self] in
-//                guard let text = self?.input.text.trimmingCharacters(in: .whitespaces), !text.isEmpty else {
-//                    return
-//                }
-//
-//                self?.viewModel.sendText.accept(text)
-//
-//                self?.input.text = ""
-//            })
-//            .disposed(by: disposeBag)
             
         let hideKeyboardGesture = UITapGestureRecognizer()
         view.addGestureRecognizer(hideKeyboardGesture)
@@ -117,12 +109,18 @@ final class ChatViewController: UIViewController {
     }
     
     private func addSubviews() {
-        view.insertSubview(tableView, at: 0)
+        view.addSubview(tableView)
+        view.addSubview(chatInputView)
         
         tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        tableView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+        tableView.bottomAnchor.constraint(equalTo: chatInputView.topAnchor).isActive = true
+        
+        chatInputView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        chatInputView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        chatInputViewBottomConstraint = chatInputView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+        chatInputViewBottomConstraint.isActive = true
         
         addInterlocutorImage()
     }

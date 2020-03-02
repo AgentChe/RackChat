@@ -52,8 +52,8 @@ public extension UIView {
     
     func rotate(_ angle: CGFloat) {
         let radians = angle / 180.0 * CGFloat.pi
-        let rotation = self.transform.rotated(by: radians)
-        self.transform = rotation
+        let rotation = transform.rotated(by: radians)
+        transform = rotation
     }
     
 }

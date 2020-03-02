@@ -60,11 +60,12 @@ final class ChatViewModel {
             }
         
         let viewed = viewedMessage
+            .filter { !$0.isOwner }
             .debounce(RxTimeInterval.milliseconds(500), scheduler: SerialDispatchQueueScheduler.init(qos: .default))
             .flatMap { viewedMessage in
                 Completable.create { [weak self] event in
                     self?.chatService.send(action: .markRead(messageId: viewedMessage.id))
-                
+                    
                     event(.completed)
                 
                     return Disposables.create()

@@ -74,8 +74,17 @@ class SetAgeAndCityViewController: UIViewController, UIGestureRecognizerDelegate
             bottomOffsetConstraint.constant = 20
         }
         
-        titleLabel.font = titleLabel.font.properForDevice
-        subtitleLabel.font = subtitleLabel.font.properForDevice
+        func properForDevice(font: UIFont) -> UIFont {
+            if UIDevice.current.small {
+                let smallerSize = font.pointSize * 0.8
+                return font.withSize(smallerSize)
+            } else {
+                return font
+            }
+        }
+        
+        titleLabel.font = properForDevice(font: titleLabel.font)
+        subtitleLabel.font = properForDevice(font: subtitleLabel.font) 
 
         dateOfBirthTextField.delegate = self
         dateOfBirthTextField.setLeftPaddingPoints(12)

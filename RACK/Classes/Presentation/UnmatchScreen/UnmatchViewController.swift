@@ -21,9 +21,15 @@ final class UnmatchViewController: UIViewController {
     
     private let disposeBag = DisposeBag()
     
-    func setup(chatId: String, interlocutorAvatarUrl: URL?) {
+    init(chatId: String, interlocutorAvatarUrl: URL?) {
         self.chatId = chatId
         self.interlocutorAvatarUrl = interlocutorAvatarUrl
+        
+        super.init(nibName: "UnmatchViewController", bundle: .main)
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
     }
     
     override func viewDidLoad() {
@@ -40,7 +46,7 @@ final class UnmatchViewController: UIViewController {
         descriptionLabel.text = "unmatch_message".localized
         
         yesButton.rx.tap
-            .flatMapLatest { [chatId] in MatchService.unmatch(chatId: chatId!) }
+            .flatMapLatest { [unowned self] in MatchService.unmatch(chatId: self.chatId) }
             .subscribe(onNext: { [weak self] in
                 self?.dismiss(animated: true)
             })

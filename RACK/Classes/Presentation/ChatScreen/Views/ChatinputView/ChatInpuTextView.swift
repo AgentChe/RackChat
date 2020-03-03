@@ -8,6 +8,7 @@
 
 import UIKit
 import RxSwift
+import RxCocoa
 
 private final class PlaceholderTextView: UITextView, UITextViewDelegate {
     private lazy var placeholder = "chat_input_placeholder".localized
@@ -83,6 +84,18 @@ final class ChatInpuTextView: UIView {
         if currentLinesCount > 1 && currentLinesCount <= ChatInpuTextView.maxLines {
             textView.setContentOffset(.zero, animated: true)
         }
+    }
+    
+    var tapSend: Signal<Void> {
+        button.rx.tap.asSignal()
+    }
+    
+    var text: Observable<String?> {
+        textView.rx.text.asObservable()
+    }
+    
+    func set(text: String) {
+        textView.text = text
     }
     
     private func configure() {

@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 final class ChatInputView: UIView {
     private lazy var attachButton: ChatAttachButton = {
@@ -23,6 +25,10 @@ final class ChatInputView: UIView {
         return view
     }()
     
+    private(set) lazy var attachTapped = attachButton.event.asSignal()
+    private(set) lazy var sendTapped = inputTextView.tapSend
+    private(set) lazy var text = inputTextView.text
+    
     override init(frame: CGRect) {
         super.init(frame: .zero)
         
@@ -33,9 +39,16 @@ final class ChatInputView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func set(attachState: ChatAttachButton.State) {
+        attachButton.apply(state: attachState)
+    }
+    
+    func set(text: String) {
+        inputTextView.set(text: text)
+    }
+    
     private func configure() {
         addSubviews()
-        addActions()
     }
     
     private func addSubviews() {
@@ -51,9 +64,5 @@ final class ChatInputView: UIView {
         inputTextView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8).isActive = true
         inputTextView.topAnchor.constraint(equalTo: topAnchor, constant: 8).isActive = true
         inputTextView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8).isActive = true
-    }
-    
-    private func addActions() {
-        
     }
 }

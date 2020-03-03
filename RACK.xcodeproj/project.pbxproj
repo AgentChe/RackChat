@@ -116,6 +116,8 @@
 		96669A6A240C37470023A8B9 /* ChatInpuTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96669A69240C37470023A8B9 /* ChatInpuTextView.swift */; };
 		96669A6E240D186C0023A8B9 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96669A6D240D186C0023A8B9 /* Fonts.swift */; };
 		96669A6F240D1CBF0023A8B9 /* SF-Pro-Text-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 96669A6C240D163C0023A8B9 /* SF-Pro-Text-Regular.otf */; };
+		96669A71240EEBD30023A8B9 /* AttachView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96669A70240EEBD30023A8B9 /* AttachView.swift */; };
+		96669A73240EFAB10023A8B9 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96669A72240EFAB10023A8B9 /* ImagePicker.swift */; };
 		968FE7BB240ACB4B00C3D5C2 /* ChatsTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 968FE7BA240ACB4B00C3D5C2 /* ChatsTableView.swift */; };
 		968FE7BE240B0DCE00C3D5C2 /* ReportViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 968FE7BD240B0DCE00C3D5C2 /* ReportViewController.xib */; };
 		968FE7C1240B0F8300C3D5C2 /* UnmatchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 968FE7C0240B0F8300C3D5C2 /* UnmatchViewController.xib */; };
@@ -334,6 +336,8 @@
 		96669A69240C37470023A8B9 /* ChatInpuTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatInpuTextView.swift; sourceTree = "<group>"; };
 		96669A6C240D163C0023A8B9 /* SF-Pro-Text-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Regular.otf"; sourceTree = "<group>"; };
 		96669A6D240D186C0023A8B9 /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
+		96669A70240EEBD30023A8B9 /* AttachView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachView.swift; sourceTree = "<group>"; };
+		96669A72240EFAB10023A8B9 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		968FE7BA240ACB4B00C3D5C2 /* ChatsTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsTableView.swift; sourceTree = "<group>"; };
 		968FE7BD240B0DCE00C3D5C2 /* ReportViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReportViewController.xib; sourceTree = "<group>"; };
 		968FE7C0240B0F8300C3D5C2 /* UnmatchViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UnmatchViewController.xib; sourceTree = "<group>"; };
@@ -800,6 +804,8 @@
 			isa = PBXGroup;
 			children = (
 				96669A66240C23DD0023A8B9 /* ChatinputView */,
+				96669A70240EEBD30023A8B9 /* AttachView.swift */,
+				96669A72240EFAB10023A8B9 /* ImagePicker.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1385,6 +1391,7 @@
 				96669A65240C23AE0023A8B9 /* ChatInputView.swift in Sources */,
 				13E4D35022DA2A2A00442BF9 /* СhatsTableViewCell.swift in Sources */,
 				969DA44C2401445E00DC42D1 /* SystemResponce.swift in Sources */,
+				96669A71240EEBD30023A8B9 /* AttachView.swift in Sources */,
 				969DA4412401445E00DC42D1 /* Models.swift in Sources */,
 				96BF8CA62403E18B0026F3CE /* PaginatedDataLoader.swift in Sources */,
 				969DA4252401445E00DC42D1 /* RechbilityManager.swift in Sources */,
@@ -1397,6 +1404,7 @@
 				969DA41A2401445E00DC42D1 /* DKChatPresenter.swift in Sources */,
 				969DA4442401445E00DC42D1 /* User.swift in Sources */,
 				969DA4462401445E00DC42D1 /* UserResponce.swift in Sources */,
+				96669A73240EFAB10023A8B9 /* ImagePicker.swift in Sources */,
 				969DA41F2401445E00DC42D1 /* DKChatUIModels.swift in Sources */,
 				13602F6D22EB2DAE0099BF1F /* LastTestViewController.swift in Sources */,
 				96A4D5CA23FDFCD700E24E13 /* AKChatMessage.swift in Sources */,

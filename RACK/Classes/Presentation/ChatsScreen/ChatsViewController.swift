@@ -57,9 +57,15 @@ final class ChatsViewController: UIViewController {
             })
             .disposed(by: disposeBag)
         
-        viewModel.changedChat()
-            .drive(onNext: { [weak self] chat in
-                self?.tableView.replace(chat: chat)
+        viewModel.chatEvent()
+            .drive(onNext: { [weak self] event in
+                switch event {
+                case .changedChat(let chat):
+                    self?.tableView.replace(chat: chat)
+                case .removedChat(let chat):
+                    self?.tableView.remove(chat: chat)
+                }
+                
             })
             .disposed(by: disposeBag)
     }

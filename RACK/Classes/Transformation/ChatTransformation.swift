@@ -34,6 +34,12 @@ final class ChatTransformation {
             }
             
             return .changedChat(chat)
+        case "remove":
+            guard let data = result["result"] as? [String: Any], let chat = AKChat.parseFromDictionary(any: data) else {
+                return nil
+            }
+            
+            return .removedChat(chat)
         default:
             return nil 
         }
@@ -56,6 +62,12 @@ final class ChatTransformation {
             }
             
             return .newMessage(message)
+        case "remove":
+            guard let data = result["result"] as? [String: Any], let chat = AKChat.parseFromDictionary(any: data) else {
+                return nil
+            }
+            
+            return .removedChat(chat)
         default:
             return nil
         }

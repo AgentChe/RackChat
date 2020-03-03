@@ -12,6 +12,7 @@ import Starscream
 final class ChatsService {
     enum Event {
         case changedChat(AKChat)
+        case removedChat(AKChat)
     }
     
     private lazy var socket: WebSocket = {
@@ -45,6 +46,7 @@ final class ChatsService {
             
             return Disposables.create()
         }
+        .share(replay: 1, scope: .forever)
     }
 }
 

@@ -22,15 +22,9 @@ final class ChatsViewModel {
             .asDriver(onErrorJustReturn: [])
     }
     
-    func changedChat() -> Driver<AKChat> {
+    func chatEvent() -> Driver<ChatsService.Event> {
         return chatsService
             .event
-            .flatMap { event -> Observable<AKChat> in
-                switch event {
-                case .changedChat(let chat):
-                    return .just(chat)
-                }
-            }
             .asDriver(onErrorDriveWith: .never())
     }
 }

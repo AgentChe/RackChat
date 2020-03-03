@@ -18,6 +18,7 @@ final class ChatService {
     
     enum Event {
         case newMessage(AKMessage)
+        case removedChat(AKChat)
     }
     
     private let chat: AKChat
@@ -68,6 +69,7 @@ final class ChatService {
             
             return Disposables.create()
         }
+        .share(replay: 1, scope: .forever)
     }
 }
 

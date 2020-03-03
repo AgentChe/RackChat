@@ -33,6 +33,23 @@ final class ChatViewModel {
         chatService.disconnect()
     }
     
+    func chatRemoved() -> Signal<Void> {
+        return chatService.event
+            .flatMap { [weak self] event -> Observable<Void> in
+                switch event {
+                case .removedChat(let chat):
+                    guard self?.chat.id == chat.id else {
+                        return .never()
+                    }
+                    
+                    return .just(Void())
+                default:
+                    return .never()
+                }
+            }
+            .asSignal(onErrorSignalWith: .never())
+    }
+    
     func sender() -> Observable<Never> {
         let text = sendText
             .concatMap { text in
@@ -108,6 +125,8 @@ final class ChatViewModel {
                 switch event {
                 case .newMessage(let message):
                     return .just(message)
+                default:
+                    return .never()
                 }
             }
     }

@@ -76,6 +76,8 @@ final class ChatAttachButton: UIView {
         tapGesture.rx.event
             .throttle(RxTimeInterval.milliseconds(250), scheduler: MainScheduler.asyncInstance)
             .subscribe(onNext: { [unowned self] _ in
+                let currentState = self.state
+                
                 switch self.state {
                 case .attach:
                     self.state = .close
@@ -84,7 +86,7 @@ final class ChatAttachButton: UIView {
                 }
                 
                 self.exchange {
-                    self.event.accept(self.state)
+                    self.event.accept(currentState)
                 }
             })
             .disposed(by: disposeBag)

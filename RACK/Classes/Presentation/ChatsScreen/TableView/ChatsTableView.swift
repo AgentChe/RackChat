@@ -60,4 +60,16 @@ final class ChatsTableView: UITableView, UITableViewDataSource, UITableViewDeleg
             self?.reloadRows(at: [IndexPath(row: index, section: 0)], with: .none)
         }
     }
+    
+    func remove(chat: AKChat) {
+        itemsQueue.sync { [weak self] in
+            guard let index = self?.items.firstIndex(where: { $0.id == chat.id }) else {
+                return
+            }
+            
+            self?.items.remove(at: index)
+            
+            self?.deleteRows(at: [IndexPath(row: index, section: 0)], with: .none)
+        }
+    }
 }

@@ -9,7 +9,6 @@ target 'RACK' do
   pod 'RealmSwift'
 
   pod 'AlamofireImage', '~> 3.5'
-  pod 'TKImageShowing'
   pod 'SwiftyStoreKit'
   pod 'Firebase/Messaging'
   pod 'Firebase/Analytics'

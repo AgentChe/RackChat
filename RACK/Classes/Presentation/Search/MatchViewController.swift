@@ -62,21 +62,17 @@ class MatchViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         if #available(iOS 13.0, *) {
             overrideUserInterfaceStyle = .light
         }
-        
-         NotificationCenter.default.addObserver(self, selector: #selector(handleMatch), name: NotificationManager.kMatchNotify, object: nil)
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(close),
-                                                      name: NotificationManager.kMessageNotify,
-                                                      object: nil)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        DatingKit.chat.disconnect()
+        
         UIApplication.shared.isIdleTimerDisabled = true
+        
         DatingKit.user.show { (userShow, status) in
             if status == .noInternetConnection {
                 let banner = NotificationBanner(customView: NoConnectionBannerView.instanceFromNib())

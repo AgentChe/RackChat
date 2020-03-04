@@ -48,12 +48,6 @@ class RequestTool {
         
         Alamofire.request(requestURL, method: .post, parameters: params , encoding: URLEncoding.default, headers: nil) .responseJSON { (response) in
             if response.result.isSuccess {
-                debugPrint("==============================")
-                debugPrint("parameters: %@", params)
-                debugPrint("request: %@", requestURL)
-                debugPrint("REQUEST RESPONSE: ")
-                debugPrint(response.result)
-                debugPrint("==============================")
                 completion(parcer(response.data!))
             } else {
                 completion(nil)
@@ -68,12 +62,6 @@ class RequestTool {
         
         Alamofire.request(requestURL, method: .post, parameters: parameters , encoding: URLEncoding.default, headers: nil) .responseJSON { (response) in
             if response.result.isSuccess {
-                debugPrint("==============================")
-                debugPrint("parameters: %@", parameters)
-                debugPrint("request: %@", requestURL)
-                debugPrint("REQUEST RESPONSE: ")
-                debugPrint(response.result)
-                debugPrint("==============================")
                 completion(request.parse(data: response.data!))
             } else {
                 completion(nil)
@@ -113,14 +101,6 @@ enum RequestGroup: Int, CaseIterable {
     case searchCheckMatch
     case searchSayYes
     case searchSayNo
-    case chatsList
-    case chatsGet
-    case chatsUnread
-    case chatsSend
-    case chatsHistory
-    case chatsWasRead
-    case chatsReport
-    case chatsUnmatch
     case purchaseGate
     case purchaseValidate
     case purchaseHack
@@ -149,22 +129,6 @@ enum RequestGroup: Int, CaseIterable {
             return "/auth/facebook_login_token"
         case .usersLogout:
             return "/users/delete_account"
-        case .chatsWasRead:
-            return "/chats/mark"
-        case .chatsList:
-            return "/chats/list"
-        case .chatsGet:
-            return "/chats/get"
-        case .chatsHistory:
-            return "/chats/history"
-        case .chatsUnread:
-            return "/chats/unread"
-        case .chatsSend:
-            return "/chats/message"
-        case .chatsReport:
-            return "/chats/report"
-        case .chatsUnmatch:
-            return "/chats/unmatch"
         case .purchaseGate:
             return "/payments/paygate"
         case .purchaseValidate:
@@ -193,63 +157,6 @@ public class RequestManager {
         return Bundle.main.object(forInfoDictionaryKey: "api_key") as! String
     }
     
-    
-    func upload(image: UIImage, with parameters: [String: Any], completion: @escaping(Any?) -> Void) {
-        let params = get(baseParameters: parameters, for: .chatsSend)
-        let requestURL =  baseURL + RequestGroup.chatsSend.getRequest
-        let imageData: Data = image.jpegData(compressionQuality: 0.5)!
-        
-         weak var weakSelf = self
-        Alamofire.upload(multipartFormData: { (multipartFormData) in
-            
-            multipartFormData.append(imageData, withName: "message", fileName: "swift_file\(arc4random_uniform(100)).jpeg", mimeType: "image/jpeg")
-            
-            for key in params.keys{
-                let name = String(key)
-                
-                if let val = params[name] as? String{
-                    multipartFormData.append(val.data(using: .utf8)!, withName: name)
-                }
-                
-                if let val = params[name] as? Int {
-                    multipartFormData.append("\(val)".data(using: String.Encoding.utf8)!, withName: name)
-                }
-                
-                if let val = params[name] as? Double {
-                    let intVal: Int = Int(val)
-                    multipartFormData.append("\(intVal)".data(using: String.Encoding.utf8)!, withName: name)
-                }
-            }
-        }, to:requestURL)
-        { (result) in
-            switch result {
-            case .success(let upload, _, _):
-                
-                upload.uploadProgress(closure: { (Progress) in
-                })
-                
-                upload.responseJSON { response in
-                    if response.result.isSuccess {
-                        debugPrint("UPLOAD REQUEST")
-                        debugPrint("==============================")
-                        debugPrint("parameters: %@", params)
-                        debugPrint("request: %@", requestURL)
-                        debugPrint("REQUEST RESPONSE: ")
-                        debugPrint(response.result)
-                        debugPrint("==============================")
-                        completion(weakSelf!.parse(response.data!, for: .chatsSend))
-                    } else {
-                        completion(nil)
-                    }
-                }
-                
-            case .failure(let encodingError):
-                completion(nil)
-            }
-            
-        }
-    }
-    
     func getParameters(for request: APIRequestV1) -> [String : Any] {
         var returnedParameters:[String: Any] = request.parameters
         returnedParameters["_api_key"] = apiKey
@@ -265,12 +172,6 @@ public class RequestManager {
         
         Alamofire.request(requestURL, method: .post, parameters: parameters , encoding: URLEncoding.default, headers: nil) .responseJSON { (response) in
             if response.result.isSuccess {
-                debugPrint("==============================")
-                debugPrint("parameters: %@", parameters)
-                debugPrint("request: %@", requestURL)
-                debugPrint("REQUEST RESPONSE: ")
-                debugPrint(response.result)
-                debugPrint("==============================")
                 completion(request.parse(data: response.data!))
             } else {
                 completion(nil)
@@ -287,13 +188,6 @@ public class RequestManager {
         Alamofire.request(requestURL, method: .post, parameters: parameters , encoding: URLEncoding.default, headers: nil) .responseJSON { (response) in
             
             if response.result.isSuccess {
-//                debugPrint(response.result)
-                debugPrint("==============================")
-                debugPrint("parameters: %@", parameters)
-                debugPrint("request: %@", requestURL)
-                debugPrint("REQUEST RESPONSE: ")
-                debugPrint(response.result)
-                debugPrint("==============================")
                 result(weakSelf!.parse(response.data!, for: request))
             } else {
                 result(nil)
@@ -326,7 +220,7 @@ public class RequestManager {
                 debugPrint(error.localizedDescription)
                 return nil
             }
-        case .usersGenerateCode, .chatsReport, .chatsUnmatch, .purchaseValidate, .purchaseHack:
+        case .usersGenerateCode, .purchaseValidate, .purchaseHack:
             do {
                 let response: Technical = try JSONDecoder().decode(Technical.self, from: data)
                 return response
@@ -403,31 +297,6 @@ public class RequestManager {
                 NotificationCenter.default.post(name: PaymentManager.needPayment, object: nil)
             }
             return response
-        case .chatsList:
-             do {
-                let response:MessageList = try JSONDecoder().decode(MessageList.self, from: data)
-                if response.needPayment {
-                    NotificationCenter.default.post(name: PaymentManager.needPayment, object: nil)
-                }
-                return response
-             } catch let error {
-                debugPrint(error.localizedDescription)
-                return nil
-            }
-        case .chatsUnread, .chatsHistory, .chatsGet:
-            let response: Messages = try! JSONDecoder().decode(Messages.self, from: data)
-            if response.needPayment {
-                NotificationCenter.default.post(name: PaymentManager.needPayment, object: nil)
-            }
-            return response
-        case .chatsSend:
-            let response: SendStruct = try! JSONDecoder().decode(SendStruct.self, from: data)
-            if response.needPayment {
-                NotificationCenter.default.post(name: PaymentManager.needPayment, object: nil)
-            }
-            return response
-        case .chatsWasRead:
-            return data
         case .purchaseGate:
             do {
             let response: PaymentResponse = try JSONDecoder().decode(PaymentResponse.self, from: data)

@@ -61,7 +61,7 @@ class SearchViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        DatingKit.chat.disconnect()
+        
          Amplitude.instance()?.log(event: .searchScr)
         if lookingView.alpha == 0.0 {
             activity.isHidden = false
@@ -203,10 +203,6 @@ class SearchViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(handlePush),
-                                               name: NotificationManager.kMessageNotify,
-                                               object: nil)
         
         if #available(iOS 13.0, *) {
             overrideUserInterfaceStyle = .light

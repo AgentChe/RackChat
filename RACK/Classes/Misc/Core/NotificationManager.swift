@@ -16,7 +16,6 @@ protocol NotificationDelegate: class {
 }
 
 enum PushType: Int {
-    case message = 1
     case match = 2
     case autoSearch = 3
     case marketing = 4
@@ -24,10 +23,6 @@ enum PushType: Int {
 }
 
 class NotificationManager: NSObject {
-    
-    static let kMessageNotify = Notification.Name("messageNotify")
-    static let kMatchNotify = Notification.Name("matchNotify")
-    
     static let kWasShow: String = "was_show_push_screen"
     static let shared: NotificationManager = NotificationManager()
     
@@ -76,21 +71,6 @@ class NotificationManager: NSObject {
                 _ = 0
             }
             
-            if pushType == .message {
-                
-                guard let chatIdSt: String = userInfo["chat_id"] as? String  else { return false }
-                guard let chatId: Int = Int(chatIdSt) else { return false }
-                guard let name: String = userInfo["name"] as? String else { return false }
-                guard let avatat: String = userInfo["avatar"] as? String else { return false }
-                
-                ScreenManager.shared.pushChat = ChatItem(chatID: chatId,
-                                                         partnerName: name,
-                                                         avatarURL: avatat)
-               return true
-
-                
-            }
-            
             if pushType == .match {
                 guard let match: String = userInfo["match_id"] as? String  else { return false }
                 guard let name: String = userInfo["name"] as? String  else { return false}
@@ -110,8 +90,6 @@ class NotificationManager: NSObject {
                                                      avatarEndColor: avatarEndColor,
                                                      partnerID: userID,
                                                      gender: .woman)
-                NotificationCenter.default.post(name: NotificationManager.kMatchNotify,
-                                                object: nil)
                 
                  return false
                 
@@ -208,23 +186,6 @@ class NotificationManager: NSObject {
                     _ = 0
                 }
                   
-                  if pushType == .message {
-                      
-                      guard let chatIdSt: String = userInfo["chat_id"] as? String  else {
-                        return }
-                      guard let chatId: Int = Int(chatIdSt) else {
-                        return }
-                      guard let name: String = userInfo["name"] as? String else {
-                        return }
-                      guard let avatat: String = userInfo["avatar"] as? String else {
-                        return }
-                      
-                      ScreenManager.shared.pushChat = ChatItem(chatID: chatId,
-                                                               partnerName: name,
-                                                               avatarURL: avatat)
-                      
-                      
-                  }
                 if pushType == .match {
                     guard let match: String = userInfo["match_id"] as? String  else { return }
                     guard let name: String = userInfo["name"] as? String  else { return }
@@ -296,21 +257,6 @@ extension NotificationManager: UNUserNotificationCenterDelegate {
                 _ = 0
             }
             
-            if pushType == .message {
-                
-                guard let chatIdSt: String = userInfo["chat_id"] as? String  else { return }
-                guard let chatId: Int = Int(chatIdSt) else { return }
-                guard let name: String = userInfo["name"] as? String else { return }
-                guard let avatat: String = userInfo["avatar"] as? String else { return }
-                
-                ScreenManager.shared.pushChat = ChatItem(chatID: chatId,
-                                                         partnerName: name,
-                                                         avatarURL: avatat)
-                NotificationCenter.default.post(name: NotificationManager.kMessageNotify,
-                                                object: nil)
-                
-            }
-            
             if pushType == .match {
                 guard let match: String = userInfo["match_id"] as? String  else { return }
                 guard let name: String = userInfo["name"] as? String  else { return }
@@ -330,8 +276,6 @@ extension NotificationManager: UNUserNotificationCenterDelegate {
                                                      avatarEndColor: avatarEndColor,
                                                      partnerID: userID,
                                                      gender: .woman)
-                NotificationCenter.default.post(name: NotificationManager.kMatchNotify,
-                                                object: nil)
                 
             }
             

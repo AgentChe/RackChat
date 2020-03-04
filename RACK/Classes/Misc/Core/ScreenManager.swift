@@ -31,8 +31,6 @@ class ScreenManager {
     
     static let shared = ScreenManager()
     
-    var pushChat: ChatItem?
-    var chatItemOnScreen: ChatItem?
     var match: DKMatch?
     var showChat: Bool = false
     var autoChat: Bool = false

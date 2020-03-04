@@ -12,8 +12,6 @@ public enum Servises: CodingKey {
     typealias RawValue = String
     case system
     case user
-    case chats
-    case currentChat
     case payment
     case search
     case cities
@@ -60,11 +58,6 @@ class DKManager: Manager, NetworkStatusListener {
             self.services.append(service.stringValue)
 
             switch service {
-            case .chats:
-                workers[service.stringValue] = ChatWorker(manager: self,
-                                                          requestTool: requestTool,
-                                                          errorTool: errorTool,
-                                                          cacheTool: cacheTool)
 
             case .user:
                 workers[service.stringValue] = UserWorker(manager: self,
@@ -86,12 +79,6 @@ class DKManager: Manager, NetworkStatusListener {
                                                             cache: cacheTool,
                                                             error: errorTool,
                                                             request: requestTool)
-
-            case .currentChat:
-                workers[service.stringValue] = CurrentChatWorker(manager: self,
-                                                                 requestTool: requestTool,
-                                                                 errorTool: errorTool,
-                                                                 cacheTool: cacheTool)
 
             case .marketing:
                 workers[service.stringValue] = MarketingWorker(manager: self,

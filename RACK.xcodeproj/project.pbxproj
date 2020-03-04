@@ -432,7 +432,6 @@
 		1342C2F323240CE10006EC8C /* Payment */ = {
 			isa = PBXGroup;
 			children = (
-				1342C2F423240D0C0006EC8C /* Payment.storyboard */,
 				13BA7A8A2326C62B00EB5A0E /* ButtonView.swift */,
 				13F9B34323262C5600072159 /* LeftView.swift */,
 				13F9B34523262CB900072159 /* RightView.swift */,
@@ -447,7 +446,6 @@
 		138A217D22C7D2DA0055B081 /* Test */ = {
 			isa = PBXGroup;
 			children = (
-				13CB0B4622C9D75A00EFD115 /* Test.storyboard */,
 				13D4A7A92332A53300B4FC00 /* RulesViewController.swift */,
 				4772C9F023F2E7C100B905CE /* SetAgeAndCityViewController.swift */,
 				13D4A7AB2332B81000B4FC00 /* ToYongViewController.swift */,
@@ -477,7 +475,6 @@
 		13D4054622C61006004FC70D /* Registration  */ = {
 			isa = PBXGroup;
 			children = (
-				1393CD8F22C74BC000422529 /* Registration.storyboard */,
 				13FD701222EBA36900CE225C /* HelloViewController.swift */,
 				1386775C22C7C7FD00F3AD84 /* CodeViewController.swift */,
 				1386775A22C7988800F3AD84 /* EmailViewController.swift */,
@@ -643,6 +640,9 @@
 		9608964423FAF59A009343AF /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
+				13CB0B4622C9D75A00EFD115 /* Test.storyboard */,
+				1393CD8F22C74BC000422529 /* Registration.storyboard */,
+				1342C2F423240D0C0006EC8C /* Payment.storyboard */,
 				13D4054922C610BD004FC70D /* Splash.storyboard */,
 				13D82A7522C202D4004DC959 /* Main.storyboard */,
 				13D82A7A22C202D5004DC959 /* LaunchScreen.storyboard */,

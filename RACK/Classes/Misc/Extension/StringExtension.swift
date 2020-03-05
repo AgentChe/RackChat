@@ -24,54 +24,20 @@ extension String {
         return result
     }
     
+    static var uuid_timeinterval: String {
+        String(format: "%@_%@", UUID().uuidString, String(Date().timeIntervalSince1970))
+    }
+    
     var localized: String {
-        return NSLocalizedString(self, comment: "")
+        NSLocalizedString(self, comment: "")
     }
     
     var asBase64: String {
-        return data(using: String.Encoding.utf8)?.base64EncodedString(options: Data.Base64EncodingOptions(rawValue: 0)) ?? ""
+        data(using: String.Encoding.utf8)?.base64EncodedString(options: Data.Base64EncodingOptions(rawValue: 0)) ?? ""
     }
     
     var fromBase64: String {
         let decodedData = Data(base64Encoded: self)!
         return String(data: decodedData, encoding: .utf8)!
-    }
-    
-    func htmlToAttributeString(font: UIFont? = nil) -> NSAttributedString {
-        guard let data = self.data(using: String.Encoding.utf8),
-            let attr = try? NSMutableAttributedString(data: data,
-                                                      options: [.documentType: NSAttributedString.DocumentType.html,
-                                                                .characterEncoding: String.Encoding.utf8.rawValue],
-                                                      documentAttributes: nil)
-        else {
-            return NSAttributedString(string: self)
-        }
-        
-        if let font = font {
-            let range = attr.mutableString.range(of: attr.mutableString as String)
-            attr.addAttribute(NSAttributedString.Key.font, value: font, range: range)
-        }
-        
-        return attr
-    }
-    
-    func replacingRegexMatches(
-        pattern: String,
-        with template: String
-    ) -> String {
-        do {
-            let regex = try NSRegularExpression(
-                pattern: pattern,
-                options: NSRegularExpression.Options.caseInsensitive
-            )
-            return regex.stringByReplacingMatches(
-                in: self,
-                options: [],
-                range: NSMakeRange(0, count),
-                withTemplate: template
-            )
-        } catch {
-            return self
-        }
     }
 }

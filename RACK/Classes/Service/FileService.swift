@@ -20,7 +20,7 @@ final class FileService {
         
         return Single<UploadedFilePath?>.create { event in
             Alamofire.upload(multipartFormData: { formData in
-                formData.append(imageData, withName: "file", fileName: "file.jpg", mimeType: "image/jpeg")
+                formData.append(imageData, withName: "file", fileName: String.uuid_timeinterval + ".jpg", mimeType: "image/jpeg")
                 formData.append(appKeyData, withName: "app_key")
             }, to: GlobalDefinitions.ChatService.restDomain + "/api/v1/data/uploadFile") { result in
                 switch result {

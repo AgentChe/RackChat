@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1308527A236B541D003712E8 /* SceneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13085279236B541D003712E8 /* SceneView.swift */; };
 		130C0DC5232662790000B5AD /* ReasonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 130C0DC4232662790000B5AD /* ReasonView.swift */; };
 		13113AC622F6D953009C85C6 /* lf20_XZ30Ct.json in Resources */ = {isa = PBXBuildFile; fileRef = 13113AC522F6D952009C85C6 /* lf20_XZ30Ct.json */; };
 		1319227D236A05EE00C057B8 /* MatchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1319227C236A05EE00C057B8 /* MatchViewController.swift */; };
@@ -84,7 +83,6 @@
 		13E4D35022DA2A2A00442BF9 /* СhatsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E4D34E22DA2A2900442BF9 /* СhatsTableViewCell.swift */; };
 		13E4D35A22DA2AD800442BF9 /* СhatsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13E4D35622DA2AC200442BF9 /* СhatsTableViewCell.xib */; };
 		13E4D35E22DA33EA00442BF9 /* RandomizeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E4D35D22DA33EA00442BF9 /* RandomizeViewController.swift */; };
-		13E4D36222DA352F00442BF9 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E4D36122DA352F00442BF9 /* SearchViewController.swift */; };
 		13EBA55022E9EAF1008C176C /* SecondTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13EBA54F22E9EAF1008C176C /* SecondTestViewController.swift */; };
 		13ECB49822E7A3820042BAED /* User+Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13ECB49722E7A3820042BAED /* User+Extention.swift */; };
 		13F8D3FD2312A8E80081F411 /* UnmatchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F8D3FC2312A8E80081F411 /* UnmatchViewController.swift */; };
@@ -203,7 +201,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		13085279236B541D003712E8 /* SceneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneView.swift; sourceTree = "<group>"; };
 		130C0DC4232662790000B5AD /* ReasonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReasonView.swift; sourceTree = "<group>"; };
 		13113AC522F6D952009C85C6 /* lf20_XZ30Ct.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = lf20_XZ30Ct.json; sourceTree = "<group>"; };
 		1319227C236A05EE00C057B8 /* MatchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchViewController.swift; sourceTree = "<group>"; };
@@ -284,7 +281,6 @@
 		13E4D34E22DA2A2900442BF9 /* СhatsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "СhatsTableViewCell.swift"; sourceTree = "<group>"; };
 		13E4D35622DA2AC200442BF9 /* СhatsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "СhatsTableViewCell.xib"; sourceTree = "<group>"; };
 		13E4D35D22DA33EA00442BF9 /* RandomizeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomizeViewController.swift; sourceTree = "<group>"; };
-		13E4D36122DA352F00442BF9 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		13EBA54F22E9EAF1008C176C /* SecondTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondTestViewController.swift; sourceTree = "<group>"; };
 		13ECB49722E7A3820042BAED /* User+Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+Extention.swift"; sourceTree = "<group>"; };
 		13F8D3FC2312A8E80081F411 /* UnmatchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnmatchViewController.swift; sourceTree = "<group>"; };
@@ -591,11 +587,9 @@
 			isa = PBXGroup;
 			children = (
 				13192282236A33C100C057B8 /* Views */,
-				13E4D36122DA352F00442BF9 /* SearchViewController.swift */,
 				13CB670A22F5DB8000B79622 /* SureButtonView.swift */,
 				13CB670822F5D7FD00B79622 /* SkipButtonView.swift */,
 				1319227C236A05EE00C057B8 /* MatchViewController.swift */,
-				13085279236B541D003712E8 /* SceneView.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -1313,7 +1307,6 @@
 				969DA42E2401445E00DC42D1 /* DKManager.swift in Sources */,
 				9654533023FABA66007697C4 /* ApiError.swift in Sources */,
 				969DA4492401445E00DC42D1 /* SearchTask.swift in Sources */,
-				13E4D36222DA352F00442BF9 /* SearchViewController.swift in Sources */,
 				96BF8CAC240426470026F3CE /* ChatTableCell.swift in Sources */,
 				96669A65240C23AE0023A8B9 /* ChatInputView.swift in Sources */,
 				13E4D35022DA2A2A00442BF9 /* СhatsTableViewCell.swift in Sources */,
@@ -1364,7 +1357,6 @@
 				13BA7A8D2326E31000EB5A0E /* ConfigRequest.swift in Sources */,
 				969DA42F2401445E00DC42D1 /* DatingSearch.swift in Sources */,
 				13A30BE1231E996C00CF6248 /* NotigyEnablingViewController.swift in Sources */,
-				1308527A236B541D003712E8 /* SceneView.swift in Sources */,
 				13E4D34922DA1CCC00442BF9 /* GardientView.swift in Sources */,
 				969DA44B2401445E00DC42D1 /* SystemTask.swift in Sources */,
 				969DA30223FF48A500DC42D1 /* TextAttributes.swift in Sources */,

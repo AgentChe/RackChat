@@ -26,7 +26,6 @@ class NoOneHereView: UIView {
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var newSearch: GradientButton!
     
-    
     func config() {
         withReuest.isHidden = true
         withReuest.alpha = 0.0
@@ -54,12 +53,4 @@ class NoOneHereView: UIView {
             self.withoutRequest.alpha = 1.0
         }
     }
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
-    }
-    */
-
 }

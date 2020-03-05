@@ -53,7 +53,7 @@ final class ChatService {
     }
     
     var event: Observable<Event> {
-        return Observable<Event>.create { [socket] observer in
+        Observable<Event>.create { [socket] observer in
             socket.onEvent = { event in
                 switch event {
                 case .text(let string):

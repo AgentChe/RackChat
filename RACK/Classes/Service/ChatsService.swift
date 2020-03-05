@@ -13,6 +13,7 @@ final class ChatsService {
     enum Event {
         case changedChat(AKChat)
         case removedChat(AKChat)
+        case createdChat(AKChat)
     }
     
     private lazy var socket: WebSocket = {

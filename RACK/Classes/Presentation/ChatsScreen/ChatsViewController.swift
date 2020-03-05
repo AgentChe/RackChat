@@ -64,8 +64,9 @@ final class ChatsViewController: UIViewController {
                     self?.tableView.replace(chat: chat)
                 case .removedChat(let chat):
                     self?.tableView.remove(chat: chat)
+                case .createdChat(let chat):
+                    self?.tableView.insert(chat: chat)
                 }
-                
             })
             .disposed(by: disposeBag)
     }

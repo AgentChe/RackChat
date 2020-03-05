@@ -1,14 +1,14 @@
 //
-//  GetChatsRequest.swift
+//  CheckNeedPaymentRequest.swift
 //  RACK
 //
-//  Created by Andrey Chernyshev on 20/02/2020.
+//  Created by Andrey Chernyshev on 06/03/2020.
 //  Copyright © 2020 fawn.team. All rights reserved.
 //
 
 import Alamofire
 
-struct GetChatsRequest: APIRequestBody {
+struct CheckNeedPaymentRequest: APIRequestBody {
     private let userToken: String
     
     init(userToken: String) {
@@ -16,7 +16,7 @@ struct GetChatsRequest: APIRequestBody {
     }
     
     var url: String {
-        GlobalDefinitions.ChatService.restDomain + "/api/v1/rooms/getList"
+        GlobalDefinitions.Backend.domain + "/api/requests/search_access"
     }
     
     var method: HTTPMethod {
@@ -25,8 +25,8 @@ struct GetChatsRequest: APIRequestBody {
     
     var parameters: Parameters? {
         [
-            "app_key": GlobalDefinitions.ChatService.appKey,
-            "token": userToken
+            "_api_key": GlobalDefinitions.Backend.apiKey,
+            "_user_token": userToken
         ]
     }
 }

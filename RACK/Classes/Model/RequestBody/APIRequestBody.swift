@@ -19,26 +19,26 @@ protocol APIRequestBody {
 
 extension APIRequestBody {
     var url: String {
-        return ""
+        ""
     }
     
     var method: HTTPMethod {
-        return .get
+        .get
     }
     
     var parameters: Parameters? {
-        return nil
+        nil
     }
     
     var headers: [String: String]? {
-        return nil
+        nil
     }
     
     var encoding: ParameterEncoding {
-        return JSONEncoding.default
+        JSONEncoding.default
     }
     
     var cookies: [HTTPCookie] {
-        return []
+        []
     }
 }

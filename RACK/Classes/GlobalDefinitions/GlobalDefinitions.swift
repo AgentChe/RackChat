@@ -14,4 +14,9 @@ struct GlobalDefinitions {
         static let restDomain = "http://84.201.169.190"
         static let appKey = "ff292cbc-ee84-4573-af5c-676eacdb6df3"
     }
+    
+    struct Backend {
+        static let domain = "https://rack.today"
+        static let apiKey = "BkAnq88Ahs4ZRanT"
+    }
 }

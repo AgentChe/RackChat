@@ -118,6 +118,11 @@
 		96669A6F240D1CBF0023A8B9 /* SF-Pro-Text-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 96669A6C240D163C0023A8B9 /* SF-Pro-Text-Regular.otf */; };
 		96669A71240EEBD30023A8B9 /* AttachView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96669A70240EEBD30023A8B9 /* AttachView.swift */; };
 		96669A73240EFAB10023A8B9 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96669A72240EFAB10023A8B9 /* ImagePicker.swift */; };
+		96669A752411B0630023A8B9 /* MatchTransformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96669A742411B0630023A8B9 /* MatchTransformation.swift */; };
+		96669A772411B2260023A8B9 /* CheckNeedPaymentRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96669A762411B2260023A8B9 /* CheckNeedPaymentRequest.swift */; };
+		96669A792411B47B0023A8B9 /* PaymentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96669A782411B47B0023A8B9 /* PaymentService.swift */; };
+		96669A7B2411B4910023A8B9 /* PaymentTransformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96669A7A2411B4910023A8B9 /* PaymentTransformation.swift */; };
+		96669A7D2411BD0C0023A8B9 /* MatchProposed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96669A7C2411BD0C0023A8B9 /* MatchProposed.swift */; };
 		968FE7BB240ACB4B00C3D5C2 /* ChatsTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 968FE7BA240ACB4B00C3D5C2 /* ChatsTableView.swift */; };
 		968FE7BE240B0DCE00C3D5C2 /* ReportViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 968FE7BD240B0DCE00C3D5C2 /* ReportViewController.xib */; };
 		968FE7C1240B0F8300C3D5C2 /* UnmatchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 968FE7C0240B0F8300C3D5C2 /* UnmatchViewController.xib */; };
@@ -319,6 +324,11 @@
 		96669A6D240D186C0023A8B9 /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		96669A70240EEBD30023A8B9 /* AttachView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachView.swift; sourceTree = "<group>"; };
 		96669A72240EFAB10023A8B9 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		96669A742411B0630023A8B9 /* MatchTransformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchTransformation.swift; sourceTree = "<group>"; };
+		96669A762411B2260023A8B9 /* CheckNeedPaymentRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckNeedPaymentRequest.swift; sourceTree = "<group>"; };
+		96669A782411B47B0023A8B9 /* PaymentService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentService.swift; sourceTree = "<group>"; };
+		96669A7A2411B4910023A8B9 /* PaymentTransformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentTransformation.swift; sourceTree = "<group>"; };
+		96669A7C2411BD0C0023A8B9 /* MatchProposed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchProposed.swift; sourceTree = "<group>"; };
 		968FE7BA240ACB4B00C3D5C2 /* ChatsTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsTableView.swift; sourceTree = "<group>"; };
 		968FE7BD240B0DCE00C3D5C2 /* ReportViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReportViewController.xib; sourceTree = "<group>"; };
 		968FE7C0240B0F8300C3D5C2 /* UnmatchViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UnmatchViewController.xib; sourceTree = "<group>"; };
@@ -701,6 +711,7 @@
 				96A4D5C723FDFC7000E24E13 /* AKChat.swift */,
 				96A4D5C923FDFCD600E24E13 /* AKChatMessage.swift */,
 				96A5528123FF34C4001E88DC /* AKGender.swift */,
+				96669A7C2411BD0C0023A8B9 /* MatchProposed.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -713,6 +724,7 @@
 				969DA45E2401C80600DC42D1 /* UnmatchRequest.swift */,
 				96BF8CA32403DE9C0026F3CE /* GetMessagesRequest.swift */,
 				96669A5D240BC8C50023A8B9 /* CreateReportRequest.swift */,
+				96669A762411B2260023A8B9 /* CheckNeedPaymentRequest.swift */,
 			);
 			path = RequestBody;
 			sourceTree = "<group>";
@@ -744,6 +756,7 @@
 				96BF8CA12403DE660026F3CE /* ChatService.swift */,
 				96BF8CA52403E18B0026F3CE /* PaginatedDataLoader.swift */,
 				96F005882405249D0058F7C9 /* FileService.swift */,
+				96669A782411B47B0023A8B9 /* PaymentService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -1084,6 +1097,8 @@
 			children = (
 				96A5528423FF392B001E88DC /* ChatTransformation.swift */,
 				96BF8CA72403E3980026F3CE /* MessageTransformation.swift */,
+				96669A742411B0630023A8B9 /* MatchTransformation.swift */,
+				96669A7A2411B4910023A8B9 /* PaymentTransformation.swift */,
 			);
 			path = Transformation;
 			sourceTree = "<group>";
@@ -1310,6 +1325,7 @@
 				969DA4472401445E00DC42D1 /* SearchWorker.swift in Sources */,
 				13A30BE4231E99A400CF6248 /* NotifySetingUiTableViewCell.swift in Sources */,
 				136C997C236D9E8B003F60CC /* TimeOutView.swift in Sources */,
+				96669A772411B2260023A8B9 /* CheckNeedPaymentRequest.swift in Sources */,
 				13BA7A8B2326C62B00EB5A0E /* ButtonView.swift in Sources */,
 				1393CD9922C75A6D00422529 /* RegistrationViewController.swift in Sources */,
 				969DA4442401445E00DC42D1 /* User.swift in Sources */,
@@ -1328,6 +1344,7 @@
 				138D29CC232411BC00DAEE77 /* PaymentViewController.swift in Sources */,
 				969DA45A2401445E00DC42D1 /* Array+Neighbors.swift in Sources */,
 				13CC558F231E3C5500A10D45 /* NotificationResponce.swift in Sources */,
+				96669A792411B47B0023A8B9 /* PaymentService.swift in Sources */,
 				965452D123FAB98C007697C4 /* GlobalDefinitions.swift in Sources */,
 				139A0398236C189E00683946 /* NoView.swift in Sources */,
 				969DA41E2401445E00DC42D1 /* InterlocutorImageTableCell.swift in Sources */,
@@ -1352,6 +1369,7 @@
 				969DA44B2401445E00DC42D1 /* SystemTask.swift in Sources */,
 				969DA30223FF48A500DC42D1 /* TextAttributes.swift in Sources */,
 				13EBA55022E9EAF1008C176C /* SecondTestViewController.swift in Sources */,
+				96669A7B2411B4910023A8B9 /* PaymentTransformation.swift in Sources */,
 				969DA4632401CCD200DC42D1 /* SessionService.swift in Sources */,
 				13D82A7222C202D4004DC959 /* AppDelegate.swift in Sources */,
 				9654533323FABA66007697C4 /* DataBaseError.swift in Sources */,
@@ -1390,10 +1408,12 @@
 				13F8D3FD2312A8E80081F411 /* UnmatchViewController.swift in Sources */,
 				13C5052322E8D2C1009A7B04 /* SetGenderViewController.swift in Sources */,
 				969DA4242401445E00DC42D1 /* CacheTool.swift in Sources */,
+				96669A7D2411BD0C0023A8B9 /* MatchProposed.swift in Sources */,
 				13F9509322F0D26B00AC9FD0 /* DeleteViewController.swift in Sources */,
 				13D8BED62349316B009FD24A /* NoConnectionBannerView.swift in Sources */,
 				1386775B22C7988800F3AD84 /* EmailViewController.swift in Sources */,
 				13C2FCDB23251B5D00F017FE /* PaymentManager.swift in Sources */,
+				96669A752411B0630023A8B9 /* MatchTransformation.swift in Sources */,
 				969DA2FA23FF488400DC42D1 /* UIDeviceExtension.swift in Sources */,
 				135C631222CB528F00EFC391 /* ProfileViewController.swift in Sources */,
 				96BF8CA82403E3980026F3CE /* MessageTransformation.swift in Sources */,

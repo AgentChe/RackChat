@@ -20,15 +20,15 @@ struct CreateReportRequest: APIRequestBody {
     }
     
     var url: String {
-        return GlobalDefinitions.ChatService.restDomain + "/api/v1/rooms/report"
+        GlobalDefinitions.ChatService.restDomain + "/api/v1/rooms/report"
     }
     
     var method: HTTPMethod {
-        return .post
+        .post
     }
     
     var parameters: Parameters? {
-        return [
+        [
             "app_key": GlobalDefinitions.ChatService.appKey,
             "token": userToken,
             "room": chatId,

@@ -40,6 +40,12 @@ final class ChatTransformation {
             }
             
             return .removedChat(chat)
+        case "create":
+            guard let data = result["result"] as? [String: Any], let chat = AKChat.parseFromDictionary(any: data) else {
+                return nil
+            }
+            
+            return .createdChat(chat)
         default:
             return nil 
         }

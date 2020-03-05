@@ -72,4 +72,12 @@ final class ChatsTableView: UITableView, UITableViewDataSource, UITableViewDeleg
             self?.deleteRows(at: [IndexPath(row: index, section: 0)], with: .none)
         }
     }
+    
+    func insert(chat: AKChat) {
+        itemsQueue.sync { [weak self] in
+            self?.items.insert(chat, at: 0)
+            
+            self?.insertRows(at: [IndexPath(row: 0, section: 0)], with: .none)
+        }
+    }
 }

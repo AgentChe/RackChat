@@ -20,15 +20,15 @@ struct GetMessagesRequest: APIRequestBody {
     }
     
     var url: String {
-        return GlobalDefinitions.ChatService.restDomain + "/api/v1/rooms/getRoom"
+        GlobalDefinitions.ChatService.restDomain + "/api/v1/rooms/getRoom"
     }
     
     var method: HTTPMethod {
-        return .post
+        .post
     }
     
     var parameters: Parameters? {
-        return [
+        [
             "app_key": GlobalDefinitions.ChatService.appKey,
             "token": userToken,
             "room": chatId,

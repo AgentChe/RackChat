@@ -33,10 +33,6 @@ final class ChatsViewController: UIViewController {
         buttonHeight.constant = 0
         backroundView.layer.cornerRadius = 0
         
-        if #available(iOS 13.0, *) {
-            overrideUserInterfaceStyle = .light
-        }
-        
         tableView.didSelectChat
             .subscribe(onNext: { [weak self] chat in
                 let vc = ChatViewController(chat: chat)

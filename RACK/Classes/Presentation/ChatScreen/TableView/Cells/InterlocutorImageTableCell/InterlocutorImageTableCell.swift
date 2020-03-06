@@ -16,7 +16,7 @@ final class InterlocutorImageTableCell: UITableViewCell, ChatTableCell {
         messageImageView.kf.cancelDownloadTask()
         messageImageView.image = nil
         
-        if let path = message.body.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed), let url = URL(string: path) {
+        if let url = URL(string: message.body) {
             messageImageView.kf.setImage(with: url)
         }
     }

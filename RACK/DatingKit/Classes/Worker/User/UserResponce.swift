@@ -89,7 +89,7 @@ public struct UserResponse: Response {
         photosCount = try userBox.decode(Int.self, forKey: .photosCount)
         photos = try userBox.decode([String].self, forKey: .photos)
         age = try userBox.decode(Int.self, forKey: .age)
-        city = try userBox.decode(String.self, forKey: .city)
+        city = (try? userBox.decode(String.self, forKey: .city)) ?? ""
     }
     
     

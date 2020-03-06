@@ -60,10 +60,6 @@ class ReportViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if #available(iOS 13.0, *) {
-            overrideUserInterfaceStyle = .light
-        }
-        
         bind()
         
         headerLabel.text = String(format: "report_header".localized, chat.interlocutorName)

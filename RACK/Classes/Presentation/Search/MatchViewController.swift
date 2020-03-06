@@ -9,7 +9,6 @@
 import UIKit
 import NotificationBannerSwift
 
-
 enum MatchScreenState {
     case searchng
     case serchingManuality
@@ -26,7 +25,6 @@ protocol SearchViewDelegate: class {
 }
 
 class MatchViewController: UIViewController {
-    
     @IBOutlet weak var shadowView: GardientView!
     @IBOutlet weak var matchContentView: UIView!
     
@@ -38,7 +36,6 @@ class MatchViewController: UIViewController {
     
     private var fullScreen: Bool = false
     private var state: MatchScreenState = .searchng
-    private var currentScene: UIView?
     private var searchScene: SearchView = SearchView.instanceFromNib()
     private var matchScene: MatchView = MatchView.instanceFromNib()
     private var noScene: NoView = NoView.instanceFromNib()
@@ -49,8 +46,6 @@ class MatchViewController: UIViewController {
     
     var initialTouchPoint: CGPoint = CGPoint(x: 0,y: 0)
 
-    // MARK: - Live Cycle
-    
     func config(state: MatchScreenState) {
         self.state = state
     }
@@ -60,26 +55,12 @@ class MatchViewController: UIViewController {
         self.currentMatch = match
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        if #available(iOS 13.0, *) {
-            overrideUserInterfaceStyle = .light
-        }
-    }
-    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         UIApplication.shared.isIdleTimerDisabled = true
         
         DatingKit.user.show { (userShow, status) in
-            if status == .noInternetConnection {
-                let banner = NotificationBanner(customView: NoConnectionBannerView.instanceFromNib())
-                banner.show(on: self)
-                return
-            }
-            
             if status == .succses {
                 guard let user = userShow else {
                     return
@@ -102,10 +83,9 @@ class MatchViewController: UIViewController {
         delegate?.wasDismis(searchView: self)
         DatingKit.search.stopAll()
         UIApplication.shared.isIdleTimerDisabled = false
+        
         super.dismiss(animated: flag, completion: completion)
     }
-    
-    // MARK: - Action
     
     @IBAction func panGestureRecognizerHandler(_ sender: UIPanGestureRecognizer) {
         fullScreen(false)
@@ -125,11 +105,7 @@ class MatchViewController: UIViewController {
                 fullScreen(self.fullScreen)
                 UIView.animate(withDuration: 0.3, animations: {
                     self.view.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height)
-                }) { (fin) in
-                    UIView.animate(withDuration: 0.4) {
-//                        self.view.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.2)
-                    }
-                }
+                })
             }
         }
     }
@@ -150,7 +126,6 @@ class MatchViewController: UIViewController {
     }
     
     @objc func yes() {
-//        matchScene.sureButton.isEnabled = false
         matchScene.waitForPatnerAnimation()
         self.sayYes()
     }
@@ -185,8 +160,6 @@ class MatchViewController: UIViewController {
             present(alertController, animated: true, completion: nil)
     }
     
-    // MARK: - Networking
-    
     func sayNo() {
         guard let match: DKMatch = self.currentMatch else {
             return
@@ -201,16 +174,6 @@ class MatchViewController: UIViewController {
                 banner.show(on: self)
                 return
             }
-            
-            if status == .needPayment {
-                self.showPaygate()
-                return
-            }
-            
-            if status == .succses {
-               
-            }
-            
         }
     }
     
@@ -220,14 +183,10 @@ class MatchViewController: UIViewController {
         }
         
         DatingKit.search.sayYes(matchID: match.matchID) { (matchStatus, status) in
-//            self.matchScene.sureButtonView.alpha = 1.0
-//            self.matchScene.sureButton.isEnabled = true
-//            self.matchScene.skipButton.isEnabled = true
                    switch status {
                    case .succses:
                        switch matchStatus {
                        case .waitPartnerAnser:
-//                            self.matchScene.waitForPatnerAnimation()
                             break
                        case .timeOut:
                         self.setScene(state: .timeOut)
@@ -262,7 +221,6 @@ class MatchViewController: UIViewController {
                        }
                    case .needPayment:
                         self.matchScene.showButtons()
-                       self.showPaygate()
                        break
                    case .forbitten:
                     if matchStatus == .cantAnswer {
@@ -282,11 +240,6 @@ class MatchViewController: UIViewController {
             case .succses:
                 self!.currentMatch = match
                 self!.setScene(state: .foundet)
-            case .noInternetConnection:
-                let banner = NotificationBanner(customView: NoConnectionBannerView.instanceFromNib())
-                banner.show(on: self)
-            case .needPayment:
-                self!.showPaygate()
             case .timeOut:
                 self!.setScene(state: .noOneHere)
             default:
@@ -295,17 +248,10 @@ class MatchViewController: UIViewController {
         }
     }
     
-    
-    // MARK: - UI setup
-    
     private func setScene(state: MatchScreenState) {
-        
-//
-//        if let subviews:[UIView] = matchContentView.subviews {
-            for view in matchContentView.subviews{
-                view.removeFromSuperview()
-            }
-//        }
+        for view in matchContentView.subviews{
+            view.removeFromSuperview()
+        }
         
         self.state = state
         
@@ -437,59 +383,17 @@ class MatchViewController: UIViewController {
                                width: matchContentView.frame.size.width,
                                height: matchContentView.frame.size.height + 34.0)
         matchContentView.addSubview(noScene)
-        
     }
     
-    func fullScreen(_ full: Bool, completion: @escaping() -> Void) {
+    func fullScreen(_ full: Bool, completion: (() -> Void)? = nil) {
         shadowTop.constant = full ? 0 : 84
         contentTop.constant = full ? 0 : 40
         
         UIView.animate(withDuration: 0.5, animations: {
             self.shadowView.cornerRadius = full ? 0 : 30
             self.view.layoutIfNeeded()
-        }) { (fin) in
-            if fin {
-                completion()
-            }
-        }
+        }, completion: { _ in
+            completion?()
+        })
     }
-    
-    func fullScreen(_ full: Bool) {
-        shadowTop.constant = full ? 0 : 84
-        contentTop.constant = full ? 0 : 40
-        
-        UIView.animate(withDuration: 0.5) {
-            self.shadowView.cornerRadius = full ? 0 : 30
-            self.view.layoutIfNeeded()
-        }
-    }
-    
-    // MARK: - Navigation
-    
-    func showPaygate() {
-        performSegue(withIdentifier: "paygate", sender: nil)
-    }
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "paygate" {
-              let paygate: PaymentViewController = segue.destination as! PaymentViewController
-              paygate.delegate = self
-          }
-    }
-
-}
-
-extension MatchViewController : PaymentViewControllerDelegate {
-    
-    func wasClosed() {
-        if state == .searchng {
-            self.setScene(state: .serchingManuality)
-        }
-        
-    }
-    
-    func wasPurchased() {
-        
-    }
-    
 }

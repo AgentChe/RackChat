@@ -105,21 +105,14 @@ final class ChatsViewController: UIViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "search" {
-            let searchView: MatchViewController = segue.destination as! MatchViewController
+            let searchView = segue.destination as! MatchViewController
             searchView.delegate = self
-            if let startFromNewSearchButton: MatchScreenState = sender as? MatchScreenState {
-                if startFromNewSearchButton == .foundet {
-                    searchView.config(state: .searchng)
-                } else {
-                    searchView.config(state: startFromNewSearchButton)
-                }
-            }
         }
     }
 }
 
 extension ChatsViewController: SearchViewDelegate {
-    func wasDismis(searchView: MatchViewController) {
+    func wasDismiss() {
                self.backgroundViewHeight.constant = -20.0
                self.buttonHeight.constant = 80.0
                UIView.animate(withDuration: 0.4) {
@@ -127,6 +120,4 @@ extension ChatsViewController: SearchViewDelegate {
                    self.backroundView.layer.cornerRadius = 20
                }
     }
-    
-    func tapOnYes() {}
 }

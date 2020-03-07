@@ -20,7 +20,7 @@ final class SearchViewModel {
         matchService.disconnect()
     }
     
-    func registered() {
+    func register() {
         matchService.send(action: .register)
     }
     
@@ -40,5 +40,20 @@ final class SearchViewModel {
         matchService
             .event
             .asDriver(onErrorDriveWith: .never())
+    }
+    
+    var user: Driver<UserShow?> {
+        Single<UserShow?>.create { event in
+            DatingKit.user.show { user, status in
+                if status == .succses {
+                    event(.success(user))
+                } else {
+                    event(.success(nil))
+                }
+            }
+            
+            return Disposables.create()
+        }
+        .asDriver(onErrorJustReturn: nil)
     }
 }

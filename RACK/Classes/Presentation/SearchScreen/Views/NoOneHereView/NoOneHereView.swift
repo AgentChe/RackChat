@@ -8,15 +8,9 @@
 
 import UIKit
 
-enum NoOneHereSceneType {
-    case withRequest
-    case withOutReuest
-}
-
 class NoOneHereView: UIView {
-    
     class func instanceFromNib() -> NoOneHereView {
-        return UINib(nibName: "NoOneHereView", bundle: .main).instantiate(withOwner: nil, options: nil)[0] as! NoOneHereView
+        UINib(nibName: "NoOneHereView", bundle: .main).instantiate(withOwner: nil, options: nil)[0] as! NoOneHereView
     }
 
     @IBOutlet weak var skipButton: UIButton!

@@ -7,19 +7,17 @@
 //
 
 import UIKit
-import NotificationBannerSwift
+import RxSwift
 
 enum MatchScreenState {
     case searchng
-    case serchingManuality
     case foundet
     case partnerSayNot
     case noOneHere
 }
 
 protocol SearchViewDelegate: class {
-    func wasDismis(searchView: MatchViewController)
-    func tapOnYes()
+    func wasDismiss()
 }
 
 final class MatchViewController: UIViewController {
@@ -27,6 +25,8 @@ final class MatchViewController: UIViewController {
     @IBOutlet weak var matchContentView: UIView!
     @IBOutlet weak var shadowTop: NSLayoutConstraint!
     @IBOutlet weak var contentTop: NSLayoutConstraint!
+    
+    weak var delegate: SearchViewDelegate?
     
     private var user: UserShow?
     private var currentMatch: DKMatch?
@@ -40,42 +40,70 @@ final class MatchViewController: UIViewController {
     private var noScene: NoView = NoView.instanceFromNib()
     private var noOneScene: NoOneHereView = NoOneHereView.instanceFromNib()
     
-    weak var delegate: SearchViewDelegate?
-    
-    var initialTouchPoint: CGPoint = CGPoint(x: 0,y: 0)
-    
-    func config(state: MatchScreenState) {
-        self.state = state
+    private func removeAllScenes() {
+        searchScene.removeFromSuperview()
+        matchScene.removeFromSuperview()
+        noScene.removeFromSuperview()
+        noOneScene.removeFromSuperview()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    private var initialTouchPoint: CGPoint = CGPoint(x: 0,y: 0)
+    
+    private let disposeBag = DisposeBag()
+    
+    private let viewModel = SearchViewModel()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
         
         UIApplication.shared.isIdleTimerDisabled = true
         
-        DatingKit.user.show { (userShow, status) in
-            if status == .succses {
-                guard let user = userShow else {
+        viewModel.user
+            .drive(onNext: { [weak self] user in
+                self?.user = user
+                
+                if self?.user != nil {
+                    self?.setScene(state: .searchng)
+                }
+            })
+            .disposed(by: disposeBag)
+        
+        var searchingQueueId: SearchingQueueId?
+        
+        viewModel.event
+            .drive(onNext: { [weak self] event in
+                guard let `self` = self else {
                     return
                 }
-                self.user = user
                 
-                if self.state == .searchng {
-                    self.setScene(state: .searchng)
-                    self.startSearch()
+                switch event {
+                case .registered(let queueId):
+                    searchingQueueId = queueId
+                case .matchProposed(let matchProposeds):
+                    print()
+                case .refused(let queueIds):
+                    print()
+                case .coupleFormed(let queueIds):
+                    print()
+                case .technical(let technicalEvent):
+                    switch technicalEvent {
+                    case .socketConnected:
+                        self.viewModel.register()
+                    }
                 }
-                
-                if self.state == .serchingManuality {
-                    self.setScene(state: .serchingManuality)
-                }
-            }
-        }
+            })
+            .disposed(by: disposeBag)
+        
+        viewModel.connect()
     }
     
     override func dismiss(animated flag: Bool, completion: (() -> Void)? = nil) {
-        delegate?.wasDismis(searchView: self)
-        DatingKit.search.stopAll()
         UIApplication.shared.isIdleTimerDisabled = false
+        
+        viewModel.close()
+        
+        delegate?.wasDismiss()
+        
         super.dismiss(animated: flag, completion: completion)
     }
     
@@ -108,7 +136,7 @@ final class MatchViewController: UIViewController {
     }
     
     @objc func search() {
-        self.startSearch()
+//        self.startSearch()
         self.setScene(state: .searchng)
     }
     
@@ -154,7 +182,7 @@ final class MatchViewController: UIViewController {
         }
         
         self.setScene(state: .searchng)
-        self.startSearch()
+//        self.startSearch()
         DatingKit.search.sayNo(matchID: match.matchID) { (status) in}
     }
     
@@ -170,9 +198,7 @@ final class MatchViewController: UIViewController {
                        case .deny:
                         self.setScene(state: .partnerSayNot)
                        case .confirmPending:
-                        self.dismiss(animated: true) {
-                            self.delegate?.tapOnYes()
-                        }
+                        self.dismiss(animated: true)
                        default:
                         break
                     }
@@ -180,20 +206,6 @@ final class MatchViewController: UIViewController {
                        break
                    }
                }
-    }
-    
-    func startSearch() {
-        fullScreen(false)
-        guard let userShow: UserShow = self.user else { return }
-        DatingKit.search.startSearch(email: userShow.email) { [weak self] (match, status) in
-            switch status {
-            case .succses:
-                self!.currentMatch = match
-                self!.setScene(state: .foundet)
-            default:
-                break
-            }
-        }
     }
     
     private func setScene(state: MatchScreenState) {
@@ -205,9 +217,7 @@ final class MatchViewController: UIViewController {
         
         switch state {
         case .searchng:
-            setSearchScene(mode: .auto)
-        case .serchingManuality:
-            setSearchScene(mode: .manualy)
+            setSearchScene()
         case .foundet:
             setFoundScene()
         case .partnerSayNot:
@@ -217,7 +227,7 @@ final class MatchViewController: UIViewController {
         }
     }
     
-    func setSearchScene(mode: SearchViewStates) {
+    func setSearchScene() {
         noOneScene.removeFromSuperview()
         searchScene.removeFromSuperview()
         searchScene = SearchView.instanceFromNib()
@@ -229,9 +239,9 @@ final class MatchViewController: UIViewController {
         }
         matchScene.removeFromSuperview()
         guard let userShow: UserShow = self.user else { return }
-        fullScreen = mode == .auto ? false : true
-        fullScreen(mode == .auto ? false : true)
-        searchScene.config(type: mode, user: userShow)
+        fullScreen = false
+        fullScreen(false)
+        searchScene.config(user: userShow)
         searchScene.frame = CGRect(x: 0,
                                    y: 20.0,
                                    width: matchContentView.frame.size.width,

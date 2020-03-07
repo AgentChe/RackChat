@@ -7,12 +7,11 @@
 //
 
 import UIKit
-import AlamofireImage
+import Kingfisher
 
 class MatchView: UIView {
-    
     class func instanceFromNib() -> MatchView {
-        return UINib(nibName: "MatchView", bundle: .main).instantiate(withOwner: nil, options: nil)[0] as! MatchView
+        UINib(nibName: "MatchView", bundle: .main).instantiate(withOwner: nil, options: nil)[0] as! MatchView
     }
     
     @IBOutlet weak var buttonView: NSLayoutConstraint!
@@ -42,7 +41,6 @@ class MatchView: UIView {
     private var match: DKMatch?
     
     func config(match: DKMatch, user: UserShow) {
-        
         self.match = match
         let fullName: String = match.matchedUserName.uppercased()
         let split = fullName.split(separator: " ")
@@ -63,12 +61,13 @@ class MatchView: UIView {
             self.userImageView.image = avatar
         } else {
             guard let avaUrl:URL = URL(string: user.matchingAvatarURL) else { return }
-            userImageView.af_setImage(withURL: avaUrl)
+            userImageView.kf.setImage(with: avaUrl)
         }
         guard let partnerAvaUrl: URL = URL(string: match.matchedUserAvatarTransparent) else {
             return
         }
-        partnerImageView.af_setImage(withURL: partnerAvaUrl)
+        
+        partnerImageView.kf.setImage(with: partnerAvaUrl)
         
         
         UIView.animate(withDuration: 0.5) {
@@ -86,6 +85,19 @@ class MatchView: UIView {
        
         self.photosView.layer.cornerRadius = 14.0
         self.photosView.layer.masksToBounds = true
+    }
+    
+    func waitForPatnerAnimation() {
+        UIView.animate(withDuration: 0.3, animations: {
+            self.buttonsView.alpha = 0.0
+        }) { _ in
+            self.buttonsView.isHidden = true
+            self.waitingView.isHidden = false
+            UIView.animate(withDuration: 0.3) {
+                self.waitingView.alpha = 1.0
+            }
+        }
+        startWaitingAnimation()
     }
     
     private func showUI() {
@@ -116,20 +128,7 @@ class MatchView: UIView {
         }
     }
     
-    func waitForPatnerAnimation() {
-        UIView.animate(withDuration: 0.3, animations: {
-            self.buttonsView.alpha = 0.0
-        }) { (fin) in
-            self.buttonsView.isHidden = true
-            self.waitingView.isHidden = false
-            UIView.animate(withDuration: 0.3) {
-                self.waitingView.alpha = 1.0
-            }
-        }
-        startWaitingAnimation()
-    }
-    
-    func showButtons() {
+    private func showButtons() {
         self.buttonsView.isHidden = false
         UIView.animate(withDuration: 0.3, animations: {
             self.buttonsView.alpha = 1.0

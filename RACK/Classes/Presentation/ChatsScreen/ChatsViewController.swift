@@ -26,8 +26,6 @@ final class ChatsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        UserDefaults.standard.set(ScreenManager.ScreenManagerEntryTypes.showMain, forKey: ScreenManager.showKey)
-        
         newSearchView.isHidden = true
         backgroundViewHeight.constant = 0
         buttonHeight.constant = 0
@@ -111,12 +109,7 @@ final class ChatsViewController: UIViewController {
             searchView.delegate = self
             if let startFromNewSearchButton: MatchScreenState = sender as? MatchScreenState {
                 if startFromNewSearchButton == .foundet {
-                    if let match: DKMatch = ScreenManager.shared.match {
-                        searchView.config(state: startFromNewSearchButton, match: match)
-                    } else {
-                        searchView.config(state: .searchng)
-                    }
-                    
+                    searchView.config(state: .searchng)
                 } else {
                     searchView.config(state: startFromNewSearchButton)
                 }

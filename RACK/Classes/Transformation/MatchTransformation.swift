@@ -8,7 +8,7 @@
 
 import Foundation.NSJSONSerialization
 
-typealias SearchingQueueUUID = String
+typealias SearchingQueueId = String
 
 final class MatchTransformation {
     static func from(matchWebSocket response: String) -> MatchService.Event? {
@@ -33,11 +33,37 @@ final class MatchTransformation {
                 return nil
             }
             
-            return .matchProposed(MatchProposed())
+            let array = MatchProposed.parseFromArray(any: info)
+            
+            return .matchProposed(array)
         case "skip":
-            return .refused
+            guard let info = result["result"] as? [[String: Any]] else {
+                return nil
+            }
+            
+            let array: [SearchingQueueId] = info.compactMap {
+                guard let queueId = $0["queue_id"] as? String else {
+                    return nil
+                }
+                
+                return queueId
+            }
+            
+            return .refused(array)
         case "room":
-            return .coupleFormed
+            guard let info = result["result"] as? [[String: Any]] else {
+                return nil
+            }
+            
+            let array: [SearchingQueueId] = info.compactMap {
+                guard let queueId = $0["queue_id"] as? String else {
+                    return nil
+                }
+                
+                return queueId
+            }
+            
+            return .coupleFormed(array)
         default:
             return nil
         }

@@ -17,11 +17,16 @@ final class MatchService {
         case close
     }
     
+    enum TechnicalEvent {
+        case socketConnected
+    }
+    
     enum Event {
-        case registered(SearchingQueueUUID)
-        case matchProposed(MatchProposed)
-        case refused
-        case coupleFormed
+        case registered(SearchingQueueId)
+        case matchProposed([MatchProposed])
+        case refused([SearchingQueueId])
+        case coupleFormed([SearchingQueueId])
+        case technical(TechnicalEvent)
     }
     
     private lazy var socket: WebSocket = {
@@ -55,6 +60,8 @@ final class MatchService {
         Observable<Event>.create { [socket] observer in
             socket.onEvent = { event in
                 switch event {
+                case .connected(_):
+                    observer.onNext(.technical(.socketConnected))
                 case .text(let string):
                     guard let response = MatchTransformation.from(matchWebSocket: string) else {
                         return

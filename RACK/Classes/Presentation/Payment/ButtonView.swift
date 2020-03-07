@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ButtonView: GardientView {
+class ButtonView: GradientView {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var subtitleLabel: UILabel!
     

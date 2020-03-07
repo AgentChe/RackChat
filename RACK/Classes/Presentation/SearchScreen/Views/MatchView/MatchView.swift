@@ -39,10 +39,7 @@ class MatchView: UIView {
     @IBOutlet weak var partnerImageView: UIImageView!
     @IBOutlet weak var userImageView: UIImageView!
     
-    private var partnerImageAnimationTimer: Timer?
-    
     private var match: DKMatch?
-    private var user: UserShow?
     
     func config(match: DKMatch, user: UserShow) {
         
@@ -173,5 +170,4 @@ class MatchView: UIView {
         sureButtonView.alpha = 1.0
         skipButton.isEnabled = true
     }
-
 }

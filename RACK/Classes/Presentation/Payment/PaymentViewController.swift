@@ -29,7 +29,7 @@ class PaymentViewController: UIViewController {
     
     
     // outlets
-    @IBOutlet weak var mainBundleAnimateView: GardientView!
+    @IBOutlet weak var mainBundleAnimateView: GradientView!
     @IBOutlet var reasonViews: [ReasonView]!
     @IBOutlet weak var blurActivityView: UIVisualEffectView!
     @IBOutlet weak var trialView: UIStackView!

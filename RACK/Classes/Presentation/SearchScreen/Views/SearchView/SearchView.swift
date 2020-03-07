@@ -14,7 +14,6 @@ enum SearchViewStates {
 }
 
 class SearchView: UIView {
-    
     class func instanceFromNib() -> SearchView {
         return UINib(nibName: "SearchView", bundle: .main).instantiate(withOwner: nil, options: nil)[0] as! SearchView
     }
@@ -64,7 +63,6 @@ class SearchView: UIView {
             
             
             animateGeneralLabel()
-            break
         case .manualy:
             var genderString: String = ""
             
@@ -93,7 +91,6 @@ class SearchView: UIView {
         animateTimer?.invalidate()
         UIView.animate(withDuration: 0.4, animations: {
             self.generalLabel.text = "Welcome Back, Tommy Johnagin".uppercased()
-//            sleep(5)
         }) { (fin) in
             UIView.animate(withDuration: 0.3, animations: {
                 self.generalLabel.text = "Hold Tight, Looking for Some Action".uppercased()
@@ -133,13 +130,4 @@ class SearchView: UIView {
         animateTimer?.invalidate()
         super.removeFromSuperview()
     }
-
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
-    }
-    */
-
 }

@@ -8,7 +8,6 @@
 
 import UIKit
 
-class SkipButtonView: UIView {
-    
+final class SkipButtonView: UIView {
     @IBOutlet weak var titleLabel: UILabel!
 }

@@ -9,3 +9,7 @@
 struct MatchProposed {
     
 }
+
+extension MatchProposed: Model {
+    
+}

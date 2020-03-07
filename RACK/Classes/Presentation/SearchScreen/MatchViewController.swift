@@ -14,9 +14,7 @@ enum MatchScreenState {
     case serchingManuality
     case foundet
     case partnerSayNot
-    case timeOut
     case noOneHere
-    case noOneHerewithNotifyRequest
 }
 
 protocol SearchViewDelegate: class {
@@ -24,10 +22,9 @@ protocol SearchViewDelegate: class {
     func tapOnYes()
 }
 
-class MatchViewController: UIViewController {
-    @IBOutlet weak var shadowView: GardientView!
+final class MatchViewController: UIViewController {
+    @IBOutlet weak var shadowView: GradientView!
     @IBOutlet weak var matchContentView: UIView!
-    
     @IBOutlet weak var shadowTop: NSLayoutConstraint!
     @IBOutlet weak var contentTop: NSLayoutConstraint!
     
@@ -35,24 +32,20 @@ class MatchViewController: UIViewController {
     private var currentMatch: DKMatch?
     
     private var fullScreen: Bool = false
+    
     private var state: MatchScreenState = .searchng
+    
     private var searchScene: SearchView = SearchView.instanceFromNib()
     private var matchScene: MatchView = MatchView.instanceFromNib()
     private var noScene: NoView = NoView.instanceFromNib()
     private var noOneScene: NoOneHereView = NoOneHereView.instanceFromNib()
-    private var timeOutScene: TimeOutView = TimeOutView.instanceFromNib()
     
     weak var delegate: SearchViewDelegate?
     
     var initialTouchPoint: CGPoint = CGPoint(x: 0,y: 0)
-
+    
     func config(state: MatchScreenState) {
         self.state = state
-    }
-    
-    func config(state: MatchScreenState, match: DKMatch) {
-        self.state = state
-        self.currentMatch = match
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -83,12 +76,12 @@ class MatchViewController: UIViewController {
         delegate?.wasDismis(searchView: self)
         DatingKit.search.stopAll()
         UIApplication.shared.isIdleTimerDisabled = false
-        
         super.dismiss(animated: flag, completion: completion)
     }
     
     @IBAction func panGestureRecognizerHandler(_ sender: UIPanGestureRecognizer) {
         fullScreen(false)
+        
         let touchPoint = sender.location(in: self.view?.window)
         if sender.state == UIGestureRecognizer.State.began {
             initialTouchPoint = touchPoint
@@ -112,12 +105,6 @@ class MatchViewController: UIViewController {
     
     @objc func close() {
         self.dismiss(animated: true, completion: nil)
-    }
-    
-    @objc func handleMatch() {
-        guard let match: DKMatch = ScreenManager.shared.match else { return }
-        currentMatch = match
-        setScene(state: .foundet)
     }
     
     @objc func search() {
@@ -168,13 +155,7 @@ class MatchViewController: UIViewController {
         
         self.setScene(state: .searchng)
         self.startSearch()
-        DatingKit.search.sayNo(matchID: match.matchID) { (status) in
-            if status == .noInternetConnection {
-                let banner = NotificationBanner(customView: NoConnectionBannerView.instanceFromNib())
-                banner.show(on: self)
-                return
-            }
-        }
+        DatingKit.search.sayNo(matchID: match.matchID) { (status) in}
     }
     
     func sayYes() {
@@ -186,45 +167,14 @@ class MatchViewController: UIViewController {
                    switch status {
                    case .succses:
                        switch matchStatus {
-                       case .waitPartnerAnser:
-                            break
-                       case .timeOut:
-                        self.setScene(state: .timeOut)
                        case .deny:
                         self.setScene(state: .partnerSayNot)
                        case .confirmPending:
-                           self.dismiss(animated: true) {
-                               self.delegate?.tapOnYes()
-                           }
-                       case .lostChat:
-                           break
-                       case .report:
-                           break
-                       case .cantAnswer:
-                           break
-                       }
-                       
-                   case .noInternetConnection:
-                    self.matchScene.showButtons()
-                       switch matchStatus {
-                       case .cantAnswer:
-                           let banner = NotificationBanner(customView: NoConnectionBannerView.instanceFromNib())
-                           banner.show(on: self)
-                           break
-                           
-                       case .waitPartnerAnser:
-                           let banner = NotificationBanner(customView: NoConnectionBannerView.instanceFromNib())
-                           banner.show(on: self)
-                           break
-                                              
-                       default: break
-                       }
-                   case .needPayment:
-                        self.matchScene.showButtons()
-                       break
-                   case .forbitten:
-                    if matchStatus == .cantAnswer {
-                        self.setScene(state: .timeOut)
+                        self.dismiss(animated: true) {
+                            self.delegate?.tapOnYes()
+                        }
+                       default:
+                        break
                     }
                    default:
                        break
@@ -240,8 +190,6 @@ class MatchViewController: UIViewController {
             case .succses:
                 self!.currentMatch = match
                 self!.setScene(state: .foundet)
-            case .timeOut:
-                self!.setScene(state: .noOneHere)
             default:
                 break
             }
@@ -258,49 +206,18 @@ class MatchViewController: UIViewController {
         switch state {
         case .searchng:
             setSearchScene(mode: .auto)
-            break
         case .serchingManuality:
             setSearchScene(mode: .manualy)
-            break
         case .foundet:
             setFoundScene()
-            break
         case .partnerSayNot:
             setNoScene()
-            break
-        case .timeOut:
-            setTimeOutScene()
-            break
         case .noOneHere:
             setNoOneScene()
-            break
-        case .noOneHerewithNotifyRequest:
-            break
         }
-        
-    }
-    
-    func setTimeOutScene() {
-        matchScene.removeFromSuperview()
-        fullScreen = false
-        fullScreen(false)
-        UIView.animate(withDuration: 0.4) {
-            self.matchContentView.backgroundColor = .clear
-            self.shadowView.startColor = .white
-            self.shadowView.endColor = .white
-            
-        }
-        timeOutScene.frame = CGRect(x: 0,
-                                    y: 20.0,
-                                    width: matchContentView.frame.size.width,
-                                    height: matchContentView.frame.size.height)
-        timeOutScene.newSearch.addTarget(self, action: #selector(search), for: .touchUpInside)
-        matchContentView.addSubview(timeOutScene)
-
     }
     
     func setSearchScene(mode: SearchViewStates) {
-        timeOutScene.removeFromSuperview()
         noOneScene.removeFromSuperview()
         searchScene.removeFromSuperview()
         searchScene = SearchView.instanceFromNib()
@@ -383,6 +300,7 @@ class MatchViewController: UIViewController {
                                width: matchContentView.frame.size.width,
                                height: matchContentView.frame.size.height + 34.0)
         matchContentView.addSubview(noScene)
+        
     }
     
     func fullScreen(_ full: Bool, completion: (() -> Void)? = nil) {
@@ -392,8 +310,10 @@ class MatchViewController: UIViewController {
         UIView.animate(withDuration: 0.5, animations: {
             self.shadowView.cornerRadius = full ? 0 : 30
             self.view.layoutIfNeeded()
-        }, completion: { _ in
-            completion?()
-        })
+        }) { (fin) in
+            if fin {
+                completion?()
+            }
+        }
     }
 }

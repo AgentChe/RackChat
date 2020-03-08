@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		130C0DC5232662790000B5AD /* ReasonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 130C0DC4232662790000B5AD /* ReasonView.swift */; };
 		13113AC622F6D953009C85C6 /* lf20_XZ30Ct.json in Resources */ = {isa = PBXBuildFile; fileRef = 13113AC522F6D952009C85C6 /* lf20_XZ30Ct.json */; };
-		1319227D236A05EE00C057B8 /* MatchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1319227C236A05EE00C057B8 /* MatchViewController.swift */; };
+		1319227D236A05EE00C057B8 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1319227C236A05EE00C057B8 /* SearchViewController.swift */; };
 		1319227F236A1D8B00C057B8 /* UIView+CornerRadius.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1319227E236A1D8B00C057B8 /* UIView+CornerRadius.swift */; };
 		13192281236A334600C057B8 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13192280236A334600C057B8 /* SearchView.swift */; };
 		13192284236A33EB00C057B8 /* SearchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13192283236A33EB00C057B8 /* SearchView.xib */; };
@@ -201,7 +201,7 @@
 /* Begin PBXFileReference section */
 		130C0DC4232662790000B5AD /* ReasonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReasonView.swift; sourceTree = "<group>"; };
 		13113AC522F6D952009C85C6 /* lf20_XZ30Ct.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = lf20_XZ30Ct.json; sourceTree = "<group>"; };
-		1319227C236A05EE00C057B8 /* MatchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchViewController.swift; sourceTree = "<group>"; };
+		1319227C236A05EE00C057B8 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		1319227E236A1D8B00C057B8 /* UIView+CornerRadius.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+CornerRadius.swift"; sourceTree = "<group>"; };
 		13192280236A334600C057B8 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		13192283236A33EB00C057B8 /* SearchView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchView.xib; sourceTree = "<group>"; };
@@ -576,7 +576,7 @@
 			isa = PBXGroup;
 			children = (
 				13192282236A33C100C057B8 /* Views */,
-				1319227C236A05EE00C057B8 /* MatchViewController.swift */,
+				1319227C236A05EE00C057B8 /* SearchViewController.swift */,
 				96BD9E932413B0120040D539 /* SearchViewModel.swift */,
 			);
 			path = SearchScreen;
@@ -1365,7 +1365,7 @@
 				969DA2FD23FF488400DC42D1 /* DateExtension.swift in Sources */,
 				969DA4302401445E00DC42D1 /* DatingCities.swift in Sources */,
 				13D4A7AE2333676500B4FC00 /* TerminatedViewController.swift in Sources */,
-				1319227D236A05EE00C057B8 /* MatchViewController.swift in Sources */,
+				1319227D236A05EE00C057B8 /* SearchViewController.swift in Sources */,
 				969DA45F2401C80600DC42D1 /* UnmatchRequest.swift in Sources */,
 				13CB670B22F5DB8000B79622 /* SureButtonView.swift in Sources */,
 				96F005892405249D0058F7C9 /* FileService.swift in Sources */,

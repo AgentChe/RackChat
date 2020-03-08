@@ -1,5 +1,5 @@
 //
-//  MatchViewController.swift
+//  SearchViewController.swift
 //  RACK
 //
 //  Created by Алексей Петров on 30.10.2019.
@@ -13,7 +13,7 @@ protocol SearchViewControllerDelegate: class {
     func wasDismiss()
 }
 
-final class MatchViewController: UIViewController {
+final class SearchViewController: UIViewController {
     private enum Scene {
         case searching, matching, none
     }

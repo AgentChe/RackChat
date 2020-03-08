@@ -105,7 +105,7 @@ final class ChatsViewController: UIViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "search" {
-            let searchView = segue.destination as! MatchViewController
+            let searchView = segue.destination as! SearchViewController
             searchView.delegate = self
         }
     }

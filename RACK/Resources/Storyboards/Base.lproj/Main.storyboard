@@ -19,10 +19,10 @@
         </array>
     </customFonts>
     <scenes>
-        <!--Match View Controller-->
+        <!--Search View Controller-->
         <scene sceneID="0GX-Dz-kOz">
             <objects>
-                <viewController storyboardIdentifier="matchScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Hu7-gY-2hR" customClass="MatchViewController" customModule="RACK" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="matchScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Hu7-gY-2hR" customClass="SearchViewController" customModule="RACK" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="QGx-LS-l6i">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -717,6 +717,6 @@
         <image name="button" width="28" height="28"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="1DR-ZG-w8V"/>
+        <segue reference="9fl-OF-Tur"/>
     </inferredMetricsTieBreakers>
 </document>

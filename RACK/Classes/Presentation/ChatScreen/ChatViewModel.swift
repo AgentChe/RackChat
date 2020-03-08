@@ -37,8 +37,8 @@ final class ChatViewModel {
         return chatService.event
             .flatMap { [weak self] event -> Observable<Void> in
                 switch event {
-                case .removedChat(let chat):
-                    guard self?.chat.id == chat.id else {
+                case .removedChat(let chatId):
+                    guard self?.chat.id == chatId else {
                         return .never()
                     }
                     

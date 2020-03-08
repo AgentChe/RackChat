@@ -18,7 +18,7 @@ final class ChatService {
     
     enum Event {
         case newMessage(AKMessage)
-        case removedChat(AKChat)
+        case removedChat(String)
     }
     
     private let chat: AKChat

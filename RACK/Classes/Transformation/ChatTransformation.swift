@@ -68,12 +68,12 @@ final class ChatTransformation {
             }
             
             return .newMessage(message)
-        case "remove":
-            guard let data = result["result"] as? [String: Any], let chat = AKChat.parseFromDictionary(any: data) else {
+        case "unmatch", "report":
+            guard let chatId = result["result"] as? String else {
                 return nil
             }
             
-            return .removedChat(chat)
+            return .removedChat(chatId)
         default:
             return nil
         }

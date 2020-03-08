@@ -187,9 +187,9 @@ final class SearchViewController: UIViewController {
         
         searchView.setup(user: user)
         searchView.frame = CGRect(x: 0,
-                                   y: 20.0,
-                                   width: matchContentView.frame.size.width,
-                                   height: matchContentView.frame.size.height)
+                                  y: 20.0,
+                                  width: matchContentView.frame.size.width,
+                                  height: matchContentView.frame.size.height)
         
         matchContentView.addSubview(searchView)
     }

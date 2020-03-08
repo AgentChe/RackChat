@@ -30,9 +30,9 @@ final class ChatsService {
         socket.disconnect()
     }
     
-    var event: Observable<Event> {
-        return Observable<Event>.create { [socket] observer in
-            socket.onEvent = { event in
+    lazy var event: Observable<Event> = {
+        Observable<Event>.create { [weak self] observer in
+            self?.socket.onEvent = { event in
                 switch event {
                 case .text(let string):
                     guard let response = ChatTransformation.from(chatsWebSocket: string) else {
@@ -47,8 +47,7 @@ final class ChatsService {
             
             return Disposables.create()
         }
-        .share(replay: 1, scope: .forever)
-    }
+    }().share(replay: 1, scope: .forever)
 }
 
 extension ChatsService {

@@ -69,11 +69,7 @@ final class ChatTransformation {
             
             return .newMessage(message)
         case "unmatch", "report":
-            guard let chatId = result["result"] as? String else {
-                return nil
-            }
-            
-            return .removedChat(chatId)
+            return .removedChat
         default:
             return nil
         }

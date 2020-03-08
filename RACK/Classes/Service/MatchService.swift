@@ -58,9 +58,9 @@ final class MatchService {
         }
     }
     
-    var event: Observable<Event> {
-        Observable<Event>.create { [socket] observer in
-            socket.onEvent = { event in
+    lazy var event: Observable<Event> = {
+        Observable<Event>.create { [weak self] observer in
+            self?.socket.onEvent = { event in
                 switch event {
                 case .connected(_):
                     observer.onNext(.technical(.socketConnected))
@@ -77,8 +77,7 @@ final class MatchService {
             
             return Disposables.create()
         }
-        .share(replay: 1, scope: .forever)
-    }
+    }().share(replay: 1, scope: .forever)
 }
 
 extension MatchService {

@@ -35,13 +35,9 @@ final class ChatViewModel {
     
     func chatRemoved() -> Signal<Void> {
         return chatService.event
-            .flatMap { [weak self] event -> Observable<Void> in
+            .flatMap { event -> Observable<Void> in
                 switch event {
-                case .removedChat(let chatId):
-                    guard self?.chat.id == chatId else {
-                        return .never()
-                    }
-                    
+                case .removedChat:
                     return .just(Void())
                 default:
                     return .never()

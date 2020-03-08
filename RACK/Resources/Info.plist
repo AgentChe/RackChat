@@ -31,6 +31,8 @@
 	<string>2348411165426123</string>
 	<key>FacebookDisplayName</key>
 	<string>RACK Anonymous Chat</string>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>fbapi</string>

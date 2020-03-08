@@ -94,6 +94,7 @@
 		4772C9F423F2EAD000B905CE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4772C9F323F2EAD000B905CE /* Assets.xcassets */; };
 		960D83842415710B00EE3951 /* TimeOutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 960D83832415710B00EE3951 /* TimeOutView.xib */; };
 		960D83862415710F00EE3951 /* TimeOutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960D83852415710F00EE3951 /* TimeOutView.swift */; };
+		960D83882415808400EE3951 /* AppStateProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960D83872415808400EE3951 /* AppStateProxy.swift */; };
 		965452CC23FAB85E007697C4 /* RestAPITransport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965452CA23FAB85E007697C4 /* RestAPITransport.swift */; };
 		965452CD23FAB85E007697C4 /* RealmDBTransport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965452CB23FAB85E007697C4 /* RealmDBTransport.swift */; };
 		965452D123FAB98C007697C4 /* GlobalDefinitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965452D023FAB98C007697C4 /* GlobalDefinitions.swift */; };
@@ -295,6 +296,7 @@
 		631ED5FCC768F26D3DFB19F6 /* Pods-RACKUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RACKUITests.debug.xcconfig"; path = "Target Support Files/Pods-RACKUITests/Pods-RACKUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		960D83832415710B00EE3951 /* TimeOutView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimeOutView.xib; sourceTree = "<group>"; };
 		960D83852415710F00EE3951 /* TimeOutView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeOutView.swift; sourceTree = "<group>"; };
+		960D83872415808400EE3951 /* AppStateProxy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppStateProxy.swift; sourceTree = "<group>"; };
 		965452CA23FAB85E007697C4 /* RestAPITransport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestAPITransport.swift; sourceTree = "<group>"; };
 		965452CB23FAB85E007697C4 /* RealmDBTransport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmDBTransport.swift; sourceTree = "<group>"; };
 		965452D023FAB98C007697C4 /* GlobalDefinitions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalDefinitions.swift; sourceTree = "<group>"; };
@@ -739,6 +741,7 @@
 		9654534123FABB9C007697C4 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				960D83872415808400EE3951 /* AppStateProxy.swift */,
 				96A4D5C523FDF95900E24E13 /* ChatsService.swift */,
 				969DA4602401C8E000DC42D1 /* MatchService.swift */,
 				969DA4622401CCD200DC42D1 /* SessionService.swift */,
@@ -1288,6 +1291,7 @@
 				96BF8CAA2403E76F0026F3CE /* ChatTableView.swift in Sources */,
 				969DA2F823FF488400DC42D1 /* ReactiveExtension.swift in Sources */,
 				96A5528523FF392B001E88DC /* ChatTransformation.swift in Sources */,
+				960D83882415808400EE3951 /* AppStateProxy.swift in Sources */,
 				13861BAE231C30A00011F8D1 /* UIColor+HexString.swift in Sources */,
 				96A4D5C423FDF49B00E24E13 /* GetChatsRequest.swift in Sources */,
 				969DA44E2401445E00DC42D1 /* CitiesWorker.swift in Sources */,

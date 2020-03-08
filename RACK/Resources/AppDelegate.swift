@@ -49,6 +49,10 @@ extension AppDelegate {
         let handled: Bool = (ApplicationDelegate.shared.application(app, open: url, options: options))
         return handled
     }
+    
+    func applicationWillResignActive(_ application: UIApplication) {
+        AppStateProxy.ApplicationProxy.willResignActive.accept(Void())
+    }
 }
 
 extension AppDelegate {

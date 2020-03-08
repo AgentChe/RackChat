@@ -15,7 +15,7 @@ protocol SearchViewControllerDelegate: class {
 
 final class MatchViewController: UIViewController {
     private enum Scene {
-        case searching, matching
+        case searching, matching, none
     }
     
     @IBOutlet weak var shadowView: GradientView!
@@ -41,6 +41,13 @@ final class MatchViewController: UIViewController {
         super.viewDidLoad()
         
         UIApplication.shared.isIdleTimerDisabled = true
+        
+        AppStateProxy.ApplicationProxy
+            .willResignActive
+            .subscribe(onNext: { [weak self] in
+                self?.dismiss(animated: false)
+            })
+            .disposed(by: disposeBag)
         
         viewModel.user
             .drive(onNext: { [weak self] user in
@@ -116,6 +123,8 @@ final class MatchViewController: UIViewController {
     
     override func dismiss(animated flag: Bool, completion: (() -> Void)? = nil) {
         UIApplication.shared.isIdleTimerDisabled = false
+        
+        currentScene = .none
         
         viewModel.close()
         

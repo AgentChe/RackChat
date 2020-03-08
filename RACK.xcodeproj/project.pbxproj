@@ -144,9 +144,7 @@
 		969DA4292401445E00DC42D1 /* RequestTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969DA3D12401445E00DC42D1 /* RequestTool.swift */; };
 		969DA42A2401445E00DC42D1 /* PaymentFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969DA3D32401445E00DC42D1 /* PaymentFlow.swift */; };
 		969DA42C2401445E00DC42D1 /* PaymentManagment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969DA3D52401445E00DC42D1 /* PaymentManagment.swift */; };
-		969DA42D2401445E00DC42D1 /* SearchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969DA3D62401445E00DC42D1 /* SearchManager.swift */; };
 		969DA42E2401445E00DC42D1 /* DKManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969DA3D82401445E00DC42D1 /* DKManager.swift */; };
-		969DA42F2401445E00DC42D1 /* DatingSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969DA3D92401445E00DC42D1 /* DatingSearch.swift */; };
 		969DA4302401445E00DC42D1 /* DatingCities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969DA3DA2401445E00DC42D1 /* DatingCities.swift */; };
 		969DA4312401445E00DC42D1 /* DatingUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969DA3DB2401445E00DC42D1 /* DatingUser.swift */; };
 		969DA4322401445E00DC42D1 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969DA3DC2401445E00DC42D1 /* Protocols.swift */; };
@@ -160,7 +158,6 @@
 		969DA4462401445E00DC42D1 /* UserResponce.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969DA3F52401445E00DC42D1 /* UserResponce.swift */; };
 		969DA4472401445E00DC42D1 /* SearchWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969DA3F72401445E00DC42D1 /* SearchWorker.swift */; };
 		969DA4482401445E00DC42D1 /* SearchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969DA3F82401445E00DC42D1 /* SearchResponse.swift */; };
-		969DA4492401445E00DC42D1 /* SearchTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969DA3F92401445E00DC42D1 /* SearchTask.swift */; };
 		969DA44A2401445E00DC42D1 /* System.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969DA3FB2401445E00DC42D1 /* System.swift */; };
 		969DA44B2401445E00DC42D1 /* SystemTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969DA3FC2401445E00DC42D1 /* SystemTask.swift */; };
 		969DA44C2401445E00DC42D1 /* SystemResponce.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969DA3FD2401445E00DC42D1 /* SystemResponce.swift */; };
@@ -347,9 +344,7 @@
 		969DA3D12401445E00DC42D1 /* RequestTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestTool.swift; sourceTree = "<group>"; };
 		969DA3D32401445E00DC42D1 /* PaymentFlow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentFlow.swift; sourceTree = "<group>"; };
 		969DA3D52401445E00DC42D1 /* PaymentManagment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentManagment.swift; sourceTree = "<group>"; };
-		969DA3D62401445E00DC42D1 /* SearchManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchManager.swift; sourceTree = "<group>"; };
 		969DA3D82401445E00DC42D1 /* DKManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DKManager.swift; sourceTree = "<group>"; };
-		969DA3D92401445E00DC42D1 /* DatingSearch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatingSearch.swift; sourceTree = "<group>"; };
 		969DA3DA2401445E00DC42D1 /* DatingCities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatingCities.swift; sourceTree = "<group>"; };
 		969DA3DB2401445E00DC42D1 /* DatingUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatingUser.swift; sourceTree = "<group>"; };
 		969DA3DC2401445E00DC42D1 /* Protocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
@@ -363,7 +358,6 @@
 		969DA3F52401445E00DC42D1 /* UserResponce.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserResponce.swift; sourceTree = "<group>"; };
 		969DA3F72401445E00DC42D1 /* SearchWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchWorker.swift; sourceTree = "<group>"; };
 		969DA3F82401445E00DC42D1 /* SearchResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResponse.swift; sourceTree = "<group>"; };
-		969DA3F92401445E00DC42D1 /* SearchTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTask.swift; sourceTree = "<group>"; };
 		969DA3FB2401445E00DC42D1 /* System.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = System.swift; sourceTree = "<group>"; };
 		969DA3FC2401445E00DC42D1 /* SystemTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SystemTask.swift; sourceTree = "<group>"; };
 		969DA3FD2401445E00DC42D1 /* SystemResponce.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SystemResponce.swift; sourceTree = "<group>"; };
@@ -928,7 +922,6 @@
 			children = (
 				969DA3D32401445E00DC42D1 /* PaymentFlow.swift */,
 				969DA3D52401445E00DC42D1 /* PaymentManagment.swift */,
-				969DA3D62401445E00DC42D1 /* SearchManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -937,7 +930,6 @@
 			isa = PBXGroup;
 			children = (
 				969DA3D82401445E00DC42D1 /* DKManager.swift */,
-				969DA3D92401445E00DC42D1 /* DatingSearch.swift */,
 				969DA3DA2401445E00DC42D1 /* DatingCities.swift */,
 				969DA3DB2401445E00DC42D1 /* DatingUser.swift */,
 				969DA3DC2401445E00DC42D1 /* Protocols.swift */,
@@ -991,7 +983,6 @@
 			children = (
 				969DA3F72401445E00DC42D1 /* SearchWorker.swift */,
 				969DA3F82401445E00DC42D1 /* SearchResponse.swift */,
-				969DA3F92401445E00DC42D1 /* SearchTask.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -1315,7 +1306,6 @@
 				969DA4312401445E00DC42D1 /* DatingUser.swift in Sources */,
 				13D4A7AC2332B81000B4FC00 /* ToYongViewController.swift in Sources */,
 				13D9225B231298E200A8B6CA /* ReportViewController.swift in Sources */,
-				969DA42D2401445E00DC42D1 /* SearchManager.swift in Sources */,
 				969DA4572401445E00DC42D1 /* UIView+Designble.swift in Sources */,
 				131BCDF722E99A3100D4638C /* Navigation.swift in Sources */,
 				969DA4372401445E00DC42D1 /* Response.swift in Sources */,
@@ -1323,7 +1313,6 @@
 				969DA30423FF48AC00DC42D1 /* UIDeviceUtils.swift in Sources */,
 				969DA42E2401445E00DC42D1 /* DKManager.swift in Sources */,
 				9654533023FABA66007697C4 /* ApiError.swift in Sources */,
-				969DA4492401445E00DC42D1 /* SearchTask.swift in Sources */,
 				96BF8CAC240426470026F3CE /* ChatTableCell.swift in Sources */,
 				96669A65240C23AE0023A8B9 /* ChatInputView.swift in Sources */,
 				13E4D35022DA2A2A00442BF9 /* СhatsTableViewCell.swift in Sources */,
@@ -1371,7 +1360,6 @@
 				96F005892405249D0058F7C9 /* FileService.swift in Sources */,
 				13CC5591231E3C8200A10D45 /* NotificationRequest.swift in Sources */,
 				13BA7A8D2326E31000EB5A0E /* ConfigRequest.swift in Sources */,
-				969DA42F2401445E00DC42D1 /* DatingSearch.swift in Sources */,
 				13A30BE1231E996C00CF6248 /* NotigyEnablingViewController.swift in Sources */,
 				13E4D34922DA1CCC00442BF9 /* GardientView.swift in Sources */,
 				969DA44B2401445E00DC42D1 /* SystemTask.swift in Sources */,

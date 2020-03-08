@@ -16,27 +16,21 @@ open class DatingKit: Owner {
     public static var user: User {
         return standart.userManager
     }
-    
-    public static var search: Search {
-        return standart.searchManager
-    }
 
     public static var cities: Cities {
         return standart.citiesManager
     }
 
     var userManager: User
-    var searchManager: Search
     var citiesManager: Cities
 
     public var manager: Manager
     
-    private let servicesList: [Servises] = [.notification, .payment, .search, .user, .system, .marketing, .cities]
+    private let servicesList: [Servises] = [.notification, .payment, .user, .system, .marketing, .cities]
 
     init() {
         manager = DKManager(services: servicesList)
         userManager = User(manager: manager)
-        searchManager = Search(manager: manager)
         citiesManager = Cities(manager: manager)
     }
     

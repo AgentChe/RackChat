@@ -13,7 +13,6 @@ public enum Servises: CodingKey {
     case system
     case user
     case payment
-    case search
     case cities
     case notification
     case marketing
@@ -66,12 +65,6 @@ class DKManager: Manager, NetworkStatusListener {
                                                           errorTool: errorTool)
 
             case .payment, .notification:
-                break
-
-            case .search:
-                workers[service.stringValue] = SerachWorker(manager: self,
-                                                            errorTool: errorTool,
-                                                            requestTool: requestTool)
                 break
 
             case .system:

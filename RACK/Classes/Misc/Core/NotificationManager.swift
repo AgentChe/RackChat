@@ -16,7 +16,6 @@ protocol NotificationDelegate: class {
 }
 
 enum PushType: Int {
-    case match = 2
     case autoSearch = 3
     case marketing = 4
     case custom = 5
@@ -69,30 +68,6 @@ class NotificationManager: NSObject {
             
             RequestManager.shared.requset(request) { (result) in
                 _ = 0
-            }
-            
-            if pushType == .match {
-                guard let match: String = userInfo["match_id"] as? String  else { return false }
-                guard let name: String = userInfo["name"] as? String  else { return false}
-                guard let avatar: String = userInfo["avatar"] as? String  else { return false}
-                guard let avatarTransparent: String = userInfo["avatar_transparent_hi_res"] as? String  else { return false}
-                guard let avatarStartColor: String = userInfo["avatar_start_color"] as? String  else { return false }
-                guard let avatarEndColor: String = userInfo["avatar_end_color"] as? String  else { return false }
-                guard let user: String = userInfo["user_id"] as? String  else { return false }
-                guard let matchID: Int = Int(match) else { return false }
-                guard let userID: Int = Int(user) else { return false }
-                
-                ScreenManager.shared.match = DKMatch(matchID: matchID,
-                                                     name: name,
-                                                     avatar: avatar,
-                                                     avatarTransparent: avatarTransparent,
-                                                     avatarStartColor: avatarStartColor,
-                                                     avatarEndColor: avatarEndColor,
-                                                     partnerID: userID,
-                                                     gender: .woman)
-                
-                 return false
-                
             }
             
             return false
@@ -185,29 +160,6 @@ class NotificationManager: NSObject {
                 RequestManager.shared.requset(request) { (result) in
                     _ = 0
                 }
-                  
-                if pushType == .match {
-                    guard let match: String = userInfo["match_id"] as? String  else { return }
-                    guard let name: String = userInfo["name"] as? String  else { return }
-                    guard let avatar: String = userInfo["avatar"] as? String  else { return }
-                    guard let avatarTransparent: String = userInfo["avatar_transparent_hi_res"] as? String  else { return }
-                    guard let avatarStartColor: String = userInfo["avatar_start_color"] as? String  else { return }
-                    guard let avatarEndColor: String = userInfo["avatar_end_color"] as? String  else { return }
-                    guard let user: String = userInfo["user_id"] as? String  else { return }
-                    guard let matchID: Int = Int(match) else { return }
-                    guard let userID: Int = Int(user) else { return }
-                    
-                    ScreenManager.shared.match = DKMatch(matchID: matchID,
-                                                         name: name,
-                                                         avatar: avatar,
-                                                         avatarTransparent: avatarTransparent,
-                                                         avatarStartColor: avatarStartColor,
-                                                         avatarEndColor: avatarEndColor,
-                                                         partnerID: userID,
-                                                         gender: .woman)
-                  
-                    
-                }
                 
                 if pushType == .autoSearch {
                     ScreenManager.shared.autoChat = true
@@ -256,29 +208,6 @@ extension NotificationManager: UNUserNotificationCenterDelegate {
             RequestManager.shared.requset(request) { (result) in
                 _ = 0
             }
-            
-            if pushType == .match {
-                guard let match: String = userInfo["match_id"] as? String  else { return }
-                guard let name: String = userInfo["name"] as? String  else { return }
-                guard let avatar: String = userInfo["avatar"] as? String  else { return }
-                guard let avatarTransparent: String = userInfo["avatar_transparent_hi_res"] as? String  else { return }
-                guard let avatarStartColor: String = userInfo["avatar_start_color"] as? String  else { return }
-                guard let avatarEndColor: String = userInfo["avatar_end_color"] as? String  else { return }
-                guard let user: String = userInfo["user_id"] as? String  else { return }
-                guard let matchID: Int = Int(match) else { return }
-                guard let userID: Int = Int(user) else { return }
-                
-                ScreenManager.shared.match = DKMatch(matchID: matchID,
-                                                     name: name,
-                                                     avatar: avatar,
-                                                     avatarTransparent: avatarTransparent,
-                                                     avatarStartColor: avatarStartColor,
-                                                     avatarEndColor: avatarEndColor,
-                                                     partnerID: userID,
-                                                     gender: .woman)
-                
-            }
-            
         }
 
         completionHandler()
@@ -301,28 +230,6 @@ extension NotificationManager: MessagingDelegate {
     
     func messaging(_ messaging: Messaging, didReceive remoteMessage: MessagingRemoteMessage) {
         print("Received data message: \(remoteMessage.appData)")
-    }
-    
-}
-
-extension DKMatch {
-    convenience init(matchID: Int,
-                     name: String,
-                     avatar: String,
-                     avatarTransparent: String,
-                     avatarStartColor: String,
-                     avatarEndColor: String,
-                     partnerID: Int,
-                     gender: Gender) {
-        self.init()
-        self.matchID = matchID
-        self.action = .WaitUser
-        self.matchedUserId = partnerID
-        self.matchedUserName = name
-        self.gradient = Gradient(start: avatarStartColor, end: avatarEndColor)
-        self.matchedUserGender = gender
-        self.matchedAvatarString = avatar
-        self.matchedUserAvatarTransparent = avatarTransparent
     }
     
 }

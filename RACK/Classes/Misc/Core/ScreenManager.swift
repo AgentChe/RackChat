@@ -31,7 +31,6 @@ class ScreenManager {
     
     static let shared = ScreenManager()
     
-    var match: DKMatch?
     var showChat: Bool = false
     var autoChat: Bool = false
     

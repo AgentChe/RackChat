@@ -75,7 +75,7 @@ class CitiesWorker: Worker {
         
         stopSearchTimer = Timer.scheduledTimer(withTimeInterval: Settings.searchStopTime,
                                                repeats: false) { (timer) in
-                                                self.close(task: task, with: SearchResult(match: DKMatch(), status: .timeOut), task: .done)
+                                                self.close(task: task, with: SearchResult(status: .timeOut), task: .done)
                                                 debugPrint("==========================")
                                                 debugPrint("search was endet by time")
                                                 debugPrint("==========================")
@@ -90,7 +90,7 @@ class CitiesWorker: Worker {
                 self.stopSearchTimer!.invalidate()
                 
                 self.errorTool.postError(task: task,
-                                         result: SearchResult(match: DKMatch(), status: .noInternetConnection),
+                                         result: SearchResult(status: .noInternetConnection),
                                          messsage: "No Internet Connection",
                                          status: .failedFromInternetConnection)
                 return
@@ -115,7 +115,7 @@ class CitiesWorker: Worker {
                             self.errorTool.postError(message: error.localizedDescription, process: "")
                         } else {
                             self.errorTool.postError(task: task,
-                                                     result: SearchResult(match: DKMatch(), status: .undifferentError),
+                                                     result: SearchResult(status: .undifferentError),
                                                      messsage: error.localizedDescription,
                                                      status: .failed)
                         }
@@ -136,7 +136,7 @@ class CitiesWorker: Worker {
                         
                     } else {
                         self?.errorTool.postError(task: task,
-                                                  result: SearchResult(match: DKMatch(), status: .undifferentError),
+                                                  result: SearchResult(status: .undifferentError),
                                                   messsage: "Responce is nil",
                                                   status: .failed)
                     }
@@ -212,7 +212,7 @@ class CitiesWorker: Worker {
                     
                 } else {
                     self?.errorTool.postError(task: task,
-                                              result: SearchResult(match: DKMatch(), status: .undifferentError),
+                                              result: SearchResult(status: .undifferentError),
                                               messsage: data!.message,
                                               status: .failed)
                 }

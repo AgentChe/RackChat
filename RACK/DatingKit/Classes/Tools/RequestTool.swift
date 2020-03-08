@@ -97,10 +97,6 @@ enum RequestGroup: Int, CaseIterable {
     case usersRandomize
     case usersFbAuth
     case usersLogout
-    case searchRequest
-    case searchCheckMatch
-    case searchSayYes
-    case searchSayNo
     case purchaseGate
     case purchaseValidate
     case purchaseHack
@@ -117,14 +113,6 @@ enum RequestGroup: Int, CaseIterable {
             return "/users/show"
         case .usersRandomize:
             return "/users/randomize"
-        case .searchRequest:
-            return "/requests/search"
-        case .searchCheckMatch:
-            return "/requests/check_match"
-        case .searchSayYes:
-            return "/requests/say_yes"
-        case .searchSayNo:
-            return "/requests/say_no"
         case .usersFbAuth:
             return "/auth/facebook_login_token"
         case .usersLogout:
@@ -272,31 +260,6 @@ public class RequestManager {
                 debugPrint(error.localizedDescription)
                 return nil
             }
-           
-        case .searchRequest:
-            let response: Match = try! JSONDecoder().decode(Match.self, from: data)
-            if response.needPayment {
-                NotificationCenter.default.post(name: PaymentManager.needPayment, object: nil)
-            }
-            return response
-        case .searchCheckMatch:
-            let response: CheckMatch = try! JSONDecoder().decode(CheckMatch.self, from: data)
-            if response.needPayment {
-                NotificationCenter.default.post(name: PaymentManager.needPayment, object: nil)
-            }
-            return response
-        case .searchSayYes:
-            let response: AnswerMatch = try! JSONDecoder().decode(AnswerMatch.self, from: data)
-            if response.needPayment {
-                NotificationCenter.default.post(name: PaymentManager.needPayment, object: nil)
-            }
-            return response
-        case .searchSayNo:
-            let response: AnswerMatch = try! JSONDecoder().decode(AnswerMatch.self, from: data)
-            if response.needPayment {
-                NotificationCenter.default.post(name: PaymentManager.needPayment, object: nil)
-            }
-            return response
         case .purchaseGate:
             do {
             let response: PaymentResponse = try JSONDecoder().decode(PaymentResponse.self, from: data)

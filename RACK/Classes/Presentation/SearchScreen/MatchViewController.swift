@@ -9,45 +9,29 @@
 import UIKit
 import RxSwift
 
-enum MatchScreenState {
-    case searchng
-    case foundet
-    case partnerSayNot
-    case noOneHere
-}
-
-protocol SearchViewDelegate: class {
+protocol SearchViewControllerDelegate: class {
     func wasDismiss()
 }
 
 final class MatchViewController: UIViewController {
+    private enum Scene {
+        case searching, matching
+    }
+    
     @IBOutlet weak var shadowView: GradientView!
     @IBOutlet weak var matchContentView: UIView!
     @IBOutlet weak var shadowTop: NSLayoutConstraint!
     @IBOutlet weak var contentTop: NSLayoutConstraint!
     
-    weak var delegate: SearchViewDelegate?
+    weak var delegate: SearchViewControllerDelegate?
     
     private var user: UserShow?
-    private var currentMatch: DKMatch?
     
-    private var fullScreen: Bool = false
+    private var initialTouchPoint = CGPoint(x: 0, y: 0)
     
-    private var state: MatchScreenState = .searchng
+    private var interlocutorResponseTimer: Timer?
     
-    private var searchScene: SearchView = SearchView.instanceFromNib()
-    private var matchScene: MatchView = MatchView.instanceFromNib()
-    private var noScene: NoView = NoView.instanceFromNib()
-    private var noOneScene: NoOneHereView = NoOneHereView.instanceFromNib()
-    
-    private func removeAllScenes() {
-        searchScene.removeFromSuperview()
-        matchScene.removeFromSuperview()
-        noScene.removeFromSuperview()
-        noOneScene.removeFromSuperview()
-    }
-    
-    private var initialTouchPoint: CGPoint = CGPoint(x: 0,y: 0)
+    private var currentScene: Scene = .searching
     
     private let disposeBag = DisposeBag()
     
@@ -62,9 +46,7 @@ final class MatchViewController: UIViewController {
             .drive(onNext: { [weak self] user in
                 self?.user = user
                 
-                if self?.user != nil {
-                    self?.setScene(state: .searchng)
-                }
+                self?.applySearchScene()
             })
             .disposed(by: disposeBag)
         
@@ -79,12 +61,47 @@ final class MatchViewController: UIViewController {
                 switch event {
                 case .registered(let queueId):
                     searchingQueueId = queueId
-                case .matchProposed(let matchProposeds):
-                    print()
-                case .refused(let queueIds):
-                    print()
+                case .proposedInterlocutor(let matchProposeds):
+                    guard let proposedInterlocutor = matchProposeds.first(where: { $0.queueId == searchingQueueId }) else {
+                        return
+                    }
+                    
+                    self.stopInterlocutorCountdown()
+                    
+                    self.removeAllScenes()
+                    self.applyMatchScene(proposedInterlocutor: proposedInterlocutor)
+                case .proposedInterlocutorRefused(let queueIds):
+                    guard let queueId = searchingQueueId, queueIds.contains(queueId) else {
+                        return
+                    }
+                    
+                    self.stopInterlocutorCountdown()
+                    
+                    self.removeAllScenes()
+                    self.applySearchScene()
+                case .proposedInterlocutorConfirmed(let stub):
+                    guard let forCurrentQueue = stub.first(where: { $0.0 == searchingQueueId }) else {
+                        return
+                    }
+                    
+                    self.startInterlocutorCountdown(seconds: forCurrentQueue.1)
                 case .coupleFormed(let queueIds):
-                    print()
+                    guard let queueId = searchingQueueId, queueIds.contains(queueId) else {
+                        return
+                    }
+                    
+                    self.dismiss(animated: true)
+                case .closed(let queueIds):
+                    guard self.currentScene == .matching, let queueId = searchingQueueId, queueIds.contains(queueId) else {
+                        return
+                    }
+                    
+                    self.stopInterlocutorCountdown()
+                    
+                    self.removeAllScenes()
+                    self.applySearchScene()
+                    
+                    self.viewModel.register()
                 case .technical(let technicalEvent):
                     switch technicalEvent {
                     case .socketConnected:
@@ -104,226 +121,163 @@ final class MatchViewController: UIViewController {
         
         delegate?.wasDismiss()
         
+        stopInterlocutorCountdown()
+        
         super.dismiss(animated: flag, completion: completion)
     }
     
     @IBAction func panGestureRecognizerHandler(_ sender: UIPanGestureRecognizer) {
-        fullScreen(false)
-        
         let touchPoint = sender.location(in: self.view?.window)
-        if sender.state == UIGestureRecognizer.State.began {
+        
+        switch sender.state {
+        case .began:
             initialTouchPoint = touchPoint
-        } else if sender.state == UIGestureRecognizer.State.changed {
+        case .changed:
             if touchPoint.y - initialTouchPoint.y > 0 {
-                self.view.frame = CGRect(x: 0, y: touchPoint.y - initialTouchPoint.y, width: self.view.frame.size.width, height: self.view.frame.size.height)
+                view.frame = CGRect(x: 0, y: touchPoint.y - initialTouchPoint.y, width: view.frame.size.width, height: view.frame.size.height)
             }
-        } else if sender.state == UIGestureRecognizer.State.ended || sender.state == UIGestureRecognizer.State.cancelled {
-          
+        case .ended, .cancelled:
             if touchPoint.y - initialTouchPoint.y > 200 {
-  
-                self.dismiss(animated: true, completion: nil)
+                dismiss(animated: true, completion: nil)
             } else {
-                fullScreen(self.fullScreen)
-                UIView.animate(withDuration: 0.3, animations: {
+                UIView.animate(withDuration: 0.3, animations: { [weak self] in
+                    guard let `self` = self else {
+                        return
+                    }
+                    
                     self.view.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height)
                 })
             }
+        default:
+            break 
         }
     }
     
-    @objc func close() {
-        self.dismiss(animated: true, completion: nil)
-    }
-    
-    @objc func search() {
-//        self.startSearch()
-        self.setScene(state: .searchng)
-    }
-    
-    @objc func yes() {
-        matchScene.waitForPatnerAnimation()
-        self.sayYes()
-    }
-    
-    @objc func skip() {
-        noOneScene.showSearchView()
-    }
-    
-    @objc func no() {
-        self.sayNo()
-    }
-    
-    @objc func requestNotify() {
-        let alertController = UIAlertController (title: "“RACK” Would Like to Send You Notifications", message: "To manage push notifications you'll need to enable them in app's settings first", preferredStyle: .alert)
-
-            let settingsAction = UIAlertAction(title: "Settings", style: .default) { (_) -> Void in
-
-                guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
-                    return
-                }
-
-                if UIApplication.shared.canOpenURL(settingsUrl) {
-                    UIApplication.shared.open(settingsUrl, completionHandler: { (success) in
-                        self.noOneScene.showSearchView()
-                    })
-                }
-            }
-            alertController.addAction(settingsAction)
-            let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: nil)
-            alertController.addAction(cancelAction)
-
-            present(alertController, animated: true, completion: nil)
-    }
-    
-    func sayNo() {
-        guard let match: DKMatch = self.currentMatch else {
-            return
-            
-        }
-        
-        self.setScene(state: .searchng)
-//        self.startSearch()
-        DatingKit.search.sayNo(matchID: match.matchID) { (status) in}
-    }
-    
-    func sayYes() {
-        guard let match: DKMatch = self.currentMatch else {
-            return
-        }
-        
-        DatingKit.search.sayYes(matchID: match.matchID) { (matchStatus, status) in
-                   switch status {
-                   case .succses:
-                       switch matchStatus {
-                       case .deny:
-                        self.setScene(state: .partnerSayNot)
-                       case .confirmPending:
-                        self.dismiss(animated: true)
-                       default:
-                        break
-                    }
-                   default:
-                       break
-                   }
-               }
-    }
-    
-    private func setScene(state: MatchScreenState) {
-        for view in matchContentView.subviews{
+    private func removeAllScenes() {
+        for view in matchContentView.subviews {
             view.removeFromSuperview()
         }
-        
-        self.state = state
-        
-        switch state {
-        case .searchng:
-            setSearchScene()
-        case .foundet:
-            setFoundScene()
-        case .partnerSayNot:
-            setNoScene()
-        case .noOneHere:
-            setNoOneScene()
-        }
     }
     
-    func setSearchScene() {
-        noOneScene.removeFromSuperview()
-        searchScene.removeFromSuperview()
-        searchScene = SearchView.instanceFromNib()
-        UIView.animate(withDuration: 0.4) {
-            self.matchContentView.backgroundColor = .clear
-            self.shadowView.startColor = .white
-            self.shadowView.endColor = .white
-            
+    private func applySearchScene() {
+        guard let user = self.user else {
+            return
         }
-        matchScene.removeFromSuperview()
-        guard let userShow: UserShow = self.user else { return }
-        fullScreen = false
-        fullScreen(false)
-        searchScene.config(user: userShow)
-        searchScene.frame = CGRect(x: 0,
+        
+        currentScene = .searching
+        
+        fullScreen(full: false)
+        
+        UIView.animate(withDuration: 0.3) { [weak self] in
+            self?.matchContentView.backgroundColor = .clear
+            self?.shadowView.startColor = .white
+            self?.shadowView.endColor = .white
+        }
+        
+        let searchView = SearchView.instanceFromNib()
+        
+        searchView.setup(user: user)
+        searchView.frame = CGRect(x: 0,
                                    y: 20.0,
                                    width: matchContentView.frame.size.width,
                                    height: matchContentView.frame.size.height)
-        searchScene.newSearchButton.addTarget(self, action: #selector(search), for: .touchUpInside)
-        matchContentView.addSubview(searchScene)
         
+        matchContentView.addSubview(searchView)
     }
     
-    func setFoundScene() {
-        searchScene.removeFromSuperview()
-        matchScene.removeFromSuperview()
-        matchScene = MatchView.instanceFromNib()
-        guard let userShow: UserShow = self.user else { return }
-        guard let match: DKMatch = self.currentMatch else { return }
-        fullScreen = true
-        fullScreen(true) {
-            UIView.animate(withDuration: 0.4) {
-                self.matchContentView.backgroundColor = .clear
-                self.shadowView.startColor = UIColor.hexStringToUIColor(hex: match.gradient.gradientStartColor)
-                self.shadowView.endColor = UIColor.hexStringToUIColor(hex: match.gradient.gradientEndColor)
+    private func applyMatchScene(proposedInterlocutor: ProposedInterlocutor) {
+        guard let user = self.user else {
+            return
+        }
+        
+        currentScene = .matching
+
+        fullScreen(full: true) {
+            UIView.animate(withDuration: 0.3) { [weak self] in
+                self?.matchContentView.backgroundColor = .clear
                 
+                if let colorBegin = proposedInterlocutor.gradientColorBegin, let colorEnd = proposedInterlocutor.gradientColorEnd {
+                    self?.shadowView.startColor = UIColor.hexStringToUIColor(hex: colorBegin)
+                    self?.shadowView.endColor = UIColor.hexStringToUIColor(hex: colorEnd)
+                }
             }
         }
         
-        matchScene.config(match: match, user: userShow)
-        matchScene.frame = CGRect(x: 0,
-                                  y: 0,
-                                  width: matchContentView.frame.size.width,
-                                  height: matchContentView.frame.size.height + 34.0)
+        let matchView = MatchView.instanceFromNib()
         
-        matchScene.sureButton.addTarget(self, action: #selector(yes), for: .touchUpInside)
-        matchScene.skipButton.addTarget(self, action: #selector(no), for: .touchUpInside)
+        matchView.onSure = { [weak self] in
+            matchView.waitForPatnerAnimation()
+            
+            self?.viewModel.sure()
+        }
         
-        matchContentView.addSubview(matchScene)
+        matchView.onSkip = { [weak self] in
+            self?.removeAllScenes()
+            self?.applySearchScene()
+            
+            self?.viewModel.skip()
+        }
+
+        matchView.setup(proposedInterlocutor: proposedInterlocutor, user: user)
+        matchView.frame = CGRect(x: 0,
+                                 y: 0,
+                                 width: matchContentView.frame.size.width,
+                                 height: matchContentView.frame.size.height + 34.0)
+
+        matchContentView.addSubview(matchView)
     }
     
-    func setNoOneScene() {
-        searchScene.removeFromSuperview()
-        matchScene.removeFromSuperview()
-        fullScreen = true
-        fullScreen(true)
-        noOneScene.config()
-        noOneScene.backButton.addTarget(self, action: #selector(close), for: .touchUpInside)
-        noOneScene.newSearch.addTarget(self, action: #selector(search), for: .touchUpInside)
-        noOneScene.sureButton.addTarget(self, action: #selector(requestNotify), for: .touchUpInside)
-        noOneScene.skipButton.addTarget(self, action: #selector(skip), for: .touchUpInside)
+    private func applyTimeOutScene() {
+        fullScreen(full: false)
         
+        UIView.animate(withDuration: 0.3) { [weak self] in
+            self?.matchContentView.backgroundColor = .clear
+            self?.shadowView.startColor = .white
+            self?.shadowView.endColor = .white
+        }
         
-        noOneScene.frame = CGRect(x: 0,
-                                  y: 0,
-                                  width: matchContentView.frame.size.width,
-                                  height: matchContentView.frame.size.height + 34.0)
-         matchContentView.addSubview(noOneScene)
+        let timeOutView = TimeOutView.instanceFromNib()
+        
+        timeOutView.onNewSearch = { [weak self] in
+            self?.removeAllScenes()
+            self?.applySearchScene()
+            
+            self?.viewModel.register()
+        }
+        
+        timeOutView.frame = CGRect(x: 0,
+                                   y: 20.0,
+                                   width: matchContentView.frame.size.width,
+                                   height: matchContentView.frame.size.height)
+        
+        matchContentView.addSubview(timeOutView)
     }
     
-    func setNoScene()  {
-        guard let match: DKMatch = self.currentMatch else { return }
-        fullScreen = true
-        fullScreen(true)
-        noScene.config(match: match)
-        noScene.newSearchButton.addTarget(self, action: #selector(search), for: .touchUpInside)
-        noScene.backButton.addTarget(self, action: #selector(close), for: .touchUpInside)
-        noScene.frame = CGRect(x: 0,
-                               y: 0,
-                               width: matchContentView.frame.size.width,
-                               height: matchContentView.frame.size.height + 34.0)
-        matchContentView.addSubview(noScene)
+    private func startInterlocutorCountdown(seconds: Int) {
+        interlocutorResponseTimer?.invalidate()
         
+        interlocutorResponseTimer = Timer.scheduledTimer(withTimeInterval: TimeInterval(seconds), repeats: false) { [weak self] _ in
+            self?.viewModel.close()
+            
+            self?.removeAllScenes()
+            self?.applyTimeOutScene()
+        }
     }
     
-    func fullScreen(_ full: Bool, completion: (() -> Void)? = nil) {
+    private func stopInterlocutorCountdown() {
+        interlocutorResponseTimer?.invalidate()
+        interlocutorResponseTimer = nil
+    }
+    
+    private func fullScreen(full: Bool, completion: (() -> Void)? = nil) {
         shadowTop.constant = full ? 0 : 84
         contentTop.constant = full ? 0 : 40
-        
-        UIView.animate(withDuration: 0.5, animations: {
-            self.shadowView.cornerRadius = full ? 0 : 30
-            self.view.layoutIfNeeded()
-        }) { (fin) in
-            if fin {
-                completion?()
-            }
-        }
+
+        UIView.animate(withDuration: 0.3, animations: { [weak self] in
+            self?.shadowView.cornerRadius = full ? 0 : 30
+            self?.view.layoutIfNeeded()
+        }, completion: { _ in
+            completion?()
+        })
     }
 }

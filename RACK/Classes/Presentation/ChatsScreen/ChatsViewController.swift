@@ -88,7 +88,7 @@ final class ChatsViewController: UIViewController {
     @IBAction func tapOnNewSearch(_ sender: UIButton) {
         Amplitude.instance()?.log(event: .chatListNewSearchTap)
         
-        performSegue(withIdentifier: "search", sender: MatchScreenState.searchng)
+        performSegue(withIdentifier: "search", sender: nil)
         
         backgroundViewHeight.constant = 0
         buttonHeight.constant = 0
@@ -100,7 +100,7 @@ final class ChatsViewController: UIViewController {
     }
     
     @IBAction func tapOnSearch(_ sender: Any) {
-        performSegue(withIdentifier: "search", sender: MatchScreenState.searchng)
+        performSegue(withIdentifier: "search", sender: nil)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -111,13 +111,14 @@ final class ChatsViewController: UIViewController {
     }
 }
 
-extension ChatsViewController: SearchViewDelegate {
+extension ChatsViewController: SearchViewControllerDelegate {
     func wasDismiss() {
-               self.backgroundViewHeight.constant = -20.0
-               self.buttonHeight.constant = 80.0
-               UIView.animate(withDuration: 0.4) {
-                   self.view.layoutIfNeeded()
-                   self.backroundView.layer.cornerRadius = 20
-               }
+       backgroundViewHeight.constant = -20.0
+       buttonHeight.constant = 80.0
+        
+       UIView.animate(withDuration: 0.3) { [weak self] in
+           self?.view.layoutIfNeeded()
+           self?.backroundView.layer.cornerRadius = 20
+       }
     }
 }

@@ -8,65 +8,67 @@
 
 import UIKit
 
-class SearchView: UIView {
+final class SearchView: UIView {
     class func instanceFromNib() -> SearchView {
         UINib(nibName: "SearchView", bundle: .main).instantiate(withOwner: nil, options: nil)[0] as! SearchView
     }
     
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-    @IBOutlet weak var newSearchButton: GradientButton!
-    @IBOutlet weak var newSearch: UIView!
-    @IBOutlet weak var subtitleView: UIView!
-    @IBOutlet weak var generalLabel: UILabel!
-    @IBOutlet weak var userImageView: UIImageView!
-    @IBOutlet weak var contentView: UIStackView!
-    @IBOutlet weak var subtitleLabel: UILabel!
+    @IBOutlet private weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet private weak var generalLabel: UILabel!
+    @IBOutlet private weak var userImageView: UIImageView!
+    @IBOutlet private weak var contentView: UIStackView!
     
     private var user: UserShow?
     private var animateTimer: Timer?
     
-    func config(user: UserShow) {
+    override func removeFromSuperview() {
+        animateTimer?.invalidate()
+        
+        super.removeFromSuperview()
+    }
+    
+    func setup(user: UserShow) {
         self.user = user
         
-        self.contentView.alpha = 0.0
+        contentView.alpha = 0.0
         activityIndicator.isHidden = false
         
-        if let avatar: UIImage = user.avatar {
-            self.userImageView.image = avatar
-            self.activityIndicator.isHidden = true
-            UIView.animate(withDuration: 0.4) {
-                self.contentView.alpha = 1.0
+        if let avatar = user.avatar {
+            userImageView.image = avatar
+            activityIndicator.isHidden = true
+            
+            UIView.animate(withDuration: 0.4) { [weak self] in
+                self?.contentView.alpha = 1.0
             }
         } else {
-            UIView.animate(withDuration: 0.3) {
-                self.activityIndicator.alpha = 1.0
+            UIView.animate(withDuration: 0.3) { [weak self] in
+                self?.activityIndicator.alpha = 1.0
             }
-            userImageView.downloaded(from: user.avatarURL) {
-                self.activityIndicator.isHidden = true
+            
+            userImageView.downloaded(from: user.avatarURL) { [weak self] in
+                self?.activityIndicator.isHidden = true
+                
                 UIView.animate(withDuration: 0.4) {
-                    self.contentView.alpha = 1.0
+                    self?.contentView.alpha = 1.0
                 }
             }
         }
         
-        newSearch.alpha = 0.0
-        subtitleView.alpha = 0.0
-        
-        
         animateGeneralLabel()
     }
     
-    func animateGeneralLabel() {
+    private func animateGeneralLabel() {
         animateTimer?.invalidate()
         
-        UIView.animate(withDuration: 0.4, animations: {
-            self.generalLabel.text = "Welcome Back, Tommy Johnagin".uppercased()
-        }) { _ in
+        UIView.animate(withDuration: 0.4, animations: { [weak self] in
+            self?.generalLabel.text = "Welcome Back, Tommy Johnagin".uppercased()
+        }, completion: { [weak self] _ in
             UIView.animate(withDuration: 0.3, animations: {
-                self.generalLabel.text = "Hold Tight, Looking for Some Action".uppercased()
-            }) { _ in
+                self?.generalLabel.text = "Hold Tight, Looking for Some Action".uppercased()
+            }, completion: { _ in
                 var points: String = "   "
-                self.animateTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { (timer) in
+                
+                self?.animateTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { (timer) in
                     if points == "   " {
                         points = ".  "
                     } else if points == ".  "{
@@ -76,28 +78,10 @@ class SearchView: UIView {
                     } else if points == "..." {
                         points = "   "
                     }
-                    self.generalLabel.text =  "Hold Tight, Looking for Some Action".uppercased() + points
+                    
+                    self?.generalLabel.text =  "Hold Tight, Looking for Some Action".uppercased() + points
                 }
-            }
-        }
-    }
-    
-    func startSearch() {
-        UIView.animate(withDuration: 0.5) {
-            self.newSearch.alpha = 0.0
-            self.subtitleView.alpha = 0.0
-        }
-        
-        animateGeneralLabel()
-    }
-    
-    @IBAction func tapOnNewSearch(_ sender: Any) {
-        startSearch()
-    }
-    
-    override func removeFromSuperview() {
-        animateTimer?.invalidate()
-        
-        super.removeFromSuperview()
+            })
+        })
     }
 }

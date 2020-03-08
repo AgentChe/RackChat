@@ -33,9 +33,9 @@ final class MatchTransformation {
                 return nil
             }
             
-            let array = MatchProposed.parseFromArray(any: info)
+            let array = ProposedInterlocutor.parseFromArray(any: info)
             
-            return .matchProposed(array)
+            return .proposedInterlocutor(array)
         case "skip":
             guard let info = result["result"] as? [[String: Any]] else {
                 return nil
@@ -49,7 +49,21 @@ final class MatchTransformation {
                 return queueId
             }
             
-            return .refused(array)
+            return .proposedInterlocutorRefused(array)
+        case "sure":
+            guard let info = result["result"] as? [[String: Any]] else {
+                return nil
+            }
+            
+            let array: [(SearchingQueueId, Int)] = info.compactMap {
+                guard let queueId = $0["queue_id"] as? String, let timeOut = $0["timeout"] as? Int else {
+                    return nil
+                }
+                
+                return (queueId, timeOut)
+            }
+            
+            return .proposedInterlocutorConfirmed(array)
         case "room":
             guard let info = result["result"] as? [[String: Any]] else {
                 return nil
@@ -64,6 +78,20 @@ final class MatchTransformation {
             }
             
             return .coupleFormed(array)
+        case "close":
+            guard let info = result["result"] as? [[String: Any]] else {
+                return nil
+            }
+            
+            let array: [SearchingQueueId] = info.compactMap {
+                guard let queueId = $0["queue_id"] as? String else {
+                    return nil
+                }
+                
+                return queueId
+            }
+            
+            return .closed(array)
         default:
             return nil
         }

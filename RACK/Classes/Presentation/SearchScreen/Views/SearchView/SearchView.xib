@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina5_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -20,7 +20,7 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="Kdp-BW-ngQ">
-                    <rect key="frame" x="55" y="105" width="304" height="590"/>
+                    <rect key="frame" x="55" y="219" width="304" height="362"/>
                     <subviews>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xmH-r8-snK">
                             <rect key="frame" x="0.0" y="0.0" width="304" height="200"/>
@@ -45,61 +45,6 @@
                                 <constraint firstAttribute="trailing" secondItem="AcR-mp-WLP" secondAttribute="trailing" id="gpE-Ch-BlF"/>
                                 <constraint firstAttribute="height" constant="150" id="ooV-9k-O9n"/>
                                 <constraint firstItem="AcR-mp-WLP" firstAttribute="leading" secondItem="1Mm-ln-6as" secondAttribute="leading" id="yqS-GL-gBc"/>
-                            </constraints>
-                        </view>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uSk-6i-THJ">
-                            <rect key="frame" x="0.0" y="374" width="304" height="128"/>
-                            <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Push the button to match with girls who are into the same stuff as you." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vnV-YT-ccD">
-                                    <rect key="frame" x="0.0" y="0.0" width="304" height="128"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <nil key="textColor"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                            </subviews>
-                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <constraints>
-                                <constraint firstAttribute="trailing" secondItem="vnV-YT-ccD" secondAttribute="trailing" id="BX5-6p-0Es"/>
-                                <constraint firstAttribute="bottom" secondItem="vnV-YT-ccD" secondAttribute="bottom" id="LRs-3l-5Wq"/>
-                                <constraint firstItem="vnV-YT-ccD" firstAttribute="top" secondItem="uSk-6i-THJ" secondAttribute="top" id="rIt-4h-hpO"/>
-                                <constraint firstItem="vnV-YT-ccD" firstAttribute="leading" secondItem="uSk-6i-THJ" secondAttribute="leading" id="xu4-8U-8jW"/>
-                            </constraints>
-                        </view>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ztM-5h-vow">
-                            <rect key="frame" x="0.0" y="514" width="304" height="76"/>
-                            <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QK0-iV-YCa" customClass="GradientButton" customModule="RACK" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="20" width="304" height="56"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="56" id="uy1-Ah-dyg"/>
-                                    </constraints>
-                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
-                                    <state key="normal" title="New Search">
-                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </state>
-                                    <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="boolean" keyPath="horizontalMode" value="YES"/>
-                                        <userDefinedRuntimeAttribute type="color" keyPath="startColor">
-                                            <color key="value" red="0.98431372549019602" green="0.3880246282" blue="0.41959252949999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                        </userDefinedRuntimeAttribute>
-                                        <userDefinedRuntimeAttribute type="color" keyPath="endColor">
-                                            <color key="value" red="0.9980457425" green="0.42328047749999997" blue="0.57255476709999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                        </userDefinedRuntimeAttribute>
-                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                            <real key="value" value="26"/>
-                                        </userDefinedRuntimeAttribute>
-                                    </userDefinedRuntimeAttributes>
-                                    <connections>
-                                        <action selector="tapOnNewSearch:" destination="HI1-19-KBF" eventType="touchUpInside" id="1ZJ-7X-MMX"/>
-                                    </connections>
-                                </button>
-                            </subviews>
-                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <constraints>
-                                <constraint firstAttribute="bottom" secondItem="QK0-iV-YCa" secondAttribute="bottom" id="Bup-DE-oYw"/>
-                                <constraint firstItem="QK0-iV-YCa" firstAttribute="top" secondItem="ztM-5h-vow" secondAttribute="top" constant="20" id="GPi-MK-8fi"/>
-                                <constraint firstAttribute="trailing" secondItem="QK0-iV-YCa" secondAttribute="trailing" id="GTz-Vc-3dm"/>
-                                <constraint firstItem="QK0-iV-YCa" firstAttribute="leading" secondItem="ztM-5h-vow" secondAttribute="leading" id="cOu-0p-Nfl"/>
                             </constraints>
                         </view>
                     </subviews>
@@ -141,10 +86,6 @@
                 <outlet property="activityIndicator" destination="Mom-2a-1k1" id="1h6-ze-RcA"/>
                 <outlet property="contentView" destination="Kdp-BW-ngQ" id="WmQ-r2-ugN"/>
                 <outlet property="generalLabel" destination="AcR-mp-WLP" id="Sg3-Ya-d5O"/>
-                <outlet property="newSearch" destination="ztM-5h-vow" id="s72-03-CO4"/>
-                <outlet property="newSearchButton" destination="QK0-iV-YCa" id="R7b-um-SkM"/>
-                <outlet property="subtitleLabel" destination="vnV-YT-ccD" id="Jfb-ct-0LZ"/>
-                <outlet property="subtitleView" destination="uSk-6i-THJ" id="QQf-pD-PnY"/>
                 <outlet property="userImageView" destination="xmH-r8-snK" id="sbN-m9-CZO"/>
             </connections>
             <point key="canvasLocation" x="202.89855072463769" y="250.27173913043481"/>

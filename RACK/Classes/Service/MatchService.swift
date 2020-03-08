@@ -23,9 +23,11 @@ final class MatchService {
     
     enum Event {
         case registered(SearchingQueueId)
-        case matchProposed([MatchProposed])
-        case refused([SearchingQueueId])
+        case proposedInterlocutor([ProposedInterlocutor])
+        case proposedInterlocutorRefused([SearchingQueueId])
+        case proposedInterlocutorConfirmed([(SearchingQueueId, Int)])
         case coupleFormed([SearchingQueueId])
+        case closed([SearchingQueueId])
         case technical(TechnicalEvent)
     }
     

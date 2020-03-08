@@ -40,8 +40,6 @@
 		1393CD9722C7535B00422529 /* OpenSans-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1393CD9622C7535B00422529 /* OpenSans-ExtraBold.ttf */; };
 		1393CD9922C75A6D00422529 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1393CD9822C75A6D00422529 /* RegistrationViewController.swift */; };
 		1393CD9B22C787CF00422529 /* OpenSans-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1393CD9A22C787CF00422529 /* OpenSans-Semibold.ttf */; };
-		139A0396236C188C00683946 /* NoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 139A0395236C188C00683946 /* NoView.xib */; };
-		139A0398236C189E00683946 /* NoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 139A0397236C189E00683946 /* NoView.swift */; };
 		13A30BE1231E996C00CF6248 /* NotigyEnablingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A30BE0231E996C00CF6248 /* NotigyEnablingViewController.swift */; };
 		13A30BE4231E99A400CF6248 /* NotifySetingUiTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A30BE2231E99A400CF6248 /* NotifySetingUiTableViewCell.swift */; };
 		13A30BE5231E99A400CF6248 /* NotifySetingUiTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13A30BE3231E99A400CF6248 /* NotifySetingUiTableViewCell.xib */; };
@@ -50,8 +48,6 @@
 		13BA7A8D2326E31000EB5A0E /* ConfigRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13BA7A8C2326E31000EB5A0E /* ConfigRequest.swift */; };
 		13BA7A8F2326E61300EB5A0E /* Bundle+version.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13BA7A8E2326E61300EB5A0E /* Bundle+version.swift */; };
 		13BA7A912326EF7A00EB5A0E /* RegistrationPaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13BA7A902326EF7A00EB5A0E /* RegistrationPaymentViewController.swift */; };
-		13C2668E236CD8CE00AEAC13 /* NoOneHereView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13C2668D236CD8CE00AEAC13 /* NoOneHereView.xib */; };
-		13C26690236CD8F000AEAC13 /* NoOneHereView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13C2668F236CD8F000AEAC13 /* NoOneHereView.swift */; };
 		13C2FCDB23251B5D00F017FE /* PaymentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13C2FCDA23251B5D00F017FE /* PaymentManager.swift */; };
 		13C5052322E8D2C1009A7B04 /* SetGenderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13C5052222E8D2C1009A7B04 /* SetGenderViewController.swift */; };
 		13CB0B4722C9D75A00EFD115 /* Test.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 13CB0B4622C9D75A00EFD115 /* Test.storyboard */; };
@@ -96,6 +92,8 @@
 		4731754723F583F90004705E /* UIDevice+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4731754523F583F90004705E /* UIDevice+Ext.swift */; };
 		4772C9F123F2E7C100B905CE /* SetAgeAndCityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4772C9F023F2E7C100B905CE /* SetAgeAndCityViewController.swift */; };
 		4772C9F423F2EAD000B905CE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4772C9F323F2EAD000B905CE /* Assets.xcassets */; };
+		960D83842415710B00EE3951 /* TimeOutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 960D83832415710B00EE3951 /* TimeOutView.xib */; };
+		960D83862415710F00EE3951 /* TimeOutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960D83852415710F00EE3951 /* TimeOutView.swift */; };
 		965452CC23FAB85E007697C4 /* RestAPITransport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965452CA23FAB85E007697C4 /* RestAPITransport.swift */; };
 		965452CD23FAB85E007697C4 /* RealmDBTransport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965452CB23FAB85E007697C4 /* RealmDBTransport.swift */; };
 		965452D123FAB98C007697C4 /* GlobalDefinitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965452D023FAB98C007697C4 /* GlobalDefinitions.swift */; };
@@ -118,7 +116,7 @@
 		96669A772411B2260023A8B9 /* CheckNeedPaymentRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96669A762411B2260023A8B9 /* CheckNeedPaymentRequest.swift */; };
 		96669A792411B47B0023A8B9 /* PaymentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96669A782411B47B0023A8B9 /* PaymentService.swift */; };
 		96669A7B2411B4910023A8B9 /* PaymentTransformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96669A7A2411B4910023A8B9 /* PaymentTransformation.swift */; };
-		96669A7D2411BD0C0023A8B9 /* MatchProposed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96669A7C2411BD0C0023A8B9 /* MatchProposed.swift */; };
+		96669A7D2411BD0C0023A8B9 /* ProposedInterlocutor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96669A7C2411BD0C0023A8B9 /* ProposedInterlocutor.swift */; };
 		968FE7BB240ACB4B00C3D5C2 /* ChatsTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 968FE7BA240ACB4B00C3D5C2 /* ChatsTableView.swift */; };
 		968FE7BE240B0DCE00C3D5C2 /* ReportViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 968FE7BD240B0DCE00C3D5C2 /* ReportViewController.xib */; };
 		968FE7C1240B0F8300C3D5C2 /* UnmatchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 968FE7C0240B0F8300C3D5C2 /* UnmatchViewController.xib */; };
@@ -234,8 +232,6 @@
 		1393CD9622C7535B00422529 /* OpenSans-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-ExtraBold.ttf"; sourceTree = "<group>"; };
 		1393CD9822C75A6D00422529 /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		1393CD9A22C787CF00422529 /* OpenSans-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Semibold.ttf"; sourceTree = "<group>"; };
-		139A0395236C188C00683946 /* NoView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoView.xib; sourceTree = "<group>"; };
-		139A0397236C189E00683946 /* NoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoView.swift; sourceTree = "<group>"; };
 		13A30BE0231E996C00CF6248 /* NotigyEnablingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotigyEnablingViewController.swift; sourceTree = "<group>"; };
 		13A30BE2231E99A400CF6248 /* NotifySetingUiTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotifySetingUiTableViewCell.swift; sourceTree = "<group>"; };
 		13A30BE3231E99A400CF6248 /* NotifySetingUiTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotifySetingUiTableViewCell.xib; sourceTree = "<group>"; };
@@ -245,8 +241,6 @@
 		13BA7A8C2326E31000EB5A0E /* ConfigRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigRequest.swift; sourceTree = "<group>"; };
 		13BA7A8E2326E61300EB5A0E /* Bundle+version.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+version.swift"; sourceTree = "<group>"; };
 		13BA7A902326EF7A00EB5A0E /* RegistrationPaymentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationPaymentViewController.swift; sourceTree = "<group>"; };
-		13C2668D236CD8CE00AEAC13 /* NoOneHereView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoOneHereView.xib; sourceTree = "<group>"; };
-		13C2668F236CD8F000AEAC13 /* NoOneHereView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoOneHereView.swift; sourceTree = "<group>"; };
 		13C2FCDA23251B5D00F017FE /* PaymentManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentManager.swift; sourceTree = "<group>"; };
 		13C5052222E8D2C1009A7B04 /* SetGenderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetGenderViewController.swift; sourceTree = "<group>"; };
 		13CB0B4622C9D75A00EFD115 /* Test.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Test.storyboard; sourceTree = "<group>"; };
@@ -299,6 +293,8 @@
 		51697700583EC7DDAF8C2382 /* Pods-RACKUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RACKUITests.release.xcconfig"; path = "Target Support Files/Pods-RACKUITests/Pods-RACKUITests.release.xcconfig"; sourceTree = "<group>"; };
 		606CE4EC12B3C6A861691343 /* libPods-RACKUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RACKUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		631ED5FCC768F26D3DFB19F6 /* Pods-RACKUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RACKUITests.debug.xcconfig"; path = "Target Support Files/Pods-RACKUITests/Pods-RACKUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		960D83832415710B00EE3951 /* TimeOutView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimeOutView.xib; sourceTree = "<group>"; };
+		960D83852415710F00EE3951 /* TimeOutView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeOutView.swift; sourceTree = "<group>"; };
 		965452CA23FAB85E007697C4 /* RestAPITransport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestAPITransport.swift; sourceTree = "<group>"; };
 		965452CB23FAB85E007697C4 /* RealmDBTransport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmDBTransport.swift; sourceTree = "<group>"; };
 		965452D023FAB98C007697C4 /* GlobalDefinitions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalDefinitions.swift; sourceTree = "<group>"; };
@@ -321,7 +317,7 @@
 		96669A762411B2260023A8B9 /* CheckNeedPaymentRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckNeedPaymentRequest.swift; sourceTree = "<group>"; };
 		96669A782411B47B0023A8B9 /* PaymentService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentService.swift; sourceTree = "<group>"; };
 		96669A7A2411B4910023A8B9 /* PaymentTransformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentTransformation.swift; sourceTree = "<group>"; };
-		96669A7C2411BD0C0023A8B9 /* MatchProposed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchProposed.swift; sourceTree = "<group>"; };
+		96669A7C2411BD0C0023A8B9 /* ProposedInterlocutor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProposedInterlocutor.swift; sourceTree = "<group>"; };
 		968FE7BA240ACB4B00C3D5C2 /* ChatsTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsTableView.swift; sourceTree = "<group>"; };
 		968FE7BD240B0DCE00C3D5C2 /* ReportViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReportViewController.xib; sourceTree = "<group>"; };
 		968FE7C0240B0F8300C3D5C2 /* UnmatchViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UnmatchViewController.xib; sourceTree = "<group>"; };
@@ -419,10 +415,7 @@
 		13192282236A33C100C057B8 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				13CB670822F5D7FD00B79622 /* SkipButtonView.swift */,
-				13CB670A22F5DB8000B79622 /* SureButtonView.swift */,
-				96AC015B2412A53C004F3BF5 /* NoOneHereView */,
-				96AC015A2412A527004F3BF5 /* NoView */,
+				960D8382241570D200EE3951 /* TimeOutView */,
 				96AC01592412A517004F3BF5 /* SearchView */,
 				96AC01582412A4DC004F3BF5 /* MatchView */,
 			);
@@ -647,6 +640,15 @@
 			path = Storyboards;
 			sourceTree = "<group>";
 		};
+		960D8382241570D200EE3951 /* TimeOutView */ = {
+			isa = PBXGroup;
+			children = (
+				960D83852415710F00EE3951 /* TimeOutView.swift */,
+				960D83832415710B00EE3951 /* TimeOutView.xib */,
+			);
+			path = TimeOutView;
+			sourceTree = "<group>";
+		};
 		965452C923FAB805007697C4 /* Transport */ = {
 			isa = PBXGroup;
 			children = (
@@ -698,7 +700,7 @@
 				96A4D5C723FDFC7000E24E13 /* AKChat.swift */,
 				96A4D5C923FDFCD600E24E13 /* AKChatMessage.swift */,
 				96A5528123FF34C4001E88DC /* AKGender.swift */,
-				96669A7C2411BD0C0023A8B9 /* MatchProposed.swift */,
+				96669A7C2411BD0C0023A8B9 /* ProposedInterlocutor.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -1102,6 +1104,8 @@
 		96AC01582412A4DC004F3BF5 /* MatchView */ = {
 			isa = PBXGroup;
 			children = (
+				13CB670A22F5DB8000B79622 /* SureButtonView.swift */,
+				13CB670822F5D7FD00B79622 /* SkipButtonView.swift */,
 				13FB81AE236B7C77004C76D4 /* MatchView.swift */,
 				13FB81AC236B7C68004C76D4 /* MatchView.xib */,
 			);
@@ -1115,24 +1119,6 @@
 				13192283236A33EB00C057B8 /* SearchView.xib */,
 			);
 			path = SearchView;
-			sourceTree = "<group>";
-		};
-		96AC015A2412A527004F3BF5 /* NoView */ = {
-			isa = PBXGroup;
-			children = (
-				139A0397236C189E00683946 /* NoView.swift */,
-				139A0395236C188C00683946 /* NoView.xib */,
-			);
-			path = NoView;
-			sourceTree = "<group>";
-		};
-		96AC015B2412A53C004F3BF5 /* NoOneHereView */ = {
-			isa = PBXGroup;
-			children = (
-				13C2668F236CD8F000AEAC13 /* NoOneHereView.swift */,
-				13C2668D236CD8CE00AEAC13 /* NoOneHereView.xib */,
-			);
-			path = NoOneHereView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1208,8 +1194,8 @@
 				13E4D35A22DA2AD800442BF9 /* СhatsTableViewCell.xib in Resources */,
 				134901D72306E0CF00684901 /* InterlocutorTextTableCell.xib in Resources */,
 				134901DB2306E0CF00684901 /* InterlocutorImageTableCell.xib in Resources */,
-				139A0396236C188C00683946 /* NoView.xib in Resources */,
 				1393CD9022C74BC000422529 /* Registration.storyboard in Resources */,
+				960D83842415710B00EE3951 /* TimeOutView.xib in Resources */,
 				13D82A7C22C202D5004DC959 /* LaunchScreen.storyboard in Resources */,
 				13113AC622F6D953009C85C6 /* lf20_XZ30Ct.json in Resources */,
 				13D8BED823493185009FD24A /* NoConnectionBannerView.xib in Resources */,
@@ -1230,7 +1216,6 @@
 				1342C2F523240D0C0006EC8C /* Payment.storyboard in Resources */,
 				969DA2DC23FF482000DC42D1 /* Localizable.strings in Resources */,
 				4772C9F423F2EAD000B905CE /* Assets.xcassets in Resources */,
-				13C2668E236CD8CE00AEAC13 /* NoOneHereView.xib in Resources */,
 				13FB81AD236B7C68004C76D4 /* MatchView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1362,11 +1347,11 @@
 				13FD701322EBA36900CE225C /* HelloViewController.swift in Sources */,
 				969DA4272401445E00DC42D1 /* Settings.swift in Sources */,
 				138D29CC232411BC00DAEE77 /* PaymentViewController.swift in Sources */,
+				960D83862415710F00EE3951 /* TimeOutView.swift in Sources */,
 				969DA45A2401445E00DC42D1 /* Array+Neighbors.swift in Sources */,
 				13CC558F231E3C5500A10D45 /* NotificationResponce.swift in Sources */,
 				96669A792411B47B0023A8B9 /* PaymentService.swift in Sources */,
 				965452D123FAB98C007697C4 /* GlobalDefinitions.swift in Sources */,
-				139A0398236C189E00683946 /* NoView.swift in Sources */,
 				969DA41E2401445E00DC42D1 /* InterlocutorImageTableCell.swift in Sources */,
 				9654532523FABA66007697C4 /* APIRequestBody.swift in Sources */,
 				13BA7A8F2326E61300EB5A0E /* Bundle+version.swift in Sources */,
@@ -1428,7 +1413,7 @@
 				13F8D3FD2312A8E80081F411 /* UnmatchViewController.swift in Sources */,
 				13C5052322E8D2C1009A7B04 /* SetGenderViewController.swift in Sources */,
 				969DA4242401445E00DC42D1 /* CacheTool.swift in Sources */,
-				96669A7D2411BD0C0023A8B9 /* MatchProposed.swift in Sources */,
+				96669A7D2411BD0C0023A8B9 /* ProposedInterlocutor.swift in Sources */,
 				13F9509322F0D26B00AC9FD0 /* DeleteViewController.swift in Sources */,
 				13D8BED62349316B009FD24A /* NoConnectionBannerView.swift in Sources */,
 				1386775B22C7988800F3AD84 /* EmailViewController.swift in Sources */,
@@ -1439,7 +1424,6 @@
 				96BF8CA82403E3980026F3CE /* MessageTransformation.swift in Sources */,
 				1386775D22C7C7FD00F3AD84 /* CodeViewController.swift in Sources */,
 				130C0DC5232662790000B5AD /* ReasonView.swift in Sources */,
-				13C26690236CD8F000AEAC13 /* NoOneHereView.swift in Sources */,
 				13CB0B4922C9DF0D00EFD115 /* FirstTestViewController.swift in Sources */,
 				4772C9F123F2E7C100B905CE /* SetAgeAndCityViewController.swift in Sources */,
 				969DA4452401445E00DC42D1 /* UserTask.swift in Sources */,

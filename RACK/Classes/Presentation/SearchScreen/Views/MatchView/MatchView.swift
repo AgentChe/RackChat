@@ -14,159 +14,126 @@ class MatchView: UIView {
         UINib(nibName: "MatchView", bundle: .main).instantiate(withOwner: nil, options: nil)[0] as! MatchView
     }
     
-    @IBOutlet weak var buttonView: NSLayoutConstraint!
-    @IBOutlet weak var patrnerCenter: NSLayoutConstraint!
-    @IBOutlet weak var userCenter: NSLayoutConstraint!
-    @IBOutlet weak var buttonsHeight: NSLayoutConstraint!
-    @IBOutlet weak var partnerImgHeight: NSLayoutConstraint!
-    @IBOutlet weak var partnerImgWidth: NSLayoutConstraint!
-
-    @IBOutlet weak var photosView: UIView!
-    @IBOutlet weak var photosCountLabel: UILabel!
+    @IBOutlet private weak var patrnerCenter: NSLayoutConstraint!
+    @IBOutlet private weak var userCenter: NSLayoutConstraint!
+    @IBOutlet private weak var buttonsHeight: NSLayoutConstraint!
+    @IBOutlet private weak var partnerImgHeight: NSLayoutConstraint!
+    @IBOutlet private weak var partnerImgWidth: NSLayoutConstraint!
     
-    @IBOutlet weak var waitingView: UIView!
-    @IBOutlet weak var buttonsView: UIStackView!
-    @IBOutlet weak var secondNameLabel: UILabel!
-    @IBOutlet weak var firstNameLabel: UILabel!
-    @IBOutlet weak var nameBundle: UIStackView!
-    @IBOutlet weak var skipButton: UIButton!
-    @IBOutlet weak var sureButton: UIButton!
-    @IBOutlet weak var skipButtonView: SkipButtonView!
-    @IBOutlet weak var sureButtonView: SureButtonView!
-    @IBOutlet weak var contentView: UIView!
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-    @IBOutlet weak var partnerImageView: UIImageView!
-    @IBOutlet weak var userImageView: UIImageView!
+    @IBOutlet private weak var waitingView: UIView!
+    @IBOutlet private weak var buttonsView: UIStackView!
+    @IBOutlet private weak var secondNameLabel: UILabel!
+    @IBOutlet private weak var firstNameLabel: UILabel!
+    @IBOutlet private weak var nameBundle: UIStackView!
+    @IBOutlet private weak var skipButton: UIButton!
+    @IBOutlet private weak var sureButton: UIButton!
+    @IBOutlet private weak var skipButtonView: SkipButtonView!
+    @IBOutlet private weak var sureButtonView: SureButtonView!
+    @IBOutlet private weak var contentView: UIView!
+    @IBOutlet private weak var partnerImageView: UIImageView!
+    @IBOutlet private weak var userImageView: UIImageView!
     
-    private var match: DKMatch?
+    var onSure: (() -> ())?
+    var onSkip: (() -> ())?
     
-    func config(match: DKMatch, user: UserShow) {
-        self.match = match
-        let fullName: String = match.matchedUserName.uppercased()
-        let split = fullName.split(separator: " ")
-        let last = String(split.suffix(1).joined(separator: [" "]))
-        self.secondNameLabel.text = " " + last + " · " + "\(match.matchedUserAge)" + "?" + " "
-        self.firstNameLabel.text = " " + fullName.components(separatedBy: " ").dropLast().joined(separator: " ") + " "
-        self.contentView.alpha = 0.0
-        self.userImageView.image = user.gender == .man ? #imageLiteral(resourceName: "manPlace") : #imageLiteral(resourceName: "womanPlace")
-        self.partnerImageView.image = match.matchedUserGender == .man ? #imageLiteral(resourceName: "manPlace") : #imageLiteral(resourceName: "womanPlace")
+    func setup(proposedInterlocutor: ProposedInterlocutor, user: UserShow) {
+        contentView.alpha = 0.0
         
-        if match.matchedUserPhotosCount == 1 {
-            self.photosCountLabel.text = "\(match.matchedUserPhotosCount) PHOTO"
+        let nameSplit = proposedInterlocutor.interlocutorFullName.uppercased().split(separator: " ")
+        firstNameLabel.text = String(nameSplit.first ?? "")
+        secondNameLabel.text = String(nameSplit.last ?? "")
+        
+        let myMatchingAvatarPlaceholderImage = user.gender == .man ? #imageLiteral(resourceName: "manPlace") : #imageLiteral(resourceName: "womanPlace")
+        if let myMatchingAvatarUrl = URL(string: user.matchingAvatarURL) {
+            userImageView.kf.setImage(with: myMatchingAvatarUrl, placeholder: myMatchingAvatarPlaceholderImage)
         } else {
-            self.photosCountLabel.text = "\(match.matchedUserPhotosCount) PHOTOS"
+            userImageView.image = myMatchingAvatarPlaceholderImage
         }
         
-        if let avatar: UIImage = user.matchingAvatar {
-            self.userImageView.image = avatar
+        let intercolutorMatchingAvatarPlaceholderImage = proposedInterlocutor.gender == .man ? #imageLiteral(resourceName: "manPlace") : #imageLiteral(resourceName: "womanPlace")
+        if let interlocutorMatchingAvatarUrl = proposedInterlocutor.interlocutorAvatarUrl {
+            partnerImageView.kf.setImage(with: interlocutorMatchingAvatarUrl, placeholder: intercolutorMatchingAvatarPlaceholderImage)
         } else {
-            guard let avaUrl:URL = URL(string: user.matchingAvatarURL) else { return }
-            userImageView.kf.setImage(with: avaUrl)
-        }
-        guard let partnerAvaUrl: URL = URL(string: match.matchedUserAvatarTransparent) else {
-            return
+            partnerImageView.image = intercolutorMatchingAvatarPlaceholderImage
         }
         
-        partnerImageView.kf.setImage(with: partnerAvaUrl)
-        
-        
-        UIView.animate(withDuration: 0.5) {
-            self.contentView.alpha = 1.0
-            self.partnerImageView.alpha = 1.0
-            self.userImageView.alpha = 1.0
+        UIView.animate(withDuration: 0.5) { [weak self] in
+            self?.contentView.alpha = 1.0
+            self?.partnerImageView.alpha = 1.0
+            self?.userImageView.alpha = 1.0
         }
         
-        self.buttonsHeight.constant = 180.0
-        UIView.animate(withDuration: 0.7, animations: {
-             self.contentView.layoutIfNeeded()
-        }) { (finish) in
-             self.showUI()
-        }
-       
-        self.photosView.layer.cornerRadius = 14.0
-        self.photosView.layer.masksToBounds = true
+        buttonsHeight.constant = 180.0
+        
+        UIView.animate(withDuration: 0.7, animations: { [weak self] in
+             self?.contentView.layoutIfNeeded()
+        }, completion: { [weak self] _ in
+             self?.startPartnerAnimation()
+        })
     }
     
     func waitForPatnerAnimation() {
-        UIView.animate(withDuration: 0.3, animations: {
-            self.buttonsView.alpha = 0.0
-        }) { _ in
-            self.buttonsView.isHidden = true
-            self.waitingView.isHidden = false
+        UIView.animate(withDuration: 0.3, animations: { [weak self] in
+            self?.buttonsView.alpha = 0.0
+        }, completion: { [weak self] _ in
+            self?.buttonsView.isHidden = true
+            self?.waitingView.isHidden = false
+            
             UIView.animate(withDuration: 0.3) {
-                self.waitingView.alpha = 1.0
+                self?.waitingView.alpha = 1.0
             }
-        }
+        })
+        
         startWaitingAnimation()
     }
     
-    private func showUI() {
-        self.startPartnerAnimation()
+    @IBAction private func startTapOnSure(_ sender: Any) {
+        sureButtonView.alpha = 0.6
+        skipButton.isEnabled = false
+    }
+    
+    @IBAction private func tapOnSure(_ sender: Any) {
+        sureButtonView.alpha = 1.0
+        skipButton.isEnabled = true
+        
+        onSure?()
+    }
+    
+    @IBAction private func startTapOnSkip(_ sender: Any) {
+        skipButtonView.alpha = 0.6
+        sureButton.isEnabled = false
+    }
+    
+    @IBAction private func tapOnSkip(_ sender: Any) {
+        skipButtonView.alpha = 1.0
+        sureButton.isEnabled = true
+        
+        onSkip?()
     }
     
     private func startPartnerAnimation() {
-        self.patrnerCenter.constant = -95
-        self.userCenter.constant = 105
-        UIView.animate(withDuration: 25.0) {
-            self.contentView.layoutIfNeeded()
+        patrnerCenter.constant = -95
+        userCenter.constant = 105
+        
+        UIView.animate(withDuration: 25.0) { [weak self] in
+            self?.contentView.layoutIfNeeded()
         }
     }
     
     private func startWaitingAnimation() {
         patrnerCenter.constant = 0
-        UIView.animate(withDuration: 0.4, animations: {
-            self.userImageView.alpha = 0.0
-            self.nameBundle.alpha = 0.0
-            self.photosView.alpha = 0.0
-            self.contentView.layoutIfNeeded()
-        }) { (fin) in
-            self.partnerImgWidth.constant = 445
-            self.partnerImgHeight.constant = 441
-            UIView.animate(withDuration: 25) {
-                self.contentView.layoutIfNeeded()
-            }
-        }
-    }
-    
-    private func showButtons() {
-        self.buttonsView.isHidden = false
-        UIView.animate(withDuration: 0.3, animations: {
-            self.buttonsView.alpha = 1.0
-            self.waitingView.alpha = 0.0
-        }) { (fin) in
-            self.waitingView.isHidden = true
-        }
-    }
-    
-    @IBAction func startTapOnSure(_ sender: Any) {
-           sureButtonView.alpha = 0.6
-           skipButton.isEnabled = false
-           
-       }
-    
-    @IBAction func startTapOnSkip(_ sender: Any) {
-        skipButtonView.alpha = 0.6
-        sureButton.isEnabled = false
         
-    }
-    
-     @IBAction func tapOnSure(_ sender: Any) {
-        sureButtonView.alpha = 1.0
-        skipButton.isEnabled = true
-    }
-    
-    @IBAction func tapOnSkip(_ sender: Any) {
-        skipButtonView.alpha = 1.0
-        sureButton.isEnabled = true
-    }
-    
-    @IBAction func endTapOnSkip(_ sender: Any) {
-        skipButtonView.alpha = 1.0
-        sureButton.isEnabled = true
-    }
-    
-    @IBAction func endTapOnSure(_ sender: Any) {
-        sureButtonView.alpha = 1.0
-        skipButton.isEnabled = true
+        UIView.animate(withDuration: 0.4, animations: { [weak self] in
+            self?.userImageView.alpha = 0.0
+            self?.nameBundle.alpha = 0.0
+            self?.contentView.layoutIfNeeded()
+        }, completion: { [weak self] _ in
+            self?.partnerImgWidth.constant = 445
+            self?.partnerImgHeight.constant = 441
+            
+            UIView.animate(withDuration: 25) {
+                self?.contentView.layoutIfNeeded()
+            }
+        })
     }
 }

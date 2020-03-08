@@ -11,7 +11,6 @@ import UIKit
 
 
 extension UIImageView {
-    
     func downloaded(from url: URL, complation: @escaping() -> Void) {
         URLSession.shared.dataTask(with: url) { data, response, error in
             guard
@@ -35,17 +34,5 @@ extension UIImageView {
         downloaded(from: url) {
             complation()
         }
-    }
-    
-}
-
-extension UIImage {
-    func toBase64() -> String? {
-        guard let imageData = self.pngData() else { return nil }
-        return imageData.base64EncodedString(options: Data.Base64EncodingOptions.endLineWithLineFeed)
-    }
-    
-    func ConvertImageToBase64String() -> String {
-        return self.jpegData(compressionQuality: 0.5)?.base64EncodedString() ?? ""
     }
 }

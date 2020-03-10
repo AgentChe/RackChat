@@ -30,10 +30,6 @@ class ProfileViewController: UIViewController {
         super.viewDidLayoutSubviews()
         navigationController?.setNavigationBarHidden(false, animated: false)
         
-        if #available(iOS 13.0, *) {
-            overrideUserInterfaceStyle = .light
-        }
-        
         DatingKit.user.show { (user, status) in
             if status == .noInternetConnection {
                 self.avatarImageView.image = user?.gender == .man ? #imageLiteral(resourceName: "man") : #imageLiteral(resourceName: "woman")

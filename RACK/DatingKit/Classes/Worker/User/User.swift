@@ -71,13 +71,6 @@ open class UserShow: Result {
     public var id: Int
     public var avatar: UIImage?
     public var matchingAvatar: UIImage?
-    public var notifyOnMessage: Bool
-    public var notifyOnMatch: Bool
-    public var notifyOnUsers: Bool
-    public var notifyOnKnocks: Bool
-    
-    public var photosCount: Int
-    public var photos: [String]
     public var age: Int
     public var city: String
 
@@ -91,13 +84,6 @@ open class UserShow: Result {
         lookingFor = LookingFor(rawValue: (realm.lookingFor.value!))!
         gender = Gender(rawValue: (realm.gender.value!))!
         id = realm.id
-        notifyOnMessage = realm.notifyOnMessage
-        notifyOnMatch = realm.notifyOnMatch
-        notifyOnUsers = realm.notifyOnUsers
-        notifyOnKnocks = realm.notifyOnKnocks
-        
-        photosCount = realm.photosCount
-        photos = Array(realm.photos)
         age = realm.age
         city = realm.city
     }
@@ -120,13 +106,6 @@ open class UserShow: Result {
         lookingFor = LookingFor(rawValue: response.lookingFor)!
         email = response.email
         id = response.id
-        notifyOnMessage = response.notifyOnMessage
-        notifyOnMatch = response.notifyOnMatch
-        notifyOnUsers = response.notifyOnUsers
-        notifyOnKnocks = response.notifyOnKnocks
-        
-        photosCount = response.photosCount
-        photos = response.photos
         age = response.age
         city = response.city
     }

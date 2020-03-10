@@ -152,12 +152,6 @@ class CacheTool {
                                                       gender: user.gender,
                                                       lookingFor: user.lookingFor,
                                                       userID: user.id,
-                                                      notifyOnMessage: user.notifyOnMessage,
-                                                      notifyOnMatch: user.notifyOnMatch,
-                                                      notifyOnUsers: user.notifyOnUsers,
-                                                      notifyOnKnocks: user.notifyOnKnocks,
-                                                      photosCount: user.photosCount,
-                                                      photos: user.photos,
                                                       age: user.age,
                                                       city: user.city)
             
@@ -206,16 +200,8 @@ class UserRealm: Object {
     @objc dynamic var avatarFileString: String = ""
     @objc dynamic var matchingAvatarURL: String = ""
     @objc dynamic var matchingAvatarFileURL: String = ""
-    @objc dynamic var notifyOnMessage: Bool = false
-    @objc dynamic var notifyOnMatch: Bool = false
-    @objc dynamic var notifyOnUsers: Bool = false
-    @objc dynamic var notifyOnKnocks: Bool = false
-    
-    @objc dynamic var photosCount: Int = 0
     @objc dynamic var age: Int = 0
     @objc dynamic var city: String = ""
-
-    let photos = List<String>()
 
     convenience init(email: String,
                      name: String,
@@ -224,12 +210,6 @@ class UserRealm: Object {
                      gender: Int,
                      lookingFor: Int,
                      userID:Int,
-                     notifyOnMessage: Bool,
-                     notifyOnMatch: Bool,
-                     notifyOnUsers: Bool,
-                     notifyOnKnocks: Bool,
-                     photosCount: Int,
-                     photos: [String],
                      age: Int,
                      city: String)
     {
@@ -241,12 +221,6 @@ class UserRealm: Object {
         self.name = name
         self.avatarURLString = avatarURL
         self.matchingAvatarURL = matchingAvatarURL
-        self.notifyOnMatch = notifyOnMatch
-        self.notifyOnUsers = notifyOnUsers
-        self.notifyOnKnocks = notifyOnKnocks
-        self.notifyOnMessage = notifyOnMessage
-        self.photos.append(objectsIn: photos)
-        self.photosCount = photosCount
         self.age = age
         self.city = city
     }

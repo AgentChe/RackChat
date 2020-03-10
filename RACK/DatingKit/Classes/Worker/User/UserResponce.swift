@@ -12,7 +12,6 @@ import Foundation
 
 public struct UserResponse: Response {
     public var gender: Int
-    public var lookingFor: Int
     public var httpCode: Double
     public var message: String
     public var needPayment: Bool
@@ -22,13 +21,6 @@ public struct UserResponse: Response {
     public var id: Int
     public var avatarTransparent: String = ""
     public var avatarTransparentHiRes: String = ""
-    public var notifyOnMessage: Bool
-    public var notifyOnMatch: Bool
-    public var notifyOnUsers: Bool
-    public var notifyOnKnocks: Bool
-    
-    public var photosCount: Int
-    public var photos: [String]
     public var age: Int
     public var city: String
     
@@ -43,15 +35,7 @@ public struct UserResponse: Response {
         case id
         case name
         case avatar
-        case lookingFor = "looking_for"
         case gender
-        case notifyOnMessage = "notify_on_message"
-        case notifyOnMatch = "notify_on_match"
-        case notifyOnUsers = "notify_on_users"
-        case notifyOnKnocks = "notify_on_knocks"
-
-        case photosCount = "photos_count"
-        case photos
         case age
         case city
     }
@@ -80,14 +64,7 @@ public struct UserResponse: Response {
         }
         
         gender = try userBox.decode(Int.self, forKey: .gender)
-        lookingFor = try userBox.decode(Int.self, forKey: .lookingFor)
-        notifyOnMessage = try userBox.decode(Int.self, forKey: .notifyOnMessage).boolValue
-        notifyOnMatch = try userBox.decode(Int.self, forKey: .notifyOnMatch).boolValue
-        notifyOnUsers = try userBox.decode(Int.self, forKey: .notifyOnUsers).boolValue
-        notifyOnKnocks = try userBox.decode(Int.self, forKey: .notifyOnKnocks).boolValue
         
-        photosCount = try userBox.decode(Int.self, forKey: .photosCount)
-        photos = try userBox.decode([String].self, forKey: .photos)
         age = try userBox.decode(Int.self, forKey: .age)
         city = (try? userBox.decode(String.self, forKey: .city)) ?? ""
     }

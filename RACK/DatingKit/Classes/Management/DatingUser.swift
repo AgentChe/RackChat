@@ -175,7 +175,7 @@ open class User {
         }
     }
     
-    public func show(completion: @escaping(_ user: UserShow?, _ operationStatus: ResultStatus) -> Void) {
+    func show(completion: @escaping(_ user: UserShow?, _ operationStatus: ResultStatus) -> Void) {
         let task: UserTask = UserTask(route: "/users/show",
                                       function: .show,
                                       parameters: [String : Any](),

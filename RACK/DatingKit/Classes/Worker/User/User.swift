@@ -61,7 +61,6 @@ class CheckRequest: APIRequest {
 open class UserShow: Result {
     public var status: ResultStatus
     public var gender: Gender
-    public var lookingFor: LookingFor
     public var avatarURL: String
     public var matchingAvatarURL: String
     public var name: String
@@ -76,7 +75,6 @@ open class UserShow: Result {
         matchingAvatarURL = realm.matchingAvatarURL
         name = realm.name
         email = realm.email
-        lookingFor = LookingFor(rawValue: (realm.lookingFor.value!))!
         gender = Gender(rawValue: (realm.gender.value!))!
         id = realm.id
         age = realm.age
@@ -98,7 +96,6 @@ open class UserShow: Result {
         }
         name = response.name
         gender = Gender(rawValue: response.gender)!
-        lookingFor = LookingFor(rawValue: response.lookingFor)!
         email = response.email
         id = response.id
         age = response.age

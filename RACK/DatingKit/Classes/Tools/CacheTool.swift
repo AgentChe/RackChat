@@ -59,48 +59,6 @@ class CacheTool {
             return nil
         }
     }
-
-    func saveUser(image: UIImage, type: UserImageTypes) {
-        do {
-            let realm = try Realm()
-            let users = realm.objects(UserRealm.self)
-            
-            if users.count == 0 {
-                print("REALM: realm can't get data updating, cache data is Empty")
-                return
-            }
-            
-            guard let currentUser:UserRealm = users.first else {
-                print("REALM: realm can't get data updating, cache data is Empty")
-                return
-            }
-            
-            debugPrint("==============================")
-            debugPrint("CaheData: USER")
-            debugPrint("SAVE image type: ", type.rawValue)
-            realm.beginWrite()
-            switch type {
-            case .matching:
-                let path: String = "User/\(currentUser.id)_match.png"
-                try Disk.save(image, to: .documents, as: path)
-                currentUser.matchingAvatarFileURL = path
-                debugPrint(":::::::::::::::::::::::::::::::::::::")
-                debugPrint("realm Match Pic paht: ", currentUser.matchingAvatarFileURL)
-                debugPrint(":::::::::::::::::::::::::::::::::::::")
-            case .userPic:
-                let path: String = "User/\(currentUser.id)_userPic.png"
-                try Disk.save(image, to: .documents, as: path)
-                currentUser.avatarFileString = path
-                debugPrint(":::::::::::::::::::::::::::::::::::::")
-                debugPrint("realm User Pic paht: ", currentUser.avatarFileString)
-                debugPrint(":::::::::::::::::::::::::::::::::::::")
-            }
-            debugPrint("==============================")
-            try realm.commitWrite()
-        } catch let error {
-            debugPrint(error.localizedDescription)
-        }
-    }
     
     func updateUser(randInfo: UserRandomize) {
         do {
@@ -136,7 +94,6 @@ class CacheTool {
                                                       avatarURL: user.avatarURLString,
                                                       matchingAvatarURL: user.avatarTransparentHiRes,
                                                       gender: user.gender,
-                                                      lookingFor: user.lookingFor,
                                                       userID: user.id,
                                                       age: user.age,
                                                       city: user.city)
@@ -178,14 +135,11 @@ class CacheTool {
 
 class UserRealm: Object {
     var gender: RealmOptional<Int> = RealmOptional()
-    var lookingFor: RealmOptional<Int> = RealmOptional()
     @objc dynamic var id = 0
     @objc dynamic var email: String = ""
     @objc dynamic var name: String = ""
     @objc dynamic var avatarURLString: String = ""
-    @objc dynamic var avatarFileString: String = ""
     @objc dynamic var matchingAvatarURL: String = ""
-    @objc dynamic var matchingAvatarFileURL: String = ""
     @objc dynamic var age: Int = 0
     @objc dynamic var city: String = ""
 
@@ -194,7 +148,6 @@ class UserRealm: Object {
                      avatarURL: String,
                      matchingAvatarURL: String,
                      gender: Int,
-                     lookingFor: Int,
                      userID:Int,
                      age: Int,
                      city: String)
@@ -202,7 +155,6 @@ class UserRealm: Object {
         self.init()
         self.id = userID
         self.gender.value = gender
-        self.lookingFor.value = lookingFor
         self.email = email
         self.name = name
         self.avatarURLString = avatarURL

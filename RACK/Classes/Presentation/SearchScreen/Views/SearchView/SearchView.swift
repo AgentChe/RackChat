@@ -7,13 +7,13 @@
 //
 
 import UIKit
+import Kingfisher
 
 final class SearchView: UIView {
     class func instanceFromNib() -> SearchView {
         UINib(nibName: "SearchView", bundle: .main).instantiate(withOwner: nil, options: nil)[0] as! SearchView
     }
     
-    @IBOutlet private weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet private weak var generalLabel: UILabel!
     @IBOutlet private weak var userImageView: UIImageView!
     @IBOutlet private weak var contentView: UIStackView!
@@ -31,23 +31,10 @@ final class SearchView: UIView {
         self.user = user
         
         contentView.alpha = 0.0
-        activityIndicator.isHidden = false
         
-        if let avatar = user.avatar {
-            userImageView.image = avatar
-            activityIndicator.isHidden = true
-            
-            UIView.animate(withDuration: 0.4) { [weak self] in
-                self?.contentView.alpha = 1.0
-            }
-        } else {
-            UIView.animate(withDuration: 0.3) { [weak self] in
-                self?.activityIndicator.alpha = 1.0
-            }
-            
-            userImageView.downloaded(from: user.avatarURL) { [weak self] in
-                self?.activityIndicator.isHidden = true
-                
+        if let avatarUrl = URL(string: user.avatarURL) {
+            userImageView.kf.indicatorType = .activity
+            userImageView.kf.setImage(with: avatarUrl) { [weak self] _ in
                 UIView.animate(withDuration: 0.4) {
                     self?.contentView.alpha = 1.0
                 }

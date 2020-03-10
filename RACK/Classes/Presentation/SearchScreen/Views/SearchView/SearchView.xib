@@ -52,9 +52,6 @@
                         <constraint firstAttribute="width" constant="304" id="In3-IU-g2i"/>
                     </constraints>
                 </stackView>
-                <activityIndicatorView opaque="NO" alpha="0.0" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="Mom-2a-1k1">
-                    <rect key="frame" x="188.66666666666666" y="381.66666666666669" width="37" height="37"/>
-                </activityIndicatorView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5QL-Es-6fZ">
                     <rect key="frame" x="190.66666666666666" y="12" width="33" height="4"/>
                     <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -72,10 +69,8 @@
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="Kdp-BW-ngQ" firstAttribute="centerX" secondItem="xNb-XS-qaM" secondAttribute="centerX" id="Eex-MN-far"/>
-                <constraint firstItem="Mom-2a-1k1" firstAttribute="centerX" secondItem="xNb-XS-qaM" secondAttribute="centerX" id="d4m-wQ-szf"/>
                 <constraint firstItem="5QL-Es-6fZ" firstAttribute="centerX" secondItem="xNb-XS-qaM" secondAttribute="centerX" id="dtA-45-29m"/>
                 <constraint firstItem="Kdp-BW-ngQ" firstAttribute="centerY" secondItem="xNb-XS-qaM" secondAttribute="centerY" id="ndd-HW-JXT"/>
-                <constraint firstItem="Mom-2a-1k1" firstAttribute="centerY" secondItem="xNb-XS-qaM" secondAttribute="centerY" id="wkY-YH-riZ"/>
                 <constraint firstItem="5QL-Es-6fZ" firstAttribute="top" secondItem="xNb-XS-qaM" secondAttribute="top" constant="12" id="ylA-Za-wtU"/>
             </constraints>
             <nil key="simulatedTopBarMetrics"/>
@@ -83,7 +78,6 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="xNb-XS-qaM"/>
             <connections>
-                <outlet property="activityIndicator" destination="Mom-2a-1k1" id="1h6-ze-RcA"/>
                 <outlet property="contentView" destination="Kdp-BW-ngQ" id="WmQ-r2-ugN"/>
                 <outlet property="generalLabel" destination="AcR-mp-WLP" id="Sg3-Ya-d5O"/>
                 <outlet property="userImageView" destination="xmH-r8-snK" id="sbN-m9-CZO"/>

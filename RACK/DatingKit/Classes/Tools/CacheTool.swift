@@ -51,21 +51,7 @@ class CacheTool {
                     return nil
                 }
                 
-                let userShow: UserShow = UserShow(realm: user, status: .succses)
-    
-                if user.avatarFileString != "" {
-                    if let retrievedImage: UIImage = try Disk.retrieve(user.avatarFileString, from: .documents, as: UIImage.self) {
-                        userShow.avatar = retrievedImage
-                    }
-                }
-                
-                if user.matchingAvatarFileURL != "" {
-                    if let retrievedImage: UIImage = try Disk.retrieve(user.matchingAvatarFileURL, from: .documents, as: UIImage.self) {
-                        userShow.matchingAvatar = retrievedImage
-                    }
-                }
-                
-                return userShow
+                return UserShow(realm: user, status: .succses)
             }
             return nil
         } catch let error {

@@ -56,11 +56,9 @@ class CheckRequest: APIRequest {
             return nil
         }
     }
-    
 }
 
 open class UserShow: Result {
-    
     public var status: ResultStatus
     public var gender: Gender
     public var lookingFor: LookingFor
@@ -69,12 +67,9 @@ open class UserShow: Result {
     public var name: String
     public var email: String
     public var id: Int
-    public var avatar: UIImage?
-    public var matchingAvatar: UIImage?
     public var age: Int
     public var city: String
 
-    
     init(realm: UserRealm, status:ResultStatus) {
         self.status = status
         avatarURL = realm.avatarURLString
@@ -431,25 +426,6 @@ open class UserWorker: Worker {
             self.manager.traker.close(trakerTask: currentTask)
             currentTask.handler(userRealm)
             print("User load from cache")
-            if userRealm.avatar == nil {
-                print("load userpic")
-                self.requestTool.loadPic(from: userRealm.avatarURL) { (data) in
-                    guard let imageData: Data = data else {return}
-                    print("saving userpic")
-                    guard let image: UIImage = UIImage(data: imageData) else { return }
-                    self.cacheTool.saveUser(image: image, type: .userPic)
-                }
-            }
-            
-            if userRealm.matchingAvatar == nil {
-                print("load matchingAvatar")
-                self.requestTool.loadPic(from: userRealm.matchingAvatarURL) { (data) in
-                    guard let imageData: Data = data else {return}
-                    print("saving matchingAvatar")
-                    guard let image: UIImage = UIImage(data: imageData) else { return }
-                    self.cacheTool.saveUser(image: image, type: .matching)
-                }
-            }
             
             return
         }

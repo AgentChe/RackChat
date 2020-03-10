@@ -7,7 +7,7 @@
 
 import UIKit
 import NotificationBannerSwift
-import AlamofireImage
+import Kingfisher
 
 class ProfileViewController: UIViewController {
 
@@ -21,9 +21,9 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         tableView.tableFooterView = UIView()
         tableView.sectionFooterHeight = 25.0
-        // Do any additional setup after loading the view.
     }
     
     override func viewDidLayoutSubviews() {
@@ -38,21 +38,10 @@ class ProfileViewController: UIViewController {
             } else {
                 self.emailLabel.text = user?.email
                 self.nameLabel.text = user?.name
-                if let avatar: UIImage = user?.avatar {
-                    self.avatarImageView.image = avatar
-                } else {
-                    guard let avatarURL: URL =  URL(string: user!.avatarURL) else {
-                        return
-                    }
-//                    self.avatarImageView.af_setImage(withURL: avatarURL)
-                    self.avatarImageView.af_setImage(withURL: avatarURL,
-                                                     placeholderImage: user?.gender == .man ? #imageLiteral(resourceName: "man") : #imageLiteral(resourceName: "woman"),
-                                                     filter: nil,
-                                                     progress: nil,
-                                                     progressQueue: DispatchQueue.main,
-                                                     imageTransition: UIImageView.ImageTransition.crossDissolve(0.2),
-                                                     runImageTransitionIfCached: false,
-                                                     completion: nil)
+                
+                if let avatarUrl = URL(string: user?.avatarURL ?? "") {
+                    self.avatarImageView.kf.setImage(with: avatarUrl,
+                                                     placeholder: user?.gender == .man ? #imageLiteral(resourceName: "man") : #imageLiteral(resourceName: "woman"))
                 }
             }
         }
@@ -71,17 +60,6 @@ class ProfileViewController: UIViewController {
         }
         present(actionSheet, animated: true, completion: nil)
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
 
 extension ProfileViewController: UITableViewDataSource, UITableViewDelegate{

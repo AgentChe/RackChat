@@ -146,7 +146,7 @@ final class ChatViewController: UIViewController {
                 if inset > 0, UIDevice.current.hasBottomNotch {
                     inset -= 35
                 }
-                self?.chatInputViewBottomConstraint.constant = inset
+                self?.chatInputViewBottomConstraint.constant = -inset
                 
                 UIView.animate(withDuration: 0.25, animations: { [weak self] in
                     self?.view.layoutIfNeeded()

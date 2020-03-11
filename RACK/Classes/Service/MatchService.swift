@@ -26,7 +26,7 @@ final class MatchService {
         case proposedInterlocutor([ProposedInterlocutor])
         case proposedInterlocutorRefused([SearchingQueueId])
         case proposedInterlocutorConfirmed([(SearchingQueueId, Int)])
-        case coupleFormed([SearchingQueueId])
+        case coupleFormed([(SearchingQueueId, Chat)])
         case closed([SearchingQueueId])
         case technical(TechnicalEvent)
     }

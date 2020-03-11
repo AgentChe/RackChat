@@ -11,6 +11,7 @@ import RxSwift
 
 protocol SearchViewControllerDelegate: class {
     func wasDismiss()
+    func newChat(chat: Chat)
 }
 
 final class SearchViewController: UIViewController {
@@ -92,12 +93,13 @@ final class SearchViewController: UIViewController {
                     }
                     
                     self.startInterlocutorCountdown(seconds: forCurrentQueue.1)
-                case .coupleFormed(let queueIds):
-                    guard let queueId = searchingQueueId, queueIds.contains(queueId) else {
+                case .coupleFormed(let stub):
+                    guard let (_, chat) = stub.first(where: { $0.0 == searchingQueueId }) else {
                         return
                     }
                     
                     self.dismiss(animated: true)
+                    self.delegate?.newChat(chat: chat)
                 case .closed(let queueIds):
                     guard self.currentScene == .matching, let queueId = searchingQueueId, queueIds.contains(queueId) else {
                         return

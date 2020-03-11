@@ -121,4 +121,9 @@ extension ChatsViewController: SearchViewControllerDelegate {
            self?.backroundView.layer.cornerRadius = 20
        }
     }
+    
+    func newChat(chat: Chat) {
+        let vc = ChatViewController(chat: chat)
+        navigationController?.pushViewController(vc, animated: true)
+    }
 }

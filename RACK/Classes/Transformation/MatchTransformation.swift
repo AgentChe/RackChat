@@ -69,12 +69,16 @@ final class MatchTransformation {
                 return nil
             }
             
-            let array: [SearchingQueueId] = info.compactMap {
-                guard let queueId = $0["queue_id"] as? String else {
+            let array: [(SearchingQueueId, Chat)] = info.compactMap {
+                guard
+                    let queueId = $0["queue_id"] as? String,
+                    let value = $0["value"] as? [String: Any],
+                    let chat = Chat.parseFromDictionary(any: value)
+                else {
                     return nil
                 }
                 
-                return queueId
+                return (queueId, chat)
             }
             
             return .coupleFormed(array)

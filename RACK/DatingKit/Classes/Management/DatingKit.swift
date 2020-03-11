@@ -13,7 +13,7 @@ open class DatingKit: Owner {
     
     static let standart: DatingKit = DatingKit()
     
-    public static var user: User {
+    public static var user: DKUserRepository {
         return standart.userManager
     }
 
@@ -21,7 +21,7 @@ open class DatingKit: Owner {
         return standart.citiesManager
     }
 
-    var userManager: User
+    var userManager: DKUserRepository
     var citiesManager: Cities
 
     public var manager: Manager
@@ -30,7 +30,7 @@ open class DatingKit: Owner {
 
     init() {
         manager = DKManager(services: servicesList)
-        userManager = User(manager: manager)
+        userManager = DKUserRepository(manager: manager)
         citiesManager = Cities(manager: manager)
     }
     

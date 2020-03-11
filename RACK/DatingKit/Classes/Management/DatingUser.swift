@@ -7,7 +7,7 @@
 
 import Foundation
 
-open class User {
+open class DKUserRepository {
     
     private var manager: Manager
     public var userData: UserShow?
@@ -96,7 +96,7 @@ open class User {
         }
     }
     
-    public func set(gender: Gender, completion: @escaping(_ operationStatus: ResultStatus) -> Void) {
+    func set(gender: Gender, completion: @escaping(_ operationStatus: ResultStatus) -> Void) {
         
         let parameters: [String: Any] = ["gender" : gender.rawValue]
 

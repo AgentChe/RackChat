@@ -8,22 +8,22 @@
 
 import Foundation.NSDate
 
-enum AKMessageType: Int {
+enum MessageType: Int {
     case text = 0
     case image = 1
 }
 
-struct AKMessage {
+struct Message {
     let id: String
     let userName: String
     let isOnline: Bool
-    let type: AKMessageType
+    let type: MessageType
     let body: String
     let createdAt: Date
     let isOwner: Bool
 }
 
-extension AKMessage: Model {
+extension Message: Model {
     enum Keys: String, CodingKey {
         case id = "guid"
         case userName = "user"
@@ -42,7 +42,7 @@ extension AKMessage: Model {
         isOnline = try container.decode(Bool.self, forKey: .isOnline)
         
         let typeRawValue = try container.decode(Int.self, forKey: .type)
-        guard let type = AKMessageType(rawValue: typeRawValue) else {
+        guard let type = MessageType(rawValue: typeRawValue) else {
             throw NSError()
         }
         self.type = type

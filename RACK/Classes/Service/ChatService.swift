@@ -17,11 +17,11 @@ final class ChatService {
     }
     
     enum Event {
-        case newMessage(AKMessage)
+        case newMessage(Message)
         case removedChat
     }
     
-    private let chat: AKChat
+    private let chat: Chat
     
     private lazy var socket: WebSocket = {
         let url = URL(string: GlobalDefinitions.ChatService.wsDomain + "/ws/room/\(chat.id)?token=\(SessionService.userToken)&app_key=\(GlobalDefinitions.ChatService.appKey)")!
@@ -29,7 +29,7 @@ final class ChatService {
         return WebSocket(request: request)
     }()
     
-    init(chat: AKChat) {
+    init(chat: Chat) {
         self.chat = chat
     }
     
@@ -110,7 +110,7 @@ extension ChatService {
 }
 
 extension ChatService {
-    static func getMessages(chatId: String, page: Int) -> Single<[AKMessage]> {
+    static func getMessages(chatId: String, page: Int) -> Single<[Message]> {
         let request = GetMessagesRequest(userToken: SessionService.userToken,
                                          chatId: chatId,
                                          page: page)

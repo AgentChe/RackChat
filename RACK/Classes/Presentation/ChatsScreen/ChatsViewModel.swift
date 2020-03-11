@@ -16,7 +16,7 @@ final class ChatsViewModel {
         chatsService.connect()
     }
     
-    var newChats: Driver<[AKChat]> {
+    var newChats: Driver<[Chat]> {
         return ChatsService
             .getChats()
             .asDriver(onErrorJustReturn: [])

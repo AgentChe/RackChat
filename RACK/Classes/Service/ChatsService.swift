@@ -11,9 +11,9 @@ import Starscream
 
 final class ChatsService {
     enum Event {
-        case changedChat(AKChat)
-        case removedChat(AKChat)
-        case createdChat(AKChat)
+        case changedChat(Chat)
+        case removedChat(Chat)
+        case createdChat(Chat)
     }
     
     private lazy var socket: WebSocket = {
@@ -51,7 +51,7 @@ final class ChatsService {
 }
 
 extension ChatsService {
-    static func getChats() -> Single<[AKChat]> {
+    static func getChats() -> Single<[Chat]> {
         let request = GetChatsRequest(userToken: SessionService.userToken)
         
         return RestAPITransport()

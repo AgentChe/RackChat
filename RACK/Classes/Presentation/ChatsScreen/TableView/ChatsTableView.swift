@@ -10,9 +10,9 @@ import UIKit
 import RxCocoa
 
 final class ChatsTableView: UITableView, UITableViewDataSource, UITableViewDelegate {
-    let didSelectChat = PublishRelay<AKChat>()
+    let didSelectChat = PublishRelay<Chat>()
     
-    private var items: [AKChat] = []
+    private var items: [Chat] = []
     
     private let itemsQueue = DispatchQueue(label: "chats_queue")
     
@@ -41,7 +41,7 @@ final class ChatsTableView: UITableView, UITableViewDataSource, UITableViewDeleg
         didSelectChat.accept(items[indexPath.row])
     }
     
-    func add(chats: [AKChat]) {
+    func add(chats: [Chat]) {
         itemsQueue.sync { [weak self] in
             self?.items = chats
             
@@ -49,7 +49,7 @@ final class ChatsTableView: UITableView, UITableViewDataSource, UITableViewDeleg
         }
     }
     
-    func replace(chat: AKChat) {
+    func replace(chat: Chat) {
         itemsQueue.sync { [weak self] in
             guard let index = self?.items.firstIndex(where: { $0.id == chat.id }) else {
                 return
@@ -61,7 +61,7 @@ final class ChatsTableView: UITableView, UITableViewDataSource, UITableViewDeleg
         }
     }
     
-    func remove(chat: AKChat) {
+    func remove(chat: Chat) {
         itemsQueue.sync { [weak self] in
             guard let index = self?.items.firstIndex(where: { $0.id == chat.id }) else {
                 return
@@ -73,7 +73,7 @@ final class ChatsTableView: UITableView, UITableViewDataSource, UITableViewDeleg
         }
     }
     
-    func insert(chat: AKChat) {
+    func insert(chat: Chat) {
         itemsQueue.sync { [weak self] in
             self?.items.insert(chat, at: 0)
             

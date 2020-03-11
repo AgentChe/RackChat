@@ -11,10 +11,10 @@ import RxSwift
 import RxCocoa
 
 final class ChatTableView: UITableView, UITableViewDataSource, UITableViewDelegate {
-    let viewedMessaged = PublishRelay<AKMessage>()
+    let viewedMessaged = PublishRelay<Message>()
     let reachedTop = PublishRelay<Void>()
     
-    private var items: [AKMessage] = []
+    private var items: [Message] = []
     private var itemsCount = 0
     
     init() {
@@ -68,7 +68,7 @@ final class ChatTableView: UITableView, UITableViewDataSource, UITableViewDelega
         }
     }
     
-    func add(messages: [AKMessage]) {
+    func add(messages: [Message]) {
         items.append(contentsOf: messages)
         itemsCount = items.count
         

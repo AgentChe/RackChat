@@ -7,5 +7,5 @@
 //
 
 protocol ChatTableCell {
-    func bind(message: AKMessage)
+    func bind(message: Message)
 }

@@ -11,16 +11,16 @@ import RxCocoa
 
 final class ChatViewModel {
     let nextPage = PublishRelay<Void>()
-    let viewedMessage = PublishRelay<AKMessage>()
+    let viewedMessage = PublishRelay<Message>()
     let sendText = PublishRelay<String>()
     let sendImage = PublishRelay<UIImage>()
     
     private lazy var paginatedLoader = createLoader()
     
-    private let chat: AKChat
+    private let chat: Chat
     private let chatService: ChatService
     
-    init(chat: AKChat) {
+    init(chat: Chat) {
         self.chat = chat
         chatService = ChatService(chat: chat)
     }
@@ -88,13 +88,13 @@ final class ChatViewModel {
         return Observable<Never>.merge(text, image, viewed)
     }
     
-    var newMessages: Driver<[AKMessage]> {
+    var newMessages: Driver<[Message]> {
         Driver
             .merge(paginatedLoader.elements,
                    receiveNewMessages().map { [$0] }.asDriver(onErrorJustReturn: []))
     }
     
-    private func createLoader() -> PaginatedDataLoader<AKMessage> {
+    private func createLoader() -> PaginatedDataLoader<Message> {
         let chatId = chat.id
         
         let firstTrigger = Observable<Void>
@@ -114,10 +114,10 @@ final class ChatViewModel {
         }
     }
     
-    private func receiveNewMessages() -> Observable<AKMessage> {
+    private func receiveNewMessages() -> Observable<Message> {
         return chatService
             .event
-            .flatMap { event -> Observable<AKMessage> in
+            .flatMap { event -> Observable<Message> in
                 switch event {
                 case .newMessage(let message):
                     return .just(message)

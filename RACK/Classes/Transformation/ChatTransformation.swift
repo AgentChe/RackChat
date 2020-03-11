@@ -9,12 +9,12 @@
 import Foundation.NSJSONSerialization
 
 final class ChatTransformation {
-    static func from(response: Any) -> [AKChat] {
+    static func from(response: Any) -> [Chat] {
         guard let json = response as? [String: Any], let result = json["result"] as? [[String: Any]] else {
             return []
         }
         
-        return result.compactMap { AKChat.parseFromDictionary(any: $0) }
+        return result.compactMap { Chat.parseFromDictionary(any: $0) }
     }
     
     static func from(chatsWebSocket response: String) -> ChatsService.Event? {
@@ -29,19 +29,19 @@ final class ChatTransformation {
         
         switch action {
         case "changed":
-            guard let data = result["result"] as? [String: Any], let chat = AKChat.parseFromDictionary(any: data) else {
+            guard let data = result["result"] as? [String: Any], let chat = Chat.parseFromDictionary(any: data) else {
                 return nil
             }
             
             return .changedChat(chat)
         case "remove":
-            guard let data = result["result"] as? [String: Any], let chat = AKChat.parseFromDictionary(any: data) else {
+            guard let data = result["result"] as? [String: Any], let chat = Chat.parseFromDictionary(any: data) else {
                 return nil
             }
             
             return .removedChat(chat)
         case "create":
-            guard let data = result["result"] as? [String: Any], let chat = AKChat.parseFromDictionary(any: data) else {
+            guard let data = result["result"] as? [String: Any], let chat = Chat.parseFromDictionary(any: data) else {
                 return nil
             }
             
@@ -63,7 +63,7 @@ final class ChatTransformation {
         
         switch action {
         case "message":
-            guard let data = result["result"] as? [String: Any], let message = AKMessage.parseFromDictionary(any: data) else {
+            guard let data = result["result"] as? [String: Any], let message = Message.parseFromDictionary(any: data) else {
                 return nil
             }
             

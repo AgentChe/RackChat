@@ -41,13 +41,13 @@ class ReportViewController: UIViewController {
     @IBOutlet weak var otherCancelButton: UIButton!
     @IBOutlet weak var otherSendButton: UIButton!
     
-    private var chat: AKChat!
+    private var chat: Chat!
     
     private let viewModel = ReportViewModel()
     
     private let disposeBag = DisposeBag()
     
-    init(chat: AKChat) {
+    init(chat: Chat) {
         self.chat = chat
         
         super.init(nibName: "ReportViewController", bundle: .main)

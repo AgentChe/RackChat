@@ -11,7 +11,7 @@ import UIKit
 final class MyTextTableCell: UITableViewCell, ChatTableCell {
     @IBOutlet public weak var messageLabel: UILabel!
     
-    func bind(message: AKMessage) {
+    func bind(message: Message) {
         messageLabel.text = message.body
     }
 }

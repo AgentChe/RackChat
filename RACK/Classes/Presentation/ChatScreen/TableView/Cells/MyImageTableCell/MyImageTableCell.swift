@@ -12,7 +12,7 @@ import Kingfisher
 final class MyImageTableCell: UITableViewCell, ChatTableCell {
     @IBOutlet var messageImageView: UIImageView!
     
-    func bind(message: AKMessage) {
+    func bind(message: Message) {
         messageImageView.kf.cancelDownloadTask()
         messageImageView.image = nil
         

@@ -6,7 +6,8 @@
 //  Copyright © 2020 fawn.team. All rights reserved.
 //
 
-enum AKGender: Int {
+enum Gender: Int {
+    case none = 0
     case man = 1
     case woman = 2
 }

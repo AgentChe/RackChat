@@ -8,15 +8,15 @@
 
 import Foundation.NSURL
 
-struct AKChat {
+struct Chat {
     let id: String
     let interlocutorName: String
     let interlocutorAvatarUrl: URL?
     let unreadMessageCount: Int
-    let lastMessage: AKMessage?
+    let lastMessage: Message?
 }
 
-extension AKChat: Model {
+extension Chat: Model {
     enum Keys: String, CodingKey {
         case id = "room"
         case interlocutor = "partner"
@@ -42,6 +42,6 @@ extension AKChat: Model {
         interlocutorAvatarUrl = URL(string: interlocutorAvatarPath ?? "")
         
         unreadMessageCount = (try? interlocutor.decode(Int.self, forKey: .unreadMessageCount)) ?? 0
-        lastMessage = try? interlocutor.decode(AKMessage.self, forKey: .lastMessage)
+        lastMessage = try? interlocutor.decode(Message.self, forKey: .lastMessage)
     }
 }

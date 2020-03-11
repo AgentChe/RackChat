@@ -25,7 +25,7 @@ class ChatsTableViewCell: UITableViewCell {
         lastMessageLabel.text = ""
     }
     
-    func bind(chat: AKChat) {
+    func bind(chat: Chat) {
         if let interlocutorAvatarUrl = chat.interlocutorAvatarUrl {
             userPicImageView.kf.setImage(with: interlocutorAvatarUrl)
         }

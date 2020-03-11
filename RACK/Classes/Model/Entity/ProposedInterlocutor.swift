@@ -12,7 +12,7 @@ struct ProposedInterlocutor {
     let queueId: SearchingQueueId
     let interlocutorFullName: String
     let interlocutorAvatarUrl: URL?
-    let gender: AKGender
+    let gender: Gender
     let gradientColorBegin: String?
     let gradientColorEnd: String?
 }
@@ -50,7 +50,7 @@ extension ProposedInterlocutor: Model {
         interlocutorAvatarUrl = URL(string: avatarPath ?? "")
         
         let genderValue = try data.decode(Int.self, forKey: .gender)
-        guard let gender = AKGender(rawValue: genderValue) else {
+        guard let gender = Gender(rawValue: genderValue) else {
             throw NSError(domain: "Gender not found", code: 404, userInfo: nil)
         }
         self.gender = gender

@@ -20,12 +20,6 @@ public enum TaskStatus: Int {
     
 }
 
-public enum Gender: Int {
-    case none = 0
-    case man = 1
-    case woman = 2
-}
-
 public enum ResultStatus: Int {
     case none
     case succses

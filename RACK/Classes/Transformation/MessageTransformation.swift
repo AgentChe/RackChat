@@ -7,13 +7,13 @@
 //
 
 final class MessageTransformation {
-    static func from(response: Any) -> [AKMessage] {
+    static func from(response: Any) -> [Message] {
         guard let json = response as? [String: Any],
             let result = json["result"] as? [String: Any],
             let data = result["data"] as? [[String: Any]] else {
             return []
         }
         
-        return data.compactMap { AKMessage.parseFromDictionary(any: $0) }
+        return data.compactMap { Message.parseFromDictionary(any: $0) }
     }
 }

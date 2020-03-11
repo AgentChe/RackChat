@@ -31,12 +31,12 @@ final class ChatViewController: UIViewController {
     private let disposeBag = DisposeBag()
     private var detectAttachViewTappedDisposable: Disposable?
     
-    private var chat: AKChat!
+    private var chat: Chat!
     private var viewModel: ChatViewModel!
     
     private let imagePicker = ImagePicker()
     
-    init(chat: AKChat) {
+    init(chat: Chat) {
         self.chat = chat
         self.viewModel = ChatViewModel(chat: chat)
         

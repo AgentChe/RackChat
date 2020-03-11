@@ -60,7 +60,7 @@ class CheckRequest: APIRequest {
 
 open class UserShow: Result {
     public var status: ResultStatus
-    public var gender: Gender
+    var gender: Gender
     public var avatarURL: String
     public var matchingAvatarURL: String
     public var name: String

@@ -36,7 +36,7 @@ class MatchView: UIView {
     var onSure: (() -> ())?
     var onSkip: (() -> ())?
     
-    func setup(proposedInterlocutor: ProposedInterlocutor, user: UserShow) {
+    func setup(proposedInterlocutor: ProposedInterlocutor, user: User) {
         contentView.alpha = 0.0
         
         let nameSplit = proposedInterlocutor.interlocutorFullName.uppercased().split(separator: " ")
@@ -44,7 +44,7 @@ class MatchView: UIView {
         secondNameLabel.text = String(nameSplit.last ?? "")
         
         let myMatchingAvatarPlaceholderImage = user.gender == .man ? #imageLiteral(resourceName: "manPlace") : #imageLiteral(resourceName: "womanPlace")
-        if let myMatchingAvatarUrl = URL(string: user.matchingAvatarURL) {
+        if let myMatchingAvatarUrl = user.matchingAvatarURL {
             userImageView.kf.setImage(with: myMatchingAvatarUrl, placeholder: myMatchingAvatarPlaceholderImage)
         } else {
             userImageView.image = myMatchingAvatarPlaceholderImage

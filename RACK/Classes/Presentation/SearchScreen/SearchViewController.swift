@@ -25,7 +25,7 @@ final class SearchViewController: UIViewController {
     
     weak var delegate: SearchViewControllerDelegate?
     
-    private var user: UserShow?
+    private var user: User?
     
     private var initialTouchPoint = CGPoint(x: 0, y: 0)
     

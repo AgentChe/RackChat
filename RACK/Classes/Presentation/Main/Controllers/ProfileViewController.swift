@@ -8,43 +8,43 @@
 import UIKit
 import NotificationBannerSwift
 import Kingfisher
+import RxSwift
 
 class ProfileViewController: UIViewController {
-
     @IBOutlet weak var avatarImageView: UIImageView!
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var buyActivityView: UIVisualEffectView!
-    
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
+    private let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.tableFooterView = UIView()
         tableView.sectionFooterHeight = 25.0
+        
+        SessionService
+            .user()
+            .subscribe(onSuccess: { [weak self] user in
+                self?.emailLabel.text = user?.email
+                self?.nameLabel.text = user?.name
+                
+                if let avatarUrl = user?.avatarURL {
+                    self?.avatarImageView.kf.setImage(with: avatarUrl, placeholder: user?.gender == .man ? #imageLiteral(resourceName: "man") : #imageLiteral(resourceName: "woman"))
+                } else {
+                    self?.avatarImageView.image = user?.gender == .man ? #imageLiteral(resourceName: "man") : #imageLiteral(resourceName: "woman")
+                }
+            })
+            .disposed(by: disposeBag)
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        navigationController?.setNavigationBarHidden(false, animated: false)
         
-        DatingKit.user.show { (user, status) in
-            if status == .noInternetConnection {
-                self.avatarImageView.image = user?.gender == .man ? #imageLiteral(resourceName: "man") : #imageLiteral(resourceName: "woman")
-                self.emailLabel.text = user?.email
-                self.nameLabel.text = user?.name
-            } else {
-                self.emailLabel.text = user?.email
-                self.nameLabel.text = user?.name
-                
-                if let avatarUrl = URL(string: user?.avatarURL ?? "") {
-                    self.avatarImageView.kf.setImage(with: avatarUrl,
-                                                     placeholder: user?.gender == .man ? #imageLiteral(resourceName: "man") : #imageLiteral(resourceName: "woman"))
-                }
-            }
-        }
+        navigationController?.setNavigationBarHidden(false, animated: false)
     }
 
     @IBAction func tapOnMenu(_ sender: UIBarButtonItem) { 

@@ -42,18 +42,9 @@ final class SearchViewModel {
             .asDriver(onErrorDriveWith: .never())
     }
     
-    var user: Driver<UserShow?> {
-        Single<UserShow?>.create { event in
-            DatingKit.user.show { user, status in
-                if status == .succses {
-                    event(.success(user))
-                } else {
-                    event(.success(nil))
-                }
-            }
-            
-            return Disposables.create()
-        }
-        .asDriver(onErrorJustReturn: nil)
+    var user: Driver<User?> {
+        SessionService
+            .user()
+            .asDriver(onErrorJustReturn: nil)
     }
 }

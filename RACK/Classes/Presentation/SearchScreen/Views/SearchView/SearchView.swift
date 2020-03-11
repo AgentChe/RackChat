@@ -18,7 +18,7 @@ final class SearchView: UIView {
     @IBOutlet private weak var userImageView: UIImageView!
     @IBOutlet private weak var contentView: UIStackView!
     
-    private var user: UserShow?
+    private var user: User?
     private var animateTimer: Timer?
     
     override func removeFromSuperview() {
@@ -27,12 +27,12 @@ final class SearchView: UIView {
         super.removeFromSuperview()
     }
     
-    func setup(user: UserShow) {
+    func setup(user: User) {
         self.user = user
         
         contentView.alpha = 0.0
         
-        if let avatarUrl = URL(string: user.avatarURL) {
+        if let avatarUrl = user.avatarURL {
             userImageView.kf.indicatorType = .activity
             userImageView.kf.setImage(with: avatarUrl) { [weak self] _ in
                 UIView.animate(withDuration: 0.4) {

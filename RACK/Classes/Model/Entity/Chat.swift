@@ -17,12 +17,12 @@ struct Chat {
 }
 
 extension Chat: Model {
-    enum Keys: String, CodingKey {
+    private enum Keys: String, CodingKey {
         case id = "room"
         case interlocutor = "partner"
     }
     
-    enum InterlocutorKeys: String, CodingKey {
+    private enum InterlocutorKeys: String, CodingKey {
         case interlocutorName = "name"
         case interlocutorAvatarUrl = "avatar"
         case unreadMessageCount = "unread"

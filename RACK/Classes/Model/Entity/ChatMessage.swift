@@ -24,7 +24,7 @@ struct Message {
 }
 
 extension Message: Model {
-    enum Keys: String, CodingKey {
+    private enum Keys: String, CodingKey {
         case id = "guid"
         case userName = "user"
         case isOnline = "is_online"

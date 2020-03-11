@@ -96,6 +96,7 @@
 		960D83862415710F00EE3951 /* TimeOutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960D83852415710F00EE3951 /* TimeOutView.swift */; };
 		960D83882415808400EE3951 /* AppStateProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960D83872415808400EE3951 /* AppStateProxy.swift */; };
 		9611420A24195DBF00EB9153 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9611420924195DBF00EB9153 /* User.swift */; };
+		9611420C2419650000EB9153 /* GetUserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9611420B2419650000EB9153 /* GetUserRequest.swift */; };
 		965452CC23FAB85E007697C4 /* RestAPITransport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965452CA23FAB85E007697C4 /* RestAPITransport.swift */; };
 		965452CD23FAB85E007697C4 /* RealmDBTransport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965452CB23FAB85E007697C4 /* RealmDBTransport.swift */; };
 		965452D123FAB98C007697C4 /* GlobalDefinitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965452D023FAB98C007697C4 /* GlobalDefinitions.swift */; };
@@ -296,6 +297,7 @@
 		960D83852415710F00EE3951 /* TimeOutView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeOutView.swift; sourceTree = "<group>"; };
 		960D83872415808400EE3951 /* AppStateProxy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppStateProxy.swift; sourceTree = "<group>"; };
 		9611420924195DBF00EB9153 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		9611420B2419650000EB9153 /* GetUserRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetUserRequest.swift; sourceTree = "<group>"; };
 		965452CA23FAB85E007697C4 /* RestAPITransport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestAPITransport.swift; sourceTree = "<group>"; };
 		965452CB23FAB85E007697C4 /* RealmDBTransport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmDBTransport.swift; sourceTree = "<group>"; };
 		965452D023FAB98C007697C4 /* GlobalDefinitions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalDefinitions.swift; sourceTree = "<group>"; };
@@ -713,6 +715,7 @@
 				96BF8CA32403DE9C0026F3CE /* GetMessagesRequest.swift */,
 				96669A5D240BC8C50023A8B9 /* CreateReportRequest.swift */,
 				96669A762411B2260023A8B9 /* CheckNeedPaymentRequest.swift */,
+				9611420B2419650000EB9153 /* GetUserRequest.swift */,
 			);
 			path = RequestBody;
 			sourceTree = "<group>";
@@ -1359,6 +1362,7 @@
 				969DA4302401445E00DC42D1 /* DatingCities.swift in Sources */,
 				13D4A7AE2333676500B4FC00 /* TerminatedViewController.swift in Sources */,
 				1319227D236A05EE00C057B8 /* SearchViewController.swift in Sources */,
+				9611420C2419650000EB9153 /* GetUserRequest.swift in Sources */,
 				969DA45F2401C80600DC42D1 /* UnmatchRequest.swift in Sources */,
 				13CB670B22F5DB8000B79622 /* SureButtonView.swift in Sources */,
 				96F005892405249D0058F7C9 /* FileService.swift in Sources */,

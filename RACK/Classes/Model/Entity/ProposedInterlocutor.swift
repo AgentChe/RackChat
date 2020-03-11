@@ -18,12 +18,12 @@ struct ProposedInterlocutor {
 }
 
 extension ProposedInterlocutor: Model {
-    enum Keys: String, CodingKey {
+    private enum Keys: String, CodingKey {
         case queueId = "queue_id"
         case data
     }
     
-    enum DataKeys: String, CodingKey {
+    private enum DataKeys: String, CodingKey {
         case name
         case avatar
         case gender
@@ -31,7 +31,7 @@ extension ProposedInterlocutor: Model {
         case gradientColorEnd = "color_end"
     }
     
-    enum AvatarKeys: String, CodingKey {
+    private enum AvatarKeys: String, CodingKey {
         case avatarUrl = "thumb_transparent"
     }
     

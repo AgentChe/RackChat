@@ -26,69 +26,8 @@
                     <view key="view" contentMode="scaleToFill" id="QGx-LS-l6i">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="byJ-SI-YdU" customClass="GradientView" customModule="RACK" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="-50" width="414" height="450"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="450" id="mhy-ew-Oea"/>
-                                </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="startColor">
-                                        <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="endColor">
-                                        <color key="value" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="25"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U0l-fb-J4m" userLabel="Shadow View" customClass="GradientView" customModule="RACK" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="84" width="414" height="812"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="startColor">
-                                        <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="endColor">
-                                        <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="30"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EZl-XK-zFH" userLabel="ContentView">
-                                <rect key="frame" x="0.0" y="84" width="414" height="812"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <gestureRecognizers/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="30"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <outletCollection property="gestureRecognizers" destination="8UO-JO-xAc" appends="YES" id="oYP-rq-edw"/>
-                                </connections>
-                            </view>
-                        </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <gestureRecognizers/>
-                        <constraints>
-                            <constraint firstItem="EZl-XK-zFH" firstAttribute="top" secondItem="TAz-OI-9G7" secondAttribute="top" constant="40" id="1SS-IU-ct2"/>
-                            <constraint firstItem="TAz-OI-9G7" firstAttribute="trailing" secondItem="byJ-SI-YdU" secondAttribute="trailing" id="84R-T4-rxb"/>
-                            <constraint firstItem="EZl-XK-zFH" firstAttribute="leading" secondItem="TAz-OI-9G7" secondAttribute="leading" id="9ly-AG-Cet"/>
-                            <constraint firstItem="TAz-OI-9G7" firstAttribute="trailing" secondItem="EZl-XK-zFH" secondAttribute="trailing" id="GEb-XY-cFx"/>
-                            <constraint firstItem="byJ-SI-YdU" firstAttribute="top" secondItem="QGx-LS-l6i" secondAttribute="top" constant="-50" id="HFG-eh-EJ4"/>
-                            <constraint firstItem="TAz-OI-9G7" firstAttribute="trailing" secondItem="U0l-fb-J4m" secondAttribute="trailing" id="Qk5-D0-wcp"/>
-                            <constraint firstItem="byJ-SI-YdU" firstAttribute="leading" secondItem="TAz-OI-9G7" secondAttribute="leading" id="R5w-co-csf"/>
-                            <constraint firstAttribute="bottom" secondItem="EZl-XK-zFH" secondAttribute="bottom" id="RgG-Ef-8dT"/>
-                            <constraint firstAttribute="bottom" secondItem="U0l-fb-J4m" secondAttribute="bottom" id="bxo-H4-6LT"/>
-                            <constraint firstItem="U0l-fb-J4m" firstAttribute="top" secondItem="QGx-LS-l6i" secondAttribute="top" constant="84" id="nDW-Mn-7Nw"/>
-                            <constraint firstItem="U0l-fb-J4m" firstAttribute="leading" secondItem="TAz-OI-9G7" secondAttribute="leading" id="pRQ-ZU-HQM"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="TAz-OI-9G7"/>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="8UO-JO-xAc" appends="YES" id="EIu-J1-8WI"/>
@@ -96,10 +35,6 @@
                     </view>
                     <navigationItem key="navigationItem" id="JOf-mn-Gb4"/>
                     <connections>
-                        <outlet property="contentTop" destination="1SS-IU-ct2" id="0Jm-cC-8DB"/>
-                        <outlet property="matchContentView" destination="EZl-XK-zFH" id="fw7-ty-Mkj"/>
-                        <outlet property="shadowTop" destination="nDW-Mn-7Nw" id="0Zc-tx-Z3f"/>
-                        <outlet property="shadowView" destination="U0l-fb-J4m" id="rpf-qf-IUs"/>
                         <segue destination="KYN-wJ-3pZ" kind="presentation" identifier="paygate" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="9fl-OF-Tur"/>
                     </connections>
                 </viewController>

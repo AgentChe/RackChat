@@ -19,10 +19,34 @@ final class SearchViewController: UIViewController {
         case searching, matching, none
     }
     
-    @IBOutlet weak var shadowView: GradientView!
-    @IBOutlet weak var matchContentView: UIView!
-    @IBOutlet weak var shadowTop: NSLayoutConstraint!
-    @IBOutlet weak var contentTop: NSLayoutConstraint!
+    private lazy var gradientView: GradientView = {
+        let view = GradientView()
+        view.startColor = .clear
+        view.endColor = .darkGray
+        view.layer.cornerRadius = 25
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    private lazy var shadowView: GradientView = {
+        let view = GradientView()
+        view.startColor = .white
+        view.endColor = .white
+        view.layer.cornerRadius = 30
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    private lazy var contentView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .white
+        view.layer.cornerRadius = 30
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    private var contentViewTopConstraint: NSLayoutConstraint!
+    private var shadowViewTopConstraint: NSLayoutConstraint!
     
     weak var delegate: SearchViewControllerDelegate?
     
@@ -42,6 +66,8 @@ final class SearchViewController: UIViewController {
         super.viewDidLoad()
         
         UIApplication.shared.isIdleTimerDisabled = true
+        
+        configure()
         
         AppStateProxy.ApplicationProxy
             .willResignActive
@@ -137,35 +163,34 @@ final class SearchViewController: UIViewController {
         super.dismiss(animated: flag, completion: completion)
     }
     
-    @IBAction func panGestureRecognizerHandler(_ sender: UIPanGestureRecognizer) {
-        let touchPoint = sender.location(in: self.view?.window)
+    private func configure() {
+        view.addSubview(gradientView)
+        view.addSubview(shadowView)
+        view.addSubview(contentView)
         
-        switch sender.state {
-        case .began:
-            initialTouchPoint = touchPoint
-        case .changed:
-            if touchPoint.y - initialTouchPoint.y > 0 {
-                view.frame = CGRect(x: 0, y: touchPoint.y - initialTouchPoint.y, width: view.frame.size.width, height: view.frame.size.height)
-            }
-        case .ended, .cancelled:
-            if touchPoint.y - initialTouchPoint.y > 200 {
-                dismiss(animated: true, completion: nil)
-            } else {
-                UIView.animate(withDuration: 0.3, animations: { [weak self] in
-                    guard let `self` = self else {
-                        return
-                    }
-                    
-                    self.view.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height)
-                })
-            }
-        default:
-            break 
-        }
+        gradientView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        gradientView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        gradientView.topAnchor.constraint(equalTo: view.topAnchor, constant: -50).isActive = true
+        gradientView.heightAnchor.constraint(equalToConstant: 450).isActive = true 
+        
+        shadowView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        shadowView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        shadowView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        shadowViewTopConstraint = shadowView.topAnchor.constraint(equalTo: view.topAnchor, constant: 84)
+        shadowViewTopConstraint.isActive = true
+        
+        contentView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        contentView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        contentViewTopConstraint = contentView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 40)
+        contentViewTopConstraint.isActive = true
+        contentView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        
+        let contentViewPanGesture = UIPanGestureRecognizer(target: self, action: #selector(contentViewPanGesture(_:)))
+        contentView.addGestureRecognizer(contentViewPanGesture)
     }
     
     private func removeAllScenes() {
-        for view in matchContentView.subviews {
+        for view in contentView.subviews {
             view.removeFromSuperview()
         }
     }
@@ -180,7 +205,7 @@ final class SearchViewController: UIViewController {
         fullScreen(full: false)
         
         UIView.animate(withDuration: 0.3) { [weak self] in
-            self?.matchContentView.backgroundColor = .clear
+            self?.contentView.backgroundColor = .clear
             self?.shadowView.startColor = .white
             self?.shadowView.endColor = .white
         }
@@ -190,10 +215,10 @@ final class SearchViewController: UIViewController {
         searchView.setup(user: user)
         searchView.frame = CGRect(x: 0,
                                   y: 20.0,
-                                  width: matchContentView.frame.size.width,
-                                  height: matchContentView.frame.size.height)
+                                  width: contentView.frame.size.width,
+                                  height: contentView.frame.size.height)
         
-        matchContentView.addSubview(searchView)
+        contentView.addSubview(searchView)
     }
     
     private func applyMatchScene(proposedInterlocutor: ProposedInterlocutor) {
@@ -205,7 +230,7 @@ final class SearchViewController: UIViewController {
 
         fullScreen(full: true) {
             UIView.animate(withDuration: 0.3) { [weak self] in
-                self?.matchContentView.backgroundColor = .clear
+                self?.contentView.backgroundColor = .clear
                 
                 if let colorBegin = proposedInterlocutor.gradientColorBegin, let colorEnd = proposedInterlocutor.gradientColorEnd {
                     self?.shadowView.startColor = UIColor.hexStringToUIColor(hex: colorBegin)
@@ -232,17 +257,17 @@ final class SearchViewController: UIViewController {
         matchView.setup(proposedInterlocutor: proposedInterlocutor, user: user)
         matchView.frame = CGRect(x: 0,
                                  y: 0,
-                                 width: matchContentView.frame.size.width,
-                                 height: matchContentView.frame.size.height + 34.0)
+                                 width: contentView.frame.size.width,
+                                 height: contentView.frame.size.height + 34.0)
 
-        matchContentView.addSubview(matchView)
+        contentView.addSubview(matchView)
     }
     
     private func applyTimeOutScene() {
         fullScreen(full: false)
         
         UIView.animate(withDuration: 0.3) { [weak self] in
-            self?.matchContentView.backgroundColor = .clear
+            self?.contentView.backgroundColor = .clear
             self?.shadowView.startColor = .white
             self?.shadowView.endColor = .white
         }
@@ -258,10 +283,10 @@ final class SearchViewController: UIViewController {
         
         timeOutView.frame = CGRect(x: 0,
                                    y: 20.0,
-                                   width: matchContentView.frame.size.width,
-                                   height: matchContentView.frame.size.height)
+                                   width: contentView.frame.size.width,
+                                   height: contentView.frame.size.height)
         
-        matchContentView.addSubview(timeOutView)
+        contentView.addSubview(timeOutView)
     }
     
     private func startInterlocutorCountdown(seconds: Int) {
@@ -280,9 +305,36 @@ final class SearchViewController: UIViewController {
         interlocutorResponseTimer = nil
     }
     
+    @objc private func contentViewPanGesture(_ sender: UIPanGestureRecognizer) {
+        let touchPoint = sender.location(in: self.view?.window)
+        
+        switch sender.state {
+        case .began:
+            initialTouchPoint = touchPoint
+        case .changed:
+            if touchPoint.y - initialTouchPoint.y > 0 {
+                view.frame = CGRect(x: 0, y: touchPoint.y - initialTouchPoint.y, width: view.frame.size.width, height: view.frame.size.height)
+            }
+        case .ended, .cancelled:
+            if touchPoint.y - initialTouchPoint.y > 200 {
+                dismiss(animated: true, completion: nil)
+            } else {
+                UIView.animate(withDuration: 0.3, animations: { [weak self] in
+                    guard let `self` = self else {
+                        return
+                    }
+                    
+                    self.view.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height)
+                })
+            }
+        default:
+            break
+        }
+    }
+    
     private func fullScreen(full: Bool, completion: (() -> Void)? = nil) {
-        shadowTop.constant = full ? 0 : 84
-        contentTop.constant = full ? 0 : 40
+        shadowViewTopConstraint.constant = full ? 0 : 84
+        contentViewTopConstraint.constant = full ? 0 : 40
 
         UIView.animate(withDuration: 0.3, animations: { [weak self] in
             self?.shadowView.cornerRadius = full ? 0 : 30

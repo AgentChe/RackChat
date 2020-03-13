@@ -16,7 +16,7 @@ protocol SearchViewControllerDelegate: class {
 
 final class SearchViewController: UIViewController {
     private enum Scene {
-        case searching, matching, none
+        case searching, matching, interlocutorRefused, none
     }
     
     private lazy var gradientView: GradientView = {
@@ -85,6 +85,7 @@ final class SearchViewController: UIViewController {
             .disposed(by: disposeBag)
         
         var searchingQueueId: SearchingQueueId?
+        var lastInterlocutorProposed: ProposedInterlocutor?
         
         viewModel.event
             .drive(onNext: { [weak self] event in
@@ -100,6 +101,8 @@ final class SearchViewController: UIViewController {
                         return
                     }
                     
+                    lastInterlocutorProposed = proposedInterlocutor
+                    
                     self.stopInterlocutorCountdown()
                     
                     self.removeAllScenes()
@@ -109,10 +112,24 @@ final class SearchViewController: UIViewController {
                         return
                     }
                     
-                    self.stopInterlocutorCountdown()
-                    
-                    self.removeAllScenes()
-                    self.applySearchScene()
+                    switch self.currentScene {
+                    case .matching:
+                        self.stopInterlocutorCountdown()
+                        
+                        self.removeAllScenes()
+                        
+                        if let proposedInterlocutor = lastInterlocutorProposed {
+                            self.applyInterlocutorRefuredScene(proposedInterlocutor: proposedInterlocutor)
+                        }
+                        
+                        self.viewModel.close()
+                    case .searching:
+                        self.stopInterlocutorCountdown()
+                        
+                        self.viewModel.close()
+                    default:
+                        break
+                    }
                 case .proposedInterlocutorConfirmed(let stub):
                     guard let forCurrentQueue = stub.first(where: { $0.0 == searchingQueueId }) else {
                         return
@@ -127,16 +144,25 @@ final class SearchViewController: UIViewController {
                     self.dismiss(animated: true)
                     self.delegate?.newChat(chat: chat)
                 case .closed(let queueIds):
-                    guard self.currentScene == .matching, let queueId = searchingQueueId, queueIds.contains(queueId) else {
+                    guard let queueId = searchingQueueId, queueIds.contains(queueId) else {
                         return
                     }
                     
-                    self.stopInterlocutorCountdown()
-                    
-                    self.removeAllScenes()
-                    self.applySearchScene()
-                    
-                    self.viewModel.register()
+                    switch self.currentScene {
+                    case .matching:
+                        self.stopInterlocutorCountdown()
+                        
+                        self.removeAllScenes()
+                        self.applySearchScene()
+                        
+                        self.viewModel.register()
+                    case .searching:
+                        self.stopInterlocutorCountdown()
+                        
+                        self.viewModel.register()
+                    default:
+                        break
+                    }
                 case .technical(let technicalEvent):
                     switch technicalEvent {
                     case .socketConnected:
@@ -287,6 +313,40 @@ final class SearchViewController: UIViewController {
                                    height: contentView.frame.size.height)
         
         contentView.addSubview(timeOutView)
+    }
+    
+    private func applyInterlocutorRefuredScene(proposedInterlocutor: ProposedInterlocutor) {
+        currentScene = .interlocutorRefused
+        
+        fullScreen(full: true) {
+            UIView.animate(withDuration: 0.3) { [weak self] in
+                self?.contentView.backgroundColor = .clear
+                self?.shadowView.startColor = .white
+                self?.shadowView.endColor = .white
+            }
+        }
+        
+        let interlocutorRefusedView = InterlocutorRefusedView.instanceFromNib()
+        
+        interlocutorRefusedView.setup(proposedInterlocutor: proposedInterlocutor)
+        
+        interlocutorRefusedView.onBack = { [weak self] in
+            self?.dismiss(animated: true)
+        }
+        
+        interlocutorRefusedView.onNewSearch = { [weak self] in
+            self?.removeAllScenes()
+            self?.applySearchScene()
+            
+            self?.viewModel.register()
+        }
+        
+        interlocutorRefusedView.frame = CGRect(x: 0,
+                                               y: 0,
+                                               width: contentView.frame.size.width,
+                                               height: contentView.frame.size.height)
+        
+        contentView.addSubview(interlocutorRefusedView)
     }
     
     private func startInterlocutorCountdown(seconds: Int) {

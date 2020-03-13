@@ -97,6 +97,8 @@
 		960D83882415808400EE3951 /* AppStateProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960D83872415808400EE3951 /* AppStateProxy.swift */; };
 		9611420A24195DBF00EB9153 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9611420924195DBF00EB9153 /* User.swift */; };
 		9611420C2419650000EB9153 /* GetUserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9611420B2419650000EB9153 /* GetUserRequest.swift */; };
+		96114211241BA51D00EB9153 /* InterlocutorRefusedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96114210241BA51D00EB9153 /* InterlocutorRefusedView.swift */; };
+		96114213241BA55900EB9153 /* InterlocutorRefusedView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96114212241BA55900EB9153 /* InterlocutorRefusedView.xib */; };
 		965452CC23FAB85E007697C4 /* RestAPITransport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965452CA23FAB85E007697C4 /* RestAPITransport.swift */; };
 		965452CD23FAB85E007697C4 /* RealmDBTransport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965452CB23FAB85E007697C4 /* RealmDBTransport.swift */; };
 		965452D123FAB98C007697C4 /* GlobalDefinitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965452D023FAB98C007697C4 /* GlobalDefinitions.swift */; };
@@ -298,6 +300,8 @@
 		960D83872415808400EE3951 /* AppStateProxy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppStateProxy.swift; sourceTree = "<group>"; };
 		9611420924195DBF00EB9153 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		9611420B2419650000EB9153 /* GetUserRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetUserRequest.swift; sourceTree = "<group>"; };
+		96114210241BA51D00EB9153 /* InterlocutorRefusedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterlocutorRefusedView.swift; sourceTree = "<group>"; };
+		96114212241BA55900EB9153 /* InterlocutorRefusedView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InterlocutorRefusedView.xib; sourceTree = "<group>"; };
 		965452CA23FAB85E007697C4 /* RestAPITransport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestAPITransport.swift; sourceTree = "<group>"; };
 		965452CB23FAB85E007697C4 /* RealmDBTransport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmDBTransport.swift; sourceTree = "<group>"; };
 		965452D023FAB98C007697C4 /* GlobalDefinitions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalDefinitions.swift; sourceTree = "<group>"; };
@@ -415,6 +419,7 @@
 		13192282236A33C100C057B8 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				9611420F241BA4B200EB9153 /* InterlocutorRefusedView */,
 				960D8382241570D200EE3951 /* TimeOutView */,
 				96AC01592412A517004F3BF5 /* SearchView */,
 				96AC01582412A4DC004F3BF5 /* MatchView */,
@@ -647,6 +652,15 @@
 				960D83832415710B00EE3951 /* TimeOutView.xib */,
 			);
 			path = TimeOutView;
+			sourceTree = "<group>";
+		};
+		9611420F241BA4B200EB9153 /* InterlocutorRefusedView */ = {
+			isa = PBXGroup;
+			children = (
+				96114210241BA51D00EB9153 /* InterlocutorRefusedView.swift */,
+				96114212241BA55900EB9153 /* InterlocutorRefusedView.xib */,
+			);
+			path = InterlocutorRefusedView;
 			sourceTree = "<group>";
 		};
 		965452C923FAB805007697C4 /* Transport */ = {
@@ -1195,6 +1209,7 @@
 				134901D72306E0CF00684901 /* InterlocutorTextTableCell.xib in Resources */,
 				134901DB2306E0CF00684901 /* InterlocutorImageTableCell.xib in Resources */,
 				1393CD9022C74BC000422529 /* Registration.storyboard in Resources */,
+				96114213241BA55900EB9153 /* InterlocutorRefusedView.xib in Resources */,
 				960D83842415710B00EE3951 /* TimeOutView.xib in Resources */,
 				13D82A7C22C202D5004DC959 /* LaunchScreen.storyboard in Resources */,
 				13113AC622F6D953009C85C6 /* lf20_XZ30Ct.json in Resources */,
@@ -1296,6 +1311,7 @@
 				969DA4482401445E00DC42D1 /* SearchResponse.swift in Sources */,
 				13CB670722F5D68600B79622 /* GardientLabel.swift in Sources */,
 				969DA4352401445E00DC42D1 /* DKTraker.swift in Sources */,
+				96114211241BA51D00EB9153 /* InterlocutorRefusedView.swift in Sources */,
 				96A5528223FF34C4001E88DC /* Gender.swift in Sources */,
 				969DA43A2401445E00DC42D1 /* Request.swift in Sources */,
 				965452CD23FAB85E007697C4 /* RealmDBTransport.swift in Sources */,
@@ -1592,7 +1608,7 @@
 				CODE_SIGN_ENTITLEMENTS = RACK/RACK.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 39;
+				CURRENT_PROJECT_VERSION = 40;
 				DEVELOPMENT_TEAM = X79NA9GZ8C;
 				INFOPLIST_FILE = "$(SRCROOT)/RACK/Resources/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -1600,7 +1616,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.1;
+				MARKETING_VERSION = 2.2;
 				PRODUCT_BUNDLE_IDENTIFIER = rack.today;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "Rack Development";
@@ -1617,7 +1633,7 @@
 				CODE_SIGN_ENTITLEMENTS = RACK/RACK.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 39;
+				CURRENT_PROJECT_VERSION = 40;
 				DEVELOPMENT_TEAM = X79NA9GZ8C;
 				INFOPLIST_FILE = "$(SRCROOT)/RACK/Resources/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -1625,7 +1641,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.1;
+				MARKETING_VERSION = 2.2;
 				PRODUCT_BUNDLE_IDENTIFIER = rack.today;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "Rack AppStore";

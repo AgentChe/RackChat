@@ -63,6 +63,28 @@ final class ChatsViewController: UIViewController {
                 }
             })
             .disposed(by: disposeBag)
+        
+        viewModel
+            .checkPaymentComplete
+            .drive(onNext: { [weak self] needPayment in
+                let vc: UIViewController
+                
+                switch needPayment {
+                case true:
+                    let storyboard = UIStoryboard(name: "Payment", bundle: .main)
+                    vc = storyboard.instantiateInitialViewController()!
+                case false:
+                    let searchViewController = SearchViewController()
+                    searchViewController.delegate = self
+                    vc = searchViewController
+                }
+                
+                vc.modalPresentationStyle = .overCurrentContext
+                vc.modalTransitionStyle = .coverVertical
+                
+                self?.present(vc, animated: true)
+            })
+            .disposed(by: disposeBag)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -88,7 +110,7 @@ final class ChatsViewController: UIViewController {
     @IBAction func tapOnNewSearch(_ sender: UIButton) {
         Amplitude.instance()?.log(event: .chatListNewSearchTap)
         
-        performSegue(withIdentifier: "search", sender: nil)
+        viewModel.checkPayment.accept(Void())
         
         backgroundViewHeight.constant = 0
         buttonHeight.constant = 0
@@ -100,14 +122,7 @@ final class ChatsViewController: UIViewController {
     }
     
     @IBAction func tapOnSearch(_ sender: Any) {
-        performSegue(withIdentifier: "search", sender: nil)
-    }
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "search" {
-            let searchView = segue.destination as! SearchViewController
-            searchView.delegate = self
-        }
+        viewModel.checkPayment.accept(Void())
     }
 }
 

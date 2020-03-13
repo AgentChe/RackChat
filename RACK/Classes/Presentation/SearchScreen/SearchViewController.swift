@@ -61,7 +61,7 @@ final class SearchViewController: UIViewController {
     private let disposeBag = DisposeBag()
     
     private let viewModel = SearchViewModel()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -199,25 +199,25 @@ final class SearchViewController: UIViewController {
         guard let user = self.user else {
             return
         }
-        
+
         currentScene = .searching
-        
+
         fullScreen(full: false)
-        
+
         UIView.animate(withDuration: 0.3) { [weak self] in
             self?.contentView.backgroundColor = .clear
             self?.shadowView.startColor = .white
             self?.shadowView.endColor = .white
         }
         
-        let searchView = SearchView.instanceFromNib()
-        
+        let searchView = SearchingView.instanceFromNib()
+
         searchView.setup(user: user)
         searchView.frame = CGRect(x: 0,
                                   y: 20.0,
                                   width: contentView.frame.size.width,
                                   height: contentView.frame.size.height)
-        
+
         contentView.addSubview(searchView)
     }
     

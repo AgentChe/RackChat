@@ -19,44 +19,6 @@
         </array>
     </customFonts>
     <scenes>
-        <!--Search View Controller-->
-        <scene sceneID="0GX-Dz-kOz">
-            <objects>
-                <viewController storyboardIdentifier="matchScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Hu7-gY-2hR" customClass="SearchViewController" customModule="RACK" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="QGx-LS-l6i">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <gestureRecognizers/>
-                        <viewLayoutGuide key="safeArea" id="TAz-OI-9G7"/>
-                        <connections>
-                            <outletCollection property="gestureRecognizers" destination="8UO-JO-xAc" appends="YES" id="EIu-J1-8WI"/>
-                        </connections>
-                    </view>
-                    <navigationItem key="navigationItem" id="JOf-mn-Gb4"/>
-                    <connections>
-                        <segue destination="KYN-wJ-3pZ" kind="presentation" identifier="paygate" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="9fl-OF-Tur"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="AXi-wm-Yxt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <panGestureRecognizer minimumNumberOfTouches="1" id="8UO-JO-xAc">
-                    <connections>
-                        <action selector="panGestureRecognizerHandler:" destination="Hu7-gY-2hR" id="pKT-HF-wgp"/>
-                    </connections>
-                </panGestureRecognizer>
-            </objects>
-            <point key="canvasLocation" x="1741" y="-611"/>
-        </scene>
-        <!--Payment-->
-        <scene sceneID="IW4-fw-bGb">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Payment" id="KYN-wJ-3pZ" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="4et-6K-2E5"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="8Pw-0K-myB" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2464" y="-380"/>
-        </scene>
         <!--CHATS-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -260,8 +222,6 @@
                         <outlet property="newSearchView" destination="ktA-v5-Hj0" id="BEw-Yz-akX"/>
                         <outlet property="swipeView" destination="Wm1-Dk-pIE" id="NZU-wM-Q1H"/>
                         <outlet property="tableView" destination="OLO-K4-8zd" id="OVo-2W-Lzh"/>
-                        <segue destination="KYN-wJ-3pZ" kind="presentation" identifier="paygate" modalPresentationStyle="overCurrentContext" modalTransitionStyle="crossDissolve" id="1DR-ZG-w8V"/>
-                        <segue destination="Hu7-gY-2hR" kind="presentation" identifier="search" modalPresentationStyle="overCurrentContext" modalTransitionStyle="coverVertical" id="dR3-Eg-vK7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -651,7 +611,4 @@
     <resources>
         <image name="button" width="28" height="28"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="9fl-OF-Tur"/>
-    </inferredMetricsTieBreakers>
 </document>

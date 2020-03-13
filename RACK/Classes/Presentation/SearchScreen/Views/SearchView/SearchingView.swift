@@ -9,9 +9,9 @@
 import UIKit
 import Kingfisher
 
-final class SearchView: UIView {
-    class func instanceFromNib() -> SearchView {
-        UINib(nibName: "SearchView", bundle: .main).instantiate(withOwner: nil, options: nil)[0] as! SearchView
+final class SearchingView: UIView {
+    class func instanceFromNib() -> SearchingView {
+        UINib(nibName: "SearchingView", bundle: .main).instantiate(withOwner: nil, options: nil)[0] as! SearchingView
     }
     
     @IBOutlet private weak var generalLabel: UILabel!

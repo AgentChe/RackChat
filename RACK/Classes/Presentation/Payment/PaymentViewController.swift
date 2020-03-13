@@ -51,7 +51,7 @@ class PaymentViewController: UIViewController {
     
     // delegate
     
-    weak var delegate: PaymentViewControllerDelegate!
+    weak var delegate: PaymentViewControllerDelegate?
     
     // private
 
@@ -77,7 +77,7 @@ class PaymentViewController: UIViewController {
         PurchaseManager.shared.loadProducts { (bundle) in
             if bundle == nil {
                 self.dismiss(animated: true, completion: nil)
-                self.delegate.wasClosed()
+                self.delegate?.wasClosed()
                 return
             }
             self.setupBundleView(bundle: bundle!)
@@ -109,7 +109,7 @@ class PaymentViewController: UIViewController {
             self.blurActivityView.isHidden = true
             if self.trialView.isHidden == false {
                 self.dismiss(animated: true, completion: {
-                    self.delegate.wasClosed()
+                    self.delegate?.wasClosed()
                 })
             }
             self.gardientBottom.constant = 400
@@ -127,7 +127,7 @@ class PaymentViewController: UIViewController {
             }) { (fin) in
 //                UserDefaults.standard.set(false, forKey: "first_start")
                 self.dismiss(animated: true, completion: {
-                    self.delegate.wasClosed()
+                    self.delegate?.wasClosed()
                 })
             }
         })
@@ -146,7 +146,7 @@ class PaymentViewController: UIViewController {
                 switch status {
                     
                 case .succes:
-                    self.delegate.wasPurchased()
+                    self.delegate?.wasPurchased()
                     self.close()
                 case .error:
                     let alert = UIAlertController(title: "ERROR", message: "Something went wrong", preferredStyle: UIAlertController.Style.alert)
@@ -295,7 +295,7 @@ class PaymentViewController: UIViewController {
     @IBAction func tapOnClose(_ sender: Any) {
         if trialView.isHidden == false {
             self.dismiss(animated: true, completion: {
-                self.delegate.wasClosed()
+                self.delegate?.wasClosed()
             })
         }
         gardientBottom.constant = 400
@@ -320,7 +320,7 @@ class PaymentViewController: UIViewController {
                 })
             } else {
                 self.dismiss(animated: true, completion: {
-                    self.delegate.wasClosed()
+                    self.delegate?.wasClosed()
                 })
             }
         }

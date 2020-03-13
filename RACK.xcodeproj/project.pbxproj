@@ -11,8 +11,8 @@
 		13113AC622F6D953009C85C6 /* lf20_XZ30Ct.json in Resources */ = {isa = PBXBuildFile; fileRef = 13113AC522F6D952009C85C6 /* lf20_XZ30Ct.json */; };
 		1319227D236A05EE00C057B8 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1319227C236A05EE00C057B8 /* SearchViewController.swift */; };
 		1319227F236A1D8B00C057B8 /* UIView+CornerRadius.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1319227E236A1D8B00C057B8 /* UIView+CornerRadius.swift */; };
-		13192281236A334600C057B8 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13192280236A334600C057B8 /* SearchView.swift */; };
-		13192284236A33EB00C057B8 /* SearchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13192283236A33EB00C057B8 /* SearchView.xib */; };
+		13192281236A334600C057B8 /* SearchingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13192280236A334600C057B8 /* SearchingView.swift */; };
+		13192284236A33EB00C057B8 /* SearchingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13192283236A33EB00C057B8 /* SearchingView.xib */; };
 		131BCDF722E99A3100D4638C /* Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 131BCDF622E99A3100D4638C /* Navigation.swift */; };
 		131DB44F23047B5D00CE56A9 /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 131DB44E23047B5D00CE56A9 /* OpenSans-Bold.ttf */; };
 		1323C703232E981A00B99A29 /* AnplitudeEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1323C702232E981A00B99A29 /* AnplitudeEvents.swift */; };
@@ -202,8 +202,8 @@
 		13113AC522F6D952009C85C6 /* lf20_XZ30Ct.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = lf20_XZ30Ct.json; sourceTree = "<group>"; };
 		1319227C236A05EE00C057B8 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		1319227E236A1D8B00C057B8 /* UIView+CornerRadius.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+CornerRadius.swift"; sourceTree = "<group>"; };
-		13192280236A334600C057B8 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
-		13192283236A33EB00C057B8 /* SearchView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchView.xib; sourceTree = "<group>"; };
+		13192280236A334600C057B8 /* SearchingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchingView.swift; sourceTree = "<group>"; };
+		13192283236A33EB00C057B8 /* SearchingView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchingView.xib; sourceTree = "<group>"; };
 		131BCDF622E99A3100D4638C /* Navigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigation.swift; sourceTree = "<group>"; };
 		131DB44E23047B5D00CE56A9 /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Bold.ttf"; sourceTree = "<group>"; };
 		1323C702232E981A00B99A29 /* AnplitudeEvents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnplitudeEvents.swift; sourceTree = "<group>"; };
@@ -1115,8 +1115,8 @@
 		96AC01592412A517004F3BF5 /* SearchView */ = {
 			isa = PBXGroup;
 			children = (
-				13192280236A334600C057B8 /* SearchView.swift */,
-				13192283236A33EB00C057B8 /* SearchView.xib */,
+				13192280236A334600C057B8 /* SearchingView.swift */,
+				13192283236A33EB00C057B8 /* SearchingView.xib */,
 			);
 			path = SearchView;
 			sourceTree = "<group>";
@@ -1199,7 +1199,7 @@
 				13D82A7C22C202D5004DC959 /* LaunchScreen.storyboard in Resources */,
 				13113AC622F6D953009C85C6 /* lf20_XZ30Ct.json in Resources */,
 				13D8BED823493185009FD24A /* NoConnectionBannerView.xib in Resources */,
-				13192284236A33EB00C057B8 /* SearchView.xib in Resources */,
+				13192284236A33EB00C057B8 /* SearchingView.xib in Resources */,
 				1393CD9722C7535B00422529 /* OpenSans-ExtraBold.ttf in Resources */,
 				134901D42306E0CF00684901 /* MyTextTableCell.xib in Resources */,
 				13A30BE5231E99A400CF6248 /* NotifySetingUiTableViewCell.xib in Resources */,
@@ -1306,7 +1306,7 @@
 				96A4D5C623FDF95900E24E13 /* ChatsService.swift in Sources */,
 				9654533223FABA66007697C4 /* PaymentError.swift in Sources */,
 				13FB81AF236B7C77004C76D4 /* MatchView.swift in Sources */,
-				13192281236A334600C057B8 /* SearchView.swift in Sources */,
+				13192281236A334600C057B8 /* SearchingView.swift in Sources */,
 				13D4A7AA2332A53300B4FC00 /* RulesViewController.swift in Sources */,
 				969DA4162401445E00DC42D1 /* MyTextTableCell.swift in Sources */,
 				969DA4312401445E00DC42D1 /* DatingUser.swift in Sources */,

@@ -10,6 +10,9 @@ import RxSwift
 import RxCocoa
 
 final class ChatsViewModel {
+    let checkPayment = PublishRelay<Void>()
+    private(set) lazy var checkPaymentComplete = checkPaymentAction()
+    
     private let chatsService = ChatsService()
     
     func connect() {
@@ -25,6 +28,13 @@ final class ChatsViewModel {
     func chatEvent() -> Driver<ChatsService.Event> {
         return chatsService
             .event
+            .asDriver(onErrorDriveWith: .never())
+    }
+    
+    private func checkPaymentAction() -> Driver<Bool> {
+        checkPayment
+            .throttle(RxTimeInterval.microseconds(400), scheduler: MainScheduler.asyncInstance)
+            .flatMapLatest { PaymentService.checkNeedPayment() }
             .asDriver(onErrorDriveWith: .never())
     }
 }

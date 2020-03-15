@@ -83,13 +83,17 @@ final class ChatViewController: UIViewController {
         chatInputViewBottomConstraint.isActive = true
         
         addInterlocutorImage()
+        addInterlocutorGalleryImages()
     }
     
     private func addInterlocutorImage() {
+        let size = SizeUtils.value(largeDevice: 48, smallDevice: 44, verySmallDevice: 40)
+        
         let menuImageView = UIImageView()
         menuImageView.translatesAutoresizingMaskIntoConstraints = false
-        menuImageView.widthAnchor.constraint(equalToConstant: 48).isActive = true
-        menuImageView.heightAnchor.constraint(equalToConstant: 48).isActive = true
+        menuImageView.widthAnchor.constraint(equalToConstant: size).isActive = true
+        menuImageView.heightAnchor.constraint(equalToConstant: size).isActive = true
+        menuImageView.contentMode = .scaleAspectFit
         
         if let interlocutorAvatarUrl = chat.interlocutorAvatarUrl {
             menuImageView.kf.setImage(with: interlocutorAvatarUrl)
@@ -122,9 +126,54 @@ final class ChatViewController: UIViewController {
                 actionSheet.addAction(doneAction)
                 
                 self.present(actionSheet, animated: true)
-                
             })
             .disposed(by: disposeBag)
+    }
+    
+    private func addInterlocutorGalleryImages() {
+        guard !chat.interlocutorGalleryPhotos.isEmpty else {
+            return
+        }
+        
+        let photosCount: CGFloat = CGFloat(chat.interlocutorGalleryPhotos.count)
+        
+        let size: CGFloat = SizeUtils.value(largeDevice: 48, smallDevice: 44, verySmallDevice: 40)
+        let indent: CGFloat = 4
+        
+        let titleView = UIView()
+        titleView.frame.size = CGSize(width: photosCount * size + (photosCount - 1) * indent,
+                                      height: size)
+        
+        var x: CGFloat = 0
+        
+        for url in chat.interlocutorGalleryPhotos {
+            let imageView = UIImageView(frame: CGRect(x: x,
+                                                      y: 0,
+                                                      width: size,
+                                                      height: size))
+            
+            imageView.contentMode = .scaleAspectFit
+            imageView.clipsToBounds = true
+            imageView.isUserInteractionEnabled = true
+            imageView.kf.setImage(with: url)
+            
+            titleView.addSubview(imageView)
+            
+            x += size + indent
+            
+            let tapGesture = UITapGestureRecognizer()
+            imageView.addGestureRecognizer(tapGesture)
+            
+            tapGesture.rx.event
+                .map { _ in url }
+                .subscribe(onNext: { [weak self] url in
+                    let vc = ImageViewController(url: url)
+                    self?.navigationController?.pushViewController(vc, animated: true)
+                })
+                .disposed(by: disposeBag)
+        }
+        
+        navigationItem.titleView = titleView
     }
     
     private func addActions() {

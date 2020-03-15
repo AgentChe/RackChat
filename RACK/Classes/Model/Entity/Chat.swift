@@ -14,6 +14,7 @@ struct Chat {
     let interlocutorAvatarUrl: URL?
     let unreadMessageCount: Int
     let lastMessage: Message?
+    let interlocutorGalleryPhotos: [URL]
 }
 
 extension Chat: Model {
@@ -27,6 +28,7 @@ extension Chat: Model {
         case interlocutorAvatarUrl = "avatar"
         case unreadMessageCount = "unread"
         case lastMessage = "message"
+        case interlocutorGalleryPhotos = "photos"
     }
     
     init(from decoder: Decoder) throws {
@@ -43,5 +45,8 @@ extension Chat: Model {
         
         unreadMessageCount = (try? interlocutor.decode(Int.self, forKey: .unreadMessageCount)) ?? 0
         lastMessage = try? interlocutor.decode(Message.self, forKey: .lastMessage)
+        
+        let photos = try? interlocutor.decode([String].self, forKey: .interlocutorGalleryPhotos)
+        interlocutorGalleryPhotos = photos?.compactMap { URL(string: $0) } ?? []
     }
 }

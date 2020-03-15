@@ -102,6 +102,7 @@
 		96114215241E2C0000EB9153 /* CameraPickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96114214241E2C0000EB9153 /* CameraPickerController.swift */; };
 		96114217241E2D5A00EB9153 /* AddPhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96114216241E2D5A00EB9153 /* AddPhotosViewController.swift */; };
 		96114219241E331D00EB9153 /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96114218241E331D00EB9153 /* UIImageExtension.swift */; };
+		9611421C241ECDAA00EB9153 /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9611421B241ECDAA00EB9153 /* ImageViewController.swift */; };
 		965452CC23FAB85E007697C4 /* RestAPITransport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965452CA23FAB85E007697C4 /* RestAPITransport.swift */; };
 		965452CD23FAB85E007697C4 /* RealmDBTransport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965452CB23FAB85E007697C4 /* RealmDBTransport.swift */; };
 		965452D123FAB98C007697C4 /* GlobalDefinitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965452D023FAB98C007697C4 /* GlobalDefinitions.swift */; };
@@ -308,6 +309,7 @@
 		96114214241E2C0000EB9153 /* CameraPickerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPickerController.swift; sourceTree = "<group>"; };
 		96114216241E2D5A00EB9153 /* AddPhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPhotosViewController.swift; sourceTree = "<group>"; };
 		96114218241E331D00EB9153 /* UIImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
+		9611421B241ECDAA00EB9153 /* ImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
 		965452CA23FAB85E007697C4 /* RestAPITransport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestAPITransport.swift; sourceTree = "<group>"; };
 		965452CB23FAB85E007697C4 /* RealmDBTransport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmDBTransport.swift; sourceTree = "<group>"; };
 		965452D023FAB98C007697C4 /* GlobalDefinitions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalDefinitions.swift; sourceTree = "<group>"; };
@@ -672,6 +674,14 @@
 			path = InterlocutorRefusedView;
 			sourceTree = "<group>";
 		};
+		9611421A241ECD8600EB9153 /* ImageScreen */ = {
+			isa = PBXGroup;
+			children = (
+				9611421B241ECDAA00EB9153 /* ImageViewController.swift */,
+			);
+			path = ImageScreen;
+			sourceTree = "<group>";
+		};
 		965452C923FAB805007697C4 /* Transport */ = {
 			isa = PBXGroup;
 			children = (
@@ -684,6 +694,7 @@
 		965452CE23FAB938007697C4 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				9611421A241ECD8600EB9153 /* ImageScreen */,
 				968FE7BF240B0EFB00C3D5C2 /* UnmatchScreen */,
 				968FE7BC240B0CF400C3D5C2 /* ReportScreen */,
 				969DA3072400533200DC42D1 /* ChatScreen */,
@@ -1422,6 +1433,7 @@
 				13602F6A22EB2BCE0099BF1F /* TransitionAnimator.swift in Sources */,
 				96BD9E942413B0120040D539 /* SearchViewModel.swift in Sources */,
 				96669A60240BCDE30023A8B9 /* ReportViewModel.swift in Sources */,
+				9611421C241ECDAA00EB9153 /* ImageViewController.swift in Sources */,
 				4731754723F583F90004705E /* UIDevice+Ext.swift in Sources */,
 				13602F6B22EB2BCE0099BF1F /* TransitionCoordinator.swift in Sources */,
 				969DA4292401445E00DC42D1 /* RequestTool.swift in Sources */,

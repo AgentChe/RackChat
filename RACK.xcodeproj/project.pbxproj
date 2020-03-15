@@ -1632,7 +1632,7 @@
 				CODE_SIGN_ENTITLEMENTS = RACK/RACK.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 40;
+				CURRENT_PROJECT_VERSION = 41;
 				DEVELOPMENT_TEAM = X79NA9GZ8C;
 				INFOPLIST_FILE = "$(SRCROOT)/RACK/Resources/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -1640,7 +1640,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.2;
+				MARKETING_VERSION = 2.3;
 				PRODUCT_BUNDLE_IDENTIFIER = rack.today;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "Rack Development";
@@ -1657,7 +1657,7 @@
 				CODE_SIGN_ENTITLEMENTS = RACK/RACK.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 40;
+				CURRENT_PROJECT_VERSION = 41;
 				DEVELOPMENT_TEAM = X79NA9GZ8C;
 				INFOPLIST_FILE = "$(SRCROOT)/RACK/Resources/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -1665,7 +1665,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.2;
+				MARKETING_VERSION = 2.3;
 				PRODUCT_BUNDLE_IDENTIFIER = rack.today;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "Rack AppStore";

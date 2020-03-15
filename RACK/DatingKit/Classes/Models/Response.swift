@@ -79,15 +79,45 @@ public struct Technical: Response {
     }
     
     public var httpCode: Double
+    public var isBanned: Bool?
     
     enum CodingKeys: String, CodingKey {
         case httpCode = "_code"
         case messgeFromServer = "_msg"
+        case data = "_data"
+        case banned
     }
     
     public init(from decoder: Decoder) throws {
         let contanier = try decoder.container(keyedBy: CodingKeys.self)
         httpCode = try contanier.decode(Double.self, forKey: .httpCode)
         message = try contanier.decode(String.self, forKey: .messgeFromServer)
+        
+        let box = try contanier.nestedContainer(keyedBy: CodingKeys.self, forKey: .data)
+        isBanned = try box.decode(Bool.self, forKey: .banned)
+    }
+}
+
+public struct TechnicalUpload: Response {
+
+    public var message: String
+    public var needPayment: Bool { return false }
+    public var httpCode: Double
+    public var url: String?
+    
+    enum CodingKeys: String, CodingKey {
+        case httpCode = "_code"
+        case messgeFromServer = "_msg"
+        case data = "_data"
+        case url
+    }
+    
+    public init(from decoder: Decoder) throws {
+        let contanier = try decoder.container(keyedBy: CodingKeys.self)
+        httpCode = try contanier.decode(Double.self, forKey: .httpCode)
+        message = try contanier.decode(String.self, forKey: .messgeFromServer)
+        
+        let box = try contanier.nestedContainer(keyedBy: CodingKeys.self, forKey: .data)
+        url = try box.decode(String.self, forKey: .url)
     }
 }

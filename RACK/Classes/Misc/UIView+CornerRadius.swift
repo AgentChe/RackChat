@@ -36,36 +36,36 @@ extension UIView {
         self.layer.mask = mask
     }
     
-    private func path(for type: MaskType) -> CGPath {
+    func path(for type: MaskType) -> CGPath {
         let width = self.layer.frame.size.width
         let height = self.layer.frame.size.height
 
         switch type {
         case .type1:
             let path = CGMutablePath()
-            path.move(to: CGPoint(x: 0, y: 0))
-            path.addLine(to: CGPoint(x: 3, y: height - 2))
-            path.addLine(to: CGPoint(x: width - 2, y: height - 1))
-            path.addLine(to: CGPoint(x: width - 2, y: 0))
-            path.addLine(to: CGPoint(x: 0, y: 0))
+            path.move(to: CGPoint(x: width * 5/110, y: 0))
+            path.addLine(to: CGPoint(x: width * 12/110, y: height * 105/110))
+            path.addLine(to: CGPoint(x: width, y: height * 107/110))
+            path.addLine(to: CGPoint(x: width, y: 0))
+            path.addLine(to: CGPoint(x: width * 5/110, y: 0))
             return path
 
         case .type2:
             let path = CGMutablePath()
-            path.move(to: CGPoint(x: 1, y: 0))
-            path.addLine(to: CGPoint(x: 1, y: height))
-            path.addLine(to: CGPoint(x: width - 3, y: height))
-            path.addLine(to: CGPoint(x: width, y: 0))
-            path.addLine(to: CGPoint(x: 1, y: 0))
+            path.move(to: CGPoint(x: width * 1/110, y: 0))
+            path.addLine(to: CGPoint(x: width * 1/110, y: height))
+            path.addLine(to: CGPoint(x: width * 101/110, y: height))
+            path.addLine(to: CGPoint(x: width * 108/110, y: 0))
+            path.addLine(to: CGPoint(x: width * 1/110, y: 0))
             return path
 
         case .type3:
             let path = CGMutablePath()
-            path.move(to: CGPoint(x: 4, y: 0))
+            path.move(to: CGPoint(x: width *  8/110, y: 0))
             path.addLine(to: CGPoint(x: 0, y: height))
-            path.addLine(to: CGPoint(x: width, y: height))
-            path.addLine(to: CGPoint(x: width - 1, y: 0))
-            path.addLine(to: CGPoint(x: 4, y: 0))
+            path.addLine(to: CGPoint(x: width * 107/110, y: height))
+            path.addLine(to: CGPoint(x: width * 104/110, y: 0))
+            path.addLine(to: CGPoint(x: width *  8/110, y: 0))
             return path
         }
     }

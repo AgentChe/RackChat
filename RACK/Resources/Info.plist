@@ -47,6 +47,8 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<false/>
 	</dict>
+	<key>NSCameraUsageDescription</key>
+	<string>We need the camera access to take the photo for your profile</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>SF-Pro-Text-Regular.otf</string>

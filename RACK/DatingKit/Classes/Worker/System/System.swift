@@ -160,7 +160,7 @@ open class SystemWorker: Worker {
         }
         
         requestTool.request(route: task.userTask.route,
-                            parameters: task.userTask.parametrs,
+                            parameters: task.userTask.parameters,
                             useToken: true,
                             parcer: technicalParcer)
         { [weak self] (result) in
@@ -182,7 +182,7 @@ open class SystemWorker: Worker {
         }
         
         requestTool.request(route: task.userTask.route,
-                            parameters: task.userTask.parametrs,
+                            parameters: task.userTask.parameters,
                             useToken: true,
                             parcer: { (data) -> Response? in
                                 do {

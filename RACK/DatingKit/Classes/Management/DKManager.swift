@@ -119,7 +119,7 @@ class DKManager: Manager, NetworkStatusListener {
     
     private func validateTask(task: Task) -> TaskStatus {
         if task.needParameters {
-            if task.parametrs.count == 0 {
+            if task.parameters.count == 0 {
                 print("ERROR: You enabled needParameters, but parametes count equels zero!")
                 return .invalid
             }

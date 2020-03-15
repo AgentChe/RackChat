@@ -18,6 +18,7 @@ public enum UserTaskTypes: Int {
     case setLookingFor
     case setAim
     case setChatType
+    case setPhoto
     case randomize
     case logout
     case deleteAccount
@@ -37,7 +38,7 @@ open class UserTask: Task {
     
     public var autoRepeat: Bool
     
-    public var parametrs: [String : Any]
+    public var parameters: [String : Any]
     
     public var status: TaskStatus
     
@@ -45,16 +46,19 @@ open class UserTask: Task {
         return userType.rawValue
     }
     
+    public var bodyParameters: [String : Any]?
+    
     private var userType: UserTaskTypes
     
-    init(route: String, function: UserTaskTypes, parameters: [String : Any], autorepead: Bool, needParameters: Bool) {
+    init(route: String, function: UserTaskTypes, parameters: [String : Any], autorepead: Bool, needParameters: Bool, bodyParameters: [String : Any]? = nil) {
         self.route = route
         self.service = Servises.user.stringValue
-        self.parametrs = parameters
+        self.parameters = parameters
         self.status = .none
         self.userType = function
         self.autoRepeat = autorepead
         self.needParameters = needParameters
+        self.bodyParameters = bodyParameters
     }
     
     

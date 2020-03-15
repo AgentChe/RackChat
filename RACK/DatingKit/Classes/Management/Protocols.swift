@@ -97,9 +97,10 @@ public protocol Task {
     var route: String { get }
     var service: String { get }
     var autoRepeat: Bool { get }
-    var parametrs: [String : Any] { get }
+    var parameters: [String : Any] { get }
     var status: TaskStatus { get set }
     var type: Int { get }
+    var bodyParameters: [String : Any]? { get }
     
     func getCurrent<T: Task>() -> T
     
@@ -110,6 +111,9 @@ extension Task {
         return self as! T
     }
     
+    public var bodyParameters: [String : Any]? {
+        return nil
+    }
 }
 
 public protocol Result {

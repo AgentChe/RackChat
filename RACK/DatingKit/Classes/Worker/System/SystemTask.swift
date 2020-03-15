@@ -39,7 +39,7 @@ public class ConfigTask: Task {
     
     public var autoRepeat: Bool
     
-    public var parametrs: [String : Any]
+    public var parameters: [String : Any]
     
     public var status: TaskStatus
     
@@ -55,7 +55,7 @@ public class ConfigTask: Task {
         needParameters = false
         route = "/users/set"
         autoRepeat = true
-        parametrs = [String : Any]()
+        parameters = [String : Any]()
         userType = .setConfig
         status = .none
         timeConfig = config
@@ -78,7 +78,7 @@ class SystemTask: Task {
     
     public var autoRepeat: Bool
     
-    public var parametrs: [String : Any]
+    public var parameters: [String : Any]
     
     public var status: TaskStatus
     
@@ -91,7 +91,7 @@ class SystemTask: Task {
     init(route: String, parameters:[String : Any], function: SystemTaskTypes, autorepead: Bool, needParameters: Bool) {
         self.autoRepeat = autorepead
         self.needParameters = needParameters
-        self.parametrs = parameters
+        self.parameters = parameters
         self.status = .none
         self.route = route
         self.service = Servises.system.stringValue

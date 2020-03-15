@@ -25,7 +25,7 @@ public class MarketingTask: Task {
     
     public var autoRepeat: Bool = true
     
-    public var parametrs: [String : Any] = [String : Any]()
+    public var parameters: [String : Any] = [String : Any]()
     
     public var status: TaskStatus = .none
     
@@ -38,11 +38,11 @@ public class MarketingTask: Task {
     
     init(type: MarketingTaskTypes) {
         userType = type
-        parametrs["version"] = Int(Settings.currentBundle)
-        parametrs["random_string"] = Settings.getCurrentInstallIdentifier()
+        parameters["version"] = Int(Settings.currentBundle)
+        parameters["random_string"] = Settings.getCurrentInstallIdentifier()
         if ASIdentifierManager.shared().isAdvertisingTrackingEnabled {
             let idfa: String = ASIdentifierManager.shared().advertisingIdentifier.uuidString
-            parametrs["idfa"] = idfa
+            parameters["idfa"] = idfa
         
         }
        
@@ -51,20 +51,20 @@ public class MarketingTask: Task {
     
     init(storyCountry: String) {
         userType = .adColdStart
-        parametrs["version"] = Int(Settings.currentBundle)
-        parametrs["locale"] = Settings.currentLocale
-        parametrs["timezone"] = Settings.localTimeZoneAbbreviation
-        parametrs["store_country"] = storyCountry
+        parameters["version"] = Int(Settings.currentBundle)
+        parameters["locale"] = Settings.currentLocale
+        parameters["timezone"] = Settings.localTimeZoneAbbreviation
+        parameters["store_country"] = storyCountry
     }
     
     init(type: MarketingTaskTypes, storeCountry: String) {
         userType = type
-        parametrs["random_string"] = Settings.getCurrentInstallIdentifier()
-        parametrs["version"] = Int(Settings.currentBundle)
-        parametrs["store_country"] = storeCountry
+        parameters["random_string"] = Settings.getCurrentInstallIdentifier()
+        parameters["version"] = Int(Settings.currentBundle)
+        parameters["store_country"] = storeCountry
         if ASIdentifierManager.shared().isAdvertisingTrackingEnabled {
             let idfa: String = ASIdentifierManager.shared().advertisingIdentifier.uuidString
-            parametrs["idfa"] = idfa
+            parameters["idfa"] = idfa
         }
     }
     

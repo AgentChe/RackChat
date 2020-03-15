@@ -55,7 +55,7 @@
 		13CB670722F5D68600B79622 /* GardientLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13CB670622F5D68600B79622 /* GardientLabel.swift */; };
 		13CB670922F5D7FD00B79622 /* SkipButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13CB670822F5D7FD00B79622 /* SkipButtonView.swift */; };
 		13CB670B22F5DB8000B79622 /* SureButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13CB670A22F5DB8000B79622 /* SureButtonView.swift */; };
-		13CB670D22F5E12300B79622 /* UIImageView+Download.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13CB670C22F5E12300B79622 /* UIImageView+Download.swift */; };
+		13CB670D22F5E12300B79622 /* UIImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13CB670C22F5E12300B79622 /* UIImageViewExtension.swift */; };
 		13CC558F231E3C5500A10D45 /* NotificationResponce.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13CC558E231E3C5500A10D45 /* NotificationResponce.swift */; };
 		13CC5591231E3C8200A10D45 /* NotificationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13CC5590231E3C8200A10D45 /* NotificationRequest.swift */; };
 		13CC5593231E427A00A10D45 /* NotificationRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13CC5592231E427A00A10D45 /* NotificationRequestViewController.swift */; };
@@ -99,6 +99,9 @@
 		9611420C2419650000EB9153 /* GetUserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9611420B2419650000EB9153 /* GetUserRequest.swift */; };
 		96114211241BA51D00EB9153 /* InterlocutorRefusedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96114210241BA51D00EB9153 /* InterlocutorRefusedView.swift */; };
 		96114213241BA55900EB9153 /* InterlocutorRefusedView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96114212241BA55900EB9153 /* InterlocutorRefusedView.xib */; };
+		96114215241E2C0000EB9153 /* CameraPickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96114214241E2C0000EB9153 /* CameraPickerController.swift */; };
+		96114217241E2D5A00EB9153 /* AddPhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96114216241E2D5A00EB9153 /* AddPhotosViewController.swift */; };
+		96114219241E331D00EB9153 /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96114218241E331D00EB9153 /* UIImageExtension.swift */; };
 		965452CC23FAB85E007697C4 /* RestAPITransport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965452CA23FAB85E007697C4 /* RestAPITransport.swift */; };
 		965452CD23FAB85E007697C4 /* RealmDBTransport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965452CB23FAB85E007697C4 /* RealmDBTransport.swift */; };
 		965452D123FAB98C007697C4 /* GlobalDefinitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965452D023FAB98C007697C4 /* GlobalDefinitions.swift */; };
@@ -250,7 +253,7 @@
 		13CB670622F5D68600B79622 /* GardientLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GardientLabel.swift; sourceTree = "<group>"; };
 		13CB670822F5D7FD00B79622 /* SkipButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkipButtonView.swift; sourceTree = "<group>"; };
 		13CB670A22F5DB8000B79622 /* SureButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SureButtonView.swift; sourceTree = "<group>"; };
-		13CB670C22F5E12300B79622 /* UIImageView+Download.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Download.swift"; sourceTree = "<group>"; };
+		13CB670C22F5E12300B79622 /* UIImageViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewExtension.swift; sourceTree = "<group>"; };
 		13CC558E231E3C5500A10D45 /* NotificationResponce.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationResponce.swift; sourceTree = "<group>"; };
 		13CC5590231E3C8200A10D45 /* NotificationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationRequest.swift; sourceTree = "<group>"; };
 		13CC5592231E427A00A10D45 /* NotificationRequestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationRequestViewController.swift; sourceTree = "<group>"; };
@@ -302,6 +305,9 @@
 		9611420B2419650000EB9153 /* GetUserRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetUserRequest.swift; sourceTree = "<group>"; };
 		96114210241BA51D00EB9153 /* InterlocutorRefusedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterlocutorRefusedView.swift; sourceTree = "<group>"; };
 		96114212241BA55900EB9153 /* InterlocutorRefusedView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InterlocutorRefusedView.xib; sourceTree = "<group>"; };
+		96114214241E2C0000EB9153 /* CameraPickerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPickerController.swift; sourceTree = "<group>"; };
+		96114216241E2D5A00EB9153 /* AddPhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPhotosViewController.swift; sourceTree = "<group>"; };
+		96114218241E331D00EB9153 /* UIImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
 		965452CA23FAB85E007697C4 /* RestAPITransport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestAPITransport.swift; sourceTree = "<group>"; };
 		965452CB23FAB85E007697C4 /* RealmDBTransport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmDBTransport.swift; sourceTree = "<group>"; };
 		965452D023FAB98C007697C4 /* GlobalDefinitions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalDefinitions.swift; sourceTree = "<group>"; };
@@ -453,6 +459,8 @@
 				13EBA54F22E9EAF1008C176C /* SecondTestViewController.swift */,
 				13E4D35D22DA33EA00442BF9 /* RandomizeViewController.swift */,
 				13CC5592231E427A00A10D45 /* NotificationRequestViewController.swift */,
+				96114214241E2C0000EB9153 /* CameraPickerController.swift */,
+				96114216241E2D5A00EB9153 /* AddPhotosViewController.swift */,
 			);
 			path = Test;
 			sourceTree = "<group>";
@@ -524,10 +532,11 @@
 				13602F6822EB2BCC0099BF1F /* TransitionAnimator.swift */,
 				13602F6922EB2BCE0099BF1F /* TransitionCoordinator.swift */,
 				13D4055022C638B9004FC70D /* AppDelegate+Root.swift */,
-				13CB670C22F5E12300B79622 /* UIImageView+Download.swift */,
+				13CB670C22F5E12300B79622 /* UIImageViewExtension.swift */,
 				13861BAD231C309F0011F8D1 /* UIColor+HexString.swift */,
 				13BA7A8E2326E61300EB5A0E /* Bundle+version.swift */,
 				1319227E236A1D8B00C057B8 /* UIView+CornerRadius.swift */,
+				96114218241E331D00EB9153 /* UIImageExtension.swift */,
 			);
 			path = Misc;
 			sourceTree = "<group>";
@@ -1343,6 +1352,7 @@
 				96BF8CA62403E18B0026F3CE /* PaginatedDataLoader.swift in Sources */,
 				969DA4252401445E00DC42D1 /* RechbilityManager.swift in Sources */,
 				13CC5593231E427A00A10D45 /* NotificationRequestViewController.swift in Sources */,
+				96114219241E331D00EB9153 /* UIImageExtension.swift in Sources */,
 				969DA4472401445E00DC42D1 /* SearchWorker.swift in Sources */,
 				13A30BE4231E99A400CF6248 /* NotifySetingUiTableViewCell.swift in Sources */,
 				96669A772411B2260023A8B9 /* CheckNeedPaymentRequest.swift in Sources */,
@@ -1382,6 +1392,7 @@
 				969DA45F2401C80600DC42D1 /* UnmatchRequest.swift in Sources */,
 				13CB670B22F5DB8000B79622 /* SureButtonView.swift in Sources */,
 				96F005892405249D0058F7C9 /* FileService.swift in Sources */,
+				96114215241E2C0000EB9153 /* CameraPickerController.swift in Sources */,
 				13CC5591231E3C8200A10D45 /* NotificationRequest.swift in Sources */,
 				13BA7A8D2326E31000EB5A0E /* ConfigRequest.swift in Sources */,
 				13A30BE1231E996C00CF6248 /* NotigyEnablingViewController.swift in Sources */,
@@ -1392,6 +1403,7 @@
 				96669A7B2411B4910023A8B9 /* PaymentTransformation.swift in Sources */,
 				969DA4632401CCD200DC42D1 /* SessionService.swift in Sources */,
 				13D82A7222C202D4004DC959 /* AppDelegate.swift in Sources */,
+				96114217241E2D5A00EB9153 /* AddPhotosViewController.swift in Sources */,
 				9654533323FABA66007697C4 /* DataBaseError.swift in Sources */,
 				13ECB49822E7A3820042BAED /* User+Extention.swift in Sources */,
 				969DA30623FF48B200DC42D1 /* SizeUtils.swift in Sources */,
@@ -1405,7 +1417,7 @@
 				96669A6E240D186C0023A8B9 /* Fonts.swift in Sources */,
 				13F9B34623262CB900072159 /* RightView.swift in Sources */,
 				13D4054D22C63860004FC70D /* RootViewController.swift in Sources */,
-				13CB670D22F5E12300B79622 /* UIImageView+Download.swift in Sources */,
+				13CB670D22F5E12300B79622 /* UIImageViewExtension.swift in Sources */,
 				1386775722C78A7600F3AD84 /* GradientButton.swift in Sources */,
 				13602F6A22EB2BCE0099BF1F /* TransitionAnimator.swift in Sources */,
 				96BD9E942413B0120040D539 /* SearchViewModel.swift in Sources */,

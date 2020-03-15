@@ -22,6 +22,7 @@ class ScreenManager {
     public struct ScreenManagerTestEntryScreen {
         static let birthdayAndCity: String = "birthdayAndCity"
         static let gender: String = "gender"
+        static let addPhotos: String = "addPhotos"
         static let firstTest: String = "firstTest"
         static let secondTest: String = "secondTest"
         static let triedTest: String = "triedTest"

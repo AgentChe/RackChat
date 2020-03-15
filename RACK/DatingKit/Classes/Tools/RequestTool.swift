@@ -39,8 +39,10 @@ class RequestTool {
           }
       }
     
-    func request(route: String, parameters: [String : Any],
-                 useToken: Bool, parcer:@escaping(_ data: Data) -> Response?,
+    func request(route: String,
+                 parameters: [String : Any],
+                 useToken: Bool,
+                 parcer:@escaping(_ data: Data) -> Response?,
                  completion: @escaping (Response?) -> Void) {
         
         let params = getParameters(useToken: useToken, parameters: parameters)
@@ -54,6 +56,45 @@ class RequestTool {
             }
         }
         
+    }
+    
+    public func uploadRequest(route: String,
+                              parameters: [String : Any],
+                              bodyParameters: [String : Any],
+                              useToken: Bool,
+                              parcer: @escaping (_ data: Data) -> Response?,
+                              completion: @escaping (Response?) -> Void)
+    {
+        let params = getParameters(useToken: useToken, parameters: parameters)
+        
+        var queryItems = [URLQueryItem]()
+        for parameter in params.enumerated() {
+            queryItems.append(URLQueryItem(name: parameter.element.key, value: parameter.element.value as? String))
+        }
+        
+        var urlComponents = URLComponents(string: baseURL + route)
+        urlComponents?.queryItems = queryItems
+        let requestURL = urlComponents!.url!
+        
+        Alamofire.upload(multipartFormData:
+            { (formData) in
+                for (key,value) in bodyParameters {
+                    formData.append(value as! Data, withName: key, fileName: "image.png", mimeType: "image/png")
+                }
+        }, to: requestURL) { (result) in
+            switch result {
+            case .success(let request, _, _):
+                request.responseJSON { (response) in
+                    if response.result.isSuccess {
+                        completion(parcer(response.data!))
+                    } else {
+                        completion(nil)
+                    }
+                }
+            case .failure(_):
+                completion(nil)
+            }
+        }
     }
     
     func requset (_ request: APIRequest, completion: @escaping (Decodable?) -> Void) {

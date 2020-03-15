@@ -73,7 +73,7 @@ class MarketingWorker: Worker {
         }
         
         requestTool.request(route: "/users/set",
-                            parameters: task.userTask.parametrs,
+                            parameters: task.userTask.parameters,
                             useToken: true,
                             parcer: technicalParcer)
         { (responce) in
@@ -130,7 +130,7 @@ class MarketingWorker: Worker {
                 }
                 let ads: [String : Any] = NSAds
                 
-                let parameters: [String : Any] = task.userTask.parametrs
+                let parameters: [String : Any] = task.userTask.parameters
                 
                 let fullParameters: [String : Any] = parameters.merging(ads) { $1 }
                 
@@ -158,7 +158,7 @@ class MarketingWorker: Worker {
             return
         }
         
-        var parameters: [String : Any] = task.userTask.parametrs
+        var parameters: [String : Any] = task.userTask.parameters
         
         parameters["locale"] = Settings.currentLocale
         parameters["timezone"] = Settings.localTimeZoneAbbreviation

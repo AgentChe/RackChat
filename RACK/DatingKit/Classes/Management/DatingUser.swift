@@ -147,6 +147,19 @@ open class DKUserRepository {
         }
     }
     
+    public func set(photo: Data, completion: @escaping(_ operationStatus: ResultStatus) -> Void) {
+        let task: UserTask = UserTask(route: "/users/add_photo",
+                                      function: .setPhoto,
+                                      parameters: [:],
+                                      autorepead: true,
+                                      needParameters: false,
+                                      bodyParameters: ["photo" : photo])
+
+        manager.takeToWork(task: task) { (result) in
+            completion(result.status)
+        }
+    }
+    
     public func logout(comletion: @escaping(_ operationStatus: ResultStatus) -> Void) {
         let task = UserTask(route: "/users/delete_account",
                             function: .logout,

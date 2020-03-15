@@ -23,7 +23,7 @@ open class StopAllCitiesTask: Task {
     
     public var autoRepeat: Bool
     
-    public var parametrs: [String : Any]
+    public var parameters: [String : Any]
     
     public var status: TaskStatus
     
@@ -38,7 +38,7 @@ open class StopAllCitiesTask: Task {
         route = ""
         service = Servises.cities.stringValue
         autoRepeat = false
-        parametrs = [String : Any]()
+        parameters = [String : Any]()
         status = .none
         taskType = .stopAll
     }
@@ -52,7 +52,7 @@ open class SearchCityTask: Task {
     public var route: String
     public var service: String
     public var autoRepeat: Bool
-    public var parametrs: [String : Any]
+    public var parameters: [String : Any]
     public var status: TaskStatus
     
     public var type: Int {
@@ -66,7 +66,7 @@ open class SearchCityTask: Task {
         route = "/cities/search"
         service = Servises.cities.stringValue
         autoRepeat = true
-        parametrs = ["search" : city]
+        parameters = ["search" : city]
         status = .none
         taskType = .searchCity
     }
@@ -79,7 +79,7 @@ open class AddCityTask: Task {
     public var route: String
     public var service: String
     public var autoRepeat: Bool
-    public var parametrs: [String : Any]
+    public var parameters: [String : Any]
     public var status: TaskStatus
     
     public var type: Int {
@@ -93,7 +93,7 @@ open class AddCityTask: Task {
         route = "/cities/add"
         service = Servises.cities.stringValue
         autoRepeat = true
-        parametrs = ["city" : city]
+        parameters = ["city" : city]
         status = .none
         taskType = .addCity
     }

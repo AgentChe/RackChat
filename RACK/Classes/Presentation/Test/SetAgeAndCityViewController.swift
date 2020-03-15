@@ -118,12 +118,6 @@ class SetAgeAndCityViewController: UIViewController, UIGestureRecognizerDelegate
         self.navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        Amplitude.instance()?.log(event: .birthdayAndCityScr)
-    }
-    
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         
@@ -216,7 +210,7 @@ class SetAgeAndCityViewController: UIViewController, UIGestureRecognizerDelegate
             
             switch status {
             case .succses:
-                self.performSegue(withIdentifier: "setGender", sender: nil)
+                self.performSegue(withIdentifier: "addPhotos", sender: nil)
 
             case .banned:
                 self.stopLoading()

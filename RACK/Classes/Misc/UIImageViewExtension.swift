@@ -9,7 +9,6 @@
 import Foundation
 import UIKit
 
-
 extension UIImageView {
     func downloaded(from url: URL, complation: @escaping() -> Void) {
         URLSession.shared.dataTask(with: url) { data, response, error in

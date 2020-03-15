@@ -31,9 +31,14 @@ open class ErrorTool {
             let message: String = "\(responce!.message) HTTP Code: \(responce!.httpCode)"
             postError(task: task, result: result, messsage: message, status: .failed)
             return false
-        } else {
-            return true
         }
+        
+        if let technicalResponse = responce as? Technical, let isBanned = technicalResponse.isBanned, isBanned {
+            postError(task: task, result: SystemResult(status: .banned), messsage: "User is banner", status: .failed)
+            return false
+        }
+        
+        return true
     }
     
     public func validate(responce: Response?, task: TrakerTask) -> Bool {
@@ -46,9 +51,14 @@ open class ErrorTool {
             let message: String = "\(responce!.message) HTTP Code: \(responce!.httpCode)"
             postError(task: task, result: SystemResult(status: .undifferentError), messsage: message, status: .failed)
             return false
-        } else  {
-            return true
         }
+        
+        if let technicalResponse = responce as? Technical, let isBanned = technicalResponse.isBanned, isBanned {
+            postError(task: task, result: SystemResult(status: .banned), messsage: "User is banner", status: .failed)
+            return false
+        }
+
+        return true
     }
     
     

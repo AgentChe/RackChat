@@ -97,7 +97,7 @@ class CitiesWorker: Worker {
             }
             
             self.requestTool.request(route: task.userTask.route,
-                                     parameters: task.userTask.parametrs,
+                                     parameters: task.userTask.parameters,
                                      useToken: true,
                                      parcer:
                 { (data) -> Response? in
@@ -252,7 +252,7 @@ class CitiesWorker: Worker {
             }
             
             self.requestTool.request(route: task.userTask.route,
-                                     parameters: task.userTask.parametrs,
+                                     parameters: task.userTask.parameters,
                                      useToken: true,
                                      parcer:
             { (data) -> Response? in

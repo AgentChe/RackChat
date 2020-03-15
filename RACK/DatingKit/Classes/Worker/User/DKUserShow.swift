@@ -191,6 +191,8 @@ open class UserWorker: Worker {
         case .setGender, .setAim, .setChatType, .setLookingFor, .consent, .decline, .setAgeAndCity:
             setupUser(task: task)
             break
+        case .setPhoto:
+            setPhotos(task: task)
         case .randomize:
             randomize(task: task)
             break
@@ -242,7 +244,7 @@ open class UserWorker: Worker {
         let currentTask: TrakerTask = task
         return Promise<UserRandomize?> { [weak self] seal in
             requestTool.request(route: task.userTask.route,
-                                parameters: task.userTask.parametrs,
+                                parameters: task.userTask.parameters,
                                 useToken: true,
                                 parcer: { (data) -> Response? in
                                     do {
@@ -289,7 +291,7 @@ open class UserWorker: Worker {
         }
         
         requestTool.request(route: task.userTask.route,
-                            parameters: task.userTask.parametrs,
+                            parameters: task.userTask.parameters,
                             useToken: true,
                             parcer: technicalParcer)
         { [weak self] (result) in
@@ -309,12 +311,40 @@ open class UserWorker: Worker {
         }
         
         requestTool.request(route: task.userTask.route,
-                            parameters: task.userTask.parametrs,
+                            parameters: task.userTask.parameters,
                             useToken: true,
                             parcer: technicalParcer)
         { [weak self] (result) in
             self?.system(result: result, for: task)
         }
+    }
+    
+    private func setPhotos(task: TrakerTask) {
+        
+        if NetworkState.isConnected() == false {
+            errorTool.postError(task: task,
+                                result: SystemResult(status: .noInternetConnection),
+                                messsage: "No internet Connection",
+                                status: .failed)
+            return
+        }
+
+        requestTool.uploadRequest(route: task.userTask.route,
+                                  parameters: task.userTask.parameters,
+                                  bodyParameters: task.userTask.bodyParameters ?? [:],
+                                  useToken: true,
+                                  parcer:
+        { (data) -> Response? in
+            do {
+                let response: TechnicalUpload = try JSONDecoder().decode(TechnicalUpload.self, from: data)
+                return response
+            } catch let error {
+                debugPrint(error.localizedDescription)
+                return nil
+            }
+        }, completion: { [weak self] (result) in
+            self?.system(result: result, for: task)
+        })
     }
     
     private func randomize(task: TrakerTask) {
@@ -361,7 +391,7 @@ open class UserWorker: Worker {
             return
         }
         
-        requestTool.request(route: task.userTask.route, parameters: task.userTask.parametrs, useToken: false, parcer: { (data) -> Response? in
+        requestTool.request(route: task.userTask.route, parameters: task.userTask.parameters, useToken: false, parcer: { (data) -> Response? in
             do {
                 let response: Token = try JSONDecoder().decode(Token.self, from: data)
                 return response
@@ -428,7 +458,7 @@ open class UserWorker: Worker {
         }
         
         requestTool.request(route: currentTask.userTask.route,
-                            parameters: currentTask.userTask.parametrs,
+                            parameters: currentTask.userTask.parameters,
                             useToken: true,
                             parcer: { (data) -> Response? in
             do {
@@ -465,7 +495,7 @@ open class UserWorker: Worker {
         }
     
         requestTool.request(route: task.userTask.route,
-                            parameters: task.userTask.parametrs,
+                            parameters: task.userTask.parameters,
                             useToken: false,
                             parcer: technicalParcer) { [weak self] (result) in
                                 if (self?.errorTool.validate(responce: result, task: task))! {
@@ -486,7 +516,7 @@ open class UserWorker: Worker {
         }
         
         requestTool.request(route: task.userTask.route,
-                            parameters: task.userTask.parametrs,
+                            parameters: task.userTask.parameters,
                             useToken: false,
                             parcer: { (data) -> Response? in
                                 do {
@@ -528,7 +558,7 @@ open class UserWorker: Worker {
             return
         }
         
-        requestTool.request(route: task.userTask.route, parameters: task.userTask.parametrs, useToken: false, parcer: { (data) -> Response? in
+        requestTool.request(route: task.userTask.route, parameters: task.userTask.parameters, useToken: false, parcer: { (data) -> Response? in
             do {
                 let response: TechnicalCreate = try JSONDecoder().decode(TechnicalCreate.self, from: data)
                 return response

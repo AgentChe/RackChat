@@ -173,8 +173,6 @@
 		969DA44E2401445E00DC42D1 /* CitiesWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969DA4002401445E00DC42D1 /* CitiesWorker.swift */; };
 		969DA44F2401445E00DC42D1 /* CitiesResponce.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969DA4012401445E00DC42D1 /* CitiesResponce.swift */; };
 		969DA4502401445E00DC42D1 /* CitiesResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969DA4022401445E00DC42D1 /* CitiesResult.swift */; };
-		969DA4512401445E00DC42D1 /* MarketingTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969DA4042401445E00DC42D1 /* MarketingTask.swift */; };
-		969DA4522401445E00DC42D1 /* Marketing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969DA4052401445E00DC42D1 /* Marketing.swift */; };
 		969DA4532401445E00DC42D1 /* UIDevise+models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969DA4072401445E00DC42D1 /* UIDevise+models.swift */; };
 		969DA4542401445E00DC42D1 /* SKProduct+Locale.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969DA4082401445E00DC42D1 /* SKProduct+Locale.swift */; };
 		969DA4572401445E00DC42D1 /* UIView+Designble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969DA40B2401445E00DC42D1 /* UIView+Designble.swift */; };
@@ -381,8 +379,6 @@
 		969DA4002401445E00DC42D1 /* CitiesWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CitiesWorker.swift; sourceTree = "<group>"; };
 		969DA4012401445E00DC42D1 /* CitiesResponce.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CitiesResponce.swift; sourceTree = "<group>"; };
 		969DA4022401445E00DC42D1 /* CitiesResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CitiesResult.swift; sourceTree = "<group>"; };
-		969DA4042401445E00DC42D1 /* MarketingTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarketingTask.swift; sourceTree = "<group>"; };
-		969DA4052401445E00DC42D1 /* Marketing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Marketing.swift; sourceTree = "<group>"; };
 		969DA4072401445E00DC42D1 /* UIDevise+models.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIDevise+models.swift"; sourceTree = "<group>"; };
 		969DA4082401445E00DC42D1 /* SKProduct+Locale.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SKProduct+Locale.swift"; sourceTree = "<group>"; };
 		969DA40B2401445E00DC42D1 /* UIView+Designble.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Designble.swift"; sourceTree = "<group>"; };
@@ -1003,7 +999,6 @@
 				969DA3F62401445E00DC42D1 /* Search */,
 				969DA3FA2401445E00DC42D1 /* System */,
 				969DA3FE2401445E00DC42D1 /* Cities */,
-				969DA4032401445E00DC42D1 /* Marketing */,
 			);
 			path = Worker;
 			sourceTree = "<group>";
@@ -1046,15 +1041,6 @@
 				969DA4022401445E00DC42D1 /* CitiesResult.swift */,
 			);
 			path = Cities;
-			sourceTree = "<group>";
-		};
-		969DA4032401445E00DC42D1 /* Marketing */ = {
-			isa = PBXGroup;
-			children = (
-				969DA4042401445E00DC42D1 /* MarketingTask.swift */,
-				969DA4052401445E00DC42D1 /* Marketing.swift */,
-			);
-			path = Marketing;
 			sourceTree = "<group>";
 		};
 		969DA4062401445E00DC42D1 /* Extention */ = {
@@ -1317,7 +1303,6 @@
 				969DA2F523FF488400DC42D1 /* UIViewExtension.swift in Sources */,
 				968FE7BB240ACB4B00C3D5C2 /* ChatsTableView.swift in Sources */,
 				13E4D35E22DA33EA00442BF9 /* RandomizeViewController.swift in Sources */,
-				969DA4522401445E00DC42D1 /* Marketing.swift in Sources */,
 				969DA45B2401445E00DC42D1 /* UITextField+Padding.swift in Sources */,
 				1323C703232E981A00B99A29 /* AnplitudeEvents.swift in Sources */,
 				96BF8CAA2403E76F0026F3CE /* ChatTableView.swift in Sources */,
@@ -1421,7 +1406,6 @@
 				969DA4612401C8E000DC42D1 /* MatchService.swift in Sources */,
 				13BA7A912326EF7A00EB5A0E /* RegistrationPaymentViewController.swift in Sources */,
 				1393CD9222C74FEB00422529 /* RegistrationNavigationController.swift in Sources */,
-				969DA4512401445E00DC42D1 /* MarketingTask.swift in Sources */,
 				96669A6A240C37470023A8B9 /* ChatInpuTextView.swift in Sources */,
 				969DA4532401445E00DC42D1 /* UIDevise+models.swift in Sources */,
 				969DA4332401445E00DC42D1 /* DatingKit.swift in Sources */,

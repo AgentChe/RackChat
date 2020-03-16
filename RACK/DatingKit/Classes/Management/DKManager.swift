@@ -15,7 +15,6 @@ public enum Servises: CodingKey {
     case payment
     case cities
     case notification
-    case marketing
 }
 
 enum Tools: CodingKey {
@@ -72,12 +71,6 @@ class DKManager: Manager, NetworkStatusListener {
                                                             cache: cacheTool,
                                                             error: errorTool,
                                                             request: requestTool)
-
-            case .marketing:
-                workers[service.stringValue] = MarketingWorker(manager: self,
-                                                               cache: cacheTool,
-                                                               error: errorTool,
-                                                               request: requestTool)
                 
             case .cities:
                 workers[service.stringValue] = CitiesWorker(manager: self,

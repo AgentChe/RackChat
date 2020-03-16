@@ -26,7 +26,7 @@ open class DatingKit: Owner {
 
     public var manager: Manager
     
-    private let servicesList: [Servises] = [.notification, .payment, .user, .system, .marketing, .cities]
+    private let servicesList: [Servises] = [.notification, .payment, .user, .system, .cities]
 
     init() {
         manager = DKManager(services: servicesList)
@@ -60,42 +60,6 @@ open class DatingKit: Owner {
     
     public static func config(timings:Settings.Timings  ,_ config: @escaping(_ status: ResultStatus) -> Void) {
         standart.config(timings: timings, config)
-    }
-    
-    public static func setADV(_ completion:@escaping(_ ads: [String: Any]?) -> Void) {
-        standart.setADV(completion)
-    }
-    
-    public static func updateADV(storeCountry: String, _ completion: @escaping(_ status: ResultStatus) -> Void) {
-        standart.updateADV(storeCountry: storeCountry, completion)
-    }
-    
-    public static func coldStart(storeCountry: String,_ completion: @escaping(_ status: ResultStatus) -> Void) {
-        standart.coldStart(storeCountry: storeCountry, completion)
-    }
-    
-    func coldStart(storeCountry: String,_ completion: @escaping(_ status: ResultStatus) -> Void) {
-        let task: MarketingTask = MarketingTask(storyCountry: storeCountry)
-        manager.takeToWork(task: task) { (result) in
-            debugPrint(result.status)
-            completion(result.status)
-        }
-    }
-    
-    func setADV(_ completion:@escaping(_ ads: [String: Any]?) -> Void) {
-        let task: MarketingTask = MarketingTask(type: .setAdAtributes)
-        manager.takeToWork(task: task) { (result) in
-            guard let responce: MarketingResult = result as? MarketingResult else { return }
-            completion(responce.ads)
-        }
-    }
-    
-    func updateADV(storeCountry: String, _ completion: @escaping(_ status: ResultStatus) -> Void) {
-        let task: MarketingTask = MarketingTask(type: .confirmAdAtributes, storeCountry: storeCountry)
-        manager.takeToWork(task: task) { (result) in
-            debugPrint(result.status)
-            completion(result.status)
-        }
     }
     
     func config(timings:Settings.Timings  ,_ config: @escaping(_ status: ResultStatus) -> Void) {

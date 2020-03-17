@@ -49,11 +49,6 @@ open class DatingKit: Owner {
         standart.set(version: version, market: market, comletion: comletion)
     }
     
-    @available(*, deprecated, message: "use DatingKit.config")
-    public static func configurate (version: Int, market: Int, comletion: @escaping(_ result: ConfigResult?, _ status: ResultStatus) -> Void) {
-        standart.configure(version: version, market: market, comletion: comletion)
-    }
-    
     public static func deleteCache()  {
         standart.deleteCache()
     }
@@ -92,23 +87,6 @@ open class DatingKit: Owner {
             comletion(result.status)
         }
         
-    }
-    
-    func configure(version: Int, market: Int, comletion: @escaping(_ result: ConfigResult?, _ status: ResultStatus) -> Void) {
-        let task: SystemTask = SystemTask(route: "/configuration",
-                                          parameters: ["version" : version,
-                                                       "market" : market],
-                                          function: .configuration,
-                                          autorepead: true,
-                                          needParameters: true)
-        manager.takeToWork(task: task) { (result) in
-            if result.status == .succses {
-                let config: ConfigResult = result as! ConfigResult
-                comletion(config, config.status)
-            } else {
-                comletion(nil, result.status)
-            }
-        }
     }
     
     func set(version: Int, market: Int, comletion: @escaping(_ status: ResultStatus) -> Void) {

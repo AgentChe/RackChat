@@ -100,23 +100,4 @@ class CurrentAppConfig {
        
         }
     }
-    
-    func configure(_ completion: @escaping(_ status: ResultStatus) -> Void) {
-        
-        DatingKit.configurate(version: Int(Bundle.main.buildVersionNumber ?? "0")!, market: 1) { (result, status) in
-            switch status {
-                
-            case .succses:
-                self.showIfMaleRegistration = result!.needShowPaygateGuy
-                self.showIfFemaleRegistration = result!.needShowPaygateGirl
-                
-                break
-            default:
-                debugPrint("config is failed")
-                break
-            }
-            
-            completion(status)
-        }
-    }
 }

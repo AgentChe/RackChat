@@ -16,25 +16,9 @@ class SplashViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        startAppearanceAnimation{ [weak self] in
-            self?.configureApp()
-        }
-    }
-        
-    private func configureApp() {
-        CurrentAppConfig.shared.configure { [weak self] (status) in
-            switch status {
-                
-            case .succses:
-                self?.setLocale()
-                self?.setAppVersion()
-
-            case .noInternetConnection:
-                self?.showConnectionError()
-                
-            default:
-                break
-            }
+        startAppearanceAnimation { [weak self] in
+            self?.setLocale()
+            self?.setAppVersion()
         }
     }
         

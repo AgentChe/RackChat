@@ -7,5 +7,5 @@
 //
 
 enum PaymentError: Error {
-    case checkNeedPaymentError
+    case needPaymentError
 }

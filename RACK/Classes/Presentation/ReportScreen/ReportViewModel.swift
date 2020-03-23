@@ -13,7 +13,7 @@ final class ReportViewModel {
     let loading = RxActivityIndicator()
     
     func create(report: ReportViewController.Report, chatId: String) -> Driver<Void> {
-        MatchService
+        SearchService
             .createReport(chatId: chatId, report: report)
             .trackActivity(loading)
             .asDriver(onErrorDriveWith: .never())

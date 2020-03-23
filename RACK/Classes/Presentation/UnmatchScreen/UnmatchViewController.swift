@@ -42,7 +42,7 @@ final class UnmatchViewController: UIViewController {
         descriptionLabel.text = "unmatch_message".localized
         
         yesButton.rx.tap
-            .flatMapLatest { [unowned self] in MatchService.unmatch(chatId: self.chatId) }
+            .flatMapLatest { [unowned self] in SearchService.unmatch(chatId: self.chatId) }
             .subscribe(onNext: { [weak self] in
                 self?.dismiss(animated: true)
             })

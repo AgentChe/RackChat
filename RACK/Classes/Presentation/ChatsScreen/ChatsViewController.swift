@@ -13,11 +13,8 @@ import RxSwift
 final class ChatsViewController: UIViewController {
     @IBOutlet weak var emptyMessage: UIView!
     @IBOutlet weak var newSearchView: UIView!
-    @IBOutlet weak var swipeView: UIView!
-    @IBOutlet weak var backroundView: UIView!
-    @IBOutlet weak var backgroundViewHeight: NSLayoutConstraint!
-    @IBOutlet weak var buttonHeight: NSLayoutConstraint!
     @IBOutlet weak var tableView: ChatsTableView!
+    @IBOutlet weak var contentView: UIView!
     
     private let viewModel = ChatsViewModel()
     
@@ -26,27 +23,29 @@ final class ChatsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        newSearchView.isHidden = true
-        backgroundViewHeight.constant = 0
-        buttonHeight.constant = 0
-        backroundView.layer.cornerRadius = 0
+        Amplitude.instance()?.log(event: .chatListScr)
         
-        tableView.didSelectChat
-            .subscribe(onNext: { [weak self] chat in
+        tableView.selectChat
+            .emit(onNext: { [weak self] chat in
                 let vc = ChatViewController(chat: chat)
                 self?.navigationController?.pushViewController(vc, animated: true)
             })
             .disposed(by: disposeBag)
         
-        viewModel.newChats
-            .drive(onNext: { [weak self] chats in
-                let isEmpty = chats.isEmpty
+        tableView
+            .changeItemsCount
+            .emit(onNext: { [weak self] itemsCount in
+                let isEmpty = itemsCount == 0
                 
                 self?.tableView.isHidden = isEmpty
                 self?.emptyMessage.isHidden = !isEmpty
-                self?.backroundView.isHidden = isEmpty
+                self?.contentView.isHidden = isEmpty
                 self?.newSearchView.isHidden = isEmpty
-                
+            })
+            .disposed(by: disposeBag)
+        
+        viewModel.chats
+            .drive(onNext: { [weak self] chats in
                 self?.tableView.add(chats: chats)
             })
             .disposed(by: disposeBag)
@@ -63,28 +62,6 @@ final class ChatsViewController: UIViewController {
                 }
             })
             .disposed(by: disposeBag)
-        
-        viewModel
-            .checkPaymentComplete
-            .drive(onNext: { [weak self] needPayment in
-                let vc: UIViewController
-                
-                switch needPayment {
-                case true:
-                    let storyboard = UIStoryboard(name: "Payment", bundle: .main)
-                    vc = storyboard.instantiateInitialViewController()!
-                case false:
-                    let searchViewController = SearchViewController()
-                    searchViewController.delegate = self
-                    vc = searchViewController
-                }
-                
-                vc.modalPresentationStyle = .overCurrentContext
-                vc.modalTransitionStyle = .coverVertical
-                
-                self?.present(vc, animated: true)
-            })
-            .disposed(by: disposeBag)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -93,52 +70,18 @@ final class ChatsViewController: UIViewController {
         viewModel.connect()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        Amplitude.instance()?.log(event: .chatListScr)
-        
-        backgroundViewHeight.constant = -20.0
-        buttonHeight.constant = 80.0
-        
-        UIView.animate(withDuration: 0.4) { [weak self] in
-            self?.view.layoutIfNeeded()
-            self?.backroundView.layer.cornerRadius = 20
-        }
-    }
-    
     @IBAction func tapOnNewSearch(_ sender: UIButton) {
         Amplitude.instance()?.log(event: .chatListNewSearchTap)
         
-        viewModel.checkPayment.accept(Void())
-        
-        backgroundViewHeight.constant = 0
-        buttonHeight.constant = 0
-        
-        UIView.animate(withDuration: 0.4, animations: { [weak self] in
-            self?.view.layoutIfNeeded()
-            self?.backroundView.layer.cornerRadius = 0
-        })
+        openSearchScreen()
     }
     
     @IBAction func tapOnSearch(_ sender: Any) {
-        viewModel.checkPayment.accept(Void())
-    }
-}
-
-extension ChatsViewController: SearchViewControllerDelegate {
-    func wasDismiss() {
-       backgroundViewHeight.constant = -20.0
-       buttonHeight.constant = 80.0
-        
-       UIView.animate(withDuration: 0.3) { [weak self] in
-           self?.view.layoutIfNeeded()
-           self?.backroundView.layer.cornerRadius = 20
-       }
+        openSearchScreen()
     }
     
-    func newChat(chat: Chat) {
-        let vc = ChatViewController(chat: chat)
-        navigationController?.pushViewController(vc, animated: true)
+    private func openSearchScreen() {
+        let searchViewController = SearchViewController()
+        navigationController?.pushViewController(searchViewController, animated: true)
     }
 }

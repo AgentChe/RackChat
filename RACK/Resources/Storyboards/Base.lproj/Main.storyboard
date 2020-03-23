@@ -215,12 +215,9 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="backgroundViewHeight" destination="Og4-V7-mCJ" id="9wN-lr-UaD"/>
-                        <outlet property="backroundView" destination="TUU-B6-xKE" id="pIl-M2-tST"/>
-                        <outlet property="buttonHeight" destination="VSg-ld-oXb" id="CzC-TA-Ggl"/>
+                        <outlet property="contentView" destination="TUU-B6-xKE" id="693-E1-qXP"/>
                         <outlet property="emptyMessage" destination="7de-IF-rfC" id="DMb-tc-ruI"/>
                         <outlet property="newSearchView" destination="ktA-v5-Hj0" id="BEw-Yz-akX"/>
-                        <outlet property="swipeView" destination="Wm1-Dk-pIE" id="NZU-wM-Q1H"/>
                         <outlet property="tableView" destination="OLO-K4-8zd" id="OVo-2W-Lzh"/>
                     </connections>
                 </viewController>
@@ -291,8 +288,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="bGg-HB-PUb">
-                                <rect key="frame" x="0.0" y="-1" width="414" height="673"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="bGg-HB-PUb">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="725"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="641-Mn-GG0">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="124"/>

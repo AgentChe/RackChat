@@ -9,54 +9,34 @@
 import Foundation.NSURL
 
 struct ProposedInterlocutor {
-    let queueId: SearchingQueueId
+    let id: Int
     let interlocutorFullName: String
     let interlocutorAvatarUrl: URL?
     let gender: Gender
-    let gradientColorBegin: String?
-    let gradientColorEnd: String?
 }
 
 extension ProposedInterlocutor: Model {
     private enum Keys: String, CodingKey {
-        case queueId = "queue_id"
-        case data
-    }
-    
-    private enum DataKeys: String, CodingKey {
+        case id
         case name
-        case avatar
+        case avatarUrl = "avatar_transparent"
         case gender
-        case gradientColorBegin = "color_begin"
-        case gradientColorEnd = "color_end"
-    }
-    
-    private enum AvatarKeys: String, CodingKey {
-        case avatarUrl = "thumb_transparent"
     }
     
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: Keys.self)
         
-        queueId = try container.decode(String.self, forKey: .queueId)
+        id = try container.decode(Int.self, forKey: .id)
+        interlocutorFullName = try container.decode(String.self, forKey: .name)
         
-        let data = try container.nestedContainer(keyedBy: DataKeys.self, forKey: .data)
-        
-        interlocutorFullName = try data.decode(String.self, forKey: .name)
-        
-        let avatar = try? data.nestedContainer(keyedBy: AvatarKeys.self, forKey: .avatar)
-        
-        let avatarPath = try? avatar?.decode(String.self, forKey: .avatarUrl)
+        let avatarPath = try? container.decode(String.self, forKey: .avatarUrl)
         interlocutorAvatarUrl = URL(string: avatarPath ?? "")
         
-        let genderValue = try data.decode(Int.self, forKey: .gender)
+        let genderValue = try container.decode(Int.self, forKey: .gender)
         guard let gender = Gender(rawValue: genderValue) else {
             throw NSError(domain: "Gender not found", code: 404, userInfo: nil)
         }
         self.gender = gender
-        
-        gradientColorBegin = try? data.decode(String.self, forKey: .gradientColorBegin)
-        gradientColorEnd = try? data.decode(String.self, forKey: .gradientColorEnd)
     }
     
     func encode(to encoder: Encoder) throws {}

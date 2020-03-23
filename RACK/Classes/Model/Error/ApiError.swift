@@ -7,5 +7,5 @@
 //
 
 enum ApiError: Error {
-    case unauthorized, serverNotAvailable
+    case unauthorized, serverNotAvailable, requestFailed, responseNotValid
 }

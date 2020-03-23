@@ -1,14 +1,14 @@
 //
-//  CheckNeedPaymentRequest.swift
+//  GetProposedInterlocutorsRequest.swift
 //  RACK
 //
-//  Created by Andrey Chernyshev on 06/03/2020.
+//  Created by Andrey Chernyshev on 23/03/2020.
 //  Copyright © 2020 fawn.team. All rights reserved.
 //
 
 import Alamofire
 
-struct CheckNeedPaymentRequest: APIRequestBody {
+struct GetProposedInterlocutorsRequest: APIRequestBody {
     private let userToken: String
     
     init(userToken: String) {
@@ -16,11 +16,11 @@ struct CheckNeedPaymentRequest: APIRequestBody {
     }
     
     var url: String {
-        GlobalDefinitions.Backend.domain + "/api/requests/search_access"
+        GlobalDefinitions.Backend.domain + "/api/feed/list"
     }
     
     var method: HTTPMethod {
-        .post
+        .post 
     }
     
     var parameters: Parameters? {

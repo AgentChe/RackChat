@@ -10,9 +10,17 @@ import UIKit
 import RxCocoa
 
 final class ChatsTableView: UITableView, UITableViewDataSource, UITableViewDelegate {
-    let didSelectChat = PublishRelay<Chat>()
+    private(set) lazy var selectChat = _selectChat.asSignal()
+    private let _selectChat = PublishRelay<Chat>()
     
-    private var items: [Chat] = []
+    private(set) lazy var changeItemsCount = _changeItemsCount.asSignal()
+    private let _changeItemsCount = PublishRelay<Int>()
+    
+    private var items: [Chat] = [] {
+        didSet {
+            _changeItemsCount.accept(items.count)
+        }
+    }
     
     private let itemsQueue = DispatchQueue(label: "chats_queue")
     
@@ -38,7 +46,7 @@ final class ChatsTableView: UITableView, UITableViewDataSource, UITableViewDeleg
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         deselectRow(at: indexPath, animated: true)
         
-        didSelectChat.accept(items[indexPath.row])
+        _selectChat.accept(items[indexPath.row])
     }
     
     func add(chats: [Chat]) {

@@ -7,7 +7,13 @@
 //
 
 final class CheckResponseForError {
-    static func throwIfError(response: Any) throws {
+    static func letThroughError(response: Any) throws -> Any {
+        try throwIfError(response: response)
+        
+        return response
+    }
+    
+    static func throwIfError(response: Any) throws  {
         guard let json = response as? [String: Any] else {
             throw ApiError.responseNotValid
         }

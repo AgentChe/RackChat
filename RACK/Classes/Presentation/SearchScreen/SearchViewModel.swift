@@ -16,11 +16,24 @@ final class SearchViewModel {
     let dislike = PublishRelay<ProposedInterlocutor>()
     private(set) lazy var dislikeWasPut = createDislikeComplete()
     
+    let downloadProposedInterlocutors = PublishRelay<Void>()
     private(set) lazy var proposedInterlocutors = createProposedInterlocutors()
     
+    private(set) lazy var needPayment = _needPayment.asSignal()
+    private let _needPayment = PublishRelay<Void>()
+    
     private func createProposedInterlocutors() -> Driver<[ProposedInterlocutor]> {
-        SearchService
-            .proposedInterlocuters()
+        downloadProposedInterlocutors
+            .flatMapLatest {
+                SearchService
+                    .proposedInterlocuters()
+                    .do(onError: { [weak self] error in
+                        if let paymentError = error as? PaymentError, paymentError == .needPaymentError {
+                            self?._needPayment.accept(Void())
+                        }
+                    })
+                    .catchErrorJustReturn([])
+            }
             .asDriver(onErrorJustReturn: [])
     }
     

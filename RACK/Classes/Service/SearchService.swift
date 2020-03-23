@@ -15,6 +15,7 @@ final class SearchService {
         
         return RestAPITransport()
             .callServerApi(requestBody: request)
+            .map { try CheckResponseForError.letThroughError(response: $0) }
             .map { ProposedInterlocutorTransformation.from(response: $0) }
     }
     

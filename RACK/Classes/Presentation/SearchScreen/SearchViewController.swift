@@ -30,6 +30,8 @@ final class SearchViewController: UIViewController {
     private func configure() {
         addSubviews()
         bind()
+        
+        viewModel.downloadProposedInterlocutors.accept(Void())
     }
     
     private func addSubviews() {
@@ -66,5 +68,32 @@ final class SearchViewController: UIViewController {
             .dislike
             .emit(to: viewModel.dislike)
             .disposed(by: disposeBag)
+        
+        viewModel
+            .needPayment
+            .emit(onNext: { [weak self] in
+                self?.showPaygateScreen()
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    private func showPaygateScreen() {
+        let storyboard = UIStoryboard(name: "Payment", bundle: .main)
+        let vc = storyboard.instantiateInitialViewController() as! PaymentViewController
+        vc.modalPresentationStyle = .overCurrentContext
+        vc.modalTransitionStyle = .coverVertical
+        vc.delegate = self
+        
+        present(vc, animated: true)
+    }
+}
+
+extension SearchViewController: PaymentViewControllerDelegate {
+    func wasClosed() {
+        navigationController?.popViewController(animated: true)
+    }
+    
+    func wasPurchased() {
+        viewModel.downloadProposedInterlocutors.accept(Void())
     }
 }

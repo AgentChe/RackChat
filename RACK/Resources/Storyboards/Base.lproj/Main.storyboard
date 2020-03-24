@@ -228,7 +228,7 @@
         <!--Push notifications-->
         <scene sceneID="qsi-PO-8nu">
             <objects>
-                <viewController id="v2D-hw-ow5" customClass="NotifyEnablingViewController" customModule="RACK" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="NotifyEnablingViewController" id="v2D-hw-ow5" customClass="NotifyEnablingViewController" customModule="RACK" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="rMa-dw-EiQ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -258,7 +258,6 @@
                                 </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="v2D-hw-ow5" id="iGx-pI-wif"/>
-                                    <outlet property="delegate" destination="v2D-hw-ow5" id="jp2-Mb-5ui"/>
                                 </connections>
                             </tableView>
                         </subviews>

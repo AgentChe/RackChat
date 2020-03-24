@@ -23,10 +23,6 @@ struct SwitchCellModel {
 }
 
 class NotifyEnablingViewController: UIViewController {
-    
-
-    
-    
     var cells: [SwitchCellModel] = [SwitchCellModel(title: "Messages",
                                                     subtitle: "Someone sent you a new message",
                                                     enabled: false,
@@ -48,13 +44,9 @@ class NotifyEnablingViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if #available(iOS 13.0, *) {
-            overrideUserInterfaceStyle = .light
-        }
         
-        
-        NotificationManager.shared.delegate = self
         tableView.register(UINib(nibName: "NotifySetingUiTableViewCell", bundle: .main), forCellReuseIdentifier: "NotifySetingUiTableViewCell")
+        
         NotificationManager.shared.getSwither { [weak self] (result) in
             if result != nil {
                 self?.cells = [SwitchCellModel(title: "Messages",
@@ -77,37 +69,9 @@ class NotifyEnablingViewController: UIViewController {
             }
         }
     }
-    
-    override func viewDidAppear(_ animated: Bool) {
-
-        
-    }
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
-    
-}
-
-extension NotifyEnablingViewController: NotificationDelegate {
-    
-    func notificationRequestWasEnd(succses: Bool) {
-        
-    }
-}
-
-extension NotifyEnablingViewController: UITableViewDelegate {
-    
 }
 
 extension NotifyEnablingViewController: UITableViewDataSource {
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return cells.count
     }
@@ -117,6 +81,4 @@ extension NotifyEnablingViewController: UITableViewDataSource {
         cell.config(model: cells[indexPath.row])
         return cell
     }
-    
-    
 }

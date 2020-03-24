@@ -17,7 +17,14 @@ final class ProposedInterlocutorTableView: UITableView, UITableViewDelegate, UIT
     private(set) lazy var dislike: Signal = _dislike.asSignal()
     private let _dislike = PublishRelay<ProposedInterlocutor>()
     
-    private var elements: [ProposedInterlocutor] = []
+    private(set) lazy var changeItemsCount = _changeItemsCount.asSignal()
+    private let _changeItemsCount = PublishRelay<Int>()
+    
+    private var elements: [ProposedInterlocutor] = [] {
+        didSet {
+            _changeItemsCount.accept(elements.count)
+        }
+    }
     
     private let queue = DispatchQueue(label: "proposed_interlocutor_table_queue")
     

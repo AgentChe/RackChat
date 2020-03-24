@@ -16,3 +16,10 @@
 "you_skipped" = "Sorry,\n%@ said no";
 "he" = "he";
 "she" = "she";
+"dislike" = "Dislike";
+"like" = "Like";
+"no_proposed_interlocutors_push_info" = "We'll send you a notification once someone new shows around. Meanwhile you can try refreshing the feed";
+"refresh" = "Refresh";
+"back" = "Back";
+"no_new_someone" = "No new %@ here right now";
+"notification_settings" = "Notification Settings";

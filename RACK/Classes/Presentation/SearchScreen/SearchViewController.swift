@@ -17,6 +17,13 @@ final class SearchViewController: UIViewController {
         return view
     }()
     
+    private lazy var noProposedInterlocutorsView: NoProposedInterlocutorsView = {
+        let view = NoProposedInterlocutorsView()
+        view.isHidden = true 
+        view.translatesAutoresizingMaskIntoConstraints = false 
+        return view
+    }()
+    
     private let viewModel = SearchViewModel()
     
     private let disposeBag = DisposeBag()
@@ -28,6 +35,8 @@ final class SearchViewController: UIViewController {
     }
     
     private func configure() {
+        view.backgroundColor = .white
+        
         addSubviews()
         bind()
         
@@ -36,14 +45,51 @@ final class SearchViewController: UIViewController {
     
     private func addSubviews() {
         view.addSubview(tableView)
+        view.addSubview(noProposedInterlocutorsView)
         
         tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         tableView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        
+        noProposedInterlocutorsView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        noProposedInterlocutorsView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        noProposedInterlocutorsView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+        noProposedInterlocutorsView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
     }
     
     private func bind() {
+        noProposedInterlocutorsView
+            .refresh
+            .emit(to: viewModel.downloadProposedInterlocutors)
+            .disposed(by: disposeBag)
+        
+        noProposedInterlocutorsView
+            .back
+            .emit(onNext: { [weak self] in
+                self?.navigationController?.popViewController(animated: true)
+            })
+            .disposed(by: disposeBag)
+        
+        noProposedInterlocutorsView
+            .notificationSettings
+            .emit(onNext: { [weak self] in
+                let storyboard = UIStoryboard(name: "Main", bundle: .main)
+                let vc = storyboard.instantiateViewController(withIdentifier: "NotifyEnablingViewController")
+                self?.navigationController?.pushViewController(vc, animated: true)
+            })
+            .disposed(by: disposeBag)
+        
+        tableView
+            .changeItemsCount
+            .emit(onNext: { [weak self] count in
+                let isEmpty = count == 0
+                
+                self?.tableView.isHidden = isEmpty
+                self?.noProposedInterlocutorsView.isHidden = !isEmpty
+            })
+            .disposed(by: disposeBag)
+        
         viewModel
             .proposedInterlocutors
             .drive(onNext: { [weak self] proposedInterlocutors in

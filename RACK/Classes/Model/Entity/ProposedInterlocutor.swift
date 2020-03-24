@@ -13,6 +13,9 @@ struct ProposedInterlocutor {
     let interlocutorFullName: String
     let interlocutorAvatarUrl: URL?
     let gender: Gender
+    let age: Int?
+    let startColor: String?
+    let endColor: String?
 }
 
 extension ProposedInterlocutor: Model {
@@ -21,6 +24,9 @@ extension ProposedInterlocutor: Model {
         case name
         case avatarUrl = "avatar_transparent"
         case gender
+        case age
+        case startColor = "start_color"
+        case endColor = "end_color"
     }
     
     init(from decoder: Decoder) throws {
@@ -37,6 +43,10 @@ extension ProposedInterlocutor: Model {
             throw NSError(domain: "Gender not found", code: 404, userInfo: nil)
         }
         self.gender = gender
+        
+        age = try? container.decode(Int.self, forKey: .age)
+        startColor = try? container.decode(String.self, forKey: .startColor)
+        endColor = try? container.decode(String.self, forKey: .endColor)
     }
     
     func encode(to encoder: Encoder) throws {}

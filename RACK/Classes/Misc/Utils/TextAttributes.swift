@@ -11,6 +11,7 @@ import UIKit
 struct TextAttributes {
     var font: UIFont?
     var textColor: UIColor?
+    var backgroundColor: UIColor?
     var paragraphStyle: NSMutableParagraphStyle?
     var letterSpacing: CGFloat?
     var underlineColor: UIColor?
@@ -24,6 +25,7 @@ struct TextAttributes {
 
         result[.font] = font
         result[.foregroundColor] = textColor
+        result[.backgroundColor] = backgroundColor
         result[.paragraphStyle] = paragraphStyle
         result[.kern] = letterSpacing
         result[.underlineColor] = underlineColor
@@ -47,6 +49,12 @@ struct TextAttributes {
         return copy
     }
 
+    func backgroundColor(_ backgroundColor: UIColor) -> TextAttributes {
+        var copy = self
+        copy.backgroundColor = backgroundColor
+        return copy
+    }
+    
     func lineHeight(_ lineHeight: CGFloat) -> TextAttributes {
         var copy = self
 

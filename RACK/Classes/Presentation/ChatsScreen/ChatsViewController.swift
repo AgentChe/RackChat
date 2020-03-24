@@ -23,6 +23,8 @@ final class ChatsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationItem.largeTitleDisplayMode = .never
+        
         Amplitude.instance()?.log(event: .chatListScr)
         
         tableView.selectChat

@@ -22,6 +22,8 @@ final class SearchViewModel {
     private(set) lazy var needPayment = _needPayment.asSignal()
     private let _needPayment = PublishRelay<Void>()
     
+    private(set) lazy var user = createUser()
+    
     private func createProposedInterlocutors() -> Driver<[ProposedInterlocutor]> {
         downloadProposedInterlocutors
             .flatMapLatest {
@@ -57,5 +59,11 @@ final class SearchViewModel {
                     .catchError { _ in .never() }
                 }
             .asSignal(onErrorSignalWith: .never())
+    }
+    
+    private func createUser() -> Driver<User?> {
+        SessionService
+            .user()
+            .asDriver(onErrorJustReturn: nil)
     }
 }

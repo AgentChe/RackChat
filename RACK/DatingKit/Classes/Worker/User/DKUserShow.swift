@@ -13,13 +13,6 @@ import FBSDKLoginKit
 import Reachability
 import PromiseKit
 
-public enum LookingFor: Int {
-    case none = 0
-    case guys = 1
-    case girls = 2
-    case any = 3
-}
-
 public enum Aim: Int {
     case chats = 1
     case virt = 2

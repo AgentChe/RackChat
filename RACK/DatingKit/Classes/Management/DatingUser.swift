@@ -111,7 +111,7 @@ open class DKUserRepository {
         }
     }
     
-    public func set(lookingFor: LookingFor, completion: @escaping(_ operationStatus: ResultStatus) -> Void) {
+    func set(lookingFor: LookingFor, completion: @escaping(_ operationStatus: ResultStatus) -> Void) {
         let task: UserTask = UserTask(route: "/users/set",
                                       function: .setLookingFor,
                                       parameters: ["looking_for" : lookingFor.rawValue],

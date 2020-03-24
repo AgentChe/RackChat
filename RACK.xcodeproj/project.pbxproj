@@ -94,6 +94,7 @@
 		96114219241E331D00EB9153 /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96114218241E331D00EB9153 /* UIImageExtension.swift */; };
 		9611421C241ECDAA00EB9153 /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9611421B241ECDAA00EB9153 /* ImageViewController.swift */; };
 		963CF6B9242A56E500FD2F8A /* NoProposedInterlocutorsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 963CF6B8242A56E500FD2F8A /* NoProposedInterlocutorsView.swift */; };
+		963CF6BE242A988100FD2F8A /* LookingFor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 963CF6BD242A988100FD2F8A /* LookingFor.swift */; };
 		965452CC23FAB85E007697C4 /* RestAPITransport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965452CA23FAB85E007697C4 /* RestAPITransport.swift */; };
 		965452CD23FAB85E007697C4 /* RealmDBTransport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965452CB23FAB85E007697C4 /* RealmDBTransport.swift */; };
 		965452D123FAB98C007697C4 /* GlobalDefinitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965452D023FAB98C007697C4 /* GlobalDefinitions.swift */; };
@@ -293,6 +294,7 @@
 		96114218241E331D00EB9153 /* UIImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
 		9611421B241ECDAA00EB9153 /* ImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
 		963CF6B8242A56E500FD2F8A /* NoProposedInterlocutorsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoProposedInterlocutorsView.swift; sourceTree = "<group>"; };
+		963CF6BD242A988100FD2F8A /* LookingFor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LookingFor.swift; sourceTree = "<group>"; };
 		965452CA23FAB85E007697C4 /* RestAPITransport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestAPITransport.swift; sourceTree = "<group>"; };
 		965452CB23FAB85E007697C4 /* RealmDBTransport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmDBTransport.swift; sourceTree = "<group>"; };
 		965452D023FAB98C007697C4 /* GlobalDefinitions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalDefinitions.swift; sourceTree = "<group>"; };
@@ -707,6 +709,7 @@
 				96A5528123FF34C4001E88DC /* Gender.swift */,
 				96669A7C2411BD0C0023A8B9 /* ProposedInterlocutor.swift */,
 				9611420924195DBF00EB9153 /* User.swift */,
+				963CF6BD242A988100FD2F8A /* LookingFor.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -1313,6 +1316,7 @@
 				9611420A24195DBF00EB9153 /* User.swift in Sources */,
 				13602F6D22EB2DAE0099BF1F /* LastTestViewController.swift in Sources */,
 				96A4D5CA23FDFCD700E24E13 /* ChatMessage.swift in Sources */,
+				963CF6BE242A988100FD2F8A /* LookingFor.swift in Sources */,
 				13FF93F0231D63510095D05A /* NotificationManager.swift in Sources */,
 				1319227F236A1D8B00C057B8 /* UIView+CornerRadius.swift in Sources */,
 				969DA44F2401445E00DC42D1 /* CitiesResponce.swift in Sources */,

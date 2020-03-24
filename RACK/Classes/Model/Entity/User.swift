@@ -11,6 +11,7 @@ import Foundation.NSURL
 struct User {
     let id: Int
     let gender: Gender
+    let lookingFor: LookingFor
     let avatarURL: URL?
     let matchingAvatarURL: URL?
     let name: String
@@ -30,6 +31,7 @@ extension User: Model {
         case name
         case avatar
         case avatarTransparentHiRes = "avatar_transparent_hi_res"
+        case lookingFor = "looking_for"
         case gender
         case age
         case city
@@ -48,6 +50,9 @@ extension User: Model {
         
         let avatarMatchingPath = try? userBox.decode(String.self, forKey: .avatarTransparentHiRes)
         matchingAvatarURL = URL(string: avatarMatchingPath ?? "")
+        
+        let lookingForValue = try? userBox.decode(Int.self, forKey: .lookingFor)
+        lookingFor = LookingFor(rawValue: lookingForValue ?? 0) ?? .none
         
         let genderValue = try userBox.decode(Int.self, forKey: .gender)
         guard let gender = Gender(rawValue: genderValue) else {

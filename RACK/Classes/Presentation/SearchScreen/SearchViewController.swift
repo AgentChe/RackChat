@@ -59,6 +59,17 @@ final class SearchViewController: UIViewController {
     }
     
     private func bind() {
+        viewModel
+            .user
+            .drive(onNext: { [weak self] user in
+                guard let user = user else {
+                    return
+                }
+                
+                self?.noProposedInterlocutorsView.setup(user: user)
+            })
+            .disposed(by: disposeBag)
+        
         noProposedInterlocutorsView
             .refresh
             .emit(to: viewModel.downloadProposedInterlocutors)

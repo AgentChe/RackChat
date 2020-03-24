@@ -105,6 +105,23 @@ final class NoProposedInterlocutorsView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func setup(user: User) {
+        var whom: String
+        
+        switch user.lookingFor {
+        case .guys:
+            whom = "boys".localized
+        case .girls:
+            whom = "girls".localized
+        case .any:
+            whom = "people".localized
+        case .none:
+            whom = ""
+        }
+        
+        noNewSomeoneLabel.attributedText = String(format: "no_new_someone".localized, whom).attributed(with: noNewSomeoneTextAttrs)
+    }
+    
     private func configure() {
         backgroundColor = .white
         
@@ -119,7 +136,7 @@ final class NoProposedInterlocutorsView: UIView {
         addSubview(refreshButton)
         addSubview(backButton)
         
-        notificationsButton.topAnchor.constraint(equalTo: topAnchor, constant: SizeUtils.value(largeDevice: 10, smallDevice: 24)).isActive = true
+        notificationsButton.topAnchor.constraint(equalTo: topAnchor, constant: 10).isActive = true
         notificationsButton.heightAnchor.constraint(equalToConstant: 56).isActive = true
         notificationsButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16).isActive = true
         

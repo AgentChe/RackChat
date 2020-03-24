@@ -59,6 +59,15 @@ final class SearchViewController: UIViewController {
     }
     
     private func bind() {
+        tableView
+            .report
+            .emit(onNext: { [weak self] proposedInterlocutor in
+                let vc = ReportViewController(on: .proposedInterlocutor(proposedInterlocutor))
+                vc.delegate = self 
+                self?.present(vc, animated: true)
+            })
+            .disposed(by: disposeBag)
+        
         viewModel
             .user
             .drive(onNext: { [weak self] user in
@@ -152,5 +161,13 @@ extension SearchViewController: PaymentViewControllerDelegate {
     
     func wasPurchased() {
         viewModel.downloadProposedInterlocutors.accept(Void())
+    }
+}
+
+extension SearchViewController: ReportViewControllerDelegate {
+    func reportWasCreated(reportOn: ReportViewController.ReportOn) {
+        if case let .proposedInterlocutor(proposedInterlocutor) = reportOn {
+            tableView.remove(proposedInterlocutor: proposedInterlocutor)
+        }
     }
 }

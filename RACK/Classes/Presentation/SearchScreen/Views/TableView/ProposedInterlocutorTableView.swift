@@ -17,6 +17,9 @@ final class ProposedInterlocutorTableView: UITableView, UITableViewDelegate, UIT
     private(set) lazy var dislike: Signal = _dislike.asSignal()
     private let _dislike = PublishRelay<ProposedInterlocutor>()
     
+    private(set) lazy var report: Signal = _report.asSignal()
+    private let _report = PublishRelay<ProposedInterlocutor>()
+    
     private(set) lazy var changeItemsCount = _changeItemsCount.asSignal()
     private let _changeItemsCount = PublishRelay<Int>()
     
@@ -56,6 +59,10 @@ final class ProposedInterlocutorTableView: UITableView, UITableViewDelegate, UIT
         
         cell.dislike = { [weak self] in
             self?._dislike.accept(proposedInterlocutor)
+        }
+        
+        cell.report = { [weak self] in
+            self?._report.accept(proposedInterlocutor)
         }
         
         return cell

@@ -10,6 +10,7 @@ import Foundation.NSURL
 
 struct Chat {
     let id: String
+    let interlocutorId: Int
     let interlocutorName: String
     let interlocutorAvatarUrl: URL?
     let unreadMessageCount: Int
@@ -38,6 +39,7 @@ extension Chat: Model {
         
         let interlocutor = try container.nestedContainer(keyedBy: InterlocutorKeys.self, forKey: .interlocutor)
         
+        interlocutorId = -1
         interlocutorName = try interlocutor.decode(String.self, forKey: .interlocutorName)
         
         let interlocutorAvatarPath = try? interlocutor.decode(String.self, forKey: .interlocutorAvatarUrl).addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)

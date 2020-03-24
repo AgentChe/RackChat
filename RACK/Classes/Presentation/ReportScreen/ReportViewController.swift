@@ -8,8 +8,18 @@
 
 import UIKit
 import RxSwift
+import RxCocoa
+
+protocol ReportViewControllerDelegate: class {
+    func reportWasCreated(reportOn: ReportViewController.ReportOn)
+}
 
 class ReportViewController: UIViewController {
+    enum ReportOn {
+        case chatInterlocutor(Chat)
+        case proposedInterlocutor(ProposedInterlocutor)
+    }
+    
     enum ReportType: Int {
         case inappropriateMessages = 1
         case inappropriatePhotos = 2
@@ -41,14 +51,16 @@ class ReportViewController: UIViewController {
     @IBOutlet weak var otherCancelButton: UIButton!
     @IBOutlet weak var otherSendButton: UIButton!
     
-    private var chat: Chat!
+    weak var delegate: ReportViewControllerDelegate?
+    
+    private var reportOn: ReportOn!
     
     private let viewModel = ReportViewModel()
     
     private let disposeBag = DisposeBag()
     
-    init(chat: Chat) {
-        self.chat = chat
+    init(on: ReportOn) {
+        self.reportOn = on
         
         super.init(nibName: "ReportViewController", bundle: .main)
     }
@@ -62,7 +74,12 @@ class ReportViewController: UIViewController {
         
         bind()
         
-        headerLabel.text = String(format: "report_header".localized, chat.interlocutorName)
+        switch reportOn! {
+        case .chatInterlocutor(let chat):
+            headerLabel.text = String(format: "report_header".localized, chat.interlocutorName)
+        case .proposedInterlocutor(let proposedInterlocutor):
+            headerLabel.text = String(format: "report_header".localized, proposedInterlocutor.interlocutorFullName)
+        }
     }
     
     private func bind() {
@@ -85,11 +102,25 @@ class ReportViewController: UIViewController {
                     })
                     .map { [otherReasonTextView] in Report(type: .other, message: otherReasonTextView?.text) }
             )
-            .flatMapLatest { [viewModel, chat] report in
-                viewModel.create(report: report, chatId: chat!.id)
+            .flatMapLatest { [weak self] report -> Driver<Void> in
+                guard let viewModel = self?.viewModel, let reportOn = self?.reportOn else {
+                    return Driver<Void>.empty()
+                }
+                
+                switch reportOn {
+                case .chatInterlocutor(let chat):
+                    return viewModel.createOnChatInterlocutor(report: report, chatId: chat.id, proposedInterlocutorId: chat.interlocutorId)
+                case .proposedInterlocutor(let proposedInterlocutor):
+                    return viewModel.createOnProposedInterlocutor(report: report, proposedInterlocutorId: proposedInterlocutor.id)
+                }
             }
             .subscribe(onNext: { [weak self] in
-                self?.dismiss(animated: true)
+                guard let `self` = self else {
+                    return
+                }
+                
+                self.delegate?.reportWasCreated(reportOn: self.reportOn!)
+                self.dismiss(animated: true)
             })
             .disposed(by: disposeBag)
         

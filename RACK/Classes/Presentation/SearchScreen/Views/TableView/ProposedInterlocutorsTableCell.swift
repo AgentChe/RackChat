@@ -126,8 +126,18 @@ final class ProposedInterlocutorsTableCell: UITableViewCell {
         return view
     }()
     
+    private lazy var reportButton: UIButton = {
+        let view = UIButton()
+        view.layer.cornerRadius = 20
+        view.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+        view.setImage(UIImage(named: "button"), for: .normal)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
     var like: (() -> ())?
     var dislike: (() -> ())?
+    var report: (() -> ())?
     
     private let disposeBag = DisposeBag()
     
@@ -198,6 +208,7 @@ final class ProposedInterlocutorsTableCell: UITableViewCell {
     
     private func addSubviews() {
         contentView.addSubview(proposedInterlocutorInfoContainerView)
+        proposedInterlocutorInfoContainerView.addSubview(reportButton)
         proposedInterlocutorInfoContainerView.addSubview(proposedInterlocutorAvatarImageView)
         proposedInterlocutorInfoContainerView.addSubview(nameLabel)
         proposedInterlocutorInfoContainerView.addSubview(proposedInterlocutorThumbsContainerView)
@@ -207,6 +218,11 @@ final class ProposedInterlocutorsTableCell: UITableViewCell {
         proposedInterlocutorInfoContainerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
         proposedInterlocutorInfoContainerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
         proposedInterlocutorInfoContainerView.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
+        
+        reportButton.trailingAnchor.constraint(equalTo: proposedInterlocutorInfoContainerView.trailingAnchor, constant: -24).isActive = true
+        reportButton.topAnchor.constraint(equalTo: proposedInterlocutorInfoContainerView.topAnchor, constant: SizeUtils.value(largeDevice: 32, smallDevice: 24)).isActive = true
+        reportButton.widthAnchor.constraint(equalToConstant: 40).isActive = true
+        reportButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
         
         nameLabel.leadingAnchor.constraint(equalTo: proposedInterlocutorInfoContainerView.leadingAnchor, constant: SizeUtils.value(largeDevice: 32, smallDevice: 24)).isActive = true
         nameLabel.topAnchor.constraint(equalTo: proposedInterlocutorInfoContainerView.topAnchor, constant: SizeUtils.value(largeDevice: 32, smallDevice: 24)).isActive = true
@@ -248,6 +264,12 @@ final class ProposedInterlocutorsTableCell: UITableViewCell {
         dislikeButton.tap
             .emit(onNext: { [weak self] in
                 self?.dislike?()
+            })
+            .disposed(by: disposeBag)
+        
+        reportButton.rx.tap
+            .subscribe(onNext: { [weak self] in
+                self?.report?()
             })
             .disposed(by: disposeBag)
     }

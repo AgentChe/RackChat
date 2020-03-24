@@ -43,11 +43,21 @@ final class SearchService {
             .map { _ in Void() }
     }
     
-    static func createReport(chatId: String, report: ReportViewController.Report) -> Single<Void> {
-        let request = CreateReportRequest(userToken: SessionService.userToken, chatId: chatId, report: report)
+    static func createReportOnChatInterlocutor(chatId: String, report: ReportViewController.Report) -> Single<Void> {
+        let request = CreateReportOnChatInterlocutorRequest(userToken: SessionService.userToken, chatId: chatId, report: report)
         
         return RestAPITransport()
             .callServerApi(requestBody: request)
             .map { _ in Void() }
+    }
+    
+    static func createReportOnProposedInterlocutor(proposedInterlocutorId: Int, report: ReportViewController.Report) -> Single<Void> {
+        let request = CreateReportOnProposedInterlocutorRequest(userToken: SessionService.userToken,
+                                                                proposedInterlocutorId: proposedInterlocutorId,
+                                                                report: report)
+        
+        return RestAPITransport()
+            .callServerApi(requestBody: request)
+            .map { try CheckResponseForError.throwIfError(response: $0) }
     }
 }

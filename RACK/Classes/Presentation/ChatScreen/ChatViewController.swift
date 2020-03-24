@@ -115,7 +115,7 @@ final class ChatViewController: UIViewController {
                 }
                 
                 let reportAction = UIAlertAction(title: "report".localized, style: .default) { _ in
-                    let vc = ReportViewController(chat: self.chat)
+                    let vc = ReportViewController(on: .chatInterlocutor(self.chat))
                     self.present(vc, animated: true)
                 }
                 

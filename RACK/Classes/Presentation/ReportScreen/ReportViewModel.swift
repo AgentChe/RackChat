@@ -12,9 +12,17 @@ import RxCocoa
 final class ReportViewModel {
     let loading = RxActivityIndicator()
     
-    func create(report: ReportViewController.Report, chatId: String) -> Driver<Void> {
+    func createOnChatInterlocutor(report: ReportViewController.Report, chatId: String, proposedInterlocutorId: Int) -> Driver<Void> {
         SearchService
-            .createReport(chatId: chatId, report: report)
+            .createReportOnChatInterlocutor(chatId: chatId, report: report)
+            .flatMap { SearchService.createReportOnProposedInterlocutor(proposedInterlocutorId: proposedInterlocutorId, report: report) }
+            .trackActivity(loading)
+            .asDriver(onErrorDriveWith: .never())
+    }
+    
+    func createOnProposedInterlocutor(report: ReportViewController.Report, proposedInterlocutorId: Int) -> Driver<Void> {
+        SearchService
+            .createReportOnProposedInterlocutor(proposedInterlocutorId: proposedInterlocutorId, report: report)
             .trackActivity(loading)
             .asDriver(onErrorDriveWith: .never())
     }

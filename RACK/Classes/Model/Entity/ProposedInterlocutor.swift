@@ -12,6 +12,7 @@ struct ProposedInterlocutor {
     let id: Int
     let interlocutorFullName: String
     let interlocutorAvatarUrl: URL?
+    let interlocutorThumbUrls: [URL]
     let gender: Gender
     let age: Int?
     let startColor: String?
@@ -23,6 +24,7 @@ extension ProposedInterlocutor: Model {
         case id
         case name
         case avatarUrl = "avatar_transparent"
+        case thumbs = "photos"
         case gender
         case age
         case startColor = "start_color"
@@ -47,6 +49,9 @@ extension ProposedInterlocutor: Model {
         age = try? container.decode(Int.self, forKey: .age)
         startColor = try? container.decode(String.self, forKey: .startColor)
         endColor = try? container.decode(String.self, forKey: .endColor)
+        
+        let thumbPaths = (try? container.decode([String].self, forKey: .thumbs)) ?? []
+        interlocutorThumbUrls = thumbPaths.compactMap { URL(string: $0) }
     }
     
     func encode(to encoder: Encoder) throws {}

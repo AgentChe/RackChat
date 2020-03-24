@@ -92,6 +92,12 @@ final class ProposedInterlocutorsTableCell: UITableViewCell {
         return view
     }()
     
+    private lazy var proposedInterlocutorThumbsContainerView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
     private lazy var dislikeButton: ActionButton = {
         let attrs = TextAttributes()
             .font(Fonts.OpenSans.semibold(size: 20))
@@ -162,6 +168,27 @@ final class ProposedInterlocutorsTableCell: UITableViewCell {
         if let endColor = proposedInterlocutor.endColor {
             proposedInterlocutorInfoContainerView.endColor = UIColor.hexStringToUIColor(hex: endColor)
         }
+        
+        for thumbImageView in proposedInterlocutorThumbsContainerView.subviews {
+            thumbImageView.removeFromSuperview()
+        }
+        
+        var x: CGFloat = 0
+        
+        for thumbUrl in proposedInterlocutor.interlocutorThumbUrls {
+            let container = UIView(frame: CGRect(x: x, y: 0, width: 60, height: 60))
+            container.backgroundColor = .black
+            
+            let imageView = UIImageView(frame: CGRect(x: 5, y: 5, width: 50, height: 50))
+            imageView.contentMode = .scaleAspectFill
+            imageView.clipsToBounds = true
+            imageView.kf.setImage(with: thumbUrl)
+            container.addSubview(imageView)
+            
+            proposedInterlocutorThumbsContainerView.addSubview(container)
+            
+            x += 50
+        }
     }
     
     private func configure() {
@@ -173,6 +200,7 @@ final class ProposedInterlocutorsTableCell: UITableViewCell {
         contentView.addSubview(proposedInterlocutorInfoContainerView)
         proposedInterlocutorInfoContainerView.addSubview(proposedInterlocutorAvatarImageView)
         proposedInterlocutorInfoContainerView.addSubview(nameLabel)
+        proposedInterlocutorInfoContainerView.addSubview(proposedInterlocutorThumbsContainerView)
         contentView.addSubview(dislikeButton)
         contentView.addSubview(likeButton)
         
@@ -180,9 +208,14 @@ final class ProposedInterlocutorsTableCell: UITableViewCell {
         proposedInterlocutorInfoContainerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
         proposedInterlocutorInfoContainerView.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
         
-        nameLabel.leadingAnchor.constraint(equalTo: proposedInterlocutorInfoContainerView.leadingAnchor, constant: 32).isActive = true
-        nameLabel.topAnchor.constraint(equalTo: proposedInterlocutorInfoContainerView.topAnchor, constant: 32).isActive = true
+        nameLabel.leadingAnchor.constraint(equalTo: proposedInterlocutorInfoContainerView.leadingAnchor, constant: SizeUtils.value(largeDevice: 32, smallDevice: 24)).isActive = true
+        nameLabel.topAnchor.constraint(equalTo: proposedInterlocutorInfoContainerView.topAnchor, constant: SizeUtils.value(largeDevice: 32, smallDevice: 24)).isActive = true
         nameLabel.widthAnchor.constraint(equalTo: proposedInterlocutorInfoContainerView.widthAnchor, multiplier: 0.7).isActive = true
+        
+        proposedInterlocutorThumbsContainerView.leadingAnchor.constraint(equalTo: proposedInterlocutorInfoContainerView.leadingAnchor, constant: SizeUtils.value(largeDevice: 32, smallDevice: 24)).isActive = true
+        proposedInterlocutorThumbsContainerView.trailingAnchor.constraint(equalTo: proposedInterlocutorInfoContainerView.leadingAnchor, constant: SizeUtils.value(largeDevice: -32, smallDevice: -24)).isActive = true
+        proposedInterlocutorThumbsContainerView.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 4).isActive = true
+        proposedInterlocutorThumbsContainerView.heightAnchor.constraint(equalToConstant: 60).isActive = true
         
         proposedInterlocutorAvatarImageView.leadingAnchor.constraint(equalTo: proposedInterlocutorInfoContainerView.leadingAnchor).isActive = true
         proposedInterlocutorAvatarImageView.topAnchor.constraint(equalTo: proposedInterlocutorInfoContainerView.topAnchor, constant: 80).isActive = true

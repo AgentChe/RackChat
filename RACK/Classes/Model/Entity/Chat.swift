@@ -25,6 +25,7 @@ extension Chat: Model {
     }
     
     private enum InterlocutorKeys: String, CodingKey {
+        case interlocutorId = "user_id"
         case interlocutorName = "name"
         case interlocutorAvatarUrl = "avatar"
         case unreadMessageCount = "unread"
@@ -39,7 +40,7 @@ extension Chat: Model {
         
         let interlocutor = try container.nestedContainer(keyedBy: InterlocutorKeys.self, forKey: .interlocutor)
         
-        interlocutorId = -1
+        interlocutorId = try interlocutor.decode(Int.self, forKey: .interlocutorId)
         interlocutorName = try interlocutor.decode(String.self, forKey: .interlocutorName)
         
         let interlocutorAvatarPath = try? interlocutor.decode(String.self, forKey: .interlocutorAvatarUrl).addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)

@@ -39,7 +39,7 @@ class SecondTestViewController: UIViewController {
         DatingKit.user.set(aim: .virt) { (status) in
             switch status {
             case .succses:
-                self.performSegue(withIdentifier: "last", sender: nil)
+                self.performSegue(withIdentifier: "random", sender: nil)
                 break
             case . noInternetConnection:
                 let banner = NotificationBanner(customView: NoConnectionBannerView.instanceFromNib())
@@ -53,9 +53,6 @@ class SecondTestViewController: UIViewController {
                 break
             }
         }
-//        User.shared.set(aim: .virt) {
-//            self.performSegue(withIdentifier: "last", sender: nil)
-//        }
     }
     
     @IBAction func endTapOnVirt(_ sender: Any) {
@@ -77,7 +74,7 @@ class SecondTestViewController: UIViewController {
         DatingKit.user.set(aim: .chats) { (status) in
              switch status {
                        case .succses:
-                           self.performSegue(withIdentifier: "last", sender: nil)
+                           self.performSegue(withIdentifier: "random", sender: nil)
                            break
                        case . noInternetConnection:
                            let banner = NotificationBanner(customView: NoConnectionBannerView.instanceFromNib())
@@ -91,9 +88,6 @@ class SecondTestViewController: UIViewController {
                            break
                        }
         }
-//        User.shared.set(aim: .chats) {
-//            self.performSegue(withIdentifier: "last", sender: nil)
-//        }
     }
     
     @IBAction func endTapOnQuik(_ sender: Any) {
@@ -115,7 +109,7 @@ class SecondTestViewController: UIViewController {
         DatingKit.user.set(aim: .meetUps) { (status) in
              switch status {
                        case .succses:
-                           self.performSegue(withIdentifier: "last", sender: nil)
+                           self.performSegue(withIdentifier: "random", sender: nil)
                            break
                        case . noInternetConnection:
                            let banner = NotificationBanner(customView: NoConnectionBannerView.instanceFromNib())
@@ -129,9 +123,6 @@ class SecondTestViewController: UIViewController {
                            break
                        }
         }
-//        User.shared.set(aim: .meetUps) {
-//            self.performSegue(withIdentifier: "last", sender: nil)
-//        }
     }
     
     @IBAction func endTapOnMeet(_ sender: Any) {
@@ -139,23 +130,4 @@ class SecondTestViewController: UIViewController {
         quiqButton.isEnabled = true
         virtualButton.isEnabled = true
     }
-    
-    
-//    override func viewDidDisappear(_ animated: Bool) {
-//        super.viewDidDisappear(animated)
-//        // Remove self from navigation hierarchy
-//        guard let viewControllers = navigationController?.viewControllers,
-//            let index = viewControllers.firstIndex(of: self) else { return }
-//        navigationController?.viewControllers.remove(at: index)
-//    }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

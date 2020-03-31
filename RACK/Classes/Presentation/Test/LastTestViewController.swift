@@ -49,9 +49,6 @@ class LastTestViewController: UIViewController {
                            break
                        }
         }
-//        User.shared.set(chatType: .text) {
-//            self.performSegue(withIdentifier: "random", sender: nil)
-//        }
     }
     
     @IBAction func endTapOnTexting(_ sender: Any) {

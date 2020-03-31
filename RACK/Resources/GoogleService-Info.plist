@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>1067476887874-8hgohj698407d09jevbco5qp6j60oaso.apps.googleusercontent.com</string>
+	<string>220342581353-lbm1tp325kb6l9mu5ln16r5u6lp3kg0n.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.1067476887874-8hgohj698407d09jevbco5qp6j60oaso</string>
+	<string>com.googleusercontent.apps.220342581353-lbm1tp325kb6l9mu5ln16r5u6lp3kg0n</string>
 	<key>API_KEY</key>
-	<string>AIzaSyD4z0ugeyTMsvbS6r6XP0BKiebGnd2Sebo</string>
+	<string>AIzaSyAB5e7k2OrUOTjGDssj-4ylwO5ahCXSBR0</string>
 	<key>GCM_SENDER_ID</key>
-	<string>1067476887874</string>
+	<string>220342581353</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>rack.today</string>
+	<string>chat.today</string>
 	<key>PROJECT_ID</key>
-	<string>rack-today</string>
+	<string>chattoday-73318</string>
 	<key>STORAGE_BUCKET</key>
-	<string>rack-today.appspot.com</string>
+	<string>chattoday-73318.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,8 +29,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:1067476887874:ios:f4889921b348b78a</string>
+	<string>1:220342581353:ios:1d8b8dcd275002e2560af8</string>
 	<key>DATABASE_URL</key>
-	<string>https://rack-today.firebaseio.com</string>
+	<string>https://chattoday-73318.firebaseio.com</string>
 </dict>
 </plist>
